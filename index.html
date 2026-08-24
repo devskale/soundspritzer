@@ -28,7 +28,6 @@
       font-family: "Jost", sans-serif;
       font-weight: 300;
       background:
-        radial-gradient(ellipse 120% 55% at 50% 108%, rgba(232, 148, 58, .55), transparent 60%),
         linear-gradient(to bottom,
           var(--dusk-top) 0%,
           var(--dusk-mid) 42%,
@@ -40,7 +39,54 @@
       flex-direction: column;
     }
 
+    /* ── lebendiger Abendhimmel ─────────────────── */
+    .sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .sky .glow {
+      position: absolute;
+      left: 50%; bottom: -22%;
+      width: 130vw; height: 60vh;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center,
+        rgba(240, 158, 66, .5), rgba(226, 112, 60, .22) 45%, transparent 70%);
+      filter: blur(30px);
+      animation: breathe 11s ease-in-out infinite;
+    }
+    .sky .cloud {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .35;
+    }
+    .sky .cloud.c1 {
+      width: 55vw; height: 22vh;
+      top: 26%; left: -12%;
+      background: radial-gradient(ellipse, rgba(240, 170, 90, .5), transparent 70%);
+      animation: drift1 46s ease-in-out infinite alternate;
+    }
+    .sky .cloud.c2 {
+      width: 42vw; height: 18vh;
+      top: 14%; right: -10%;
+      background: radial-gradient(ellipse, rgba(224, 92, 116, .4), transparent 70%);
+      animation: drift2 58s ease-in-out infinite alternate;
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: .75; transform: translateX(-50%) scaleY(1); }
+      50%      { opacity: 1;   transform: translateX(-50%) scaleY(1.12); }
+    }
+    @keyframes drift1 {
+      from { transform: translateX(0) translateY(0); }
+      to   { transform: translateX(16vw) translateY(2vh); }
+    }
+    @keyframes drift2 {
+      from { transform: translateX(0) translateY(0); }
+      to   { transform: translateX(-14vw) translateY(3vh); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sky .glow, .sky .cloud { animation: none; }
+    }
+
     main {
+      position: relative; z-index: 1;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -158,6 +204,7 @@
     }
 
     footer {
+      position: relative; z-index: 1;
       padding: 1.6rem;
       text-align: center;
       font-size: .68rem;
@@ -170,6 +217,11 @@
   </style>
 </head>
 <body>
+  <div class="sky" aria-hidden="true">
+    <div class="glow"></div>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+  </div>
   <main>
     <p class="kicker">Sonne · Sounds · Spritzer</p>
     <h1>Sounds<em>pritzer</em></h1>
