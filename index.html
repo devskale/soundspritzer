@@ -7,160 +7,126 @@
   <meta name="description" content="Soundspritzer — Live-Musik & DJ. 25. September 2026, Neusiedl am See.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #08070d;
-      --pink: #ff3d81;
-      --cyan: #35e6ff;
-      --violet: #8b5cf6;
-      --text: #f4f1fa;
-      --muted: rgba(244, 241, 250, .55);
+      --paper: #f6efe4;
+      --paper-warm: #efe4d3;
+      --ink: #33231a;
+      --ink-soft: rgba(51, 35, 26, .62);
+      --terracotta: #b4552d;
+      --gold: #a8823f;
+      --hairline: rgba(51, 35, 26, .25);
     }
 
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: "Space Grotesk", -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      background:
+        radial-gradient(ellipse at 50% -20%, var(--paper-warm), transparent 60%),
+        var(--paper);
+      color: var(--ink);
       min-height: 100svh;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── animated background ─────────────────────── */
-    .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: .5;
-      animation: drift 18s ease-in-out infinite alternate;
-    }
-    .blob.b1 { width: 55vmax; height: 55vmax; top: -20%; left: -15%;
-      background: radial-gradient(circle, var(--pink), transparent 65%); }
-    .blob.b2 { width: 45vmax; height: 45vmax; bottom: -25%; right: -10%;
-      background: radial-gradient(circle, var(--violet), transparent 65%);
-      animation-delay: -6s; }
-    .blob.b3 { width: 30vmax; height: 30vmax; top: 30%; left: 60%;
-      background: radial-gradient(circle, var(--cyan), transparent 65%);
-      opacity: .3; animation-delay: -12s; }
-    @keyframes drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(-6vw, 5vh) scale(1.15); }
-    }
-    .grain {
-      position: absolute; inset: 0; opacity: .05;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
     main {
-      position: relative; z-index: 1;
       flex: 1;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: clamp(1.5rem, 5vw, 4rem);
+      padding: clamp(2rem, 6vw, 5rem);
+      animation: reveal 1.6s ease-out both;
     }
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { main { animation: none; } }
 
-    /* ── equalizer ──────────────────────────────── */
-    .eq {
-      display: flex; gap: 6px; align-items: flex-end;
-      height: 34px; margin-bottom: 2.2rem;
-    }
-    .eq span {
-      width: 5px; border-radius: 3px;
-      background: linear-gradient(to top, var(--pink), var(--cyan));
-      animation: bounce 1s ease-in-out infinite;
-      transform-origin: bottom;
-    }
-    .eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
-    .eq span:nth-child(2) { height: 90%; animation-delay: .15s; }
-    .eq span:nth-child(3) { height: 60%; animation-delay: .3s; }
-    .eq span:nth-child(4) { height: 100%; animation-delay: .45s; }
-    .eq span:nth-child(5) { height: 50%; animation-delay: .6s; }
-    @keyframes bounce {
-      0%, 100% { transform: scaleY(.35); }
-      50% { transform: scaleY(1); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .eq span, .blob { animation: none; }
+    .kicker {
+      font-size: clamp(.7rem, 1.6vw, .8rem);
+      letter-spacing: .55em;
+      text-indent: .55em; /* optically center tracked caps */
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: clamp(1.2rem, 3vw, 2rem);
     }
 
     h1 {
-      font-family: "Unbounded", sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.6rem, 11vw, 7.5rem);
-      line-height: .95;
-      letter-spacing: -.02em;
-      text-transform: uppercase;
-      background: linear-gradient(100deg, var(--text) 20%, var(--pink) 45%, var(--cyan) 70%, var(--text) 95%);
-      background-size: 220% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shine 6s linear infinite;
-      filter: drop-shadow(0 0 40px rgba(255, 61, 129, .25));
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(3.2rem, 12vw, 8.5rem);
+      line-height: 1;
+      letter-spacing: .01em;
     }
-    @keyframes shine { to { background-position: -220% 0; } }
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--terracotta);
+    }
 
-    .badge-row {
-      margin-top: 2rem;
-      display: flex; flex-wrap: wrap; gap: .8rem;
-      justify-content: center;
+    .rule {
+      width: min(340px, 60vw);
+      height: 1px;
+      background: var(--hairline);
+      margin: clamp(1.6rem, 4vw, 2.6rem) auto;
+      position: relative;
     }
-    .badge {
-      font-weight: 600;
-      font-size: clamp(.85rem, 2.2vw, 1.05rem);
-      letter-spacing: .06em;
-      padding: .7em 1.4em;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
-      transition: transform .25s ease, border-color .25s ease;
+    .rule::after {
+      content: "◆";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      font-size: .5rem;
+      color: var(--gold);
+      background: var(--paper);
+      padding: 0 .9em;
     }
-    .badge:hover { transform: translateY(-3px); border-color: var(--pink); }
-    .badge.accent {
-      border-color: transparent;
-      background: linear-gradient(100deg, var(--pink), var(--violet));
-      color: #fff;
-      box-shadow: 0 8px 30px rgba(255, 61, 129, .35);
+
+    .date {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+      font-weight: 500;
+      font-variant-numeric: lining-nums;
     }
+    .date .sep { color: var(--terracotta); padding: 0 .35em; font-weight: 400; }
+
+    .meta {
+      margin-top: .9rem;
+      font-size: clamp(.75rem, 1.8vw, .85rem);
+      letter-spacing: .4em;
+      text-indent: .4em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .meta b { font-weight: 400; color: var(--ink); }
 
     footer {
-      position: relative; z-index: 1;
-      padding: 1.2rem;
+      padding: 1.6rem;
       text-align: center;
-      font-size: .75rem;
-      letter-spacing: .25em;
+      font-size: .68rem;
+      letter-spacing: .45em;
+      text-indent: .45em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--ink-soft);
+      opacity: .75;
     }
   </style>
 </head>
 <body>
-  <div class="bg">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-    <div class="grain"></div>
-  </div>
-
   <main>
-    <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-    <h1>Sound<wbr>spritzer</h1>
-    <div class="badge-row">
-      <span class="badge accent">25.09.2026</span>
-      <span class="badge">Neusiedl am See</span>
-      <span class="badge">🎵 Live + DJ</span>
-    </div>
+    <p class="kicker">Ein Abend · Ein Ort · Musik</p>
+    <h1>Sounds<em>pritzer</em></h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026</p>
+    <p class="meta">Neusiedl am See &nbsp;—&nbsp; <b>Live &amp; DJ</b></p>
   </main>
-
   <footer>Soundspritzer · 2026</footer>
 </body>
 </html>
