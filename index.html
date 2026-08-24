@@ -100,7 +100,9 @@
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: none; }
     }
-    @media (prefers-reduced-motion: reduce) { main { animation: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      main { animation: none; }
+    }
 
     .kicker {
       font-size: clamp(.7rem, 1.6vw, .8rem);
@@ -127,6 +129,38 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .stamp {
+      position: absolute;
+      top: -.55em;
+      right: -1.6em;
+      font-size: clamp(.58rem, 1.5vw, .78rem);
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-indent: .32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      outline: 1px solid rgba(232, 176, 75, .45);
+      outline-offset: 3px;
+      border-radius: 2px;
+      padding: .55em .7em .55em .7em;
+      transform: rotate(9deg);
+      opacity: .92;
+      animation: stamp-in .5s cubic-bezier(.2, 1.6, .4, 1) .9s both;
+    }
+    @keyframes stamp-in {
+      from { opacity: 0; transform: rotate(9deg) scale(1.7); }
+      to   { opacity: .92; transform: rotate(9deg) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .stamp { animation: none; }
     }
 
     .rule {
@@ -224,7 +258,10 @@
   </div>
   <main>
     <p class="kicker">Sonne · Sounds · Spritzer</p>
-    <h1>Sounds<em>pritzer</em></h1>
+    <div class="title-wrap">
+      <h1>Sounds<em>pritzer</em></h1>
+      <span class="stamp" aria-label="Ort: Am Tabor">Am Tabor</span>
+    </div>
     <div class="rule" aria-hidden="true"></div>
     <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026</p>
     <p class="meta"><b>Am Tabor</b> &nbsp;·&nbsp; Neusiedl am See &nbsp;·&nbsp; Live &amp; DJ</p>
