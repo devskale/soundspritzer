@@ -12,22 +12,29 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --paper: #f6efe4;
-      --paper-warm: #efe4d3;
-      --ink: #33231a;
-      --ink-soft: rgba(51, 35, 26, .62);
-      --terracotta: #b4552d;
-      --gold: #a8823f;
-      --hairline: rgba(51, 35, 26, .25);
+      --dusk-top: #221528;
+      --dusk-mid: #4d2334;
+      --dusk-low: #8f3d28;
+      --horizon: #e08a3c;
+      --cream: #f7ead8;
+      --cream-soft: rgba(247, 234, 216, .6);
+      --gold: #e8b04b;
+      --coral: #f2795c;
+      --rose: #e05c74;
+      --hairline: rgba(247, 234, 216, .28);
     }
 
     body {
       font-family: "Jost", sans-serif;
       font-weight: 300;
       background:
-        radial-gradient(ellipse at 50% -20%, var(--paper-warm), transparent 60%),
-        var(--paper);
-      color: var(--ink);
+        radial-gradient(ellipse 120% 55% at 50% 108%, rgba(232, 148, 58, .55), transparent 60%),
+        linear-gradient(to bottom,
+          var(--dusk-top) 0%,
+          var(--dusk-mid) 42%,
+          var(--dusk-low) 74%,
+          var(--horizon) 115%);
+      color: var(--cream);
       min-height: 100svh;
       display: flex;
       flex-direction: column;
@@ -64,11 +71,16 @@
       font-size: clamp(3.2rem, 12vw, 8.5rem);
       line-height: 1;
       letter-spacing: .01em;
+      color: var(--cream);
+      text-shadow: 0 0 60px rgba(232, 148, 58, .35);
     }
     h1 em {
       font-style: italic;
       font-weight: 400;
-      color: var(--terracotta);
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .rule {
@@ -85,7 +97,7 @@
       transform: translate(-50%, -52%);
       font-size: .5rem;
       color: var(--gold);
-      background: var(--paper);
+      background: transparent;
       padding: 0 .9em;
     }
 
@@ -105,7 +117,7 @@
       text-transform: uppercase;
       color: var(--ink-soft);
     }
-    .meta b { font-weight: 400; color: var(--ink); }
+    .meta b { font-weight: 400; color: var(--cream); }
 
     footer {
       padding: 1.6rem;
@@ -114,7 +126,7 @@
       letter-spacing: .45em;
       text-indent: .45em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: var(--cream-soft);
       opacity: .75;
     }
   </style>
