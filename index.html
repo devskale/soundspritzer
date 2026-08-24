@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soundspritzer — 25.09.2026 · Neusiedl am See</title>
+  <meta name="description" content="Soundspritzer — Live-Musik & DJ. 25. September 2026, Neusiedl am See. Pizza von Joe's Pub.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0d0b14;
+      --accent: #ff4d8d;
+      --accent2: #4dd2ff;
+      --text: #f2eef7;
+      --muted: #9a92ab;
+    }
+    body {
+      font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(255,77,141,.15), transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(77,210,255,.12), transparent 50%);
+    }
+    h1 {
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.05;
+    }
+    .date {
+      margin-top: 1rem;
+      font-size: clamp(1.2rem, 3vw, 1.75rem);
+      font-weight: 600;
+    }
+    .place { color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.35rem); margin-top: .35rem; }
+    .info {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .info span b { color: var(--text); font-weight: 600; }
+    footer {
+      position: fixed;
+      bottom: 1.25rem;
+      font-size: .8rem;
+      color: var(--muted);
+      opacity: .7;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Soundspritzer</h1>
+    <p class="date">25.&thinsp;September&ensp;2026</p>
+    <p class="place">Neusiedl am See</p>
+    <div class="info">
+      <span>🎵 <b>Live + DJ</b></span>
+      <span>🍕 <b>Pizza</b> von Joe's Pub</span>
+    </div>
+  </main>
+  <footer>Ein Event von Schüler:innen der HAK Neusiedl am See</footer>
+</body>
+</html>
