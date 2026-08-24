@@ -119,6 +119,44 @@
     }
     .meta b { font-weight: 400; color: var(--cream); }
 
+    .offerings {
+      margin-top: clamp(2.2rem, 5vw, 3.4rem);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: clamp(1.4rem, 4vw, 3rem);
+    }
+    .offering {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+    .offering .what {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.4vw, 1.9rem);
+      color: var(--gold);
+    }
+    .offering .who {
+      font-size: clamp(.7rem, 1.7vw, .8rem);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .divider {
+      width: 1px;
+      background: var(--hairline);
+    }
+
+    .support {
+      margin-top: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(.65rem, 1.5vw, .72rem);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      opacity: .8;
+    }
+
     footer {
       padding: 1.6rem;
       text-align: center;
@@ -133,12 +171,26 @@
 </head>
 <body>
   <main>
-    <p class="kicker">Ein Abend · Ein Ort · Musik</p>
+    <p class="kicker">Sonne · Sounds · Spritzer</p>
     <h1>Sounds<em>pritzer</em></h1>
     <div class="rule" aria-hidden="true"></div>
     <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026</p>
-    <p class="meta">Neusiedl am See &nbsp;—&nbsp; <b>Live &amp; DJ</b></p>
+    <p class="meta"><b>Am Tabor</b> &nbsp;·&nbsp; Neusiedl am See &nbsp;·&nbsp; Live &amp; DJ</p>
+
+    <div class="offerings">
+      <div class="offering">
+        <span class="what">Food</span>
+        <span class="who">von Joe's Pub</span>
+      </div>
+      <div class="divider" aria-hidden="true"></div>
+      <div class="offering">
+        <span class="what">Spritzer</span>
+        <span class="who">von Weingut Königshofer</span>
+      </div>
+    </div>
+
+    <p class="support">Unterstützt von der Stadtgemeinde Neusiedl am See</p>
   </main>
-  <footer>Soundspritzer · 2026</footer>
+  <footer>Soundspritzer · Am Tabor · 2026</footer>
 </body>
 </html>
