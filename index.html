@@ -119,8 +119,8 @@
     h1 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 700;
-      font-size: clamp(3.2rem, 12vw, 8.5rem);
-      line-height: 1;
+      font-size: clamp(2.6rem, 8vw, 6rem);
+      line-height: 1.05;
       letter-spacing: .01em;
       color: var(--cream);
       text-shadow: 0 0 60px rgba(232, 148, 58, .35);
@@ -137,33 +137,6 @@
     .title-wrap {
       position: relative;
       display: inline-block;
-    }
-
-    .stamp {
-      position: absolute;
-      top: -.55em;
-      right: -1.6em;
-      font-size: clamp(.58rem, 1.5vw, .78rem);
-      font-weight: 400;
-      letter-spacing: .32em;
-      text-indent: .32em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1.5px solid var(--gold);
-      outline: 1px solid rgba(232, 176, 75, .45);
-      outline-offset: 3px;
-      border-radius: 2px;
-      padding: .55em .7em .55em .7em;
-      transform: rotate(9deg);
-      opacity: .92;
-      animation: stamp-in .5s cubic-bezier(.2, 1.6, .4, 1) .65s both;
-    }
-    @keyframes stamp-in {
-      from { opacity: 0; transform: rotate(9deg) scale(1.7); }
-      to   { opacity: .92; transform: rotate(9deg) scale(1); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .stamp { animation: none; }
     }
 
     .rule {
@@ -244,42 +217,44 @@
     }
     .award:hover { color: var(--gold); border-color: var(--gold); }
 
-    .creds {
+    .partners {
       margin-top: clamp(2rem, 4.5vw, 3rem);
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: center;
-      gap: .7rem 1.6rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
     }
-    .creds-label {
+    .partners-label {
       font-size: clamp(.6rem, 1.4vw, .68rem);
       letter-spacing: .3em;
       text-transform: uppercase;
       color: var(--cream-soft);
     }
-    .logo {
-      display: inline-flex;
-      flex-direction: column;
+    .partner-row {
+      display: flex;
       align-items: center;
-      line-height: 1;
-      color: var(--gold);
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.4vw, 1.3rem);
+      justify-content: center;
+      gap: clamp(2rem, 6vw, 4rem);
+      flex-wrap: wrap;
     }
-    .logo-sub {
-      margin-top: .3em;
-      font-family: inherit;
-      font-style: normal;
-      font-size: .55em;
-      letter-spacing: .34em;
-      text-transform: uppercase;
-      color: var(--cream-soft);
+    .partner-row .logo {
+      display: inline-block;
+      line-height: 0;
+      opacity: .92;
+      transition: opacity .25s ease, transform .25s ease;
     }
-    .logo + .logo {
-      padding-left: 1.6rem;
-      border-left: 1px solid var(--hairline);
+    .partner-row .logo:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    .partner-row .logo svg {
+      height: 64px;
+      width: auto;
+    }
+    .partner-row .logo:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
 
     /* Tastatur-Fokus sichtbar (designsystemchecklist.com — Foundations/A11y) */
@@ -340,13 +315,8 @@
       color: rgba(43, 26, 32, .72);
     }
 
-    /* Mobile: Stamp kollidierte mit der Headline, Offerings zu schmal */
+    /* Mobile: Offerings zu schmal, stapeln vertikal */
     @media (max-width: 640px) {
-      .stamp {
-        top: -1.1em;
-        right: -.4em;
-        font-size: .55rem;
-      }
       .offerings {
         flex-direction: column;
         gap: 1.6rem;
@@ -365,10 +335,9 @@
     <div class="cloud c2"></div>
   </div>
   <main>
-    <p class="kicker">Sonne · Sounds · Spritzer</p>
+    <p class="kicker">Der Sundowner · Am Tabor</p>
     <div class="title-wrap">
-      <h1>Sun<em>Downer</em></h1>
-      <span class="stamp" aria-label="Ort: Am Tabor">Am Tabor</span>
+      <h1>Seeblick · Sounds <em>&amp;&nbsp;Spritzer</em></h1>
     </div>
     <div class="rule" aria-hidden="true">
       <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -403,10 +372,27 @@
       </div>
     </div>
 
-    <div class="creds" aria-label="Ein Schülerspecial von Joe's Pub und der Akademie Wirtschaft Neusiedl am See">
-      <span class="creds-label">Ein Schülerspecial von</span>
-      <span class="logo">Joe's Pub<span class="logo-sub">Neusiedl am See</span></span>
-      <span class="logo">Akademie Wirtschaft<span class="logo-sub">Neusiedl am See</span></span>
+    <div class="partners" aria-label="Partner: Joe's Pub und Akademie der Wirtschaft">
+      <p class="partners-label">Ein Schülerspecial von</p>
+      <div class="partner-row">
+        <a class="logo" href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener" aria-label="Joe's Pub Neusiedl am See">
+          <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
+            <circle cx="48" cy="48" r="46" fill="#2f6b3f"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#f4e9d0" stroke-width="1.5" opacity=".85"/>
+            <text x="48" y="46" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-style="italic" font-size="24">Joe's</text>
+            <text x="48" y="64" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-size="13" letter-spacing="3">PUB</text>
+            <text x="48" y="24" text-anchor="middle" fill="#f4e9d0" font-size="7" letter-spacing="2" opacity=".8">EST. 2007</text>
+          </svg>
+        </a>
+        <a class="logo" href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener" aria-label="Akademie der Wirtschaft Neusiedl am See">
+          <svg viewBox="0 0 120 96" role="img" aria-hidden="true">
+            <text x="0" y="46" fill="#f2b705" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="64">W</text>
+            <text x="30" y="44" fill="#f4e9d0" font-family="Georgia, serif" font-size="16" font-weight="bold">AKADEMIE</text>
+            <text x="30" y="62" fill="#f4e9d0" font-family="Georgia, serif" font-size="12" letter-spacing="1">DER WIRTSCHAFT</text>
+            <text x="30" y="78" fill="#f4e9d0" font-family="Georgia, serif" font-size="9" letter-spacing="2" opacity=".8">NEUSIEDL AM SEE</text>
+          </svg>
+        </a>
+      </div>
     </div>
 
     <p class="support">Unterstützt von der Stadtgemeinde Neusiedl am See</p>
