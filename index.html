@@ -23,7 +23,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b04b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v6'/%3E%3Cpath d='m9 6 3 3 3-3'/%3E%3Cpath d='M5.6 8.6 7 10'/%3E%3Cpath d='M18.4 8.6 17 10'/%3E%3Cpath d='M3 15h2'/%3E%3Cpath d='M19 15h2'/%3E%3Cpath d='M8 15a4 4 0 0 1 8 0'/%3E%3Cpath d='M2 19h20'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <style>
     /* ── seiten-spezifisch: Startseite ── */
@@ -54,25 +54,32 @@
       text-align: center;
     }
     .brand-word {
-      margin-bottom: clamp(1rem, 2vw, 1.6rem); /* Rhythmus M: Marke→Claim */
+      margin-bottom: clamp(1.4rem, 2.8vw, 2rem); /* Rhythmus M+: Marke (eigene Gruppe) → Claim-Gruppe */
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(2.8rem, 6.5vw, 4.8rem);
       font-weight: 700;
       line-height: 1;
-      letter-spacing: .02em;
+      letter-spacing: .01em;
       color: var(--cream);
       text-shadow:
         0 0 30px rgba(232, 148, 58, .5),
         0 0 90px rgba(232, 148, 58, .3);
       text-align: center;
     }
-    /* Sub-Zeile im linken Hero-Teil, unter dem Claim */
+    /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
     .hero-sub {
-      margin-top: clamp(1.6rem, 3vw, 2.2rem); /* Rhythmus M: Claim→Sub */
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+      display: inline-block;
+      margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Pill→Marke, eng als Einheit */
+      padding: .55em 1.1em;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      font-size: clamp(.6rem, 1.3vw, .7rem);
+      font-weight: 400;
+      letter-spacing: .28em;
+      text-indent: .28em;
+      text-transform: uppercase;
       color: var(--gold);
+      background: rgba(232, 176, 75, .05);
     }
     /* ── Hero rechts: Tabor-Gruppe ── */
     .hero-right {
@@ -80,18 +87,17 @@
       justify-content: center;
     }
     h1 {
+      font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie Marke & Sub */
       font-weight: 500;
       font-size: clamp(1.7rem, 4.2vw, 3.1rem); /* Claim, eine Stufe unter der Marke */
-      line-height: 1.05;
+      line-height: 1.12; /* enger: 3 kurze Wörter als Block, nicht schlaksig */
       letter-spacing: .01em;
       text-shadow: 0 0 60px rgba(232, 148, 58, .35);
     }
     h1 .l1, h1 .l2, h1 .l3 {
       display: block;
-      line-height: 1.04;
+      line-height: 1.12;
     }
-    h1 .l2 { margin-top: .1em; }
-    h1 .l3 { margin-top: .1em; }
     .tabor {
       flex: none;
       position: relative;
@@ -100,7 +106,7 @@
       height: auto;
       opacity: .95;
       filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
-      animation: rise 1s ease-out .35s both;
+      animation: rise .6s ease-out .25s both;
     }
     .tabor-wrap {
       flex: none;
@@ -230,7 +236,7 @@
       width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
       margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
-      margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
+      margin-top: clamp(3.8rem, 7.5vw, 5.6rem); /* XXL 1: Hero→Facts */
       padding: clamp(.9rem, 2vw, 1.3rem) clamp(1rem, 4vw, 2.5rem);
       background: var(--cream);
       color: var(--ink);
@@ -244,7 +250,7 @@
     }
     .facts-banner .fact {
       font-size: clamp(.82rem, 2vw, 1.05rem);
-      font-weight: 400;
+      font-weight: 500; /* kräftiger: Jost 400 wirkte im hellen Balken zu leicht */
       letter-spacing: .22em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -256,13 +262,9 @@
     }
     /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
-      margin: clamp(3.2rem, 6.5vw, 4.8rem) auto 0;
+      margin: clamp(4rem, 8vw, 6rem) auto 0;
       width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
       text-align: center;
-    }
-    .about-line {
-      height: 1px;
-      background: var(--hairline);
     }
     .about-icon {
       display: block;
@@ -299,7 +301,7 @@
     }
 
     .offerings {
-      margin-top: clamp(3.5rem, 7vw, 5rem); /* Rhythmus XXL 2: Datum→Offerings */
+      margin-top: clamp(4.2rem, 8.5vw, 6.2rem); /* Rhythmus XXL 3: About→Offerings */
       display: flex;
       align-items: stretch;
       justify-content: center;
@@ -345,7 +347,7 @@
     .award:hover { color: var(--cream); }
 
     .partners {
-      margin-top: clamp(4rem, 8vw, 6rem); /* Rhythmus XXL 3: Offerings→Partners */
+      margin-top: clamp(4.8rem, 9.5vw, 7.2rem); /* Rhythmus XXL 4: Offerings→Partners */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -387,7 +389,7 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: clamp(1rem, 2.5vw, 1.6rem);
+      gap: clamp(1.2rem, 3vw, 1.9rem);
       width: 100%;
       /* statisch — kein Marquee mehr */
     }
@@ -443,6 +445,9 @@
       text-decoration: none;
       border-bottom: 1px solid rgba(43, 26, 32, .35);
       transition: border-color .25s ease;
+      /* Touch-Target ≥44px ohne Layout-Shift */
+      padding: .8em .6em;
+      margin: -.8em -.6em;
     }
     footer a:hover { border-color: rgba(43, 26, 32, .8); }
     footer a:focus-visible {
@@ -486,9 +491,9 @@
   <main>
     <div class="hero">
       <div class="hero-left">
+        <p class="hero-sub">Live-Musik · Foodtruck · Freier Eintritt</p>
         <p class="brand-word">SunDowner</p>
         <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
-        <p class="hero-sub"><em>Live-Musik · Foodtruck · Freier Eintritt</em></p>
       </div>
       <div class="hero-right">
         <div class="tabor-wrap">
@@ -506,7 +511,6 @@
     </div>
 
     <div class="about">
-      <div class="about-line" aria-hidden="true"></div>
       <img class="about-icon" src="assets/schueler.png" alt="Wir drei Schüler" width="1262" height="662">
       <p class="about-text">
         Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
@@ -522,7 +526,6 @@
         Wir freuen uns auf Ihr Kommen! Die Freunde des SunDowners,<br>
         Laurens, Alex &amp; der Dritte
       </p>
-      <div class="about-line" aria-hidden="true"></div>
     </div>
 
     <div class="offerings">
