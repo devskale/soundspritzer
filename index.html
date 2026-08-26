@@ -40,6 +40,29 @@
        Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
+    /* ── Site-Header: die zwei Veranstalter-Logos, ganz oben links ── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      width: 100%;
+      padding: 1.2rem 0 0 1.2rem; /* Abstand zu Top & Left */
+      margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem); /* Rhythmus M: Header→Hero (war zu groß bei 60–80px Logos) */
+    }
+    .site-header a {
+      display: inline-flex;
+      transition: opacity .25s ease;
+    }
+    .site-header a:hover { opacity: .75; }
+    .site-header a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .site-header img { width: auto; }
+    .site-header img[src*="akwi"] { height: 80px; }
+    .site-header img[src*="joes"] { height: 80px; }
+
     /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
     .hero {
       display: grid;
@@ -484,6 +507,14 @@
     <div class="cloud c1"></div>
     <div class="cloud c2"></div>
   </div>
+  <header class="site-header">
+    <a href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener">
+      <img src="assets/akwi.png" alt="Akademie der Wirtschaft Neusiedl am See" width="200" height="287">
+    </a>
+    <a href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener">
+      <img src="assets/joes-pub.png" alt="Joe's Pub Neusiedl am See" width="377" height="296">
+    </a>
+  </header>
   <main>
     <div class="hero">
       <div class="hero-left">
@@ -515,8 +546,8 @@
         Musik von unserer Lieblingsband, kulinarische Schmankerl aus
         Neusiedl und lässige Sonnenuntergangs-Stimmung bei fairen Preisen.
         Offen für alle, die kommen wollen. Wir danken der Stadtgemeinde
-        Neusiedl am See und allen Unterstützern, die diesen Abend möglich
-        machen.
+        Neusiedl am See, Joe's Pub und allen Unterstützern, die diesen
+        Abend möglich machen.
       </p>
       <p class="about-text">
         Wir hoffen, ihr kommt vorbei! Die Freunde des SunDowners,<br>
