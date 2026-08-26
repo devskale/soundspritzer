@@ -1,0 +1,45 @@
+{
+  "updated": "2026-08-26T17:35:12.069Z",
+  "sponsors": [
+    {
+      "name": "GWP GRÖSZ WEISZ PARTNER",
+      "role": "Steuerberatung OG",
+      "tier": "medium",
+      "eur": 150,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "skale.dev",
+      "role": "Software Engineering",
+      "tier": "medium",
+      "eur": 150,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "Neusiedl am See",
+      "role": "Stadtgemeinde",
+      "tier": "medium",
+      "eur": 150,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "Joes Pub",
+      "role": "Bier & Pizza in Neusiedl am See",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "Akademie der Wirtschaft",
+      "role": "Neusiedl am See",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null
+    }
+  ]
+}
