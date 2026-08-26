@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See</title>
   <meta name="description" content="SunDowner am Tabor — Live-Musik & DJ. 25. September 2026, Neusiedl am See.">
+
+  <!-- Open Graph / Social (WhatsApp, Instagram, iMessage, X) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://soundspritzer.at/">
+  <meta property="og:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
+  <meta property="og:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Live-Musik, Foodtruck & Freiem Eintritt. 25.09.2026, 16–22 Uhr am Tabor.">
+  <meta property="og:image" content="https://soundspritzer.at/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="de_AT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
+  <meta name="twitter:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Live-Musik, Foodtruck & Freiem Eintritt.">
+  <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.png">
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b04b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v6'/%3E%3Cpath d='m9 6 3 3 3-3'/%3E%3Cpath d='M5.6 8.6 7 10'/%3E%3Cpath d='M18.4 8.6 17 10'/%3E%3Cpath d='M3 15h2'/%3E%3Cpath d='M19 15h2'/%3E%3Cpath d='M8 15a4 4 0 0 1 8 0'/%3E%3Cpath d='M2 19h20'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,17 +40,48 @@
        Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
-    /* ── Hero: Titel + Tabor side-by-side (Maße wie decd309) ── */
-    .title-wrap {
-      position: relative;
-      display: flex;
+    /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
+      gap: clamp(3rem, 7vw, 6rem); /* Luft zwischen Text- und Motivseite */
+      width: 100%;
+      max-width: 1200px;
+      padding: clamp(1.5rem, 3vw, 2.5rem) 0; /* vertikale Entfaltung des Heros */
+    }
+    .hero-left {
+      text-align: center;
+    }
+    .brand-word {
+      margin-bottom: clamp(1rem, 2vw, 1.6rem); /* Rhythmus M: Marke→Claim */
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: .02em;
+      color: var(--cream);
+      text-shadow:
+        0 0 30px rgba(232, 148, 58, .5),
+        0 0 90px rgba(232, 148, 58, .3);
+      text-align: center;
+    }
+    /* Sub-Zeile im linken Hero-Teil, unter dem Claim */
+    .hero-sub {
+      margin-top: clamp(1.6rem, 3vw, 2.2rem); /* Rhythmus M: Claim→Sub */
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+      color: var(--gold);
+    }
+    /* ── Hero rechts: Tabor-Gruppe ── */
+    .hero-right {
+      display: flex;
       justify-content: center;
-      gap: clamp(1.6rem, 4vw, 3.4rem);
     }
     h1 {
-      font-weight: 700;
-      font-size: clamp(2.6rem, 8vw, 6rem);
+      font-weight: 500;
+      font-size: clamp(1.7rem, 4.2vw, 3.1rem); /* Claim, eine Stufe unter der Marke */
       line-height: 1.05;
       letter-spacing: .01em;
       text-shadow: 0 0 60px rgba(232, 148, 58, .35);
@@ -179,10 +225,11 @@
     /* Facts-Banner: durchgehender heller Balken unter dem Hero,
        edge-to-edge (Plakat-Streifen), Tinte auf Creme. Ersetzt die when-card. */
     .facts-banner {
-    /* aus dem main-Padding ausbrechen: volle Breite, scrollbar-sicher via translate */
-      /* aus dem main-Padding ausbrechen: symmetrisch edge-to-edge (negatives Margin um das main-padding) */
+      /* edge-to-edge, scrollbar-sicher: beidseitig negatives Margin
+         um das main-Padding — bündig mit dem sichtbaren Bereich, kein 100vw */
       width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
       margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
+      margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
       padding: clamp(.9rem, 2vw, 1.3rem) clamp(1rem, 4vw, 2.5rem);
       background: var(--cream);
@@ -206,11 +253,6 @@
       color: var(--terracotta);
       opacity: .8;
       font-size: .9em;
-    }
-    .facts-banner .fact--free {
-      font-weight: 500;
-      color: var(--terracotta);
-      letter-spacing: .3em;
     }
     /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
@@ -370,6 +412,7 @@
       outline: 2px solid var(--gold);
       outline-offset: 3px;
     }
+    .sponsor-card:active { background: rgba(232, 176, 75, .12); }
     .sponsor-name {
       font-family: "Cormorant Garamond", serif;
       color: var(--cream);
@@ -408,12 +451,15 @@
       border-radius: 2px;
     }
 
-    /* Mobile: Titel stapeln, Tabor kleiner, Offerings untereinander */
+    /* Mobile: Hero stapeln, Tabor kleiner, Offerings untereinander */
     @media (max-width: 640px) {
-      .title-wrap {
-        flex-direction: column;
-        gap: .8rem;
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.2rem;
       }
+      .hero-left { text-align: center; }
+      .brand-word { white-space: normal; }
       .tabor {
         width: clamp(190px, 66vw, 300px);
       }
@@ -438,11 +484,17 @@
     <div class="cloud c2"></div>
   </div>
   <main>
-    <div class="title-wrap">
-      <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
-      <div class="tabor-wrap">
-        <img class="tabor" src="assets/tabor.png" alt="Ruine Tabor" width="1432" height="583">
-        <span class="sun" aria-hidden="true"></span>
+    <div class="hero">
+      <div class="hero-left">
+        <p class="brand-word">SunDowner</p>
+        <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
+        <p class="hero-sub"><em>Live-Musik · Foodtruck · Freier Eintritt</em></p>
+      </div>
+      <div class="hero-right">
+        <div class="tabor-wrap">
+          <img class="tabor" src="assets/tabor.png" alt="Ruine Tabor" width="1432" height="583">
+          <span class="sun" aria-hidden="true"></span>
+        </div>
       </div>
     </div>
     <div class="facts-banner" role="contentinfo" aria-label="Veranstaltungsfakten">
@@ -451,8 +503,6 @@
       <span class="fact">16–22 Uhr</span>
       <span class="fact-sep" aria-hidden="true">·</span>
       <span class="fact">Am Tabor, Neusiedl am See</span>
-      <span class="fact-sep" aria-hidden="true">·</span>
-      <span class="fact fact--free">Freier Eintritt</span>
     </div>
 
     <div class="about">
@@ -477,20 +527,20 @@
 
     <div class="offerings">
       <div class="offering">
-        <img class="icon" src="assets/vinyl.png" alt="Musik" width="198" height="198">
+        <img class="icon" src="assets/vinyl.png" alt="" aria-hidden="true" width="198" height="198">
         <span class="what">Musik</span>
         <span class="who"><a href="https://www.instagram.com/yourynot" target="_blank" rel="noopener">YnoT</a> live · Flux (DJ)</span>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <img class="icon" src="assets/pizza.png" alt="Foodtruck" width="541" height="485">
+        <img class="icon" src="assets/pizza.png" alt="" aria-hidden="true" width="541" height="485">
         <span class="what">Foodtruck</span>
         <span class="who">Joe's Pub</span>
         <a class="award" href="https://www.bvz.at/neusiedl/falstaff-voting-das-ist-die-beliebteste-pizzeria-des-burgenlands-480867248" target="_blank" rel="noopener">★ Burgenlands beliebteste Pizza</a>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <img class="icon" src="assets/glass.png" alt="Spritzer" width="334" height="812">
+        <img class="icon" src="assets/glass.png" alt="" aria-hidden="true" width="334" height="812">
         <span class="what">Spritzer</span>
         <span class="who">Weingut Königshofer</span>
       </div>
