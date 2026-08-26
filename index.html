@@ -176,45 +176,45 @@
       .tabor { animation: none; }
     }
 
-    /* Datum/Zeit/Ort als Karte unter dem Hero — XXL 1 Abstand */
-    .when-card {
-      margin: clamp(3rem, 6vw, 4.5rem) auto 0; /* XXL 1: Hero→Karte */
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .55rem;
-      padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.8rem, 4.5vw, 3rem);
-      border: 1px solid var(--hairline);
-      border-radius: 4px;
-      background: rgba(247, 234, 216, .05);
-      box-shadow: 0 8px 40px rgba(34, 21, 40, .35);
+    /* Facts-Banner: durchgehender heller Balken unter dem Hero,
+       edge-to-edge (Plakat-Streifen), Tinte auf Creme. Ersetzt die when-card. */
+    .facts-banner {
+    /* aus dem main-Padding ausbrechen: volle Breite, scrollbar-sicher via translate */
+      /* aus dem main-Padding ausbrechen: symmetrisch edge-to-edge (negatives Margin um das main-padding) */
+      width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
+      margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
+      margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
+      padding: clamp(.9rem, 2vw, 1.3rem) clamp(1rem, 4vw, 2.5rem);
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: .6rem clamp(1.2rem, 3vw, 2.4rem);
+      text-align: center;
     }
-    .date {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.6rem, 4.5vw, 2.6rem);
-      font-weight: 500;
-      font-variant-numeric: lining-nums;
-    }
-    .date .sep { color: var(--terracotta); padding: 0 .35em; font-weight: 400; }
-    .date sup {
-      font-size: .55em;
-      line-height: 0;
-      vertical-align: .45em;
-      letter-spacing: 0;
-    }
-
-    .location {
-      margin-top: .8rem;
-      font-size: clamp(.85rem, 2vw, 1.05rem);
-      letter-spacing: .34em;
-      text-indent: .34em;
+    .facts-banner .fact {
+      font-size: clamp(.82rem, 2vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--cream);
+      white-space: nowrap;
     }
-
-    /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Datum */
+    .facts-banner .fact-sep {
+      color: var(--terracotta);
+      opacity: .8;
+      font-size: .9em;
+    }
+    .facts-banner .fact--free {
+      font-weight: 500;
+      color: var(--terracotta);
+      letter-spacing: .3em;
+    }
+    /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
-      margin: clamp(3rem, 6vw, 4.4rem) auto 0;
+      margin: clamp(3.2rem, 6.5vw, 4.8rem) auto 0;
       width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
       text-align: center;
     }
@@ -309,35 +309,40 @@
       text-transform: uppercase;
       color: var(--cream-soft);
     }
+    .offering .who a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232, 176, 75, .4);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .offering .who a:hover { color: var(--cream); border-color: var(--cream); }
+    .offering .who a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
     .divider {
       width: 1px;
       background: var(--hairline);
     }
 
-    /* ── Sponsoren-Marquee (läuft links→rechts) ── */
+    /* ── Sponsoren & Partner: statische Kartenreihe (zentriert, umbrechend) ── */
     .sponsor-track {
       position: relative; z-index: 1;
       margin-top: clamp(2rem, 4vw, 3rem); /* Rhythmus M: Label→Cards */
-      overflow: hidden;
       width: 100%;
-      /* Fade-Kanten links/rechts (Maske, kein Gradient-Overlay) */
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-      mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+      display: flex;
+      justify-content: center;
     }
     .sponsor-run {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: clamp(1rem, 2.5vw, 1.6rem);
-      width: max-content;
-      animation: sponsor-marquee 42s linear infinite;
-      /* Startposition: läuft von links nach rechts → negative Richtung startet */
-    }
-    @keyframes sponsor-marquee {
-      from { transform: translateX(-50%); }
-      to   { transform: translateX(0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .sponsor-run { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+      width: 100%;
+      /* statisch — kein Marquee mehr */
     }
     .sponsor-card {
       display: flex;
@@ -423,23 +428,30 @@
         <span class="sun" aria-hidden="true"></span>
       </div>
     </div>
-    <div class="when-card">
-      <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026 <span class="sep">·</span> 16<sup>⁰⁰</sup><span class="sep">–</span>22<sup>⁰⁰</sup></p>
-      <p class="location">Am Tabor · Neusiedl</p>
+    <div class="facts-banner" role="contentinfo" aria-label="Veranstaltungsfakten">
+      <span class="fact">25.09.2026</span>
+      <span class="fact-sep" aria-hidden="true">·</span>
+      <span class="fact">16–22 Uhr</span>
+      <span class="fact-sep" aria-hidden="true">·</span>
+      <span class="fact">Am Tabor, Neusiedl am See</span>
+      <span class="fact-sep" aria-hidden="true">·</span>
+      <span class="fact fact--free">Freier Eintritt</span>
     </div>
 
     <div class="about">
       <div class="about-line" aria-hidden="true"></div>
       <p class="about-text">
-        Wir sind drei Schüler der Akademie der Wirtschaft Neusiedl am See —
-        und feiern mit dem SunDowner den Höhepunkt unserer Diplomarbeit:
-        Sonne, Sounds und Spritzer mit Blick über die Stadt.
+        Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
+        verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
+        einen Abend mit Freunden an einem der schönsten Orte unserer Stadt,
+        mit Musik von lokalen Künstlern, kulinarischen Schmankerl aus Neusiedl
+        und lässiger Sonnenuntergangs-Stimmung, offen für jedes Alter.
+        Wir danken der Stadtgemeinde Neusiedl am See und allen Unterstützern,
+        die diesen Abend möglich machen.
       </p>
-      <p class="about-text about-text--sub">
-        Am 25. September 2026, open air am Tabor — gemeinsam mit unserem Partner
-        <em>Joe's Pub</em>, Musik von <em>YnoT</em> &amp; <em>Flux (DJ)</em>,
-        Spritzer vom Weingut Königshofer. Wir freuen uns auf alle Freunde
-        des SunDowners — bringt eure mit!
+      <p class="about-text">
+        Wir freuen uns auf Ihr Kommen! Die Freunde des SunDowners,<br>
+        Laurens, Alex &amp; der Dritte
       </p>
       <div class="about-line" aria-hidden="true"></div>
     </div>
@@ -504,12 +516,11 @@
         return n;
       }
 
-      function card(s, clone) {
+      function card(s) {
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
         a.appendChild(el("span", "sponsor-name", s.name));
         if (s.role) a.appendChild(el("span", "sponsor-role", s.role));
-        if (clone) { a.setAttribute("aria-hidden", "true"); a.tabIndex = -1; }
         return a;
       }
 
@@ -517,9 +528,7 @@
         var sponsors = (data && data.sponsors) || [];
         if (!sponsors.length) return;
         run.textContent = "";
-        sponsors.forEach(function (s) { run.appendChild(card(s, false)); });
-        // Duplikat für nahtlosen Marquee-Loop (translateX -50% → 0)
-        sponsors.forEach(function (s) { run.appendChild(card(s, true)); });
+        sponsors.forEach(function (s) { run.appendChild(card(s)); });
       }
 
       function load() {
