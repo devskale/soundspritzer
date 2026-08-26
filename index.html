@@ -21,82 +21,18 @@
       max-width: 100%;
       overflow-x: hidden; /* Death Defense gegen Mobile-Overflow */
     }
-      /* ── Vertikaler Rhythmus ──
-         Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
-         Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
-    }
+    /* ── Vertikaler Rhythmus ──
+       Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
+       Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
-    .kicker { margin: 0; }
-
-    .special-row {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: clamp(3.6rem, 7vw, 5.2rem); /* Rhythmus XXL 1: Header→Hero */
-      margin-top: -1.2rem; /* näher an den oberen Rand */
-    }
-    .special-text {
+    /* ── Hero: Titel + Tabor side-by-side (Maße wie decd309) ── */
+    .title-wrap {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .7rem;
-      flex-wrap: wrap; /* schließt Mobile-Overflow aus */
+      gap: clamp(1.6rem, 4vw, 3.4rem);
     }
-    /* Kopfzeile: zwei Zeilen, ein Stil — Zeile 1 Event, Zeile 2 (kleiner) Veranstalter */
-    .special-row .akwi {
-      height: clamp(30px, 5vw, 46px); /* gleiches Gewicht wie Zeile 1 */
-      width: auto;
-      opacity: .95;
-    }
-    .akwi-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .5em;
-      text-decoration: none;
-      transition: opacity .25s ease;
-    }
-    .akwi-link:hover { opacity: .8; }
-    .akwi-name {
-      font-size: clamp(.62rem, 1.4vw, .72rem); /* identisch zu Kicker/SunDowner — gleiche Ebene */
-      letter-spacing: .32em;
-      text-transform: uppercase;
-      color: var(--cream-soft);
-    }
-    .akwi-link:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
-    .special-row .special-text {
-      display: flex;
-      align-items: center;
-      gap: .55em;
-      line-height: 1;
-    }
-    .special-row .kicker,
-    .special-row .special-name {
-      font-size: clamp(.62rem, 1.4vw, .72rem);
-      letter-spacing: .32em;
-      text-indent: .32em;
-      text-transform: uppercase;
-      color: var(--cream-soft);
-    }
-
-    .tag {
-      font-size: clamp(.58rem, 1.4vw, .72rem);
-      font-weight: 500;
-      letter-spacing: .32em;
-      text-indent: .32em;
-      text-transform: uppercase;
-      /* gefüllter Tag: goldener Hintergrund, dunkle Schrift, dunkler Rand */
-      color: var(--ink);
-      background: var(--gold);
-      border: 1.5px solid var(--ink);
-      border-radius: 2px;
-      padding: .5em .9em;
-      box-shadow: 0 4px 18px rgba(232, 176, 75, .35);
-    }
-
     h1 {
       font-weight: 700;
       font-size: clamp(2.6rem, 8vw, 6rem);
@@ -110,16 +46,10 @@
     }
     h1 .l2 { margin-top: .1em; }
     h1 .l3 { margin-top: .1em; }
-
-    .title-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(1.6rem, 4vw, 3.4rem);
-    }
     .tabor {
       flex: none;
+      position: relative;
+      z-index: 1; /* über der wandernden Sonne */
       width: clamp(220px, 44vw, 560px);
       height: auto;
       opacity: .95;
@@ -133,7 +63,8 @@
       flex-direction: column;
       align-items: center;
     }
-    /* langsam pulsierende Sonne rechts oben neben dem Tabor */
+    /* Sonnenuntergang: Bogen von rechts oben bis HINTER/UNTER das Tabor,
+       wo sie von der Ruinen-Silhouette verdeckt wird — dann soft restart. */
     .sun {
       position: absolute;
       top: -5%;
@@ -141,6 +72,34 @@
       width: clamp(36px, 6.5vw, 64px);
       height: clamp(36px, 6.5vw, 64px);
       pointer-events: none;
+      z-index: -1; /* hinter dem Tabor-Bild */
+      animation: sun-arc 24s cubic-bezier(.45,0,.55,1) infinite;
+    }
+    /* Bahn: rechts oben aufsteigen → über den Tabor-Bogen sinken →
+       hinter das Bild absinken (translateY weit genug, dass das img sie vollständig deckt). */
+    @keyframes sun-arc {
+      0% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1; /* sanftes Aufblenden rechts oben */
+      }
+      55% {
+        /* Bogenmitte: deutlich weiter links, schon über der Tabor-Mitte */
+        transform: translate(calc(-120% - 45%), 32%);
+        opacity: 1;
+      }
+      92% {
+        /* ganz hinter dem Bild, weit links: Ruine verdeckt sie vollständig */
+        transform: translate(calc(-190% - 65%), 105%);
+        opacity: 1;
+      }
+      100% {
+        /* noch tiefer + ausgeblendet — weicher Neustart ohne Sprung */
+        transform: translate(calc(-200% - 70%), 130%);
+        opacity: 0;
+      }
     }
     /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
     @property --ray-w {
@@ -207,6 +166,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .sun::before, .sun::after { animation: none; }
+      .sun { animation: none; transform: translate(-40%, 30%); /* ruhig hinter dem Tabor */ opacity: 1; }
     }
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
@@ -216,13 +176,19 @@
       .tabor { animation: none; }
     }
 
-    .rule {
-      width: min(340px, 60vw);
-      height: 1px;
-      margin: clamp(4.2rem, 8vw, 6.2rem) auto; /* Rhythmus XXL 1: Hero→Datum (vergrößert) */
-      background: var(--hairline);
+    /* Datum/Zeit/Ort als Karte unter dem Hero — XXL 1 Abstand */
+    .when-card {
+      margin: clamp(3rem, 6vw, 4.5rem) auto 0; /* XXL 1: Hero→Karte */
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .55rem;
+      padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.8rem, 4.5vw, 3rem);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      background: rgba(247, 234, 216, .05);
+      box-shadow: 0 8px 40px rgba(34, 21, 40, .35);
     }
-
     .date {
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(1.6rem, 4.5vw, 2.6rem);
@@ -237,15 +203,6 @@
       letter-spacing: 0;
     }
 
-    .meta {
-      margin-top: .9rem;
-      font-size: clamp(.75rem, 1.8vw, .85rem);
-      letter-spacing: .4em;
-      text-indent: .4em;
-      text-transform: uppercase;
-      color: var(--cream-soft);
-    }
-    .meta b { font-weight: 400; color: var(--cream); }
     .location {
       margin-top: .8rem;
       font-size: clamp(.85rem, 2vw, 1.05rem);
@@ -253,6 +210,43 @@
       text-indent: .34em;
       text-transform: uppercase;
       color: var(--cream);
+    }
+
+    /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Datum */
+    .about {
+      margin: clamp(3rem, 6vw, 4.4rem) auto 0;
+      width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
+      text-align: center;
+    }
+    .about-line {
+      height: 1px;
+      background: var(--hairline);
+    }
+    .about-text {
+      padding: clamp(1.6rem, 3.5vw, 2.4rem) clamp(.5rem, 2vw, 1.5rem);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      line-height: 1.75;
+      color: var(--cream);
+    }
+    .about-text a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232, 176, 75, .4);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .about-text a:hover { color: var(--cream); border-color: var(--cream); }
+    .about-text a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+    .about-text--sub {
+      padding-top: 0;
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      line-height: 1.8;
+      color: var(--cream-soft);
+    }
+    .about-text--sub em {
+      font-style: italic;
+      color: var(--gold);
     }
 
     .offerings {
@@ -315,36 +309,6 @@
       text-transform: uppercase;
       color: var(--cream-soft);
     }
-    .partner-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(2rem, 6vw, 4rem);
-      flex-wrap: wrap;
-    }
-    .partner-row .logo {
-      display: inline-block;
-      line-height: 0;
-      opacity: .92;
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    .partner-row .logo:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-    .partner-row .logo img {
-      height: 64px;
-      width: auto;
-    }
-    .partner-row .logo--tall img {
-      height: 88px;
-    }
-    .partner-row .logo:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
-
     .divider {
       width: 1px;
       background: var(--hairline);
@@ -417,16 +381,6 @@
     }
     .tier-large .sponsor-role { color: var(--gold); }
 
-    .support {
-      margin-top: clamp(3rem, 6vw, 4.5rem); /* Rhythmus M: Partners→Support */
-      font-size: clamp(.65rem, 1.5vw, .72rem);
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--cream-soft);
-      /* kein opacity-Extra: 60% Creme liegt in der unteren Gradient-Zone
-         sonst unter 3:1 (designsystemchecklist.com — Foundations/Color) */
-    }
-
     footer {
       /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
       color: rgba(43, 26, 32, .72);
@@ -462,16 +416,6 @@
     <div class="cloud c2"></div>
   </div>
   <main>
-    <div class="special-row">
-      <div class="special-text">
-        <span class="kicker">Ein Schülerspecial</span>
-        <span class="special-name">SunDowner</span>
-        <a class="akwi-link" href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener" aria-label="Akademie der Wirtschaft Neusiedl am See">
-          <img class="akwi" src="assets/akwi.png" alt="">
-          <span class="akwi-name">Akademie der Wirtschaft Neusiedl am See</span>
-        </a>
-      </div>
-    </div>
     <div class="title-wrap">
       <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
       <div class="tabor-wrap">
@@ -479,9 +423,26 @@
         <span class="sun" aria-hidden="true"></span>
       </div>
     </div>
-    <div class="rule" aria-hidden="true"></div>
-    <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026 <span class="sep">·</span> 16<sup>⁰⁰</sup><span class="sep">–</span>22<sup>⁰⁰</sup></p>
-    <p class="location">Am Tabor · Neusiedl</p>
+    <div class="when-card">
+      <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026 <span class="sep">·</span> 16<sup>⁰⁰</sup><span class="sep">–</span>22<sup>⁰⁰</sup></p>
+      <p class="location">Am Tabor · Neusiedl</p>
+    </div>
+
+    <div class="about">
+      <div class="about-line" aria-hidden="true"></div>
+      <p class="about-text">
+        Wir sind drei Schüler der Akademie der Wirtschaft Neusiedl am See —
+        und feiern mit dem SunDowner den Höhepunkt unserer Diplomarbeit:
+        Sonne, Sounds und Spritzer mit Blick über die Stadt.
+      </p>
+      <p class="about-text about-text--sub">
+        Am 25. September 2026, open air am Tabor — gemeinsam mit unserem Partner
+        <em>Joe's Pub</em>, Musik von <em>YnoT</em> &amp; <em>Flux (DJ)</em>,
+        Spritzer vom Weingut Königshofer. Wir freuen uns auf alle Freunde
+        des SunDowners — bringt eure mit!
+      </p>
+      <div class="about-line" aria-hidden="true"></div>
+    </div>
 
     <div class="offerings">
       <div class="offering">
