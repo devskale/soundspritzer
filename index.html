@@ -244,6 +244,44 @@
     }
     .award:hover { color: var(--gold); border-color: var(--gold); }
 
+    .creds {
+      margin-top: clamp(2rem, 4.5vw, 3rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: .7rem 1.6rem;
+    }
+    .creds-label {
+      font-size: clamp(.6rem, 1.4vw, .68rem);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.4vw, 1.3rem);
+    }
+    .logo-sub {
+      margin-top: .3em;
+      font-family: inherit;
+      font-style: normal;
+      font-size: .55em;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .logo + .logo {
+      padding-left: 1.6rem;
+      border-left: 1px solid var(--hairline);
+    }
+
     /* Tastatur-Fokus sichtbar (designsystemchecklist.com — Foundations/A11y) */
     .btn:focus-visible,
     .award:focus-visible {
@@ -345,9 +383,14 @@
       </svg>
     </div>
     <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026</p>
-    <p class="meta">Neusiedl am See &nbsp;·&nbsp; Live &amp; DJ</p>
+    <p class="meta">Neusiedl am See &nbsp;·&nbsp; Flux (DJ) · YnoT live</p>
 
     <div class="offerings">
+      <div class="offering">
+        <span class="what">Music</span>
+        <span class="who">Flux (DJ) · YnoT live</span>
+      </div>
+      <div class="divider" aria-hidden="true"></div>
       <div class="offering">
         <span class="what">Food</span>
         <span class="who">von Joe's Pub</span>
@@ -358,6 +401,12 @@
         <span class="what">Spritzer</span>
         <span class="who">von Weingut Königshofer</span>
       </div>
+    </div>
+
+    <div class="creds" aria-label="Ein Schülerspecial von Joe's Pub und der Akademie Wirtschaft Neusiedl am See">
+      <span class="creds-label">Ein Schülerspecial von</span>
+      <span class="logo">Joe's Pub<span class="logo-sub">Neusiedl am See</span></span>
+      <span class="logo">Akademie Wirtschaft<span class="logo-sub">Neusiedl am See</span></span>
     </div>
 
     <p class="support">Unterstützt von der Stadtgemeinde Neusiedl am See</p>
