@@ -222,6 +222,13 @@
       height: 1px;
       background: var(--hairline);
     }
+    .about-icon {
+      display: block;
+      width: clamp(140px, 22vw, 200px);
+      height: auto;
+      margin: clamp(1.4rem, 3vw, 2rem) auto clamp(.4rem, 1.5vw, 1rem);
+      filter: drop-shadow(0 4px 18px rgba(34, 21, 40, .35));
+    }
     .about-text {
       padding: clamp(1.6rem, 3.5vw, 2.4rem) clamp(.5rem, 2vw, 1.5rem);
       font-family: "Cormorant Garamond", serif;
@@ -450,6 +457,7 @@
 
     <div class="about">
       <div class="about-line" aria-hidden="true"></div>
+      <img class="about-icon" src="assets/schueler.png" alt="Wir drei Schüler" width="1262" height="662">
       <p class="about-text">
         Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
         verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
