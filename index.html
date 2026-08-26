@@ -9,187 +9,206 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --dusk-top: #221528;
-      --dusk-mid: #4d2334;
-      --dusk-low: #8f3d28;
-      --horizon: #e08a3c;
-      --cream: #f7ead8;
-      --cream-soft: rgba(247, 234, 216, .6);
-      --gold: #e8b04b;
-      --coral: #f2795c;
-      --rose: #e05c74;
-      --terracotta: #dd7a4a; /* war referenziert, aber nie definiert — Datumstrenner fielen auf Creme zurück */
-      --ink: #2b1a20; /* dunkle Tinte für Text auf der hellen Horizontzone (Footer) */
-      --hairline: rgba(247, 234, 216, .28);
-    }
-
-    body {
-      font-family: "Jost", sans-serif;
-      font-weight: 300;
-      background:
-        linear-gradient(to bottom,
-          var(--dusk-top) 0%,
-          var(--dusk-mid) 42%,
-          var(--dusk-low) 74%,
-          var(--horizon) 115%);
-      color: var(--cream);
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── lebendiger Abendhimmel ─────────────────── */
-    .sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .sky .glow {
-      position: absolute;
-      left: 50%; bottom: -22%;
-      width: 130vw; height: 60vh;
-      transform: translateX(-50%);
-      background: radial-gradient(ellipse at center,
-        rgba(240, 158, 66, .5), rgba(226, 112, 60, .22) 45%, transparent 70%);
-      filter: blur(30px);
-      animation: breathe 11s ease-in-out infinite;
-    }
-    .sky .cloud {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: .35;
-    }
-    .sky .cloud.c1 {
-      width: 55vw; height: 22vh;
-      top: 26%; left: -12%;
-      background: radial-gradient(ellipse, rgba(240, 170, 90, .5), transparent 70%);
-      animation: drift1 46s ease-in-out infinite alternate;
-    }
-    .sky .cloud.c2 {
-      width: 42vw; height: 18vh;
-      top: 14%; right: -10%;
-      background: radial-gradient(ellipse, rgba(224, 92, 116, .4), transparent 70%);
-      animation: drift2 58s ease-in-out infinite alternate;
-    }
-    @keyframes breathe {
-      0%, 100% { opacity: .75; transform: translateX(-50%) scaleY(1); }
-      50%      { opacity: 1;   transform: translateX(-50%) scaleY(1.12); }
-    }
-    @keyframes drift1 {
-      from { transform: translateX(0) translateY(0); }
-      to   { transform: translateX(16vw) translateY(2vh); }
-    }
-    @keyframes drift2 {
-      from { transform: translateX(0) translateY(0); }
-      to   { transform: translateX(-14vw) translateY(3vh); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .sky .glow, .sky .cloud { animation: none; }
-    }
-
+    /* ── seiten-spezifisch: Startseite ── */
     main {
-      position: relative; z-index: 1;
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: clamp(2rem, 6vw, 5rem);
-      animation: reveal 1.1s ease-out both;
-    }
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      main { animation: none; }
+      /* ── Vertikaler Rhythmus ──
+         Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
+         Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
     }
 
-    .kicker {
-      font-size: clamp(.7rem, 1.6vw, .8rem);
-      letter-spacing: .55em;
-      text-indent: .55em; /* optically center tracked caps */
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 0;
-    }
+    .kicker { margin: 0; }
 
-    .kicker-row {
+    .special-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.1rem;
-      margin-bottom: clamp(1.2rem, 3vw, 2rem);
+      gap: .7rem;
+      margin-bottom: clamp(1.6rem, 3vw, 2.2rem); /* Rhythmus M: Special→Hero */
+      margin-top: -1.2rem; /* näher an den oberen Rand */
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .special-row .akwi {
+      height: clamp(30px, 5vw, 46px);
+      width: auto;
+      opacity: .95;
+    }
+    .akwi-link {
+      display: inline-flex;
+      align-items: center;
+    }
+    .akwi-link:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .special-row .special-text {
+      display: flex;
+      align-items: center;
+      gap: .55em;
+      line-height: 1;
+    }
+    .special-row .kicker,
+    .special-row .special-name {
+      font-size: clamp(.62rem, 1.4vw, .72rem);
+      letter-spacing: .32em;
+      text-indent: .32em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
     }
 
     .tag {
       font-size: clamp(.58rem, 1.4vw, .72rem);
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: .32em;
       text-indent: .32em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1.5px solid var(--gold);
-      outline: 1px solid rgba(232, 176, 75, .45);
-      outline-offset: 3px;
+      /* gefüllter Tag: goldener Hintergrund, dunkle Schrift, dunkler Rand */
+      color: var(--ink);
+      background: var(--gold);
+      border: 1.5px solid var(--ink);
       border-radius: 2px;
-      padding: .5em .7em;
-      transform: rotate(9deg);
-      opacity: .92;
-      animation: stamp-in .5s cubic-bezier(.2, 1.6, .4, 1) .65s both;
-    }
-    @keyframes stamp-in {
-      from { opacity: 0; transform: rotate(9deg) scale(1.7); }
-      to   { opacity: .92; transform: rotate(9deg) scale(1); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .tag { animation: none; }
+      padding: .5em .9em;
+      box-shadow: 0 4px 18px rgba(232, 176, 75, .35);
     }
 
     h1 {
-      font-family: "Cormorant Garamond", serif;
       font-weight: 700;
       font-size: clamp(2.6rem, 8vw, 6rem);
       line-height: 1.05;
       letter-spacing: .01em;
-      color: var(--cream);
       text-shadow: 0 0 60px rgba(232, 148, 58, .35);
     }
-    h1 em {
-      font-style: italic;
-      font-weight: 500;
-      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    h1 .l1, h1 .l2, h1 .l3 {
+      display: block;
+      line-height: 1.04;
     }
+    h1 .l2 { margin-top: .1em; }
+    h1 .l3 { margin-top: .1em; }
 
     .title-wrap {
       position: relative;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.6rem, 4vw, 3.4rem);
+    }
+    .tabor {
+      flex: none;
+      width: clamp(180px, 36vw, 440px);
+      height: auto;
+      opacity: .95;
+      filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
+      animation: rise 1s ease-out .35s both;
+    }
+    .tabor-wrap {
+      flex: none;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* langsam pulsierende Sonne rechts oben neben dem Tabor */
+    .sun {
+      position: absolute;
+      top: -5%;
+      right: -8%;
+      width: clamp(36px, 6.5vw, 64px);
+      height: clamp(36px, 6.5vw, 64px);
+      pointer-events: none;
+    }
+    /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
+    @property --ray-w {
+      syntax: "<angle>";
+      initial-value: 4deg;
+      inherits: false;
+    }
+    @property --rays-from {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+    .sun::before {
+      /* Kern: weicher Rand (pyxofy-Technik), atmet + wandert durch die Paletten-Farben */
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 45%,
+        #fff2d6 0%, var(--gold) 38%, rgba(232, 176, 75, .18) 66%, transparent 75%);
+      animation: sun-breathe 9s ease-in-out infinite;
+    }
+    .sun::after {
+      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: repeating-conic-gradient(
+        from var(--rays-from, 0deg),
+        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
+        transparent var(--ray-w, 4deg) 15deg
+      );
+      -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
+      mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
+      /* drei Ebenen: Drehung + Reichweiten-Atmung · Aufleuchten · Strahlenmorphologie */
+      animation:
+        sun-spin 70s linear infinite,
+        sun-rays-glow 9s ease-in-out infinite,
+        sun-rays-morph 13s ease-in-out infinite;
+    }
+    /* Drehung, während die Strahlen gleichzeitig weiter/reicher werden */
+    @keyframes sun-spin {
+      0%   { transform: rotate(0deg) scale(1); }
+      50%  { transform: rotate(180deg) scale(1.09); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes sun-rays-glow {
+      0%, 100% { opacity: .7; }
+      50%      { opacity: 1; }
+    }
+    /* Strahlen ändern sich während der Drehung: Breite & Winkellage wandern — fächern asymmetrisch */
+    @keyframes sun-rays-morph {
+      0%   { --ray-w: 3deg;   --rays-from: 0deg; }
+      20%  { --ray-w: 6.5deg; --rays-from: -6deg; }
+      40%  { --ray-w: 1.8deg; --rays-from: 9deg; }
+      60%  { --ray-w: 5.2deg; --rays-from: -11deg; }
+      80%  { --ray-w: 2.2deg; --rays-from: 5deg; }
+      100% { --ray-w: 3deg;   --rays-from: 0deg; }
+    }
+    @keyframes sun-breathe {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(232, 176, 75, .5), 0 0 64px rgba(232, 176, 75, .22);
+      }
+      33% {
+        box-shadow: 0 0 40px rgba(242, 121, 92, .45), 0 0 82px rgba(224, 92, 116, .28);
+      }
+      66% {
+        box-shadow: 0 0 34px rgba(224, 92, 116, .4), 0 0 70px rgba(242, 121, 92, .22);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sun::before, .sun::after { animation: none; }
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: .95; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tabor { animation: none; }
     }
 
     .rule {
       width: min(340px, 60vw);
-      margin: clamp(1.6rem, 4vw, 2.6rem) auto;
-      display: flex;
-      align-items: center;
-      gap: .9em;
-    }
-    .rule::before,
-    .rule::after {
-      content: "";
-      flex: 1;
       height: 1px;
+      margin: clamp(3rem, 6vw, 4.5rem) auto; /* Rhythmus XXL 1: Hero→Datum */
       background: var(--hairline);
-    }
-    .rule-icon {
-      flex: none;
-      width: 22px;
-      height: 22px;
-      color: var(--gold);
     }
 
     .date {
@@ -199,6 +218,12 @@
       font-variant-numeric: lining-nums;
     }
     .date .sep { color: var(--terracotta); padding: 0 .35em; font-weight: 400; }
+    .date sup {
+      font-size: .55em;
+      line-height: 0;
+      vertical-align: .45em;
+      letter-spacing: 0;
+    }
 
     .meta {
       margin-top: .9rem;
@@ -209,18 +234,34 @@
       color: var(--cream-soft);
     }
     .meta b { font-weight: 400; color: var(--cream); }
+    .location {
+      margin-top: .8rem;
+      font-size: clamp(.85rem, 2vw, 1.05rem);
+      letter-spacing: .34em;
+      text-indent: .34em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
 
     .offerings {
-      margin-top: clamp(2.2rem, 5vw, 3.4rem);
+      margin-top: clamp(3.5rem, 7vw, 5rem); /* Rhythmus XXL 2: Datum→Offerings */
       display: flex;
       align-items: stretch;
       justify-content: center;
-      gap: clamp(1.4rem, 4vw, 3rem);
+      gap: clamp(1.8rem, 5vw, 3.8rem);
     }
     .offering {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: .3rem;
+      text-align: center;
+    }
+    .offering .icon {
+      height: clamp(56px, 10vw, 84px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
+      width: auto;
+      margin-bottom: .4rem;
+      filter: drop-shadow(0 0 14px rgba(232, 176, 75, .18));
     }
     .offering .what {
       font-family: "Cormorant Garamond", serif;
@@ -250,7 +291,7 @@
     .award:hover { color: var(--gold); border-color: var(--gold); }
 
     .partners {
-      margin-top: clamp(2rem, 4.5vw, 3rem);
+      margin-top: clamp(4rem, 8vw, 6rem); /* Rhythmus XXL 3: Offerings→Partners */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -279,9 +320,12 @@
       opacity: 1;
       transform: translateY(-2px);
     }
-    .partner-row .logo svg {
+    .partner-row .logo img {
       height: 64px;
       width: auto;
+    }
+    .partner-row .logo--tall img {
+      height: 88px;
     }
     .partner-row .logo:focus-visible {
       outline: 2px solid var(--gold);
@@ -289,20 +333,13 @@
       border-radius: 4px;
     }
 
-    /* Tastatur-Fokus sichtbar (designsystemchecklist.com — Foundations/A11y) */
-    .btn:focus-visible,
-    .award:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 3px;
-      border-radius: 2px;
-    }
     .divider {
       width: 1px;
       background: var(--hairline);
     }
 
     .support {
-      margin-top: clamp(2.4rem, 5vw, 3.6rem);
+      margin-top: clamp(3rem, 6vw, 4.5rem); /* Rhythmus M: Partners→Support */
       font-size: clamp(.65rem, 1.5vw, .72rem);
       letter-spacing: .3em;
       text-transform: uppercase;
@@ -310,45 +347,20 @@
       opacity: .8;
     }
 
-    /* ── classy button ──────────────────────────── */
-    .btn {
-      display: inline-block;
-      margin-top: 2rem;
-      font-size: clamp(.68rem, 1.6vw, .78rem);
-      letter-spacing: .32em;
-      text-indent: .32em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      padding: 1em 2.2em;
-      border: 1px solid var(--hairline);
-      border-radius: 2px;
-      background: rgba(247, 234, 216, .04);
-      transition: border-color .3s ease, color .3s ease, background .3s ease, transform .3s ease;
-    }
-    .btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(232, 176, 75, .06);
-      transform: translateY(-2px);
-    }
-
-
     footer {
-      position: relative; z-index: 1;
-      padding: 1.6rem;
-      text-align: center;
-      font-size: .68rem;
-      letter-spacing: .45em;
-      text-indent: .45em;
-      text-transform: uppercase;
-      /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme,
-         sonst < 2.2:1 Kontrast (designsystemchecklist.com — Foundations/Color) */
+      /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
       color: rgba(43, 26, 32, .72);
     }
 
     /* Mobile: Offerings zu schmal, stapeln vertikal */
     @media (max-width: 640px) {
+      .title-wrap {
+        flex-direction: column;
+        gap: .8rem;
+      }
+      .tabor {
+        width: clamp(180px, 62vw, 340px);
+      }
       .offerings {
         flex-direction: column;
         gap: 1.6rem;
@@ -356,6 +368,9 @@
       .divider {
         width: min(200px, 50vw);
         height: 1px;
+      }
+      .sun {
+        right: -4%;
       }
     }
   </style>
@@ -367,57 +382,44 @@
     <div class="cloud c2"></div>
   </div>
   <main>
-    <div class="kicker-row">
-      <p class="kicker">Der Sundowner</p>
-      <span class="tag" aria-label="Ort: Am Tabor">Am Tabor</span>
+    <div class="special-row">
+      <div class="special-text">
+        <span class="kicker">Ein Schülerspecial</span>
+        <span class="special-name">SunDowner</span>
+        <a class="akwi-link" href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener" aria-label="Akademie der Wirtschaft Neusiedl am See">
+          <img class="akwi" src="assets/akwi.png" alt="Akademie der Wirtschaft Neusiedl am See">
+        </a>
+      </div>
     </div>
     <div class="title-wrap">
-      <h1>Seeblick · Sounds <em>&amp;&nbsp;Spritzer</em></h1>
+      <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
+      <div class="tabor-wrap">
+        <img class="tabor" src="assets/tabor.png" alt="Ruine Tabor" width="1432" height="583">
+        <span class="sun" aria-hidden="true"></span>
+      </div>
     </div>
-    <div class="rule" aria-hidden="true">
-      <svg class="rule-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3v6"/>
-        <path d="m9 6 3 3 3-3"/>
-        <path d="M5.6 8.6 7 10"/>
-        <path d="M18.4 8.6 17 10"/>
-        <path d="M3 15h2"/>
-        <path d="M19 15h2"/>
-        <path d="M8 15a4 4 0 0 1 8 0"/>
-        <path d="M2 19h20"/>
-      </svg>
-    </div>
-    <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026</p>
-    <p class="meta">Neusiedl am See &nbsp;·&nbsp; Flux (DJ) · YnoT live</p>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="date">25<span class="sep">·</span>09<span class="sep">·</span>2026 <span class="sep">·</span> 16<sup>⁰⁰</sup><span class="sep">–</span>22<sup>⁰⁰</sup></p>
+    <p class="location">Am Tabor · Neusiedl</p>
 
     <div class="offerings">
       <div class="offering">
-        <span class="what">Music</span>
+        <img class="icon" src="assets/vinyl.png" alt="Musik" width="1024" height="1024">
+        <span class="what">Musik</span>
         <span class="who">Flux (DJ) · YnoT live</span>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <span class="what">Food</span>
-        <span class="who">von Joe's Pub</span>
-        <a class="award" href="https://www.bvz.at/neusiedl/falstaff-voting-das-ist-die-beliebteste-pizzeria-des-burgenlands-480867248" target="_blank" rel="noopener">★ Burgenlands beste Pizza</a>
+        <img class="icon" src="assets/pizza.png" alt="Foodtruck" width="541" height="485">
+        <span class="what">Foodtruck</span>
+        <span class="who">Joe's Pub</span>
+        <a class="award" href="https://www.bvz.at/neusiedl/falstaff-voting-das-ist-die-beliebteste-pizzeria-des-burgenlands-480867248" target="_blank" rel="noopener">★ Burgenlands beliebteste Pizza</a>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
+        <img class="icon" src="assets/glass.png" alt="Spritzer" width="334" height="812">
         <span class="what">Spritzer</span>
-        <span class="who">von Weingut Königshofer</span>
-      </div>
-    </div>
-
-    <div class="partners" aria-label="Ein Schülerspecial von der Akademie der Wirtschaft">
-      <p class="partners-label">Ein Schülerspecial von</p>
-      <div class="partner-row">
-        <a class="logo" href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener" aria-label="Akademie der Wirtschaft Neusiedl am See">
-          <svg viewBox="0 0 120 96" role="img" aria-hidden="true">
-            <text x="0" y="46" fill="#f2b705" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="64">W</text>
-            <text x="30" y="44" fill="#f4e9d0" font-family="Georgia, serif" font-size="16" font-weight="bold">AKADEMIE</text>
-            <text x="30" y="62" fill="#f4e9d0" font-family="Georgia, serif" font-size="12" letter-spacing="1">DER WIRTSCHAFT</text>
-            <text x="30" y="78" fill="#f4e9d0" font-family="Georgia, serif" font-size="9" letter-spacing="2" opacity=".8">NEUSIEDL AM SEE</text>
-          </svg>
-        </a>
+        <span class="who">Weingut Königshofer</span>
       </div>
     </div>
 
@@ -425,13 +427,7 @@
       <p class="partners-label">Partner &amp; Sponsoren</p>
       <div class="partner-row">
         <a class="logo" href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener" aria-label="Joe's Pub Neusiedl am See">
-          <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
-            <circle cx="48" cy="48" r="46" fill="#2f6b3f"/>
-            <circle cx="48" cy="48" r="40" fill="none" stroke="#f4e9d0" stroke-width="1.5" opacity=".85"/>
-            <text x="48" y="46" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-style="italic" font-size="24">Joe's</text>
-            <text x="48" y="64" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-size="13" letter-spacing="3">PUB</text>
-            <text x="48" y="24" text-anchor="middle" fill="#f4e9d0" font-size="7" letter-spacing="2" opacity=".8">EST. 2007</text>
-          </svg>
+          <img src="assets/joes-pub.png" alt="Joe's Pub Neusiedl am See">
         </a>
         <a class="logo" href="https://skale.dev/" target="_blank" rel="noopener" aria-label="skale.dev">
           <svg viewBox="0 0 120 48" role="img" aria-hidden="true">

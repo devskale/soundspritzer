@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540">
+  <defs>
+    <!-- golden vinyl-center texture -->
+    <radialGradient id="label" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#f7e9b0"/>
+      <stop offset="45%" stop-color="#e8b04b"/>
+      <stop offset="100%" stop-color="#c98d2e"/>
+    </radialGradient>
+    <!-- slight wobble filter for hand-drawn feel -->
+    <filter id="wobble" x="-4%" y="-4%" width="108%" height="108%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#wobble)">
+    <!-- outer disc: white sticker base with black rim -->
+    <circle cx="270" cy="270" r="252" fill="#fffdf7" stroke="#2b1a20" stroke-width="14"/>
+
+    <!-- groove rings (black on white) -->
+    <circle cx="270" cy="270" r="215" fill="none" stroke="#2b1a20" stroke-width="5" opacity=".85"/>
+    <circle cx="270" cy="270" r="188" fill="none" stroke="#2b1a20" stroke-width="4" opacity=".6"/>
+    <circle cx="270" cy="270" r="161" fill="none" stroke="#2b1a20" stroke-width="4" opacity=".75"/>
+    <circle cx="270" cy="270" r="134" fill="none" stroke="#2b1a20" stroke-width="4" opacity=".55"/>
+
+    <!-- golden label -->
+    <circle cx="270" cy="270" r="96" fill="url(#label)" stroke="#2b1a20" stroke-width="9"/>
+
+    <!-- label detail ring -->
+    <circle cx="270" cy="270" r="72" fill="none" stroke="#2b1a20" stroke-width="3.5" opacity=".55"/>
+
+    <!-- center hole -->
+    <circle cx="270" cy="270" r="17" fill="#fffdf7" stroke="#2b1a20" stroke-width="8"/>
+
+    <!-- light sheen: two subtle arcs top-left & bottom-right -->
+    <path d="M 95 165 A 210 210 0 0 1 200 62" fill="none" stroke="#fffdf7" stroke-width="14" stroke-linecap="round" opacity=".8"/>
+    <path d="M 445 375 A 210 210 0 0 1 340 478" fill="none" stroke="#fffdf7" stroke-width="14" stroke-linecap="round" opacity=".8"/>
+  </g>
+</svg>

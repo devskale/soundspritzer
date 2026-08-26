@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonnen-Varianten — SunDowner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dusk-top: #221528;
+      --dusk-mid: #4d2334;
+      --dusk-low: #8f3d28;
+      --horizon: #e08a3c;
+      --cream: #f7ead8;
+      --cream-soft: rgba(247, 234, 216, .6);
+      --gold: #e8b04b;
+      --coral: #f2795c;
+      --rose: #e05c74;
+      --ink: #2b1a20;
+      --hairline: rgba(247, 234, 216, .28);
+    }
+
+    body {
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      background: linear-gradient(to bottom, var(--dusk-top) 0%, var(--dusk-mid) 42%, var(--dusk-low) 74%, var(--horizon) 115%);
+      color: var(--cream);
+      min-height: 100svh;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      padding: 1.2rem 1rem 1rem;
+      text-align: center;
+    }
+    .card h2 {
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .9rem;
+      font-weight: 400;
+    }
+
+    /* Der Tabor-Rahmen wie auf der Startseite */
+    .tabor-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 20px 40px;
+    }
+    .tabor-wrap img {
+      width: 240px;
+      height: auto;
+      display: block;
+    }
+
+    /* ============ Basis für alle Sonnen ============ */
+    /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
+    @property --ray-w {
+      syntax: "<angle>";
+      initial-value: 4deg;
+      inherits: false;
+    }
+    @property --rays-from {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .sun {
+      position: absolute;
+      top: -6%;
+      right: -30%;
+      width: clamp(36px, 6.5vw, 64px);
+      height: clamp(36px, 6.5vw, 64px);
+      pointer-events: none;
+    }
+
+    /* ── Variante A: Rotierende Strahlen + atmender Kern ── */
+    .sun--a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 45%,
+        #fff2d6 0%, var(--gold) 38%, rgba(232, 176, 75, .18) 66%, transparent 75%);
+      animation: sun-breathe 9s ease-in-out infinite;
+    }
+    .sun--a::after {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: repeating-conic-gradient(
+        from var(--rays-from, 0deg),
+        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
+        transparent var(--ray-w, 4deg) 15deg
+      );
+      -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0,0,0,.45) 62%, transparent 74%);
+      mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0,0,0,.45) 62%, transparent 74%);
+      /* drei Ebenen: Drehung + Reichweiten-Atmung · Aufleuchten · Strahlenmorphologie */
+      animation:
+        sun-spin 70s linear infinite,
+        sun-rays-glow 9s ease-in-out infinite,
+        sun-rays-morph 13s ease-in-out infinite;
+    }
+    /* Drehung, während die Strahlen gleichzeitig weiter/reicher werden */
+    @keyframes sun-spin {
+      0%   { transform: rotate(0deg) scale(1); }
+      50%  { transform: rotate(180deg) scale(1.09); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes sun-rays-glow {
+      0%, 100% { opacity: .7; }
+      50%      { opacity: 1; }
+    }
+    /* Strahlen ändern while rotating: Breite & Winkellage wandern */
+    @keyframes sun-rays-morph {
+      0%   { --ray-w: 3deg;   --rays-from: 0deg; }
+      20%  { --ray-w: 6.5deg; --rays-from: -6deg; }
+      40%  { --ray-w: 1.8deg; --rays-from: 9deg; }
+      60%  { --ray-w: 5.2deg; --rays-from: -11deg; }
+      80%  { --ray-w: 2.2deg; --rays-from: 5deg; }
+      100% { --ray-w: 3deg;   --rays-from: 0deg; }
+    }
+    @keyframes sun-breathe {
+      0%, 100% { box-shadow: 0 0 30px rgba(232,176,75,.5), 0 0 64px rgba(232,176,75,.22); }
+      33%      { box-shadow: 0 0 40px rgba(242,121,92,.45), 0 0 82px rgba(224,92,116,.28); }
+      66%      { box-shadow: 0 0 34px rgba(224,92,116,.4), 0 0 70px rgba(242,121,92,.22); }
+    }
+
+    /* ── Variante B: Aquarell-Sonne — weiche Farb-Wanderung, keine Strahlen ── */
+    .sun--b::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 42% 40%,
+        #fff2d6 0%, var(--gold) 30%, var(--coral) 55%, rgba(224,92,116,.4) 72%, transparent 82%);
+      filter: blur(2px);
+      animation: sun-watercolor 11s ease-in-out infinite;
+    }
+    .sun--b::after {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 58% 62%,
+        rgba(242,121,92,.35) 0%, transparent 60%);
+      filter: blur(6px);
+      animation: sun-halo 11s ease-in-out infinite;
+    }
+    @keyframes sun-watercolor {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50%      { transform: scale(1.08) rotate(6deg); }
+    }
+    @keyframes sun-halo {
+      0%, 100% { opacity: .7; transform: scale(1); }
+      50%      { opacity: 1; transform: scale(1.15); }
+    }
+
+    /* ── Variante C: Retro-Sunset-Sonne mit Streifen (1970s) ── */
+    .sun--c::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(to bottom,
+        #fff2d6 0%, var(--gold) 40%, var(--coral) 70%, var(--rose) 100%);
+      box-shadow: 0 0 34px rgba(232,176,75,.45), 0 0 70px rgba(242,121,92,.25);
+      overflow: hidden;
+      -webkit-mask-image: repeating-linear-gradient(
+        to bottom,
+        #000 0px, #000 12px,
+        transparent 12px, transparent 17px
+      );
+      mask-image: repeating-linear-gradient(
+        to bottom,
+        #000 0px, #000 12px,
+        transparent 12px, transparent 17px
+      );
+      animation: sun-slices 12s ease-in-out infinite;
+    }
+    .sun--c::after {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,176,75,.3) 0%, transparent 65%);
+      animation: sun-halo-c 8s ease-in-out infinite;
+    }
+    @keyframes sun-slices {
+      0%, 100% { mask-position: 0 0; transform: translateY(0); }
+      50%      { mask-position: 0 8px; transform: translateY(2px); }
+    }
+    @keyframes sun-halo-c {
+      0%, 100% { opacity: .6; }
+      50%      { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sun::before, .sun::after { animation: none !important; }
+    }
+
+    p.note {
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      color: var(--cream-soft);
+      max-width: 620px;
+      margin: 0 auto 3rem;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sonnen-Varianten</h1>
+  <p class="note">Alle drei sitzen gleich (rechts oben neben dem Tabor) und respektieren reduced-motion. Nur der Effekt unterscheidet sich.</p>
+
+  <div class="row">
+    <div class="card">
+      <div class="tabor-wrap">
+        <img src="assets/tabor.png" alt="Ruine Tabor">
+        <span class="sun sun--a" aria-hidden="true"></span>
+      </div>
+      <h2>A — Strahlen + Kern-Atmung</h2>
+    </div>
+    <div class="card">
+      <div class="tabor-wrap">
+        <img src="assets/tabor.png" alt="Ruine Tabor">
+        <span class="sun sun--b" aria-hidden="true"></span>
+      </div>
+      <h2>B — Aquarell-Wanderung</h2>
+    </div>
+    <div class="g card">
+      <div class="tabor-wrap">
+        <img src="assets/tabor.png" alt="Ruine Tabor">
+        <span class="sun sun--c" aria-hidden="true"></span>
+      </div>
+      <h2>C — Retro-Sunset-Streifen</h2>
+    </div>
+  </div>
+</body>
+</html>

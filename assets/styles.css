@@ -1,0 +1,158 @@
+/* ─────────────────────────────────────────────────────────────
+   SunDowner / Soundspritzer — gemeinsame Site-Styles
+   Geteilt zwischen index.html und partner.html.
+   Seiten-spezifische Regeln (Offerings, Perks, …) stehen inline
+   in den jeweiligen <style>-Blöcken.
+   ───────────────────────────────────────────────────────────── */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --dusk-top: #221528;
+  --dusk-mid: #4d2334;
+  --dusk-low: #8f3d28;
+  --horizon: #e08a3c;
+  --cream: #f7ead8;
+  --cream-soft: rgba(247, 234, 216, .6);
+  --gold: #e8b04b;
+  --coral: #f2795c;
+  --rose: #e05c74;
+  --terracotta: #dd7a4a; /* Datumstrenner */
+  --ink: #2b1a20;        /* dunkle Tinte für Text auf heller Horizontzone (Footer) */
+  --hairline: rgba(247, 234, 216, .28);
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  background:
+    linear-gradient(to bottom,
+      var(--dusk-top) 0%,
+      var(--dusk-mid) 42%,
+      var(--dusk-low) 74%,
+      var(--horizon) 115%);
+  color: var(--cream);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── lebendiger Abendhimmel ─────────────────── */
+.sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.sky .glow {
+  position: absolute;
+  left: 50%; bottom: -22%;
+  width: 130vw; height: 60vh;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center,
+    rgba(240, 158, 66, .5), rgba(226, 112, 60, .22) 45%, transparent 70%);
+  filter: blur(30px);
+  animation: breathe 11s ease-in-out infinite;
+}
+.sky .cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .35;
+}
+.sky .cloud.c1 {
+  width: 55vw; height: 22vh;
+  top: 26%; left: -12%;
+  background: radial-gradient(ellipse, rgba(240, 170, 90, .5), transparent 70%);
+  animation: drift1 46s ease-in-out infinite alternate;
+}
+.sky .cloud.c2 {
+  width: 42vw; height: 18vh;
+  top: 14%; right: -10%;
+  background: radial-gradient(ellipse, rgba(224, 92, 116, .4), transparent 70%);
+  animation: drift2 58s ease-in-out infinite alternate;
+}
+@keyframes breathe {
+  0%, 100% { opacity: .75; transform: translateX(-50%) scaleY(1); }
+  50%      { opacity: 1;   transform: translateX(-50%) scaleY(1.12); }
+}
+@keyframes drift1 {
+  from { transform: translateX(0) translateY(0); }
+  to   { transform: translateX(16vw) translateY(2vh); }
+}
+@keyframes drift2 {
+  from { transform: translateX(0) translateY(0); }
+  to   { transform: translateX(-14vw) translateY(3vh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sky .glow, .sky .cloud { animation: none; }
+}
+
+/* ── Grundgerüst Main ───────────────────────── */
+main {
+  position: relative; z-index: 1;
+  flex: 1;
+  text-align: center;
+  animation: reveal 1.1s ease-out both;
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { main { animation: none; } }
+
+/* ── Kicker / H1 ────────────────────────────── */
+.kicker {
+  font-size: clamp(.7rem, 1.6vw, .8rem);
+  letter-spacing: .55em;
+  text-indent: .55em; /* optically center tracked caps */
+  text-transform: uppercase;
+  color: var(--gold);
+}
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--cream);
+}
+h1 em {
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── classy button ──────────────────────────── */
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: clamp(.68rem, 1.6vw, .78rem);
+  letter-spacing: .32em;
+  text-indent: .32em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 1em 2.2em;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  background: rgba(247, 234, 216, .04);
+  transition: border-color .3s ease, color .3s ease, background .3s ease, transform .3s ease;
+}
+.btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(232, 176, 75, .06);
+  transform: translateY(-2px);
+}
+.btn:focus-visible,
+.award:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Footer (Farbe je nach Zone seiten-spezifisch) ── */
+footer {
+  position: relative; z-index: 1;
+  padding: 1.6rem;
+  text-align: center;
+  font-size: .68rem;
+  letter-spacing: .45em;
+  text-indent: .45em;
+  text-transform: uppercase;
+}
