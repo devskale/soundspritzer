@@ -113,7 +113,39 @@
       text-indent: .55em; /* optically center tracked caps */
       text-transform: uppercase;
       color: var(--gold);
+      margin: 0;
+    }
+
+    .kicker-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
       margin-bottom: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .tag {
+      font-size: clamp(.58rem, 1.4vw, .72rem);
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-indent: .32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      outline: 1px solid rgba(232, 176, 75, .45);
+      outline-offset: 3px;
+      border-radius: 2px;
+      padding: .5em .7em;
+      transform: rotate(9deg);
+      opacity: .92;
+      animation: stamp-in .5s cubic-bezier(.2, 1.6, .4, 1) .65s both;
+    }
+    @keyframes stamp-in {
+      from { opacity: 0; transform: rotate(9deg) scale(1.7); }
+      to   { opacity: .92; transform: rotate(9deg) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tag { animation: none; }
     }
 
     h1 {
@@ -335,7 +367,10 @@
     <div class="cloud c2"></div>
   </div>
   <main>
-    <p class="kicker">Der Sundowner · Am Tabor</p>
+    <div class="kicker-row">
+      <p class="kicker">Der Sundowner</p>
+      <span class="tag" aria-label="Ort: Am Tabor">Am Tabor</span>
+    </div>
     <div class="title-wrap">
       <h1>Seeblick · Sounds <em>&amp;&nbsp;Spritzer</em></h1>
     </div>
@@ -372,18 +407,9 @@
       </div>
     </div>
 
-    <div class="partners" aria-label="Partner: Joe's Pub und Akademie der Wirtschaft">
+    <div class="partners" aria-label="Ein Schülerspecial von der Akademie der Wirtschaft">
       <p class="partners-label">Ein Schülerspecial von</p>
       <div class="partner-row">
-        <a class="logo" href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener" aria-label="Joe's Pub Neusiedl am See">
-          <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
-            <circle cx="48" cy="48" r="46" fill="#2f6b3f"/>
-            <circle cx="48" cy="48" r="40" fill="none" stroke="#f4e9d0" stroke-width="1.5" opacity=".85"/>
-            <text x="48" y="46" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-style="italic" font-size="24">Joe's</text>
-            <text x="48" y="64" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-size="13" letter-spacing="3">PUB</text>
-            <text x="48" y="24" text-anchor="middle" fill="#f4e9d0" font-size="7" letter-spacing="2" opacity=".8">EST. 2007</text>
-          </svg>
-        </a>
         <a class="logo" href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener" aria-label="Akademie der Wirtschaft Neusiedl am See">
           <svg viewBox="0 0 120 96" role="img" aria-hidden="true">
             <text x="0" y="46" fill="#f2b705" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="64">W</text>
@@ -395,7 +421,32 @@
       </div>
     </div>
 
-    <p class="support">Unterstützt von der Stadtgemeinde Neusiedl am See</p>
+    <div class="partners" aria-label="Partner und Sponsoren">
+      <p class="partners-label">Partner &amp; Sponsoren</p>
+      <div class="partner-row">
+        <a class="logo" href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener" aria-label="Joe's Pub Neusiedl am See">
+          <svg viewBox="0 0 96 96" role="img" aria-hidden="true">
+            <circle cx="48" cy="48" r="46" fill="#2f6b3f"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#f4e9d0" stroke-width="1.5" opacity=".85"/>
+            <text x="48" y="46" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-style="italic" font-size="24">Joe's</text>
+            <text x="48" y="64" text-anchor="middle" fill="#f4e9d0" font-family="Georgia, serif" font-size="13" letter-spacing="3">PUB</text>
+            <text x="48" y="24" text-anchor="middle" fill="#f4e9d0" font-size="7" letter-spacing="2" opacity=".8">EST. 2007</text>
+          </svg>
+        </a>
+        <a class="logo" href="https://skale.dev/" target="_blank" rel="noopener" aria-label="skale.dev">
+          <svg viewBox="0 0 120 48" role="img" aria-hidden="true">
+            <text x="0" y="34" fill="#f4e9d0" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="32">skale<text x="0" y="34" fill="#f2b705" font-family="Georgia, serif" font-style="italic" font-weight="bold" font-size="32">.dev</text></text>
+          </svg>
+        </a>
+        <a class="logo" href="https://www.neusiedlamsee.at/" target="_blank" rel="noopener" aria-label="Stadtgemeinde Neusiedl am See">
+          <svg viewBox="0 0 150 48" role="img" aria-hidden="true">
+            <text x="0" y="28" fill="#f4e9d0" font-family="Georgia, serif" font-size="18" font-weight="bold">Stadtgemeinde</text>
+            <text x="0" y="46" fill="#f4e9d0" font-family="Georgia, serif" font-size="14" letter-spacing="1">Neusiedl am See</text>
+          </svg>
+        </a>
+      </div>
+    </div>
+
     <a class="btn" href="/partner">Sponsoren &amp; Partner</a>
   </main>
 
