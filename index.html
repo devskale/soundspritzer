@@ -53,18 +53,13 @@
     .hero-left {
       text-align: center;
     }
-    .brand-word {
-      margin-bottom: clamp(1.4rem, 2.8vw, 2rem); /* Rhythmus M+: Marke (eigene Gruppe) → Claim-Gruppe */
+    .brand-sub {
+      margin-top: clamp(.8rem, 1.6vw, 1.2rem); /* Rhythmus M: Claim→Name, eng als Einheit */
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.8rem, 6.5vw, 4.8rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: .01em;
-      color: var(--cream);
-      text-shadow:
-        0 0 30px rgba(232, 148, 58, .5),
-        0 0 90px rgba(232, 148, 58, .3);
-      text-align: center;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      letter-spacing: .04em;
+      color: var(--cream-soft);
     }
     /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
     .hero-sub {
@@ -87,12 +82,14 @@
       justify-content: center;
     }
     h1 {
-      font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie Marke & Sub */
-      font-weight: 500;
-      font-size: clamp(1.7rem, 4.2vw, 3.1rem); /* Claim, eine Stufe unter der Marke */
-      line-height: 1.12; /* enger: 3 kurze Wörter als Block, nicht schlaksig */
+      font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie alle Hero-Elemente */
+      font-weight: 700;
+      font-size: clamp(3.2rem, 9vw, 6.5rem); /* wieder großer Hero-Claim */
+      line-height: 1.02;
       letter-spacing: .01em;
-      text-shadow: 0 0 60px rgba(232, 148, 58, .35);
+      text-shadow:
+        0 0 30px rgba(232, 148, 58, .5),
+        0 0 90px rgba(232, 148, 58, .3);
     }
     h1 .l1, h1 .l2, h1 .l3 {
       display: block;
@@ -464,7 +461,6 @@
         gap: 1.2rem;
       }
       .hero-left { text-align: center; }
-      .brand-word { white-space: normal; }
       .tabor {
         width: clamp(190px, 66vw, 300px);
       }
@@ -492,8 +488,8 @@
     <div class="hero">
       <div class="hero-left">
         <p class="hero-sub">Live-Musik · Foodtruck · Freier Eintritt</p>
-        <p class="brand-word">SunDowner</p>
-        <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
+        <h1><span class="l1">Seeblick,</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
+        <p class="brand-sub">der Sundowner am Tabor</p>
       </div>
       <div class="hero-right">
         <div class="tabor-wrap">
