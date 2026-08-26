@@ -390,6 +390,18 @@
       /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
       color: rgba(43, 26, 32, .72);
     }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(43, 26, 32, .35);
+      transition: border-color .25s ease;
+    }
+    footer a:hover { border-color: rgba(43, 26, 32, .8); }
+    footer a:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
 
     /* Mobile: Titel stapeln, Tabor kleiner, Offerings untereinander */
     @media (max-width: 640px) {
@@ -445,9 +457,9 @@
         verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
         einen Abend mit Freunden an einem der schönsten Orte unserer Stadt,
         mit Musik von lokalen Künstlern, kulinarischen Schmankerl aus Neusiedl
-        und lässiger Sonnenuntergangs-Stimmung, offen für jedes Alter.
-        Wir danken der Stadtgemeinde Neusiedl am See und allen Unterstützern,
-        die diesen Abend möglich machen.
+        und lässiger Sonnenuntergangs-Stimmung bei fairen Preisen für jedes
+        Alter. Wir danken der Stadtgemeinde Neusiedl am See und allen
+        Unterstützern, die diesen Abend möglich machen.
       </p>
       <p class="about-text">
         Wir freuen uns auf Ihr Kommen! Die Freunde des SunDowners,<br>
@@ -500,7 +512,7 @@
   </main>
 
 
-  <footer>SunDowner · Am Tabor · 2026</footer>
+  <footer>SunDowner · Am Tabor · 2026 · Technologie von <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></footer>
   <script>
     /* Sponsoren: assets/sponsors.json (generiert aus dem Google Sheet).
        Ladet beim Seitenaufruf + Refresh alle 5 Min, damit Änderungen
