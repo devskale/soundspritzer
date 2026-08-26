@@ -288,13 +288,12 @@
       font-size: clamp(.85rem, 2vw, 1.05rem);
       color: var(--gold); /* coral lag auf dusk-low unter 3:1 (WCAG) */
       text-decoration: none;
-      border-bottom: 1px solid rgba(232, 176, 75, .4);
-      transition: border-color .25s ease, color .25s ease;
+      transition: color .25s ease;
       /* Touch-Target ≥ 44px ohne Layout-Shift (A11y hit targets) */
       padding: .45em .8em;
       margin: -.35em -.8em 0;
     }
-    .award:hover { color: var(--cream); border-color: var(--cream); }
+    .award:hover { color: var(--cream); }
 
     .partners {
       margin-top: clamp(4rem, 8vw, 6rem); /* Rhythmus XXL 3: Offerings→Partners */
@@ -312,10 +311,9 @@
     .offering .who a {
       color: var(--gold);
       text-decoration: none;
-      border-bottom: 1px solid rgba(232, 176, 75, .4);
-      transition: color .25s ease, border-color .25s ease;
+      transition: color .25s ease;
     }
-    .offering .who a:hover { color: var(--cream); border-color: var(--cream); }
+    .offering .who a:hover { color: var(--cream); }
     .offering .who a:focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 3px;
@@ -456,10 +454,11 @@
         Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
         verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
         einen Abend mit Freunden an einem der schönsten Orte unserer Stadt,
-        mit Musik von lokalen Künstlern, kulinarischen Schmankerl aus Neusiedl
-        und lässiger Sonnenuntergangs-Stimmung bei fairen Preisen für jedes
-        Alter. Wir danken der Stadtgemeinde Neusiedl am See und allen
-        Unterstützern, die diesen Abend möglich machen.
+        mit Musik von unserer Neusiedler Lieblingsband, kulinarischen
+        Schmankerl aus Neusiedl und lässiger Sonnenuntergangs-Stimmung bei
+        fairen Preisen für jedes Alter. Wir danken der Stadtgemeinde
+        Neusiedl am See und allen Unterstützern, die diesen Abend möglich
+        machen.
       </p>
       <p class="about-text">
         Wir freuen uns auf Ihr Kommen! Die Freunde des SunDowners,<br>
