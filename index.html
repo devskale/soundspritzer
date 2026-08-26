@@ -124,6 +124,17 @@
       letter-spacing: .01em;
       color: var(--cream);
       text-shadow: 0 0 60px rgba(232, 148, 58, .35);
+      /* Icon zwischen "Sun" und "Downer" */
+      display: inline-flex;
+      align-items: center;
+      gap: .18em;
+    }
+    h1 .sun-icon {
+      width: 1.15em;
+      height: 1.15em;
+      color: var(--gold);
+      filter: drop-shadow(0 0 .18em rgba(232, 176, 75, .55));
+      transform: translateY(.02em); /* optisch an Caps-Höhe ausrichten */
     }
     h1 em {
       font-style: italic;
@@ -329,7 +340,16 @@
   <main>
     <p class="kicker">Sonne · Sounds · Spritzer</p>
     <div class="title-wrap">
-      <h1>Sun<em>Downer</em></h1>
+      <h1 aria-label="SunDowner">Sun<svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v6"/>
+          <path d="m9 6 3 3 3-3"/>
+          <path d="M5.6 8.6 7 10"/>
+          <path d="M18.4 8.6 17 10"/>
+          <path d="M3 15h2"/>
+          <path d="M19 15h2"/>
+          <path d="M8 15a4 4 0 0 1 8 0"/>
+          <path d="M2 19h20"/>
+        </svg><em>Downer</em></h1>
       <span class="stamp" aria-label="Ort: Am Tabor">Am Tabor</span>
     </div>
     <div class="rule" aria-hidden="true">
