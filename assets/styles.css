@@ -5,6 +5,10 @@
    in den jeweiligen <style>-Blöcken.
    ───────────────────────────────────────────────────────────── */
 
+html, body {
+  overflow-x: hidden; /* Sky/Track überlaufen bewusst — nie horizontal scrollen */
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
