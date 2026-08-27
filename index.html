@@ -485,12 +485,11 @@
       line-height: 1.15;
     }
     .sponsor-logo {
-      max-width: clamp(90px, 16vw, 150px);
-      max-height: 64px;
+      max-width: clamp(150px, 24vw, 240px);
+      max-height: 110px;
       width: auto;
       height: auto;
       object-fit: contain;
-      margin-bottom: .35rem;
     }
     .sponsor-role {
       font-size: clamp(.55rem, 1.2vw, .62rem);
@@ -680,15 +679,17 @@
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
         if (s.logo) {
+          // Logo groß anzeigen; Name/Rolle nur als alt-Text (kein sichtbarer Text)
           var img = document.createElement("img");
           img.className = "sponsor-logo";
           img.src = s.logo;
-          img.alt = s.name + " Logo";
+          img.alt = s.name;
           img.loading = "lazy";
           a.appendChild(img);
+        } else {
+          a.appendChild(el("span", "sponsor-name", s.name));
+          if (s.role) a.appendChild(el("span", "sponsor-role", s.role));
         }
-        a.appendChild(el("span", "sponsor-name", s.name));
-        if (s.role) a.appendChild(el("span", "sponsor-role", s.role));
         return a;
       }
 
