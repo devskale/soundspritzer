@@ -76,13 +76,15 @@
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      gap: clamp(3rem, 7vw, 6rem); /* Luft zwischen Text- und Motivseite */
+      gap: clamp(1.5rem, 3vw, 3rem); /* Luft zwischen Text- und Motivseite */
       width: 100%;
       max-width: 1200px;
       padding: clamp(1.5rem, 3vw, 2.5rem) 0; /* vertikale Entfaltung des Heros */
     }
     .hero-left {
       text-align: center;
+      position: relative;
+      z-index: 2; /* Text VORNE — darf über das Tabor ragen */
     }
     .brand-sub {
       margin-top: clamp(.8rem, 1.6vw, 1.2rem); /* Rhythmus M: Claim→Name, eng als Einheit */
@@ -126,11 +128,12 @@
       display: block;
       line-height: 1.12;
     }
+    h1 .l2 { white-space: nowrap; }
     .tabor {
       flex: none;
       position: relative;
-      z-index: 1; /* über der wandernden Sonne */
-      width: clamp(220px, 44vw, 560px);
+      z-index: 0; /* hinter dem Text, vor der Sonne */
+      width: clamp(320px, 56vw, 800px);
       height: auto;
       opacity: .95;
       filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
@@ -142,44 +145,36 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      z-index: 1; /* eigener Stacking-Context: hält die Sonne hinter dem Tabor, aber vor dem Seitenhintergrund */
     }
     /* Sonnenuntergang: Bogen von rechts oben bis HINTER/UNTER das Tabor,
        wo sie von der Ruinen-Silhouette verdeckt wird — dann soft restart. */
     .sun {
       position: absolute;
-      top: -5%;
-      right: -8%;
+      left: 0;
+      top: 0;
       width: clamp(36px, 6.5vw, 64px);
       height: clamp(36px, 6.5vw, 64px);
       pointer-events: none;
       z-index: -1; /* hinter dem Tabor-Bild */
-      animation: sun-arc 24s cubic-bezier(.45,0,.55,1) infinite;
+      /* Durchgehende Ellipsen-Bahn: rein (rechts oben) → in die Bildmitte →
+         auf der anderen Seite wieder raus. left/top in % = relativ zu .tabor-wrap,
+         skaliert mit jeder Bildgröße. */
+      animation: sun-arc 24s linear infinite;
     }
-    /* Bahn: rechts oben aufsteigen → über den Tabor-Bogen sinken →
-       hinter das Bild absinken (translateY weit genug, dass das img sie vollständig deckt). */
+    /* Ellipsen-Stützpunkte (Zentrum 50%/22%, rx 46%, ry 34%).
+       Zeitprozente = gleichmäßige Winkelgeschwindigkeit entlang der Ellipse.
+       Mitlaufende Blende: hinter der Ruine (Bildmitte) dimmen, davor hell. */
     @keyframes sun-arc {
-      0% {
-        transform: translate(0, 0);
-        opacity: 0;
-      }
-      8% {
-        opacity: 1; /* sanftes Aufblenden rechts oben */
-      }
-      55% {
-        /* Bogenmitte: deutlich weiter links, schon über der Tabor-Mitte */
-        transform: translate(calc(-120% - 45%), 32%);
-        opacity: 1;
-      }
-      92% {
-        /* ganz hinter dem Bild, weit links: Ruine verdeckt sie vollständig */
-        transform: translate(calc(-190% - 65%), 105%);
-        opacity: 1;
-      }
-      100% {
-        /* noch tiefer + ausgeblendet — weicher Neustart ohne Sprung */
-        transform: translate(calc(-200% - 70%), 130%);
-        opacity: 0;
-      }
+      0%    { left: 96%;  top: 22%;  opacity: 1; }
+      12.5% { left: 96%;  top: 2%;   opacity: 1; }
+      25%   { left: 88%;  top: -8%;  opacity: 1; }
+      37.5% { left: 73%;  top: -10%; opacity: 1; }
+      50%   { left: 50%;  top: -6%;  opacity: 1; }
+      62.5% { left: 28%;  top: 4%;   opacity: 1; }
+      75%   { left: 12%;  top: 22%;  opacity: 1; }
+      87.5% { left: 4%;   top: 44%;  opacity: 1; }
+      100%  { left: 96%;  top: 22%;  opacity: 1; }
     }
     /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
     @property --ray-w {
@@ -203,9 +198,46 @@
       box-shadow: 0 0 26px rgba(232, 176, 75, .55), 0 0 58px rgba(232, 176, 75, .3);
       animation: sun-glow 7s ease-in-out infinite;
     }
+    /* Dauerhafter Glow: fährt dieselbe Ellipse, liegt aber ÜBER dem Tabor,
+       damit der Lichtschein der Sonne auch dann sichtbar bleibt, wenn der
+       Sonnenkern hinter der deckenden Ruinen-Mitte steckt. */
+    .sun-glow {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: clamp(52px, 9vw, 92px);
+      height: clamp(52px, 9vw, 92px);
+      pointer-events: none;
+      z-index: 1; /* über dem Tabor-Bild */
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 176, 75, .55) 0%, rgba(232, 176, 75, .25) 55%, transparent 72%);
+      filter: blur(6px);
+      animation: sun-arc 24s linear infinite;
+    }
+    /* Dimm-Overlay: Himmel wird dunkler, wenn die Sonne unten/im Tabor ist
+       (Sonnenuntergangs-Stimmung), heller, wenn sie oben strahlt.
+       Läuft synchron zur Sonnenbahn (gleiche 24s-lineare Dauer). */
+    .sun-dimmer {
+      position: absolute;
+      inset: -40% -20% -30% -20%;
+      pointer-events: none;
+      z-index: 2; /* über dem Tabor, unter dem Text */
+      background: rgba(20, 12, 26, .55);
+      opacity: 0;
+      border-radius: 50%;
+      animation: sun-dimmer-arc 24s linear infinite;
+    }
+    @keyframes sun-dimmer-arc {
+      0%    { opacity: 0; }
+      25%   { opacity: 0; }
+      37.5% { opacity: .35; }
+      50%   { opacity: .55; }
+      62.5% { opacity: .35; }
+      75%   { opacity: 0; }
+      100%  { opacity: 0; }
+    }
     .sun::after {
-      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */
-      content: "";
+      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */      content: "";
       position: absolute;
       inset: -60%;
       background: repeating-conic-gradient(
@@ -540,11 +572,9 @@
       }
       .hero-left { text-align: center; }
       .tabor {
-        width: clamp(190px, 66vw, 300px);
+        width: clamp(240px, 80vw, 380px);
       }
-      .sun {
-        right: -6%;
-      }
+      /* Sonne folgt demselben container-relativen Bogen — kein Override nötig */
       .offerings {
         flex-direction: column;
         gap: 1.6rem;
@@ -566,13 +596,15 @@
     <div class="hero">
       <div class="hero-left">
         <p class="hero-sub">Live-Musik · Foodtruck · Freier Eintritt</p>
-        <h1><span class="l1">Seeblick,</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
+        <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
         <p class="brand-sub">der Sundowner am Tabor</p>
       </div>
       <div class="hero-right">
         <div class="tabor-wrap">
-          <img class="tabor" src="assets/tabor.png" alt="Ruine Tabor" width="1432" height="583">
+          <img class="tabor" src="assets/tabor.png" alt="Ruine Tabor" width="1024" height="416">
           <span class="sun" aria-hidden="true"></span>
+          <span class="sun-glow" aria-hidden="true"></span>
+          <span class="sun-dimmer" aria-hidden="true"></span>
         </div>
       </div>
     </div>
