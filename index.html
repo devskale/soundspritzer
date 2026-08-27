@@ -491,6 +491,10 @@
       height: auto;
       object-fit: contain;
     }
+    .sponsor-logo--small {
+      max-width: clamp(80px, 12vw, 120px);
+      max-height: 56px;
+    }
     .sponsor-role {
       font-size: clamp(.55rem, 1.2vw, .62rem);
       letter-spacing: .22em;
@@ -681,7 +685,7 @@
         if (s.logo) {
           // Logo groß anzeigen; Name/Rolle nur als alt-Text (kein sichtbarer Text)
           var img = document.createElement("img");
-          img.className = "sponsor-logo";
+          img.className = "sponsor-logo" + (s.size ? " sponsor-logo--" + s.size : "");
           img.src = s.logo;
           img.alt = s.name;
           img.loading = "lazy";

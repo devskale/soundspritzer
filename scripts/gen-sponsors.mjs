@@ -23,7 +23,11 @@ const OUT = join(root, "assets", "sponsors.json");
  * überlebt jeden Rebuild, weil sie hier fest verdrahtet ist.
  */
 const LOGO_OVERRIDES = {
-  "GWP GRÖSZ WEISZ PARTNER": "assets/gwp_logo.png",
+  "GWP GRÖSZ WEISZ PARTNER": { logo: "assets/gwp_logo.png", url: "https://www.gwp.co.at/" },
+  "skale.dev": { logo: "assets/skale_logo.png", url: "https://skale.dev/", size: "small" },
+  "Neusiedl am See": { logo: "assets/neusiedl_logo.png", url: "https://www.neusiedlamsee.at/", size: "small" },
+  "Joes Pub": { logo: "assets/joes-pub.png", url: "https://www.joespubneusiedl.at/", size: "small" },
+  "Akademie der Wirtschaft": { logo: "assets/akwi.jpg", url: "https://www.akademie-der-wirtschaft.at/", size: "small" },
 };
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
@@ -105,8 +109,9 @@ async function main() {
       role,
       tier: tier(eur),
       eur: eur ?? null,
-      url: extractUrl(logoRaw),
-      logo: LOGO_OVERRIDES[name] ?? null, // lokales Asset, falls vorhanden
+      url: extractUrl(logoRaw) ?? LOGO_OVERRIDES[name]?.url ?? null, // URL aus Sheet oder Override
+      logo: LOGO_OVERRIDES[name]?.logo ?? null, // lokales Asset, falls vorhanden
+      size: LOGO_OVERRIDES[name]?.size ?? null, // optionale Logo-Größe (small)
     };
   }).filter((s) => s.name);
 

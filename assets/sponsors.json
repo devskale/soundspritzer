@@ -1,45 +1,50 @@
 {
-  "updated": "2026-08-27T10:17:14.243Z",
+  "updated": "2026-08-27T10:37:11.453Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
       "role": "Steuerberatung OG",
       "tier": "large",
       "eur": 250,
-      "url": null,
-      "logo": "assets/gwp_logo.png"
+      "url": "https://www.gwp.co.at/",
+      "logo": "assets/gwp_logo.png",
+      "size": null
     },
     {
       "name": "skale.dev",
       "role": "Software Engineering",
       "tier": "medium",
       "eur": 150,
-      "url": null,
-      "logo": null
+      "url": "https://skale.dev/",
+      "logo": "assets/skale_logo.png",
+      "size": "small"
     },
     {
       "name": "Neusiedl am See",
       "role": "Stadtgemeinde",
       "tier": "medium",
       "eur": 150,
-      "url": null,
-      "logo": null
+      "url": "https://www.neusiedlamsee.at/",
+      "logo": "assets/neusiedl_logo.png",
+      "size": "small"
     },
     {
       "name": "Joes Pub",
       "role": "Bier & Pizza in Neusiedl am See",
       "tier": "medium",
       "eur": 100,
-      "url": null,
-      "logo": null
+      "url": "https://www.joespubneusiedl.at/",
+      "logo": "assets/joes-pub.png",
+      "size": "small"
     },
     {
       "name": "Akademie der Wirtschaft",
       "role": "Neusiedl am See",
       "tier": "medium",
       "eur": 100,
-      "url": null,
-      "logo": null
+      "url": "https://www.akademie-der-wirtschaft.at/",
+      "logo": "assets/akwi.jpg",
+      "size": "small"
     },
     {
       "name": "Große Zampo GmbH",
@@ -47,7 +52,8 @@
       "tier": "large",
       "eur": 250,
       "url": null,
-      "logo": null
+      "logo": null,
+      "size": null
     },
     {
       "name": "Tommi Boy",
@@ -55,7 +61,8 @@
       "tier": "medium",
       "eur": 100,
       "url": null,
-      "logo": null
+      "logo": null,
+      "size": null
     }
   ]
 }
