@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-26T17:35:12.069Z",
+  "updated": "2026-08-27T04:31:58.724Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -38,6 +38,14 @@
       "role": "Neusiedl am See",
       "tier": "small",
       "eur": null,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "Große Zampo GmbH",
+      "role": "Grosser Spender",
+      "tier": "large",
+      "eur": 400,
       "url": null,
       "logo": null
     }
