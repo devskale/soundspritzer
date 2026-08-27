@@ -484,6 +484,14 @@
       color: var(--cream);
       line-height: 1.15;
     }
+    .sponsor-logo {
+      max-width: clamp(90px, 16vw, 150px);
+      max-height: 64px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: .35rem;
+    }
     .sponsor-role {
       font-size: clamp(.55rem, 1.2vw, .62rem);
       letter-spacing: .22em;
@@ -671,6 +679,14 @@
       function card(s) {
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
+        if (s.logo) {
+          var img = document.createElement("img");
+          img.className = "sponsor-logo";
+          img.src = s.logo;
+          img.alt = s.name + " Logo";
+          img.loading = "lazy";
+          a.appendChild(img);
+        }
         a.appendChild(el("span", "sponsor-name", s.name));
         if (s.role) a.appendChild(el("span", "sponsor-role", s.role));
         return a;

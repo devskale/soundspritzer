@@ -1,13 +1,13 @@
 {
-  "updated": "2026-08-27T04:31:58.724Z",
+  "updated": "2026-08-27T10:17:14.243Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
       "role": "Steuerberatung OG",
-      "tier": "medium",
-      "eur": 150,
+      "tier": "large",
+      "eur": 250,
       "url": null,
-      "logo": null
+      "logo": "assets/gwp_logo.png"
     },
     {
       "name": "skale.dev",
@@ -28,16 +28,16 @@
     {
       "name": "Joes Pub",
       "role": "Bier & Pizza in Neusiedl am See",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": null
     },
     {
       "name": "Akademie der Wirtschaft",
       "role": "Neusiedl am See",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": null
     },
@@ -45,7 +45,15 @@
       "name": "Große Zampo GmbH",
       "role": "Grosser Spender",
       "tier": "large",
-      "eur": 400,
+      "eur": 250,
+      "url": null,
+      "logo": null
+    },
+    {
+      "name": "Tommi Boy",
+      "role": "Neusiedl",
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": null
     }

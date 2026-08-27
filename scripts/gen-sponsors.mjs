@@ -15,6 +15,16 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(root, "assets", "sponsors.json");
+
+/**
+ * Lokale Logo-Overrides: Name (exakt wie im Sheet) → lokales Asset.
+ * Das Sheet hat eine Logo-URL-Spalte, aber manche Logos liegen nur
+ * als Datei im Repo vor (z.B. vom Sponsor zugeliefert). Diese Map
+ * überlebt jeden Rebuild, weil sie hier fest verdrahtet ist.
+ */
+const LOGO_OVERRIDES = {
+  "GWP GRÖSZ WEISZ PARTNER": "assets/gwp_logo.png",
+};
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 
@@ -96,7 +106,7 @@ async function main() {
       tier: tier(eur),
       eur: eur ?? null,
       url: extractUrl(logoRaw),
-      logo: null, // Logo-Assets werden aktuell als Text-Cards gerendert
+      logo: LOGO_OVERRIDES[name] ?? null, // lokales Asset, falls vorhanden
     };
   }).filter((s) => s.name);
 
