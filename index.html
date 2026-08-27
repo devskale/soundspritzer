@@ -46,8 +46,16 @@
       align-items: center;
       gap: 1.4rem;
       width: 100%;
-      padding: 1.2rem 0 0 1.2rem; /* Abstand zu Top & Left */
-      margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem); /* Rhythmus M: Header→Hero (war zu groß bei 60–80px Logos) */
+      padding: 1.2rem 0 clamp(1rem, 2vw, 1.4rem) 1.2rem; /* Abstand zu Top & Left */
+      border-bottom: 1px solid var(--hairline); /* Zonen-Grenze zum Hero (OG-Leisten-Zitat) */
+      margin-bottom: clamp(1.6rem, 3vw, 2.2rem); /* Rhythmus M+: Header→Hero */
+    }
+    .site-header-label {
+      font-size: clamp(.55rem, 1.1vw, .62rem);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      margin-right: clamp(.8rem, 2vw, 1.6rem);
     }
     .site-header a {
       display: inline-flex;
@@ -251,40 +259,77 @@
     /* Facts-Banner: durchgehender heller Balken unter dem Hero,
        edge-to-edge (Plakat-Streifen), Tinte auf Creme. Ersetzt die when-card. */
     .facts-banner {
-      /* edge-to-edge, scrollbar-sicher: beidseitig negatives Margin
-         um das main-Padding — bündig mit dem sichtbaren Bereich, kein 100vw */
+      /* edge-to-edge, scrollbar-sicher: beidseitig negatives Margin um das main-Padding */
       width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
       margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
-      margin-top: clamp(3.8rem, 7.5vw, 5.6rem); /* XXL 1: Hero→Facts */
-      padding: clamp(.9rem, 2vw, 1.3rem) clamp(1rem, 4vw, 2.5rem);
+      margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
+      padding: clamp(1rem, 2.2vw, 1.5rem) clamp(3rem, 8vw, 7rem) clamp(1rem, 2.2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
       background: var(--cream);
       color: var(--ink);
       box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: center;
-      gap: .6rem clamp(1.2rem, 3vw, 2.4rem);
-      text-align: center;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(1.5rem, 4vw, 3rem);
     }
-    .facts-banner .fact {
-      font-size: clamp(.82rem, 2vw, 1.05rem);
-      font-weight: 500; /* kräftiger: Jost 400 wirkte im hellen Balken zu leicht */
+    /* Spalte 1: Veranstalter-Logos (ragen oben über die Balkenkante) */
+    .facts-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .15rem;
+      margin-top: clamp(-3.2rem, -6vw, -4.6rem); /* Logos ragen über die Oberkante in den Hero */
+    }
+    .facts-logos-label {
+      font-size: clamp(.7rem, 1.5vw, .85rem);
+      font-weight: 500;
       letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: .35rem;
+    }
+    .facts-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .facts-logo-row a { display: inline-flex; transition: transform .25s ease; }
+    .facts-logo-row a:hover { transform: translateY(-2px); }
+    .facts-logo-row img[src*="akwi"] { height: clamp(64px, 8vw, 88px); width: auto; border-radius: 6px; }
+    .facts-logo-row img[src*="joes"] { height: clamp(64px, 8vw, 88px); width: auto; }
+    .facts-logo-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
+    .fact-col {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      text-align: left;
+    }
+    .fact-main {
+      font-weight: 500;
+      font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+      letter-spacing: .14em;
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .facts-banner .fact-sep {
-      color: var(--terracotta);
-      opacity: .8;
-      font-size: .9em;
+    .fact-sub {
+      font-size: clamp(.75rem, 1.6vw, .9rem);
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--ink);
     }
     /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
       margin: clamp(4rem, 8vw, 6rem) auto 0;
       width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     }
     .about-icon {
       display: block;
@@ -507,14 +552,6 @@
     <div class="cloud c1"></div>
     <div class="cloud c2"></div>
   </div>
-  <header class="site-header">
-    <a href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener">
-      <img src="assets/akwi.png" alt="Akademie der Wirtschaft Neusiedl am See" width="200" height="287">
-    </a>
-    <a href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener">
-      <img src="assets/joes-pub.png" alt="Joe's Pub Neusiedl am See" width="377" height="296">
-    </a>
-  </header>
   <main>
     <div class="hero">
       <div class="hero-left">
@@ -529,30 +566,27 @@
         </div>
       </div>
     </div>
-    <div class="facts-banner" role="contentinfo" aria-label="Veranstaltungsfakten">
-      <span class="fact">25.09.2026</span>
-      <span class="fact-sep" aria-hidden="true">·</span>
-      <span class="fact">16–22 Uhr</span>
-      <span class="fact-sep" aria-hidden="true">·</span>
-      <span class="fact">Am Tabor, Neusiedl am See</span>
-    </div>
 
-    <div class="about">
-      <img class="about-icon" src="assets/schueler.png" alt="Wir drei Schüler" width="1262" height="662">
-      <p class="about-text">
-        Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
-        verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
-        ein Abend mit Freunden an einem der schönsten Orte unserer Stadt.
-        Musik von unserer Lieblingsband, kulinarische Schmankerl aus
-        Neusiedl und lässige Sonnenuntergangs-Stimmung bei fairen Preisen.
-        Offen für alle, die kommen wollen. Wir danken der Stadtgemeinde
-        Neusiedl am See, Joe's Pub und allen Unterstützern, die diesen
-        Abend möglich machen.
-      </p>
-      <p class="about-text">
-        Wir hoffen, ihr kommt vorbei! Die Freunde des SunDowners,<br>
-        Laurens, Alex &amp; der Dritte
-      </p>
+    <div class="facts-banner" role="contentinfo" aria-label="Veranstalter und Veranstaltungsfakten">
+      <div class="facts-logos">
+        <div class="facts-logo-row">
+          <a href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener">
+            <img src="assets/akwi.jpg" alt="Akademie der Wirtschaft Neusiedl am See" width="503" height="503">
+          </a>
+          <a href="https://www.joespubneusiedl.at/" target="_blank" rel="noopener">
+            <img src="assets/joes-pub.png" alt="Joe's Pub Neusiedl am See" width="377" height="296">
+          </a>
+        </div>
+        <p class="facts-logos-label">Veranstalter des Schülerspecials</p>
+      </div>
+      <div class="fact-col">
+        <span class="fact-main">25.09.2026</span>
+        <span class="fact-sub">16–22 Uhr</span>
+      </div>
+      <div class="fact-col">
+        <span class="fact-main">Am Tabor</span>
+        <span class="fact-sub">Neusiedl am See</span>
+      </div>
     </div>
 
     <div class="offerings">
@@ -596,7 +630,27 @@
     </div>
 
     <a class="btn" href="/partner">Sponsoren &amp; Partner</a>
-  </main>
+
+    <div class="about">
+      <img class="about-icon" src="assets/schueler.png" alt="Wir drei Schüler" width="1262" height="662">
+      <p class="about-text">
+        Wir sind 3 Schüler der Akademie der Wirtschaft Neusiedl am See und
+        verwirklichen im Rahmen unserer Diplomarbeit unsere Wunschveranstaltung:
+        ein Abend mit Freunden an einem der schönsten Orte unserer Stadt.
+        Musik von unserer Lieblingsband, kulinarische Schmankerl aus
+        Neusiedl und lässige Sonnenuntergangs-Stimmung bei fairen Preisen.
+        Offen für alle, die kommen wollen. Wir danken der Stadtgemeinde
+        Neusiedl am See, Joe's Pub und allen Unterstützern, die diesen
+        Abend möglich machen.
+      </p>
+      <p class="about-text">
+        Wir hoffen, ihr kommt vorbei! Die Freunde des SunDowners,<br>
+        Laurens, Alex &amp; der Dritte
+      </p>
+      <a class="btn" href="/partner">Unterstütze das Event</a>
+    </div>
+
+    </main>
 
 
   <footer>SunDowner · Am Tabor · 2026 · Technologie von <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></footer>
