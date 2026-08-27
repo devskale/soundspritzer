@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T10:37:11.453Z",
+  "updated": "2026-08-27T10:37:54.302Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -14,7 +14,7 @@
       "name": "skale.dev",
       "role": "Software Engineering",
       "tier": "medium",
-      "eur": 150,
+      "eur": 100,
       "url": "https://skale.dev/",
       "logo": "assets/skale_logo.png",
       "size": "small"
@@ -23,7 +23,7 @@
       "name": "Neusiedl am See",
       "role": "Stadtgemeinde",
       "tier": "medium",
-      "eur": 150,
+      "eur": 100,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/neusiedl_logo.png",
       "size": "small"
@@ -45,24 +45,6 @@
       "url": "https://www.akademie-der-wirtschaft.at/",
       "logo": "assets/akwi.jpg",
       "size": "small"
-    },
-    {
-      "name": "Große Zampo GmbH",
-      "role": "Grosser Spender",
-      "tier": "large",
-      "eur": 250,
-      "url": null,
-      "logo": null,
-      "size": null
-    },
-    {
-      "name": "Tommi Boy",
-      "role": "Neusiedl",
-      "tier": "medium",
-      "eur": 100,
-      "url": null,
-      "logo": null,
-      "size": null
     }
   ]
 }
