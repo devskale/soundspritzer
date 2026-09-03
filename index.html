@@ -413,11 +413,21 @@
     @media (prefers-reduced-motion: reduce) {
       .live-badge { animation: none; }
     }
+    /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons stehen unten auf EINER Grundlinie →
+       Headings + Sublines aller Spalten beginnen exakt gleich */
+    .icon-slot {
+      height: clamp(78px, 13.5vw, 116px);
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: .4rem;
+    }
     .offering .icon {
       height: clamp(56px, 10vw, 84px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
       width: auto;
-      margin-bottom: .4rem;
       filter: drop-shadow(0 0 14px rgba(232, 176, 75, .18));
+    }
+    .offering .icon--xl {
+      height: 100%; /* füllt den Slot — Musik ist das Mega-Feature (LIVE-Stempel) */
     }
     .offering .what {
       font-family: "Cormorant Garamond", serif;
@@ -660,20 +670,20 @@
     <div class="offerings">
       <div class="offering offering--live">
         <span class="live-badge" aria-label="live">Live</span>
-        <img class="icon" src="assets/vinyl.png" alt="" aria-hidden="true" width="493" height="506">
+        <div class="icon-slot"><img class="icon icon--xl" src="assets/vinyl.png" alt="" aria-hidden="true" width="500" height="500"></div>
         <span class="what">Musik</span>
         <span class="who"><a href="https://www.instagram.com/yourynot" target="_blank" rel="noopener">YnoT</a> · Flux (DJ)</span>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <img class="icon" src="assets/pizza.png" alt="" aria-hidden="true" width="541" height="485">
+        <div class="icon-slot"><img class="icon" src="assets/pizza.png" alt="" aria-hidden="true" width="500" height="500"></div>
         <span class="what">Foodtruck</span>
         <span class="who">Joe's Pub</span>
         <a class="award" href="https://www.bvz.at/neusiedl/falstaff-voting-das-ist-die-beliebteste-pizzeria-des-burgenlands-480867248" target="_blank" rel="noopener">★ Burgenlands beliebteste Pizza</a>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <img class="icon" src="assets/glass.png" alt="" aria-hidden="true" width="334" height="812">
+        <div class="icon-slot"><img class="icon" src="assets/glass.png" alt="" aria-hidden="true" width="334" height="812"></div>
         <span class="what">Spritzerbar</span>
         <span class="who">Gutes von der Schülercrew</span>
       </div>
