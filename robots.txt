@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /impressum.html
 
 Sitemap: https://soundspritzer.at/sitemap.xml
