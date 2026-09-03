@@ -351,6 +351,38 @@ h1 em {
     .legal-text a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(232,176,75,.4); }
     .legal-text a:hover { color: var(--cream); border-color: var(--cream); }
     .legal-text a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .legal-sub {
+      font-family: "Jost", sans-serif;
+      font-weight: 500;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 1.6rem 0 .6rem;
+    }
+    .legal-list {
+      margin: 0 0 1.1rem;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+    .legal-list li {
+      font-size: .9rem;
+      line-height: 1.75;
+      color: var(--cream-soft);
+      display: flex;
+      gap: .7rem;
+      align-items: baseline;
+    }
+    .legal-list li::before {
+      content: "◆";
+      font-size: .45rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .legal-list li b { font-weight: 400; color: var(--cream); }
 
     .fineprint {
       margin-top: 2.6rem;
@@ -362,6 +394,14 @@ h1 em {
       margin-right: auto;
     }
     .fineprint b { font-weight: 400; color: var(--cream); }
+    .fineprint a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232, 176, 75, .4);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .fineprint a:hover { color: var(--cream); border-color: var(--cream); }
+    .fineprint a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
     .back {
       display: inline-block;
