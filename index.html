@@ -4,26 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See</title>
-  <meta name="description" content="SunDowner am Tabor — Live-Musik & DJ. 25. September 2026, Neusiedl am See.">
+  <meta name="description" content="SunDowner am Tabor — Livemusik & DJ. 25. September 2026, Neusiedl am See.">
 
   <!-- Open Graph / Social (WhatsApp, Instagram, iMessage, X) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://soundspritzer.at/">
   <meta property="og:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
-  <meta property="og:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Live-Musik, Foodtruck & Freiem Eintritt. 25.09.2026, 17–22 Uhr am Tabor.">
+  <meta property="og:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt. 25.09.2026, 17–22 Uhr am Tabor.">
   <meta property="og:image" content="https://soundspritzer.at/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="de_AT">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
-  <meta name="twitter:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Live-Musik, Foodtruck & Freiem Eintritt.">
+  <meta name="twitter:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt.">
   <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.png">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b04b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v6'/%3E%3Cpath d='m9 6 3 3 3-3'/%3E%3Cpath d='M5.6 8.6 7 10'/%3E%3Cpath d='M18.4 8.6 17 10'/%3E%3Cpath d='M3 15h2'/%3E%3Cpath d='M19 15h2'/%3E%3Cpath d='M8 15a4 4 0 0 1 8 0'/%3E%3Cpath d='M2 19h20'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <style>
     /* ── seiten-spezifisch: Startseite ── */
@@ -31,7 +31,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* KEIN justify-content: center — die Seite ist längler als der Viewport.
+         Center würde Überlauf nach OBEN verteilen, der nie scrollbar wäre
+         („Seite verschluckt den oberen Rand“). */
       padding: clamp(2rem, 6vw, 5rem);
       max-width: 100%;
       overflow-x: hidden; /* Death Defense gegen Mobile-Overflow */
@@ -41,35 +43,53 @@
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
     /* ── Site-Header: die zwei Veranstalter-Logos, ganz oben links ── */
+    /* Unterstützen-Link: absolut über der Hero-Zone (rechts oben) — nimmt KEINEN
+       Layout-Platz ein, verschiebt also nichts vom bisherigen Alignment.
+       Kein Button/Pill — schlichter Text, distinktiv durch Gold.
+       rechts = max(Half-Gap des zentrierten Heros, Main-Padding) → bündig
+       mit der rechten Hero-Kante bei jeder Viewport-Breite. */
     .site-header {
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
-      width: 100%;
-      padding: 1.2rem 0 clamp(1rem, 2vw, 1.4rem) 1.2rem; /* Abstand zu Top & Left */
-      border-bottom: 1px solid var(--hairline); /* Zonen-Grenze zum Hero (OG-Leisten-Zitat) */
-      margin-bottom: clamp(1.6rem, 3vw, 2.2rem); /* Rhythmus M+: Header→Hero */
+      position: absolute;
+      top: clamp(.5rem, 1.4vw, 1.1rem);
+      right: max(calc((100% - 1200px) / 2), clamp(1.5rem, 5vw, 4rem));
+      margin: 0;
+      z-index: 3; /* über Hero-Ebenen, unter nichts verschiebend */
     }
-    .site-header-label {
-      font-size: clamp(.55rem, 1.1vw, .62rem);
-      letter-spacing: .28em;
+    .site-header .support-link {
+      display: inline-block;
+      padding: .4rem 0; /* Touch-Target */
+      font-size: clamp(.68rem, 1.4vw, .8rem);
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-indent: .32em;
       text-transform: uppercase;
-      color: var(--cream-soft);
-      margin-right: clamp(.8rem, 2vw, 1.6rem);
+      text-decoration: none;
+      text-underline-offset: .35em;
+      text-decoration-thickness: 1px;
+      /* Marken-Gradient (wie „Spritzer“) als Text-Füllung — kein Pill/BG, nur Text */
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%) text;
+      color: transparent;
+      filter: drop-shadow(0 0 10px rgba(232, 176, 75, .35));
+      transition: filter .3s ease;
     }
-    .site-header a {
-      display: inline-flex;
-      transition: opacity .25s ease;
+    .site-header .support-link:hover,
+    .site-header .support-link:focus-visible {
+      font-weight: 600; /* echtes 600 (im Font-Load nachgeladen) statt Fake-Bold */
+      text-decoration: underline;
+      text-decoration-color: var(--gold); /* sonst transparent (currentColor = Gradient-Clip) */
+      filter: drop-shadow(0 0 16px rgba(232, 176, 75, .55));
     }
-    .site-header a:hover { opacity: .75; }
-    .site-header a:focus-visible {
+    .site-header .support-diamond {
+      display: inline-block; /*_inline-block: Unterstreichung propagation gestoppt */
+      color: var(--gold);
+      font-size: .55em;
+      vertical-align: .2em;
+      margin-right: .4em;
+    }
+    .site-header .support-link:focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 4px;
-      border-radius: 4px;
     }
-    .site-header img { width: auto; }
-    .site-header img[src*="akwi"] { height: 80px; }
-    .site-header img[src*="joes"] { height: 80px; }
 
     /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
     .hero {
@@ -90,24 +110,29 @@
       margin-top: clamp(.8rem, 1.6vw, 1.2rem); /* Rhythmus M: Claim→Name, eng als Einheit */
       font-family: "Cormorant Garamond", serif;
       font-style: italic;
-      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
       letter-spacing: .04em;
-      color: var(--cream-soft);
+      /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
     .hero-sub {
       display: inline-block;
       margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Pill→Marke, eng als Einheit */
       padding: .55em 1.1em;
-      border: 1px solid var(--hairline);
       border-radius: 999px;
       font-size: clamp(.6rem, 1.3vw, .7rem);
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: .28em;
       text-indent: .28em;
       text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(232, 176, 75, .05);
+      color: var(--dusk-top); /* dunkle Tinte auf Gold — gleiche Stimme wie „Beliebt“-Badge */
+      background: var(--gold);
+      box-shadow: 0 0 22px rgba(232, 176, 75, .35), 0 2px 14px rgba(34, 21, 40, .35); /* Gold-Glow + Tiefeneffekt */
     }
     /* ── Hero rechts: Tabor-Gruppe ── */
     .hero-right {
@@ -126,7 +151,7 @@
     }
     h1 .l1, h1 .l2, h1 .l3 {
       display: block;
-      line-height: 1.12;
+      line-height: .96; /* tight gestapelt — Zeile 1/2 ohne Descender, kein Clipping */
     }
     h1 .l2 { white-space: nowrap; }
     .tabor {
@@ -147,30 +172,16 @@
       align-items: center;
       z-index: 1; /* eigener Stacking-Context: hält die Sonne hinter dem Tabor, aber vor dem Seitenhintergrund */
     }
-    /* Sonnenuntergang: Bogen von rechts oben bis HINTER/UNTER das Tabor,
-       wo sie von der Ruinen-Silhouette verdeckt wird — dann soft restart. */
+    /* Sonne steht sichtbar im offenen Himmel rechts über der Ruine — nur die
+       Strahlen animieren weiter (Drehung, Puls, Morph — siehe ::after unten). */
     .sun {
       position: absolute;
-      left: 0;
-      top: 0;
+      left: 66%;
+      top: -14%;
       width: clamp(36px, 6.5vw, 64px);
       height: clamp(36px, 6.5vw, 64px);
       pointer-events: none;
       z-index: -1; /* hinter dem Tabor-Bild — die Sonne bleibt hinter der Ruine */
-      /* Rein-und-raus: von oben rechts sanft in die BILDMITTE sinken (kurz
-         hinter der Ruine verdeckt) und im selben Zyklus wieder hoch nach oben
-         rechts. Symmetrisch → die Sonne ist nur kurz weg, sonst immer sichtbar.
-         linear = gleichmäßige Geschwindigkeit (kein Abbremsen an den Enden). */
-      animation: sun-arc 34s linear infinite;
-    }
-    @keyframes sun-arc {
-      0%   { left: 92%; top: -30%; }
-      20%  { left: 82%; top: -8%;  }
-      38%  { left: 62%; top: 20%;  }
-      50%  { left: 50%; top: 50%;  } /* kurz hinter der Ruine verdeckt */
-      62%  { left: 62%; top: 20%;  }
-      80%  { left: 82%; top: -8%;  }
-      100% { left: 92%; top: -30%; }
     }
 
     /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
@@ -237,7 +248,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .sun::before, .sun::after { animation: none; }
-      .sun { animation: none; transform: translate(-40%, 30%); /* ruhig hinter dem Tabor */ opacity: 1; }
+      .sun { animation: none; transform: none; /* steht ruhig über dem Tabor */ opacity: 1; }
     }
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
@@ -292,6 +303,12 @@
     .facts-logo-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
     /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
+    /* Datum+Ort gehören als EIN Fakten-Paar zusammen → gruppiert, enger Gap */
+    .facts-facts {
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
     .fact-col {
       display: flex;
       flex-direction: column;
@@ -533,6 +550,24 @@
       .tabor {
         width: clamp(240px, 80vw, 380px);
       }
+      /* Facts-Banner stapeln: Logos oben (kleiner Überstand), Fakten-Paar darunter */
+      .facts-banner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.6rem;
+        padding-left: clamp(1rem, 5vw, 2rem);
+        padding-right: clamp(1rem, 5vw, 2rem);
+      }
+      .facts-logos {
+        margin-top: clamp(-2.6rem, -7vw, -1.8rem); /* Überstand kleiner halten */
+        align-items: center;
+      }
+      .facts-logos-label { text-align: center; }
+      .facts-facts {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .fact-col { align-items: center; text-align: center; }
       /* Sonne folgt demselben container-relativen Bogen — kein Override nötig */
       .offerings {
         flex-direction: column;
@@ -544,6 +579,8 @@
       }
     }
   </style>
+  <!-- Reload startet immer oben — keine Scroll-Restauration vom Browser -->
+  <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
 <body>
   <div class="sky" aria-hidden="true">
@@ -552,9 +589,12 @@
     <div class="cloud c2"></div>
   </div>
   <main>
+    <header class="site-header">
+      <a class="support-link" href="/partner"><span class="support-diamond" aria-hidden="true">◆</span>Unterstützen</a>
+    </header>
     <div class="hero">
       <div class="hero-left">
-        <p class="hero-sub">Live-Musik · Foodtruck · Freier Eintritt</p>
+        <p class="hero-sub">Livemusik · Foodtruck · Freier Eintritt</p>
         <h1><span class="l1">Seeblick</span><span class="l2">Sounds <em>&amp;</em></span><span class="l3"><em>Spritzer</em></span></h1>
         <p class="brand-sub">der Sundowner am Tabor</p>
       </div>
@@ -566,7 +606,7 @@
       </div>
     </div>
 
-    <div class="facts-banner" role="contentinfo" aria-label="Veranstalter und Veranstaltungsfakten">
+    <div class="facts-banner" aria-label="Veranstalter und Veranstaltungsfakten">
       <div class="facts-logos">
         <div class="facts-logo-row">
           <a href="https://www.akademie-der-wirtschaft.at/" target="_blank" rel="noopener">
@@ -578,13 +618,15 @@
         </div>
         <p class="facts-logos-label">Veranstalter des Schülerspecials</p>
       </div>
-      <div class="fact-col">
-        <span class="fact-main">25.09.2026</span>
-        <span class="fact-sub">17–22 Uhr</span>
-      </div>
-      <div class="fact-col">
-        <span class="fact-main">Am Tabor</span>
-        <span class="fact-sub">Neusiedl am See</span>
+      <div class="facts-facts">
+        <div class="fact-col">
+          <span class="fact-main">25.09.2026</span>
+          <span class="fact-sub">17–22 Uhr</span>
+        </div>
+        <div class="fact-col">
+          <span class="fact-main">Am Tabor</span>
+          <span class="fact-sub">Neusiedl am See</span>
+        </div>
       </div>
     </div>
 
@@ -612,8 +654,8 @@
     <div class="partners" aria-label="Sponsoren und Partner">
       <p class="partners-sub">Sponsoren &amp; Partner für Unterstützer</p>
     </div>
-    <div class="sponsor-track" aria-label="Unsere Sponsoren">
-      <div class="sponsor-run" id="sponsor-run">
+    <div class="sponsor-track">
+      <div class="sponsor-run" id="sponsor-run" role="region" aria-label="Unsere Sponsoren">
         <!-- Wird aus assets/sponsors.json befüllt (Build-Skript / GH Action). -->
         <noscript>
           <a class="sponsor-card tier-medium" href="https://skale.dev/" target="_blank" rel="noopener">
@@ -650,7 +692,7 @@
     </main>
 
 
-  <footer>SunDowner · Am Tabor · 2026 · Technologie von <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></footer>
+  <footer>SunDowner · Am Tabor · 2026 · Techsupport <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></footer>
   <script>
     /* Sponsoren: assets/sponsors.json (generiert aus dem Google Sheet).
        Ladet beim Seitenaufruf + Refresh alle 5 Min, damit Änderungen
