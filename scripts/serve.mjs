@@ -120,7 +120,12 @@ const server = http.createServer(async (req, res) => {
     body = Buffer.from(i === -1 ? html + RELOAD_SNIPPET : html.slice(0, i) + RELOAD_SNIPPET + html.slice(i), 'utf8');
   }
 
-  res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store' });
+  const stat = await fs.stat(file);
+  res.writeHead(200, {
+    'Content-Type': type,
+    'Last-Modified': stat.mtime.toUTCString(),
+    'Cache-Control': 'no-store',
+  });
   req.method === 'HEAD' ? res.end() : res.end(body);
 });
 
