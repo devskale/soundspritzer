@@ -170,16 +170,6 @@ h1 em {
   border-radius: 2px;
 }
 
-/* ── Footer (Farbe je nach Zone seiten-spezifisch) ── */
-footer {
-  position: relative; z-index: 1;
-  padding: 1.6rem;
-  text-align: center;
-  font-size: .68rem;
-  letter-spacing: .45em;
-  text-indent: .45em;
-  text-transform: uppercase;
-}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -907,10 +897,11 @@ footer {
       object-fit: contain;
     }
     /* Sponsor-Klassen je nach EUR: large 250 / medium 100 / small
-       Hauptsponsoren richtig groß, klar abgehoben von den Medium-Partnern */
+       Hauptsponsor dominant, Rest bewusst klein — klare Hierarchie */
     .tier-large .sponsor-logo { height: clamp(96px, 14vw, 150px); }
-    .tier-medium .sponsor-logo { height: clamp(56px, 8vw, 78px); }
-    .tier-small .sponsor-logo { height: clamp(40px, 6vw, 52px); }
+    .tier-large { margin: 0 clamp(.6rem, 2vw, 1.8rem); /* Luft um den Hauptsponsor */ }
+    .tier-medium .sponsor-logo { height: clamp(40px, 5.5vw, 52px); }
+    .tier-small .sponsor-logo { height: clamp(30px, 4.5vw, 40px); }
 
         /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */
     .support-cta {
@@ -929,26 +920,7 @@ footer {
     .support-cta:hover { color: var(--gold); border-color: var(--gold); }
     .support-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
 
-        .home footer {
-      /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
-      color: rgba(43, 26, 32, .72);
-    }
-    .home footer a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(43, 26, 32, .35);
-      transition: border-color .25s ease;
-      /* Touch-Target ≥44px ohne Layout-Shift */
-      padding: .8em .6em;
-      margin: -.8em -.6em;
-    }
-    .home footer a:hover { border-color: rgba(43, 26, 32, .8); }
-    .home footer a:focus-visible {
-      outline: 2px solid var(--ink);
-      outline-offset: 3px;
-      border-radius: 2px;
-    }
-
+    
     /* Mobile: Hero stapeln, Tabor kleiner, Offerings untereinander */
     @media (max-width: 640px) {
       .hero {
@@ -989,3 +961,82 @@ footer {
       }
     }
   
+
+/* ─────────────────────────────────────────────────────────────
+   13 · FOOTER (alle Seiten)
+   Drei Zonen: Brand · Seiten-Navigation · Kontakt + Small-Print-Basis.
+   Arbeitet durchgängig mit currentColor → funktioniert auf der hellen
+   Horizont-Zone (Startseite, Tinte) wie auf Dusk (Unterseiten, Creme).
+   Best Practices: Kontakt immer erreichbar, Legal gruppiert,
+   Navigationshilfe (Nach oben), Touch-Targets, Fokus-Ringe.
+   ───────────────────────────────────────────────────────────── */
+.site-footer {
+  color: rgba(43, 26, 32, .8);
+  position: relative; z-index: 1;
+  padding: clamp(2.8rem, 6vw, 4.5rem) clamp(2rem, 6vw, 5rem) clamp(1.6rem, 3vw, 2.2rem);
+  text-align: left;
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(2rem, 5vw, 3.5rem) clamp(2.5rem, 6vw, 5rem);
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-mark {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.2vw, 1.9rem);
+  line-height: 1.1;
+}
+.footer-tag {
+  margin-top: .45rem;
+  font-size: .8rem;
+  line-height: 1.65;
+  opacity: .8;
+  max-width: 30ch;
+}
+.footer-nav, .footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.footer-nav a, .footer-contact a, .footer-base a {
+  color: inherit;
+  text-decoration: none;
+  font-size: .68rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  padding: .35em 0; /* Touch-Target */
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease, opacity .25s ease;
+}
+.footer-nav a:hover, .footer-contact a:hover, .footer-base a:hover {
+  border-color: currentColor; /* zonensicher: Tinte auf hell, Creme auf dunkel */
+  opacity: .82;
+}
+.footer-nav a:focus-visible, .footer-contact a:focus-visible, .footer-base a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.footer-base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: 1200px;
+  margin: clamp(1.8rem, 4vw, 2.8rem) auto 0;
+  padding-top: clamp(1rem, 2.5vw, 1.4rem);
+  border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  font-size: .6rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+/* Tinten-Farbe durchgängig: alle Footer sitzen im unteren Gradient-Bereich
+     (Body-Gradient läuft auf Horizont-Orange) → dunkle Tinte, WCAG-sicher */
