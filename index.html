@@ -122,17 +122,19 @@
     /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
     .hero-sub {
       display: inline-block;
-      margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Pill→Marke, eng als Einheit */
-      padding: .55em 1.1em;
-      border-radius: 999px;
+      margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Bar→Marke, eng als Einheit */
+      padding: .6em 1.2em;
+      border: 2px solid var(--dusk-top); /* Tinten-Kontur wie die Sticker + LIVE-Stempel */
+      border-radius: 2px; /* eckig, nur Kanten entscharts */
       font-size: clamp(.6rem, 1.3vw, .7rem);
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: .28em;
       text-indent: .28em;
       text-transform: uppercase;
-      color: var(--dusk-top); /* dunkle Tinte auf Gold — gleiche Stimme wie „Beliebt“-Badge */
+      color: var(--dusk-top);
       background: var(--gold);
-      box-shadow: 0 0 22px rgba(232, 176, 75, .35), 0 2px 14px rgba(34, 21, 40, .35); /* Gold-Glow + Tiefeneffekt */
+      box-shadow: 4px 4px 0 rgba(34, 21, 40, .85); /* harter Versatz-Schatten = Stempel-Look */
+      transform: rotate(-1.2deg); /* leicht schräg — handgesetzt */
     }
     /* ── Hero rechts: Tabor-Gruppe ── */
     .hero-right {
