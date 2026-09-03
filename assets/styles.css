@@ -460,7 +460,7 @@ h1 em {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
-      gap: clamp(1.5rem, 3vw, 3rem); /* Luft zwischen Text- und Motivseite */
+      gap: clamp(1rem, 2vw, 2rem); /* enger — mehr Breite fürs Motiv */
       width: 100%;
       max-width: 1200px;
       padding: clamp(1.5rem, 3vw, 2.5rem) 0; /* vertikale Entfaltung des Heros */
@@ -508,7 +508,7 @@ h1 em {
     .home-main h1 {
       font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie alle Hero-Elemente */
       font-weight: 700;
-      font-size: clamp(3.2rem, 9vw, 6.5rem); /* wieder großer Hero-Claim */
+      font-size: clamp(2.8rem, 7.6vw, 5.6rem); /* groß, aber das Motiv gewinnt: Illustration > Headline */
       line-height: 1.02;
       letter-spacing: .01em;
       text-shadow:
@@ -524,7 +524,7 @@ h1 em {
       flex: none;
       position: relative;
       z-index: 0; /* hinter dem Text, vor der Sonne */
-      width: clamp(320px, 56vw, 800px);
+      width: clamp(340px, 62vw, 880px); /* größer — die Zeichnung ist das Alleinstellungsmerkmal */
       height: auto;
       opacity: .95;
       filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
