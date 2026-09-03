@@ -620,7 +620,7 @@ footer {
       width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
       margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
-      margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
+      margin-top: clamp(4.5rem, 9vw, 6.5rem); /* XXL 1: Hero→Facts — mehr Luft */
       padding: clamp(1rem, 2.2vw, 1.5rem) clamp(3rem, 8vw, 7rem) clamp(1rem, 2.2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
       background: var(--cream);
       color: var(--ink);
@@ -686,7 +686,7 @@ footer {
     }
     /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
-      margin: clamp(4rem, 8vw, 6rem) auto 0;
+      margin: clamp(5.5rem, 11vw, 8.5rem) auto 0; /* mehr Luft zur About-Sektion */
       width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
       text-align: center;
       display: flex;
@@ -739,7 +739,7 @@ footer {
     }
 
     .offerings {
-      margin-top: clamp(4.2rem, 8.5vw, 6.2rem); /* Rhythmus XXL 3: About→Offerings */
+      margin-top: clamp(5.5rem, 11vw, 8.5rem); /* XXL 3: Facts→Offerings — mehr Luft */
       display: flex;
       align-items: stretch;
       justify-content: center;
@@ -819,7 +819,7 @@ footer {
     .award:hover { color: var(--cream); }
 
     .partners {
-      margin-top: clamp(4.8rem, 9.5vw, 7.2rem); /* Rhythmus XXL 4: Offerings→Partners */
+      margin-top: clamp(6.5rem, 12.5vw, 10rem); /* XXL 4: Offerings→Logo-Wand — mehr Luft */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -851,7 +851,7 @@ footer {
     /* ── Sponsoren & Partner: einheitliche Karten (Logo-Slot + Name + Rolle) ── */
     .sponsor-track {
       position: relative; z-index: 1;
-      margin-top: clamp(2rem, 4vw, 3rem); /* Rhythmus M: Label→Cards */
+      margin-top: clamp(2.6rem, 5vw, 4rem); /* M: Label→Cards — mehr Luft */
       width: 100%;
       display: flex;
       justify-content: center;
