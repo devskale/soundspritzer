@@ -484,7 +484,7 @@
       background: var(--hairline);
     }
 
-    /* ── Sponsoren & Partner: statische Kartenreihe (zentriert, umbrechend) ── */
+    /* ── Sponsoren & Partner: einheitliche Karten (Logo-Slot + Name + Rolle) ── */
     .sponsor-track {
       position: relative; z-index: 1;
       margin-top: clamp(2rem, 4vw, 3rem); /* Rhythmus M: Label→Cards */
@@ -494,68 +494,56 @@
     }
     .sponsor-run {
       display: flex;
-      align-items: center;
+      align-items: stretch; /* gleich hohe Karten in einer Reihe */
       justify-content: center;
       flex-wrap: wrap;
-      gap: clamp(1.2rem, 3vw, 1.9rem);
+      gap: clamp(.9rem, 2.2vw, 1.4rem);
       width: 100%;
-      /* statisch — kein Marquee mehr */
     }
+    /* Logo-Wand: nur Logos — Größe = Sponsor-Klasse (EUR-Tier), kein Kasten */
     .sponsor-card {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: .25rem;
-      text-align: center;
       text-decoration: none;
-      padding: .9em 1.4em;
-      border: 1px solid var(--hairline);
-      border-radius: 4px;
-      background: rgba(247, 234, 216, .05);
-      transition: border-color .25s ease, background .25s ease;
+      padding: .4em .6em;
+      transition: opacity .25s ease, transform .25s ease;
     }
     .sponsor-card:hover {
-      border-color: var(--gold);
-      background: rgba(232, 176, 75, .07);
+      opacity: .8;
+      transform: translateY(-2px);
     }
     .sponsor-card:focus-visible {
       outline: 2px solid var(--gold);
-      outline-offset: 3px;
-    }
-    .sponsor-card:active { background: rgba(232, 176, 75, .12); }
-    .sponsor-name {
-      font-family: "Cormorant Garamond", serif;
-      color: var(--cream);
-      line-height: 1.15;
+      outline-offset: 4px;
+      border-radius: 2px;
     }
     .sponsor-logo {
-      max-width: clamp(150px, 24vw, 240px);
-      max-height: 110px;
       width: auto;
-      height: auto;
       object-fit: contain;
     }
-    .sponsor-logo--small {
-      max-width: clamp(80px, 12vw, 120px);
-      max-height: 56px;
-    }
-    .sponsor-role {
-      font-size: clamp(.55rem, 1.2vw, .62rem);
-      letter-spacing: .22em;
+    /* Sponsor-Klassen je nach EUR: large 250 / medium 100 / small */
+    .tier-large .sponsor-logo { height: clamp(60px, 9vw, 84px); }
+    .tier-medium .sponsor-logo { height: clamp(42px, 6.5vw, 58px); }
+    .tier-small .sponsor-logo { height: clamp(32px, 5vw, 44px); }
+
+        /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */
+    .support-cta {
+      display: inline-block;
+      margin-top: clamp(1.4rem, 3vw, 2rem);
+      padding: .4rem 0;
+      font-size: clamp(.62rem, 1.2vw, .72rem);
+      letter-spacing: .3em;
+      text-indent: .3em;
       text-transform: uppercase;
       color: var(--cream-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .3s ease, border-color .3s ease;
     }
-    /* Tier-Größen: Card spiegelt den Sponsoring-Wert */
-    .tier-small .sponsor-name { font-size: clamp(.95rem, 2vw, 1.15rem); }
-    .tier-medium .sponsor-name { font-size: clamp(1.25rem, 2.8vw, 1.7rem); }
-    .tier-large .sponsor-name { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
-    .tier-large {
-      border-color: rgba(232, 176, 75, .55);
-      background: rgba(232, 176, 75, .08);
-    }
-    .tier-large .sponsor-role { color: var(--gold); }
+    .support-cta:hover { color: var(--gold); border-color: var(--gold); }
+    .support-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
 
-    footer {
+        footer {
       /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
       color: rgba(43, 26, 32, .72);
     }
@@ -695,17 +683,19 @@
       <div class="sponsor-run" id="sponsor-run" role="region" aria-label="Unsere Sponsoren">
         <!-- Wird aus assets/sponsors.json befüllt (Build-Skript / GH Action). -->
         <noscript>
+          <a class="sponsor-card tier-large" href="https://www.gwp.co.at/" target="_blank" rel="noopener">
+            <img class="sponsor-logo" src="assets/gwp_logo.png" alt="GWP Grösz Weisz Partner — Steuerberatung OG" loading="lazy">
+          </a>
           <a class="sponsor-card tier-medium" href="https://skale.dev/" target="_blank" rel="noopener">
-            <span class="sponsor-name">skale.dev</span>
-            <span class="sponsor-role">Software Engineering</span>
+            <img class="sponsor-logo" src="assets/skale_logo.png" alt="skale.dev — Software Engineering" loading="lazy">
           </a>
           <a class="sponsor-card tier-medium" href="https://www.neusiedlamsee.at/" target="_blank" rel="noopener">
-            <span class="sponsor-name">Stadtgemeinde Neusiedl am See</span>
-            <span class="sponsor-role">Stadtgemeinde</span>
+            <img class="sponsor-logo" src="assets/neusiedl_logo.png" alt="Neusiedl am See — Stadtgemeinde" loading="lazy">
           </a>
         </noscript>
       </div>
     </div>
+    <a class="support-cta" href="/partner">Auch Unterstützer werden <span aria-hidden="true">→</span></a>
 
     <div class="about">
       <img class="about-icon" src="assets/schueler.png" alt="" aria-hidden="true">
@@ -749,16 +739,14 @@
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
         if (s.logo) {
-          // Logo groß anzeigen; Name/Rolle nur als alt-Text (kein sichtbarer Text)
           var img = document.createElement("img");
-          img.className = "sponsor-logo" + (s.size ? " sponsor-logo--" + s.size : "");
+          img.className = "sponsor-logo";
           img.src = s.logo;
-          img.alt = s.name;
+          img.alt = s.name; /* kein sichtbarer Text — Alt trägt den Namen */
           img.loading = "lazy";
           a.appendChild(img);
         } else {
           a.appendChild(el("span", "sponsor-name", s.name));
-          if (s.role) a.appendChild(el("span", "sponsor-role", s.role));
         }
         return a;
       }

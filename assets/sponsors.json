@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-27T10:37:54.302Z",
+  "updated": "2026-09-03T15:15:59.793Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -7,8 +7,7 @@
       "tier": "large",
       "eur": 250,
       "url": "https://www.gwp.co.at/",
-      "logo": "assets/gwp_logo.png",
-      "size": null
+      "logo": "assets/gwp_logo.png"
     },
     {
       "name": "skale.dev",
@@ -16,8 +15,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://skale.dev/",
-      "logo": "assets/skale_logo.png",
-      "size": "small"
+      "logo": "assets/skale_logo.png"
     },
     {
       "name": "Neusiedl am See",
@@ -25,8 +23,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.neusiedlamsee.at/",
-      "logo": "assets/neusiedl_logo.png",
-      "size": "small"
+      "logo": "assets/neusiedl_logo.png"
     },
     {
       "name": "Joes Pub",
@@ -34,8 +31,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.joespubneusiedl.at/",
-      "logo": "assets/joes-pub.png",
-      "size": "small"
+      "logo": "assets/joes-pub.png"
     },
     {
       "name": "Akademie der Wirtschaft",
@@ -43,8 +39,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.akademie-der-wirtschaft.at/",
-      "logo": "assets/akwi.jpg",
-      "size": "small"
+      "logo": "assets/akwi.jpg"
     }
   ]
 }

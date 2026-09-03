@@ -23,7 +23,7 @@
 
 - **Kein Framework** — vanilla HTML/CSS/JS, GitHub Pages
 - `assets/styles.css`: geteilte Basis (Sky, Body, Banner-System, Buttons, Footer, Scrollbar/Selection/Smooth-Scroll)
-- `scripts/gen-sponsors.mjs`: zieht Google Sheet (CSV-Export) → `assets/sponsors.json`; Tiers: ≥250€=large, ≥100€=medium, sonst small; Fallback behält alte Datei bei Fetch-Fehler
+- `scripts/gen-sponsors.mjs`: zieht Google Sheet (CSV-Export) → `assets/sponsors.json`; **Logo-Wand voll dynamisch**: Logo-Spalte mit Bild-URL/Drive-Link → automatischer Download nach `assets/sponsor-logos/<slug>.png` (Content-Type-Validierung), Overrides in `LOGO_OVERRIDES` als Fallback; Tiers: ≥250€=large, ≥100€=medium, sonst small (steuern die Logo-Größe in der Wand); Fallback behält alte Datei bei Fetch-Fehler
 - JS im Footer: lädt sponsors.json beim Load + Refresh alle 5 Min (textContent = XSS-sicher, noscript-Fallback in Cards)
 - `.github/workflows/sponsors.yml`: stündlicher Refresh-Workflow (eingerichtet, prüfen ob er läuft)
 - `scripts/serve.mjs`: lokaler Dev-Server (zero-deps, plain Node) — `node scripts/serve.mjs [port]` (Default 8000). Verhält sich wie GitHub Pages: Clean URLs (`/shop` → `shop.html`), korrekte MIME-Types, 404-Seite, Path-Traversal-Schutz. Live-Reload per SSE: watcht html/css/js/json/bilder und injiziert Reload-Snippet vor `</body>` (nur lokal, nie in Produktion).

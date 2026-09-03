@@ -1,33 +1,41 @@
 #!/usr/bin/env node
 /**
  * Zieht die Sponsor-Tabelle aus dem Google Sheet (CSV-Export, öffentlich)
- * und schreibt assets/sponsors.json.
+ * und schreibt assets/sponsors.json — die Logo-Wand auf der Startseite
+ * ist damit voll dynamisch: Neue Zeile im Sheet = neuer Sponsor auf der Seite.
  *
  * Sheet: https://docs.google.com/spreadsheets/d/1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20
  * Spalten: Name, Name2 (Rolle/Branche), Logo, EUR, Kommentar
  *
+ * Logo-Auflösung (in dieser Reihenfolge):
+ *   1. LOGO_OVERRIDES  — lokal gepflegte Assets (überlebt jeden Rebuild)
+ *   2. Sheet-Spalte „Logo" mit BILD-URL (…png/jpg/webp/…) oder Google-Drive-Link
+ *      → wird automatisch nach assets/sponsor-logos/<slug>.png geladen
+ *   3. sonst null → Renderer zeigt den Namen als Text
+ * Reine Website-URLs in der Logo-Spalte gelten als Sponsor-Link (kein Download).
+ *
  * Robustheit: Schlägt der Fetch fehl oder liefert leer, bleibt die
  * bestehende sponsors.json unverändert (Fallback).
  */
-import { writeFileSync, readFileSync, existsSync } from "node:fs";
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(root, "assets", "sponsors.json");
+const LOGO_DIR = join(root, "assets", "sponsor-logos");
 
 /**
  * Lokale Logo-Overrides: Name (exakt wie im Sheet) → lokales Asset.
- * Das Sheet hat eine Logo-URL-Spalte, aber manche Logos liegen nur
- * als Datei im Repo vor (z.B. vom Sponsor zugeliefert). Diese Map
- * überlebt jeden Rebuild, weil sie hier fest verdrahtet ist.
+ * Für Logos, die nur als Datei im Repo vorliegen (z.B. vom Sponsor
+ * zugeliefert). Das Sheet gewinnt sonst automatisch.
  */
 const LOGO_OVERRIDES = {
   "GWP GRÖSZ WEISZ PARTNER": { logo: "assets/gwp_logo.png", url: "https://www.gwp.co.at/" },
-  "skale.dev": { logo: "assets/skale_logo.png", url: "https://skale.dev/", size: "small" },
-  "Neusiedl am See": { logo: "assets/neusiedl_logo.png", url: "https://www.neusiedlamsee.at/", size: "small" },
-  "Joes Pub": { logo: "assets/joes-pub.png", url: "https://www.joespubneusiedl.at/", size: "small" },
-  "Akademie der Wirtschaft": { logo: "assets/akwi.jpg", url: "https://www.akademie-der-wirtschaft.at/", size: "small" },
+  "skale.dev": { logo: "assets/skale_logo.png", url: "https://skale.dev/" },
+  "Neusiedl am See": { logo: "assets/neusiedl_logo.png", url: "https://www.neusiedlamsee.at/" },
+  "Joes Pub": { logo: "assets/joes-pub.png", url: "https://www.joespubneusiedl.at/" },
+  "Akademie der Wirtschaft": { logo: "assets/akwi.jpg", url: "https://www.akademie-der-wirtschaft.at/" },
 };
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
@@ -67,7 +75,50 @@ function extractUrl(s) {
   return m ? m[0] : null;
 }
 
+/** Wirkt die URL wie ein BILD-Link (Dateiendung oder Google-Drive)? */
+function isImageUrl(url) {
+  if (!url) return false;
+  if (/drive\.google\.com|docs\.google\.com|googleusercontent\.com/i.test(url)) return true;
+  return /\.(png|jpe?g|webp|gif|svg)(\?\S*)?$/i.test(url);
+}
+
+/** Google-Drive-Share-Link → direkter Download-Link (sonst unverändert). */
+function driveDirect(url) {
+  const m = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?.*id=)([\w-]{20,})/);
+  return m ? `https://drive.google.com/uc?export=download&id=${m[1]}` : url;
+}
+
+/** Slug aus Sponsor-Name (Umlaute aufgelöst, Dateisystem-sicher). */
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Lädt ein Logo und legt es lokal ab. Rückgabe: öffentlicher Pfad | null. */
+async function fetchLogo(url, name) {
+  const slug = slugify(name);
+  const file = join(LOGO_DIR, `${slug}.png`);
+  try {
+    const res = await fetch(driveDirect(url), { redirect: "follow" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const type = res.headers.get("content-type") || "";
+    if (!type.startsWith("image/")) throw new Error(`kein Bild (${type})`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (buf.length < 100) throw new Error("Datei verdächtig klein");
+    writeFileSync(file, buf);
+    return `assets/sponsor-logos/${slug}.png`;
+  } catch (err) {
+    console.error(`[sponsors] Logo-Download fehlgeschlagen für "${name}" (${url}): ${err.message}`);
+    return null;
+  }
+}
+
 async function main() {
+  mkdirSync(LOGO_DIR, { recursive: true });
+
   let csv;
   try {
     const res = await fetch(CSV_URL, { redirect: "follow" });
@@ -98,22 +149,33 @@ async function main() {
     return "small";
   }
 
-  const sponsors = rows.slice(1).map((r) => {
+  const sponsors = [];
+  for (const r of rows.slice(1)) {
     const name = (r[iName] ?? "").trim();
+    if (!name) continue;
     const role = (r[iRole] ?? "").trim();
     const logoRaw = (r[iLogo] ?? "").trim();
     const eurRaw = (r[iEur] ?? "").trim();
     const eur = eurRaw ? parseInt(eurRaw.replace(/[^\d]/g, ""), 10) : null;
-    return {
+
+    const logoCellUrl = extractUrl(logoRaw);
+    const override = LOGO_OVERRIDES[name];
+
+    // Logo: Override gewinnt, sonst automatischer Download aus dem Sheet
+    let logo = override?.logo ?? null;
+    if (!logo && logoCellUrl && isImageUrl(logoCellUrl)) {
+      logo = await fetchLogo(logoCellUrl, name);
+    }
+
+    sponsors.push({
       name,
       role,
       tier: tier(eur),
       eur: eur ?? null,
-      url: extractUrl(logoRaw) ?? LOGO_OVERRIDES[name]?.url ?? null, // URL aus Sheet oder Override
-      logo: LOGO_OVERRIDES[name]?.logo ?? null, // lokales Asset, falls vorhanden
-      size: LOGO_OVERRIDES[name]?.size ?? null, // optionale Logo-Größe (small)
-    };
-  }).filter((s) => s.name);
+      url: override?.url ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null),
+      logo,
+    });
+  }
 
   const prev = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : null;
   const next = { updated: new Date().toISOString(), sponsors };
