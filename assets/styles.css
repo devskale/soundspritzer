@@ -241,71 +241,22 @@ footer {
 
     /* ── Sektions-Labels ── */
     /* Sektions-Titel: groß & serif — Firmen- vs. Privat-Sektion klar unterscheidbar */
-    .section-label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(.8rem, 2vw, 1.2rem);
-      margin: clamp(2.8rem, 6vw, 4rem) 0 1.6rem;
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-weight: 600;
-      font-size: clamp(1.5rem, 3.4vw, 2rem);
-      color: var(--cream);
-    }
-    .section-label::before,
-    .section-label::after {
-      content: "";
-      height: 1px;
-      width: clamp(28px, 6vw, 56px);
-      background: var(--hairline);
-    }
-
-    /* ── Perks (Unternehmen) ── */
-    .perks {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      text-align: left;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .perk {
-      display: flex;
-      gap: 1rem;
-      align-items: baseline;
-      font-size: clamp(.88rem, 2vw, 1rem);
-      line-height: 1.6;
-      color: var(--cream-soft);
-    }
-    .perk::before {
-      content: "◆";
-      font-size: .5rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .perk b { font-weight: 400; color: var(--cream); }
-
-    /* ── Paket-Karten (geteilt: Unternehmen + Privat) ── */
+    /* Paket-Reihe: flexibel, zentriert, gleiche Kartenbreite —
+       eine Leiter von „Freier Betrag“ bis „Exklusiv-Partner“, keine Firmen/Privat-Trennung */
     .packs {
-      margin-top: 2.6rem; /* Luft zu Perks — Platz für den „Beliebt“-Badge (ragt -11px über) */
-      display: grid;
-      grid-template-columns: 1fr;
+      margin-top: 2.6rem; /* Luft unter Lead/Rule — Platz für den „Beliebt“-Badge (ragt -11px über) */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
       gap: 1.4rem;
       text-align: left;
-    }
-    @media (min-width: 640px) {
-      .packs { grid-template-columns: 1fr 1fr; align-items: stretch; }
-      .pack--free { grid-column: 1 / -1; }
-    }
-    @media (min-width: 900px) {
-      .packs { grid-template-columns: repeat(3, 1fr); }
-      .pack--free { grid-column: auto; }
     }
     .pack {
       position: relative;
       display: flex;
       flex-direction: column;
+      width: min(252px, 100%);
       padding: clamp(1.6rem, 4vw, 2.2rem);
       background: rgba(247, 234, 216, .04);
       border: 1px solid var(--hairline);
@@ -333,6 +284,10 @@ footer {
       background: var(--gold);
       padding: .35em 1em;
       border-radius: 2px;
+    }
+    .pack--premium {
+      border-color: rgba(232, 176, 75, .5);
+      background: rgba(232, 176, 75, .06);
     }
     .pack-name {
       font-family: "Cormorant Garamond", serif;
@@ -380,21 +335,12 @@ footer {
     }
     .pack li b { font-weight: 400; color: var(--cream); }
     .pack .btn { margin-top: 1.8rem; text-align: center; }
-    /* Zwei Klassen, zwei Looks: Firma = neutrale Rahmen-Karten (formal),
-       Privat = Ticket-Karten mit gestricheltem Gold-Rand (warm, sticker-nah) */
-    .packs--privat .pack {
-      border: 1px dashed rgba(232, 176, 75, .45);
-      background: rgba(232, 176, 75, .05);
-    }
-    .packs--privat .pack:hover { border-color: var(--gold); }
-    .packs--firma .pack--top::before { display: none; /* kein „Beliebt“ auf Firmenpaketen */ }
     .btn--disabled {
       opacity: .45;
       pointer-events: none;
       cursor: not-allowed;
     }
 
-    /* ── Hinweise ── */
     .fineprint {
       margin-top: 2.6rem;
       font-size: .8rem;

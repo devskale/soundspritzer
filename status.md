@@ -83,13 +83,17 @@ tabor.png (gemini_tabor, zugeschnitten), schueler.png (Trio-Sticker), pizza.png 
 
 ### Pakete / Gegenleistungen (Idee) → umgesetzt auf `partner.html`
 
-| Betrag | Gegenleistung | Paket (privat) |
-|--------|---------------|-------|
-| **50–100 €** | „Freunde des SunDowners" — Name als Unterstützer auf der Website (mit Opt-in-Checkbox: öffentlich nennen oder anonym) | **Freund des SunDowners** |
-| **ab 101 €** | Kachel / Logo auf der Homepage | **Unterstützer** |
-| **alle** | Auf dem **Beamer am Tabor** (Event) — Dankes-Lauf aller Unterstützer | beide |
+**Paket-Leiter (_partner.html, EINE Reihe ohne Firmen/Privat-Trennung):**
 
-**Unterstützen-Seite (gemerged):** `partner.html` ist jetzt EINE Seite für beides — Abschnitt „Für Unternehmen" (Sponsoring-Pakete ab 50/150/250 € + Perks + Mailto-CTA) und Abschnitt „Als Privatperson" (Freund 50–100 € / Unterstützer ab 101 € / Freier Betrag, je mit Stripe-Payment-Link-Button, Platzhalter `PAYMENT_LINK_FREUND` / `PAYMENT_LINK_UNTERSTUETZER` / `PAYMENT_LINK_SPENDE`, solange deaktiviert: „Bald verfügbar" — echte Stripe-URLs eintragen = automatisch aktiv). `shop.html` wurde gelöscht; alle Links zeigen auf `/partner`. Startseite: „Unterstützen"-Textlink oben rechts (absolut, verschiebt kein Alignment) + „Unterstütze das Event"-Button im About.
+| Paket | Preis | Leistung | CTA |
+|-------|-------|----------|-----|
+| Freier Betrag | Du bestimmst | Beamer-Nennung | Stripe (Platzhalter) |
+| Freund des SunDowners | ab 50 € | Name auf Website (anonym möglich) + Beamer | Stripe (Platzhalter) |
+| Unterstützer ⭐ | ab 101 € | Kachel/Logo auf der Homepage + Name + Beamer | Stripe (Platzhalter) |
+| Sponsor | ab 150 € | Logo auf Plakaten/Social/Website + Sponsoren-Lauf | Anfrage senden (Mailto) |
+| Exklusiv-Partner | ab 250 € | Stand & Banner, Logo prominent, Präsentator | Anfrage senden (Mailto) |
+
+Kleinere Beträge → Stripe (Payment-Link-Platzhalter `PAYMENT_LINK_*`, solange „Bald verfügbar"); ab 150 € → persönliche Anfrage per Mail. Firmen & Privat kaufen dieselben Pakete.
 
 **Architektur-Entscheidung (27.08.2026):** Bewusst **KEINE** Migration auf Astro/Frame­work — Event in ~4 Wochen, nur 3 Seiten, ~1.100 Zeilen, Duplikation ~20 Zeilen/Seite, kein Vorteil durch Build-Chain, nur Risiko kurz vor dem Event. Vanilla bleibt. Astro ggf. 2027 neu bewerten, falls die Seite zur Dauer-Einrichtung wird (Veranstaltungsreihe).
 
