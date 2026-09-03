@@ -709,6 +709,9 @@ footer {
       color: var(--gold); /* gleiche Stimme wie die Offerings-Headings */
     }
     .about-text {
+      max-width: 62ch; /* Lesbarkeit: 45–75 Zeichen pro Zeile */
+      margin-left: auto;
+      margin-right: auto;
       padding: clamp(1.6rem, 3.5vw, 2.4rem) clamp(.5rem, 2vw, 1.5rem);
       font-family: "Cormorant Garamond", serif;
       font-style: italic;
