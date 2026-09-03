@@ -14,7 +14,7 @@
    - Rechts: Tabor-Ruine mit wandernder Sonne (Bogen-Loop 24s, Strahlen-Morph)
 3. **Facts-Banner**: edge-to-edge hell, 3 Spalten — Veranstalter-Logos (AKWI gelb/JPG + Joe's Pub) mit Label | Datum+Uhrzeit | Ort — zweireihige Facts
 4. **About**: Schüler-Trio-Sticker → Brief (3 Schüler, Diplomarbeit, Wunschveranstaltung, Lieblingsband, Schmankerl, faire Preise, Dank an Stadtgemeinde/Joe's Pub/Unterstützer) → Gruß + Signatur Laurens, Alex & der Dritte
-5. **Offerings**: Musik (YnoT · Flux DJ — YnoT→Instagram verlinkt; **LIVE-Stempel**: Gold-Badge mit Tinten-Kontur, -8° gekippt, pulsierender Glow, auf dem Vinyl — reduced-motion-sicher) | Foodtruck (Joe's Pub, ★ Burgenlands beliebteste Pizza) | **Spritzerbar (Gutes von der Schülercrew)** — Sticker-Icons; Weingut Königshofer 27.08. aus der Seite genommen
+5. **Offerings**: Musik (YnoT · Flux DJ — YnoT→Instagram verlinkt; **LIVE-Stempel**: Gold-Badge mit Tinten-Kontur, -8° gekippt, statischer Schatten (Puls auf Wunsch entfernt), auf dem Vinyl) | Foodtruck (Joe's Pub, ★ Burgenlands beliebteste Pizza) | **Spritzerbar (Gutes von der Schülercrew)** — Sticker-Icons; Weingut Königshofer 27.08. aus der Seite genommen
 6. **Sponsoren & Partner**: statische Cards aus `assets/sponsors.json` (Google Sheet), Tier-Größen nach Betrag, Jost 500
 7. **Buttons**: „Sponsoren & Partner" (bei Sponsoren) + „Unterstütze das Event" (About-Ende) → /partner
 8. **Footer**: SunDowner · Am Tabor · 2026 · Techsupport skale.dev
