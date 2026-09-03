@@ -700,6 +700,14 @@ footer {
       margin: clamp(1.2rem, 2.5vw, 1.8rem) auto clamp(.6rem, 1.5vw, 1rem);
       filter: drop-shadow(0 4px 14px rgba(34, 21, 40, .3));
     }
+    .about-title {
+      margin: 0 0 clamp(.4rem, 1.5vw, .8rem);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+      color: var(--gold); /* gleiche Stimme wie die Offerings-Headings */
+    }
     .about-text {
       padding: clamp(1.6rem, 3.5vw, 2.4rem) clamp(.5rem, 2vw, 1.5rem);
       font-family: "Cormorant Garamond", serif;
