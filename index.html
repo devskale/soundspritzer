@@ -413,21 +413,25 @@
     @media (prefers-reduced-motion: reduce) {
       .live-badge { animation: none; }
     }
-    /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons stehen unten auf EINER Grundlinie →
-       Headings + Sublines aller Spalten beginnen exakt gleich */
+    /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons mittig zentriert → alle drei
+       sitzen auf einer optischen Linie; Headings starten dennoch exakt gleich */
     .icon-slot {
-      height: clamp(78px, 13.5vw, 116px);
+      height: clamp(90px, 15.5vw, 134px);
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: center;
       margin-bottom: .4rem;
     }
     .offering .icon {
-      height: clamp(56px, 10vw, 84px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
+      height: clamp(66px, 11.5vw, 100px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
       width: auto;
       filter: drop-shadow(0 0 14px rgba(232, 176, 75, .18));
     }
     .offering .icon--xl {
       height: 100%; /* füllt den Slot — Musik ist das Mega-Feature (LIVE-Stempel) */
+    }
+    .offering .icon--sm {
+      height: clamp(58px, 9.5vw, 86px); /* Glas dezenter — weniger Real Estate als Pizza */
     }
     .offering .what {
       font-family: "Cormorant Garamond", serif;
@@ -683,7 +687,7 @@
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="offering">
-        <div class="icon-slot"><img class="icon" src="assets/glass.png" alt="" aria-hidden="true" width="334" height="812"></div>
+        <div class="icon-slot"><img class="icon icon--sm" src="assets/glass.png" alt="" aria-hidden="true" width="500" height="500"></div>
         <span class="what">Spritzerbar</span>
         <span class="who">Gutes von der Schülercrew</span>
       </div>
