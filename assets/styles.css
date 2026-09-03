@@ -180,3 +180,834 @@ footer {
   text-indent: .45em;
   text-transform: uppercase;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MODULE
+   05 · Unterseiten-Shell („Unterstützen“ = partner.html)
+   06 · „Unterstützen“: Perks, Paket-Karten, Fineprint
+   07 · Startseite: Header-Link + Hero (Claim, Bar, Tabor, Sonne)
+   08 · Startseite: Facts-Banner
+   09 · Startseite: Offerings (Livemusik · Foodtruck · Spritzerbar)
+   10 · Startseite: Logo-Wand „Unterstützer & Partner“
+   11 · Startseite: About
+   12 · Mobile (≤640px, Startseite)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   05+06 · UNTERSTÜTZEN-SEITE (partner.html)
+   ───────────────────────────────────────────────────────────── */
+
+    /* ── seiten-spezifisch: Unterstützen (Sponsoren + Privat, gemerged) ── */
+    main {
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .page-main .kicker { margin-bottom: 1.4rem; }
+
+    .page-main h1 {
+      font-weight: 600;
+      font-size: clamp(2.2rem, 6.5vw, 3.6rem);
+      line-height: 1.1;
+    }
+
+    .rule {
+      width: min(340px, 60vw);
+      height: 1px;
+      background: var(--hairline);
+      margin: clamp(1.6rem, 4vw, 2.4rem) auto;
+      position: relative;
+    }
+    .rule::after {
+      content: "◆";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -52%);
+      font-size: .5rem;
+      color: var(--gold);
+      padding: 0 .9em;
+    }
+
+    p.lead {
+      font-size: clamp(.95rem, 2.2vw, 1.08rem);
+      line-height: 1.8;
+      color: var(--cream-soft);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Sektions-Labels ── */
+    /* Sektions-Titel: groß & serif — Firmen- vs. Privat-Sektion klar unterscheidbar */
+    .section-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(.8rem, 2vw, 1.2rem);
+      margin: clamp(2.8rem, 6vw, 4rem) 0 1.6rem;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.5rem, 3.4vw, 2rem);
+      color: var(--cream);
+    }
+    .section-label::before,
+    .section-label::after {
+      content: "";
+      height: 1px;
+      width: clamp(28px, 6vw, 56px);
+      background: var(--hairline);
+    }
+
+    /* ── Perks (Unternehmen) ── */
+    .perks {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .perk {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      font-size: clamp(.88rem, 2vw, 1rem);
+      line-height: 1.6;
+      color: var(--cream-soft);
+    }
+    .perk::before {
+      content: "◆";
+      font-size: .5rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .perk b { font-weight: 400; color: var(--cream); }
+
+    /* ── Paket-Karten (geteilt: Unternehmen + Privat) ── */
+    .packs {
+      margin-top: 2.6rem; /* Luft zu Perks — Platz für den „Beliebt“-Badge (ragt -11px über) */
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+      text-align: left;
+    }
+    @media (min-width: 640px) {
+      .packs { grid-template-columns: 1fr 1fr; align-items: stretch; }
+      .pack--free { grid-column: 1 / -1; }
+    }
+    @media (min-width: 900px) {
+      .packs { grid-template-columns: repeat(3, 1fr); }
+      .pack--free { grid-column: auto; }
+    }
+    .pack {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.6rem, 4vw, 2.2rem);
+      background: rgba(247, 234, 216, .04);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      transition: border-color .3s ease, transform .3s ease, background .3s ease;
+    }
+    .pack:hover {
+      border-color: var(--gold);
+      background: rgba(232, 176, 75, .05);
+      transform: translateY(-2px);
+    }
+    .pack--top {
+      border-color: rgba(232, 176, 75, .55);
+      box-shadow: 0 0 0 1px rgba(232, 176, 75, .18), 0 10px 30px -12px rgba(0,0,0,.5);
+    }
+    .pack--top::before {
+      content: "Beliebt";
+      position: absolute;
+      top: -11px; left: 1.4rem;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-indent: .3em;
+      text-transform: uppercase;
+      color: var(--dusk-top);
+      background: var(--gold);
+      padding: .35em 1em;
+      border-radius: 2px;
+    }
+    .pack-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 3vw, 1.6rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.2; /* explizit — damit min-height exakt 2 Zeilen entspricht */
+      min-height: 2.4em; /* 2-Zeilen-Reserve → Preise aller Karten auf einer Höhe */
+    }
+    .pack-price {
+      margin-top: .2rem;
+      font-size: clamp(1.1rem, 2.6vw, 1.3rem);
+      letter-spacing: .08em;
+      color: var(--gold);
+    }
+    .pack-desc {
+      margin-top: 1rem;
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--cream-soft);
+      flex: 1;
+    }
+    .pack ul {
+      margin: 1.1rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .pack li {
+      font-size: .86rem;
+      line-height: 1.55;
+      color: var(--cream-soft);
+      display: flex;
+      gap: .7rem;
+      align-items: baseline;
+    }
+    .pack li::before {
+      content: "◆";
+      font-size: .45rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transform: translateY(-1px);
+    }
+    .pack li b { font-weight: 400; color: var(--cream); }
+    .pack .btn { margin-top: 1.8rem; text-align: center; }
+    /* Zwei Klassen, zwei Looks: Firma = neutrale Rahmen-Karten (formal),
+       Privat = Ticket-Karten mit gestricheltem Gold-Rand (warm, sticker-nah) */
+    .packs--privat .pack {
+      border: 1px dashed rgba(232, 176, 75, .45);
+      background: rgba(232, 176, 75, .05);
+    }
+    .packs--privat .pack:hover { border-color: var(--gold); }
+    .packs--firma .pack--top::before { display: none; /* kein „Beliebt“ auf Firmenpaketen */ }
+    .btn--disabled {
+      opacity: .45;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    /* ── Hinweise ── */
+    .fineprint {
+      margin-top: 2.6rem;
+      font-size: .8rem;
+      line-height: 1.8;
+      color: var(--cream-soft);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .fineprint b { font-weight: 400; color: var(--cream); }
+
+    .back {
+      display: inline-block;
+      margin-top: 2.6rem;
+      font-size: .68rem;
+      letter-spacing: .3em;
+      text-indent: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .3s ease, border-color .3s ease;
+    }
+    .back:hover { color: var(--gold); border-color: var(--gold); }
+
+    .subpage footer {
+      color: var(--cream-soft);
+      opacity: .75;
+    }
+  
+
+/* ─────────────────────────────────────────────────────────────
+   07–12 · STARTSEITE (index.html)
+   Unterteilung über die ── Sektions-Marker ── im Block.
+   ───────────────────────────────────────────────────────────── */
+
+    /* Home-Shell: eigene Flex-Spalte, bewusst OHNE justify-content:center —
+       die Seite ist länger als der Viewport; Center würde Überlauf nach OBEN
+       verteilen, der nie scrollbar wäre („Rand verschluckt“). */
+    .home-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* KEIN justify-content: center — die Seite ist längler als der Viewport.
+         Center würde Überlauf nach OBEN verteilen, der nie scrollbar wäre
+         („Seite verschluckt den oberen Rand“). */
+      padding: clamp(2rem, 6vw, 5rem);
+      max-width: 100%;
+      overflow-x: hidden; /* Death Defense gegen Mobile-Overflow */
+    }
+    /* ── Vertikaler Rhythmus ──
+       Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
+       Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
+
+    /* ── Site-Header: die zwei Veranstalter-Logos, ganz oben links ── */
+    /* Unterstützen-Link: absolut über der Hero-Zone (rechts oben) — nimmt KEINEN
+       Layout-Platz ein, verschiebt also nichts vom bisherigen Alignment.
+       Kein Button/Pill — schlichter Text, distinktiv durch Gold.
+       rechts = max(Half-Gap des zentrierten Heros, Main-Padding) → bündig
+       mit der rechten Hero-Kante bei jeder Viewport-Breite. */
+    .site-header {
+      position: absolute;
+      top: clamp(.5rem, 1.4vw, 1.1rem);
+      right: max(calc((100% - 1200px) / 2), clamp(1.5rem, 5vw, 4rem));
+      margin: 0;
+      z-index: 3; /* über Hero-Ebenen, unter nichts verschiebend */
+    }
+    .site-header .support-link {
+      display: inline-block;
+      padding: .4rem 0; /* Touch-Target */
+      font-size: clamp(.68rem, 1.4vw, .8rem);
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-indent: .32em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-underline-offset: .35em;
+      text-decoration-thickness: 1px;
+      /* Marken-Gradient (wie „Spritzer“) als Text-Füllung — kein Pill/BG, nur Text */
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%) text;
+      color: transparent;
+      filter: drop-shadow(0 0 10px rgba(232, 176, 75, .35));
+      transition: filter .3s ease;
+    }
+    .site-header .support-link:hover,
+    .site-header .support-link:focus-visible {
+      font-weight: 600; /* echtes 600 (im Font-Load nachgeladen) statt Fake-Bold */
+      text-decoration: underline;
+      text-decoration-color: var(--gold); /* sonst transparent (currentColor = Gradient-Clip) */
+      filter: drop-shadow(0 0 16px rgba(232, 176, 75, .55));
+    }
+    .site-header .support-diamond {
+      display: inline-block; /*_inline-block: Unterstreichung propagation gestoppt */
+      color: var(--gold);
+      font-size: .55em;
+      vertical-align: .2em;
+      margin-right: .4em;
+    }
+    .site-header .support-link:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: clamp(1.5rem, 3vw, 3rem); /* Luft zwischen Text- und Motivseite */
+      width: 100%;
+      max-width: 1200px;
+      padding: clamp(1.5rem, 3vw, 2.5rem) 0; /* vertikale Entfaltung des Heros */
+    }
+    .hero-left {
+      text-align: center;
+      position: relative;
+      z-index: 2; /* Text VORNE — darf über das Tabor ragen */
+    }
+    .brand-sub {
+      margin-top: clamp(.8rem, 1.6vw, 1.2rem); /* Rhythmus M: Claim→Name, eng als Einheit */
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      letter-spacing: .04em;
+      /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
+    .hero-sub {
+      display: inline-block;
+      margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Bar→Marke, eng als Einheit */
+      padding: .6em 1.2em;
+      border: 2px solid var(--dusk-top); /* Tinten-Kontur wie die Sticker + LIVE-Stempel */
+      border-radius: 2px; /* eckig, nur Kanten entscharts */
+      font-size: clamp(.6rem, 1.3vw, .7rem);
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-indent: .28em;
+      text-transform: uppercase;
+      color: var(--dusk-top);
+      background: var(--gold);
+      box-shadow: 4px 4px 0 rgba(34, 21, 40, .85); /* harter Versatz-Schatten = Stempel-Look */
+      transform: rotate(-1.2deg); /* leicht schräg — handgesetzt */
+    }
+    /* ── Hero rechts: Tabor-Gruppe ── */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+    .home-main h1 {
+      font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie alle Hero-Elemente */
+      font-weight: 700;
+      font-size: clamp(3.2rem, 9vw, 6.5rem); /* wieder großer Hero-Claim */
+      line-height: 1.02;
+      letter-spacing: .01em;
+      text-shadow:
+        0 0 30px rgba(232, 148, 58, .5),
+        0 0 90px rgba(232, 148, 58, .3);
+    }
+    .home-main h1 .l1, .home-main h1 .l2, .home-main h1 .l3 {
+      display: block;
+      line-height: .96; /* tight gestapelt — Zeile 1/2 ohne Descender, kein Clipping */
+    }
+    .home-main h1 .l2 { white-space: nowrap; }
+    .tabor {
+      flex: none;
+      position: relative;
+      z-index: 0; /* hinter dem Text, vor der Sonne */
+      width: clamp(320px, 56vw, 800px);
+      height: auto;
+      opacity: .95;
+      filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
+      animation: rise .6s ease-out .25s both;
+    }
+    .tabor-wrap {
+      flex: none;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1; /* eigener Stacking-Context: hält die Sonne hinter dem Tabor, aber vor dem Seitenhintergrund */
+    }
+    /* Sonne steht sichtbar im offenen Himmel rechts über der Ruine — nur die
+       Strahlen animieren weiter (Drehung, Puls, Morph — siehe ::after unten). */
+    .sun {
+      position: absolute;
+      left: 66%;
+      top: -14%;
+      width: clamp(36px, 6.5vw, 64px);
+      height: clamp(36px, 6.5vw, 64px);
+      pointer-events: none;
+      z-index: -1; /* hinter dem Tabor-Bild — die Sonne bleibt hinter der Ruine */
+    }
+
+    /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
+    @property --ray-w {
+      syntax: "<angle>";
+      initial-value: 4deg;
+      inherits: false;
+    }
+    @property --rays-from {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+    .sun::before {
+      /* Kern: satt und stabil — kein Faden der Farben mehr, nur dezenter Glow */
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 45%,
+        #ffe9a8 0%, var(--gold) 52%, #d99b35 78%, rgba(217, 155, 53, .85) 100%);
+      box-shadow: 0 0 26px rgba(232, 176, 75, .55), 0 0 58px rgba(232, 176, 75, .3);
+      animation: sun-glow 7s ease-in-out infinite;
+    }
+    .sun::after {
+      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */      content: "";
+      position: absolute;
+      inset: -60%;
+      background: repeating-conic-gradient(
+        from var(--rays-from, 0deg),
+        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
+        transparent var(--ray-w, 4deg) 15deg
+      );
+      -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
+      mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
+      /* drei Ebenen: Drehung + Reichweiten-Atmung · Aufleuchten · Strahlenmorphologie */
+      animation:
+        sun-spin 70s linear infinite,
+        sun-rays-glow 9s ease-in-out infinite,
+        sun-rays-morph 13s ease-in-out infinite;
+    }
+    /* Drehung, während die Strahlen gleichzeitig weiter/reicher werden */
+    @keyframes sun-spin {
+      0%   { transform: rotate(0deg) scale(1); }
+      50%  { transform: rotate(180deg) scale(1.09); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes sun-rays-glow {
+      0%, 100% { opacity: .7; }
+      50%      { opacity: 1; }
+    }
+    /* Strahlen ändern sich während der Drehung: Breite & Winkellage wandern — fächern asymmetrisch */
+    @keyframes sun-rays-morph {
+      0%   { --ray-w: 3deg;   --rays-from: 0deg; }
+      20%  { --ray-w: 6.5deg; --rays-from: -6deg; }
+      40%  { --ray-w: 1.8deg; --rays-from: 9deg; }
+      60%  { --ray-w: 5.2deg; --rays-from: -11deg; }
+      80%  { --ray-w: 2.2deg; --rays-from: 5deg; }
+      100% { --ray-w: 3deg;   --rays-from: 0deg; }
+    }
+    @keyframes sun-glow {
+      0%, 100% { box-shadow: 0 0 26px rgba(232,176,75,.55), 0 0 58px rgba(232,176,75,.3); }
+      50%      { box-shadow: 0 0 34px rgba(232,176,75,.7),  0 0 76px rgba(232,176,75,.38); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sun::before, .sun::after { animation: none; }
+      .sun { animation: none; transform: none; /* steht ruhig über dem Tabor */ opacity: 1; }
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: .95; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tabor { animation: none; }
+    }
+
+    /* Facts-Banner: durchgehender heller Balken unter dem Hero,
+       edge-to-edge (Plakat-Streifen), Tinte auf Creme. Ersetzt die when-card. */
+    .facts-banner {
+      /* edge-to-edge, scrollbar-sicher: beidseitig negatives Margin um das main-Padding */
+      width: calc(100% + 2 * clamp(2rem, 6vw, 5rem));
+      margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
+      margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
+      margin-top: clamp(3rem, 6vw, 4.5rem); /* XXL 1: Hero→Facts */
+      padding: clamp(1rem, 2.2vw, 1.5rem) clamp(3rem, 8vw, 7rem) clamp(1rem, 2.2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+    /* Spalte 1: Veranstalter-Logos (ragen oben über die Balkenkante) */
+    .facts-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .15rem;
+      margin-top: clamp(-3.2rem, -6vw, -4.6rem); /* Logos ragen über die Oberkante in den Hero */
+    }
+    .facts-logos-label {
+      font-size: clamp(.7rem, 1.5vw, .85rem);
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: .35rem;
+    }
+    .facts-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .facts-logo-row a { display: inline-flex; transition: transform .25s ease; }
+    .facts-logo-row a:hover { transform: translateY(-2px); }
+    .facts-logo-row img[src*="akwi"] { height: clamp(64px, 8vw, 88px); width: auto; border-radius: 6px; }
+    .facts-logo-row img[src*="joes"] { height: clamp(64px, 8vw, 88px); width: auto; }
+    .facts-logo-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
+    /* Datum+Ort gehören als EIN Fakten-Paar zusammen → gruppiert, enger Gap */
+    .facts-facts {
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+    .fact-col {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      text-align: left;
+    }
+    .fact-main {
+      font-weight: 500;
+      font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .fact-sub {
+      font-size: clamp(.75rem, 1.6vw, .9rem);
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
+    .about {
+      margin: clamp(4rem, 8vw, 6rem) auto 0;
+      width: min(920px, 100%); /* breiter: füllt den Hero-Bereich, nicht Miniteilung */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .about-icon {
+      display: block;
+      width: clamp(110px, 14vw, 189px); /* +50%: 189px auf Desktop */
+      height: auto;
+      margin: clamp(1.2rem, 2.5vw, 1.8rem) auto clamp(.6rem, 1.5vw, 1rem);
+      filter: drop-shadow(0 4px 14px rgba(34, 21, 40, .3));
+    }
+    .about-text {
+      padding: clamp(1.6rem, 3.5vw, 2.4rem) clamp(.5rem, 2vw, 1.5rem);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      line-height: 1.75;
+      color: var(--cream);
+    }
+    .about-text a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232, 176, 75, .4);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .about-text a:hover { color: var(--cream); border-color: var(--cream); }
+    .about-text a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+    .about-text--sub {
+      padding-top: 0;
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      line-height: 1.8;
+      color: var(--cream-soft);
+    }
+    .about-text--sub em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .offerings {
+      margin-top: clamp(4.2rem, 8.5vw, 6.2rem); /* Rhythmus XXL 3: About→Offerings */
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: clamp(1.8rem, 5vw, 3.8rem);
+    }
+    .offering {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .3rem;
+      text-align: center;
+    }
+    .offering--live { position: relative; /* Anker für den Live-Stempel */ }
+    /* LIVE-Stempel: Mega-Feature — aufgeklebter Badge mit Tinten-Kontur + Puls */
+    .live-badge {
+      position: absolute;
+      top: clamp(-1.1rem, -2vw, -.55rem);
+      right: clamp(-1.6rem, -2.5vw, -.9rem);
+      z-index: 2;
+      padding: .5em 1.1em;
+      background: var(--gold);
+      color: var(--dusk-top);
+      font-size: clamp(.6rem, 1.4vw, .74rem);
+      font-weight: 500;
+      letter-spacing: .3em;
+      text-indent: .3em;
+      text-transform: uppercase;
+      border: 2px solid var(--dusk-top); /* Tinten-Kontur wie die Sticker */
+      border-radius: 3px;
+      transform: rotate(-8deg); /* Stempel-Kippe */
+      box-shadow: 0 3px 14px rgba(34, 21, 40, .4); /* statisch — kein Blinken */
+    }
+    /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons mittig zentriert → alle drei
+       sitzen auf einer optischen Linie; Headings starten dennoch exakt gleich */
+    .icon-slot {
+      height: clamp(90px, 15.5vw, 134px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .4rem;
+    }
+    .offering .icon {
+      height: clamp(66px, 11.5vw, 100px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
+      width: auto;
+      filter: drop-shadow(0 0 14px rgba(232, 176, 75, .18));
+    }
+    .offering .icon--xl {
+      height: 100%; /* füllt den Slot — Musik ist das Mega-Feature (LIVE-Stempel) */
+    }
+    .offering .icon--sm {
+      height: clamp(58px, 9.5vw, 86px); /* Glas dezenter — weniger Real Estate als Pizza */
+    }
+    .offering .what {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.4vw, 1.9rem);
+      color: var(--gold);
+    }
+    .offering .who {
+      font-size: clamp(.7rem, 1.7vw, .8rem);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .award {
+      margin-top: .35rem;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(.85rem, 2vw, 1.05rem);
+      color: var(--gold); /* coral lag auf dusk-low unter 3:1 (WCAG) */
+      text-decoration: none;
+      transition: color .25s ease;
+      /* Touch-Target ≥ 44px ohne Layout-Shift (A11y hit targets) */
+      padding: .45em .8em;
+      margin: -.35em -.8em 0;
+    }
+    .award:hover { color: var(--cream); }
+
+    .partners {
+      margin-top: clamp(4.8rem, 9.5vw, 7.2rem); /* Rhythmus XXL 4: Offerings→Partners */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .partners-sub {
+      font-size: clamp(.6rem, 1.4vw, .68rem);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .offering .who a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color .25s ease;
+    }
+    .offering .who a:hover { color: var(--cream); }
+    .offering .who a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .divider {
+      width: 1px;
+      background: var(--hairline);
+    }
+
+    /* ── Sponsoren & Partner: einheitliche Karten (Logo-Slot + Name + Rolle) ── */
+    .sponsor-track {
+      position: relative; z-index: 1;
+      margin-top: clamp(2rem, 4vw, 3rem); /* Rhythmus M: Label→Cards */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .sponsor-run {
+      display: flex;
+      align-items: stretch; /* gleich hohe Karten in einer Reihe */
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: clamp(.9rem, 2.2vw, 1.4rem);
+      width: 100%;
+    }
+    /* Logo-Wand: nur Logos — Größe = Sponsor-Klasse (EUR-Tier), kein Kasten */
+    .sponsor-card {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      padding: .4em .6em;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .sponsor-card:hover {
+      opacity: .8;
+      transform: translateY(-2px);
+    }
+    .sponsor-card:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+    .sponsor-logo {
+      width: auto;
+      object-fit: contain;
+    }
+    /* Sponsor-Klassen je nach EUR: large 250 / medium 100 / small
+       Hauptsponsoren richtig groß, klar abgehoben von den Medium-Partnern */
+    .tier-large .sponsor-logo { height: clamp(96px, 14vw, 150px); }
+    .tier-medium .sponsor-logo { height: clamp(56px, 8vw, 78px); }
+    .tier-small .sponsor-logo { height: clamp(40px, 6vw, 52px); }
+
+        /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */
+    .support-cta {
+      display: inline-block;
+      margin-top: clamp(1.4rem, 3vw, 2rem);
+      padding: .4rem 0;
+      font-size: clamp(.62rem, 1.2vw, .72rem);
+      letter-spacing: .3em;
+      text-indent: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .3s ease, border-color .3s ease;
+    }
+    .support-cta:hover { color: var(--gold); border-color: var(--gold); }
+    .support-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+
+        .home footer {
+      /* Footer sitzt auf der hellsten Zone (Horizon) — dunkle Tinte statt Creme */
+      color: rgba(43, 26, 32, .72);
+    }
+    .home footer a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(43, 26, 32, .35);
+      transition: border-color .25s ease;
+      /* Touch-Target ≥44px ohne Layout-Shift */
+      padding: .8em .6em;
+      margin: -.8em -.6em;
+    }
+    .home footer a:hover { border-color: rgba(43, 26, 32, .8); }
+    .home footer a:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Mobile: Hero stapeln, Tabor kleiner, Offerings untereinander */
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.2rem;
+      }
+      .hero-left { text-align: center; }
+      .tabor {
+        width: clamp(240px, 80vw, 380px);
+      }
+      /* Facts-Banner stapeln: Logos oben (kleiner Überstand), Fakten-Paar darunter */
+      .facts-banner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.6rem;
+        padding-left: clamp(1rem, 5vw, 2rem);
+        padding-right: clamp(1rem, 5vw, 2rem);
+      }
+      .facts-logos {
+        margin-top: clamp(-2.6rem, -7vw, -1.8rem); /* Überstand kleiner halten */
+        align-items: center;
+      }
+      .facts-logos-label { text-align: center; }
+      .facts-facts {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .fact-col { align-items: center; text-align: center; }
+      /* Sonne folgt demselben container-relativen Bogen — kein Override nötig */
+      .offerings {
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .divider {
+        width: min(200px, 50vw);
+        height: 1px;
+      }
+    }
+  
