@@ -81,7 +81,21 @@ async function resolveFile(urlPathname) {
   return stat?.isFile() ? full : null;
 }
 
-function notFound(res, urlPathname) {
+async function notFound(res, urlPathname) {
+  /* Wie GitHub Pages: die eigene 404.html ausliefern (mit Reload-Snippet),
+     damit das Custom-404-Design auch lokal getestet wird. Fallback: Mini-Seite. */
+  const custom = path.join(root, '404.html');
+  if ((await fs.stat(custom).catch(() => null))?.isFile()) {
+    let body = await fs.readFile(custom);
+    const html = body.toString('utf8');
+    const i = html.toLowerCase().lastIndexOf('</body>');
+    if (i !== -1) {
+      body = Buffer.from(html.slice(0, i) + RELOAD_SNIPPET + html.slice(i), 'utf8');
+    }
+    res.writeHead(404, { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-store' });
+    res.end(body);
+    return;
+  }
   res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
   res.end(
     `<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>404 — SunDowner dev</title></head>` +

@@ -8,6 +8,9 @@
 html {
   scroll-behavior: smooth; /* sanftes Scrollen bei Ankern */
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; } /* kein Smooth-Scroll bei reduzierter Bewegung (WCAG 2.3.3) */
+}
 
 html, body {
   overflow-x: hidden; /* Sky/Track überlaufen bewusst — nie horizontal scrollen */
@@ -36,7 +39,7 @@ html, body {
   --dusk-low: #8f3d28;
   --horizon: #e08a3c;
   --cream: #f7ead8;
-  --cream-soft: rgba(247, 234, 216, .6);
+  --cream-soft: rgba(247, 234, 216, .7); /* .7 statt .6: Support-CTA 3.9→4.7:1, Dusk-Low 3.3→3.9:1 (WCAG 1.4.3) */
   --gold: #e8b04b;
   --coral: #f2795c;
   --rose: #e05c74;
@@ -151,7 +154,7 @@ h1 em {
   text-transform: uppercase;
   color: var(--cream);
   text-decoration: none;
-  padding: 1em 2.2em;
+  padding: 1.15em 2.35em; /* ≈ 44px hoch — primäre CTAs (WCAG 2.5.5 Best Practice) */
   border: 1px solid var(--hairline);
   border-radius: 2px;
   background: rgba(247, 234, 216, .04);
@@ -169,6 +172,31 @@ h1 em {
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* Skip-Link: erster Tab-Stop, springt zu #main (WCAG 2.4.1 Bypass Blocks).
+   Unsichtbar außerhalb des Viewports, bis er Tastatur-Fokus bekommt. */
+.skip-link {
+  position: fixed;
+  top: .8rem; left: .8rem;
+  z-index: 10;
+  padding: .7em 1.4em;
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--dusk-top);
+  background: var(--gold);
+  border-radius: 2px;
+  box-shadow: 0 6px 24px rgba(34, 21, 40, .4);
+  transform: translateY(calc(-100% - 1.6rem));
+  transition: transform .2s ease;
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) { .skip-link { transition: none; } }
 
 
 
@@ -406,6 +434,7 @@ h1 em {
     .back {
       display: inline-block;
       margin-top: 2.6rem;
+      padding: .9em 0; /* Touch-Target ≥ 24px (WCAG 2.5.8) */
       font-size: .68rem;
       letter-spacing: .3em;
       text-indent: .3em;
@@ -418,8 +447,17 @@ h1 em {
     .back:hover { color: var(--gold); border-color: var(--gold); }
 
     .subpage footer {
-      color: var(--cream-soft);
-      opacity: .75;
+      color: rgba(247, 234, 216, .88); /* vorher cream-soft × opacity .75 = 3.5:1 (WCAG 1.4.3) — jetzt ≥ 5:1 */
+    }
+
+    /* Index: Footer sitzt auf der hellen Horizont-Zone — warmer Glow-Lift hebt den
+       Hintergrund, sodass die solide Tinte ≥ 4.5:1 hält (gemessen 5.0–6.5:1, WCAG 1.4.3).
+       Der Rampe startet erst 3rem unten → wirkt wie das nachleuchtende Horizontrauen. */
+    .home .site-footer {
+      background: linear-gradient(to bottom,
+        rgba(238, 158, 84, 0),
+        rgba(238, 158, 84, .38) 3rem,
+        rgba(238, 158, 84, .52));
     }
   
 
@@ -886,6 +924,7 @@ h1 em {
       color: var(--gold);
       text-decoration: none;
       transition: color .25s ease;
+      padding: .7em 0; /* Inline-Link: Hit-Area ≥ 24px ohne Layout-Shift (WCAG 2.5.8) */
     }
     .offering .who a:hover { color: var(--cream); }
     .offering .who a:focus-visible {
@@ -947,7 +986,7 @@ h1 em {
     .support-cta {
       display: inline-block;
       margin-top: clamp(1.4rem, 3vw, 2rem);
-      padding: .4rem 0;
+      padding: .55rem 0; /* Touch-Target ≥ 24px (WCAG 2.5.8) */
       font-size: clamp(.62rem, 1.2vw, .72rem);
       letter-spacing: .3em;
       text-indent: .3em;
@@ -1011,7 +1050,7 @@ h1 em {
    Navigationshilfe (Nach oben), Touch-Targets, Fokus-Ringe.
    ───────────────────────────────────────────────────────────── */
 .site-footer {
-  color: rgba(43, 26, 32, .8);
+  color: #241820; /* solide Tinte — rgba(…,.8) bräche auf 2.7–3.2:1 ein (WCAG 1.4.3) */
   position: relative; z-index: 1;
   padding: clamp(2.8rem, 6vw, 4.5rem) clamp(2rem, 6vw, 5rem) clamp(1.6rem, 3vw, 2.2rem);
   text-align: left;
@@ -1036,8 +1075,7 @@ h1 em {
   margin-top: .45rem;
   font-size: .8rem;
   line-height: 1.65;
-  opacity: .8;
-  max-width: 30ch;
+  max-width: 30ch; /* keine Opacity — verschachtelte Alpha bräche den Kontrast (WCAG 1.4.3) */
 }
 .footer-nav, .footer-contact {
   display: flex;
@@ -1050,7 +1088,7 @@ h1 em {
   font-size: .68rem;
   letter-spacing: .26em;
   text-transform: uppercase;
-  padding: .35em 0; /* Touch-Target */
+  padding: .6em 0; /* Touch-Target ≥ 24px (WCAG 2.5.8) */
   border-bottom: 1px solid transparent;
   transition: border-color .25s ease, opacity .25s ease;
 }
@@ -1063,6 +1101,7 @@ h1 em {
   outline-offset: 3px;
   border-radius: 2px;
 }
+.footer-base a { padding: .8em 0; /* Basis ist nur .6rem — braucht mehr em-Polster für 24px (WCAG 2.5.8) */ }
 .footer-base {
   display: flex;
   flex-wrap: wrap;
@@ -1076,7 +1115,6 @@ h1 em {
   font-size: .6rem;
   letter-spacing: .24em;
   text-transform: uppercase;
-  opacity: .9;
 }
 /* Tinten-Farbe durchgängig: alle Footer sitzen im unteren Gradient-Bereich
      (Body-Gradient läuft auf Horizont-Orange) → dunkle Tinte, WCAG-sicher */
