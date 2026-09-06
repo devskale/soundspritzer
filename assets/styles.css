@@ -622,29 +622,29 @@ h1 em {
     }
     .tabor-dl-hint {
       position: absolute;
-      left: 50%;
-      bottom: 1.2rem;
-      transform: translateX(-50%);
+      right: .8rem;
+      top: .8rem;
       z-index: 3;
-      padding: .5em 1.1em;
-      font-size: clamp(.6rem, 1.2vw, .72rem);
-      font-weight: 600;
-      letter-spacing: .24em;
-      text-indent: .24em;
+      padding: .35em .8em;
+      font-size: clamp(.56rem, 1.05vw, .66rem);
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-indent: .18em;
       text-transform: uppercase;
-      color: var(--dusk-top);
-      background: var(--gold);
+      color: var(--gold);
+      background: rgba(34, 21, 40, .62);
+      border: 1px solid rgba(232, 176, 75, .4);
       border-radius: 2px;
-      box-shadow: 0 6px 20px rgba(34, 21, 40, .5);
+      backdrop-filter: blur(3px);
       opacity: 0;
-      transform: translateX(-50%) translateY(8px);
-      transition: opacity .25s ease, transform .25s ease;
+      transform: translateY(-6px);
+      transition: opacity .3s ease, transform .3s ease;
       pointer-events: none;
     }
     .tabor-dl:hover .tabor-dl-hint,
     .tabor-dl:focus-visible .tabor-dl-hint {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(0);
     }
     .tabor-dl:hover .tabor,
     .tabor-dl:focus-visible .tabor {
