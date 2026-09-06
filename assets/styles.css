@@ -484,66 +484,6 @@ h1 em {
        Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
-    /* ── Site-Header: die zwei Veranstalter-Logos, ganz oben links ── */
-    /* Unterstützen-Link: absolut über der Hero-Zone (rechts oben) — nimmt KEINEN
-       Layout-Platz ein, verschiebt also nichts vom bisherigen Alignment.
-       Kein Button/Pill — schlichter Text, distinktiv durch Gold.
-       rechts = max(Half-Gap des zentrierten Heros, Main-Padding) → bündig
-       mit der rechten Hero-Kante bei jeder Viewport-Breite. */
-    .site-header {
-      position: absolute;
-      top: clamp(.5rem, 1.4vw, 1.1rem);
-      right: max(calc((100% - 1200px) / 2), clamp(1.5rem, 5vw, 4rem));
-      margin: 0;
-      z-index: 3; /* über Hero-Ebenen, unter nichts verschiebend */
-    }
-    .site-header .support-link {
-      position: relative;
-      display: inline-block;
-      padding: .55em 1.2em; /* Button-Maße + Touch-Target */
-      font-size: clamp(.68rem, 1.4vw, .8rem);
-      font-weight: 500;
-      letter-spacing: .32em;
-      text-indent: .32em;
-      text-transform: uppercase;
-      text-decoration: none;
-      /* eckige Kante wie der Stempel-Look der Seite — Fläche als ::before dahinter,
-         damit background-clip:text (Gradient-Schrift) die Transparenzfläche nicht wegclipt */
-      border: 1px solid rgba(232, 176, 75, .45);
-      border-radius: 2px;
-      /* Marken-Gradient (wie „Spritzer“) als Text-Füllung */
-      background-image: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: border-color .3s ease, filter .3s ease;
-    }
-    .site-header .support-link::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      background: rgba(247, 234, 216, .06); /* klare Transparenz */
-      backdrop-filter: blur(2px);
-      transition: background-color .3s ease, box-shadow .3s ease;
-    }
-    .site-header .support-link:hover,
-    .site-header .support-link:focus-visible {
-      text-decoration: none;
-      border-color: rgba(232, 176, 75, .8);
-      filter: drop-shadow(0 0 12px rgba(232, 176, 75, .3));
-    }
-    .site-header .support-link:hover::before,
-    .site-header .support-link:focus-visible::before {
-      background-color: rgba(247, 234, 216, .12);
-      box-shadow: 0 0 18px rgba(232, 176, 75, .2);
-    }
-    .site-header .support-link:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
-    }
-
     /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
     .hero {
       display: grid;
