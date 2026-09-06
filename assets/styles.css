@@ -623,28 +623,36 @@ h1 em {
     .tabor-dl-hint {
       position: absolute;
       right: .8rem;
-      top: .8rem;
+      bottom: .8rem;
       z-index: 3;
-      padding: .35em .8em;
-      font-size: clamp(.56rem, 1.05vw, .66rem);
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-indent: .18em;
-      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(26px, 3.2vw, 36px);
+      height: clamp(26px, 3.2vw, 36px);
+      padding: 0;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1;
       color: var(--gold);
-      background: rgba(34, 21, 40, .62);
-      border: 1px solid rgba(232, 176, 75, .4);
-      border-radius: 2px;
-      backdrop-filter: blur(3px);
+      background: rgba(34, 21, 40, .45);
+      border: 1px solid rgba(232, 176, 75, .35);
+      border-radius: 50%;
+      backdrop-filter: blur(2px);
+      text-transform: none;
+      letter-spacing: 0;
+      text-indent: 0;
       opacity: 0;
-      transform: translateY(-6px);
-      transition: opacity .3s ease, transform .3s ease;
+      transform: translateY(4px);
+      transition: opacity .3s ease, transform .3s ease, background .3s ease;
       pointer-events: none;
     }
     .tabor-dl:hover .tabor-dl-hint,
     .tabor-dl:focus-visible .tabor-dl-hint {
       opacity: 1;
       transform: translateY(0);
+    }
+    .tabor-dl:hover .tabor-dl-hint {
+      background: rgba(34, 21, 40, .6);
     }
     .tabor-dl:hover .tabor,
     .tabor-dl:focus-visible .tabor {
