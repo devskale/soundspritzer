@@ -608,6 +608,51 @@ h1 em {
       filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
       animation: rise .6s ease-out .25s both;
     }
+    /* Download-Link um die Tabor-Illustration: beim Hover ein dezenter Download-Hinweis */
+    .tabor-dl {
+      flex: none;
+      position: relative;
+      display: block;
+      line-height: 0;
+      border-radius: 3px;
+    }
+    .tabor-dl:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .tabor-dl-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 1.2rem;
+      transform: translateX(-50%);
+      z-index: 3;
+      padding: .5em 1.1em;
+      font-size: clamp(.6rem, 1.2vw, .72rem);
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-indent: .24em;
+      text-transform: uppercase;
+      color: var(--dusk-top);
+      background: var(--gold);
+      border-radius: 2px;
+      box-shadow: 0 6px 20px rgba(34, 21, 40, .5);
+      opacity: 0;
+      transform: translateX(-50%) translateY(8px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .tabor-dl:hover .tabor-dl-hint,
+    .tabor-dl:focus-visible .tabor-dl-hint {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .tabor-dl:hover .tabor,
+    .tabor-dl:focus-visible .tabor {
+      filter: drop-shadow(0 0 22px rgba(232, 176, 75, .45));
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tabor-dl-hint { transition: none; }
+    }
     .tabor-wrap {
       flex: none;
       position: relative;
