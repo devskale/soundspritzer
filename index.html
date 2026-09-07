@@ -215,6 +215,11 @@
 
       function card(s) {
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
+        var slug = s.slug || String(s.name || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        if (slug) a.setAttribute("data-slug", slug);
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
         if (s.logo) {
           var img = document.createElement("img");
