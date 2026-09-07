@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T15:01:35.983Z",
+  "updated": "2026-09-07T15:02:12.165Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -17,7 +17,7 @@
       "eur": 200,
       "url": "https://www.raiffeisen.at/bgld/rlb-bgld/de/meine-bank/bankstellen/neusiedl-am-see.html",
       "logo": "assets/sponsor-logos/raiffeisen.svg",
-      "bg": null
+      "bg": "white"
     },
     {
       "name": "skale.dev",
