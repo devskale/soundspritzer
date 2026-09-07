@@ -1010,22 +1010,23 @@ h1 em {
       gap: clamp(.6rem, 1.5vw, 1.2rem);
       width: 100%;
     }
-    /* Zwei getrennte Gruppen: Gold/Hauptsponsoren (large) oben, übrige darunter */
+    /* Drei getrennte Segmente nach Tier (Gold/Medium/Small). Jedes Segment
+       füllt die volle Breite; Logos wachsen per flex-grow, erst dann umbrechen */
     .sponsor-group {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: clamp(.9rem, 2.2vw, 1.6rem);
+      column-gap: clamp(1rem, 2.6vw, 1.8rem);
+      row-gap: clamp(.8rem, 1.6vw, 1.2rem);
       width: 100%;
     }
     .sponsor-group--gold {
       /* Gold ggf. mit dezenter Abtrennung */
       padding-bottom: clamp(.2rem, .6vw, .6rem);
     }
-    /* Logo-Wand: nur Logos — Größe wird FAIR je Logo in JS berechnet
-       (Flächen-Konstanz: jedes Logo belegt in seinem Tier dieselbe Pixel-Fläche,
-       egal ob rund, quadratisch oder breit). Kein Kasten, keine Objekt-Box. */
+    /* Logo-Wand: Segmente nach Tier (Gold/Medium/Small). Jedes Logo bekommt
+       seine faire Fläche von JS; Gruppen zentriert, wrap erst bei Bedarf. */
     .sponsor-card {
       display: flex;
       align-items: center;

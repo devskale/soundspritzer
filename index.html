@@ -246,32 +246,33 @@
         if (!sponsors.length) return;
         run.textContent = "";
 
-        // Gold/Haupt (large) gesondert — von den übrigen (medium/small) getrennt
-        var gold = sponsors.filter(function (s) { return (s.tier || "small") === "large"; });
-        var rest = sponsors.filter(function (s) { return (s.tier || "small") !== "large"; });
+        // Drei getrennte Segmente nach Tier: Gold (large) / Medium / Small (Partner)
+        var byTier = { large: [], medium: [], small: [] };
+        sponsors.forEach(function (s) {
+          var t = (s.tier || "small");
+          (byTier[t] || byTier.small).push(s);
+        });
+        ["large", "medium", "small"].forEach(function (tier) {
+          if (!byTier[tier].length) return;
+          var grp = el("div", "sponsor-group" + (tier === "large" ? " sponsor-group--gold" : ""));
+          byTier[tier].forEach(function (s) { grp.appendChild(card(s)); });
+          run.appendChild(grp);
+        });
 
-        if (gold.length) {
-          var g = el("div", "sponsor-group sponsor-group--gold");
-          gold.forEach(function (s) { g.appendChild(card(s)); });
-          run.appendChild(g);
-        }
-        if (rest.length) {
-          var r = el("div", "sponsor-group");
-          rest.forEach(function (s) { r.appendChild(card(s)); });
-          run.appendChild(r);
-        }
-
-        // FAIRES LOGO-FORMAT (Flächen-Konstanz): belege je Logo & Tier dieselbe
-        // Pixel-Fläche, unabhängig vom Seitenverhältnis. Formel: für Ziel-Fläche A
-        // und Seitenverhältnis r = w/h → h = sqrt(A/r), w = sqrt(A*r)
+        // FAIRES LOGO-FORMAT (Logo-Wall): jedes Logo wächst proportional zu
+        // seinem Seitenverhältnis r (flex-grow = r), sodass die Segment-Reihe
+        // die volle Seitenbreite füllt; gleiche Höhe je Tier. Bei zu vielen
+        // Logos für eine Zeile wird automatisch umgebrochen (flex-wrap).
+        // FAIRES LOGO-FORMAT (Flächen-Konstanz): jedes Logo belegt in seinem Tier
+        // dieselbe Pixel-Fläche, unabhängig vom Seitenverhältnis (rund/quadratisch/
+        // breit). Formel: Ziel-Fläche A, r = w/h → h = sqrt(A/r), w = sqrt(A*r)
         // (Produkt w*h = A). Gold > Medium > Small über die Ziel-Fläche.
-        var AREA = { large: 22000, medium: 10000, small: 5600 };
-        function setFairSize(img, tier) {
+        var AREA = { large: 24000, medium: 12000, small: 8000 };
+        function setLogoSize(img, tier) {
           var A = AREA[tier] || AREA.small;
           var w = img.naturalWidth, h = img.naturalHeight;
           function apply(r) {
             if (!r || r <= 0 || !isFinite(r)) r = 1;
-            // Begrenzung: nicht breiter als der verfügbare Raum
             img.style.width = Math.round(Math.sqrt(A * r)) + "px";
             img.style.height = Math.round(Math.sqrt(A / r)) + "px";
           }
@@ -282,12 +283,13 @@
             apply(m ? (parseFloat(m[3]) / parseFloat(m[4])) : 1);
           }).catch(function () { apply(1); });
         }
+
         var all = run.querySelectorAll("img.sponsor-logo");
         for (var i = 0; i < all.length; i++) {
           (function (im) {
             var tier = (im.closest(".sponsor-card").className.match(/tier-(\w+)/) || [])[1] || "small";
-            if (im.complete && im.naturalWidth) { setFairSize(im, tier); }
-            else { im.addEventListener("load", function () { setFairSize(im, tier); }); }
+            if (im.complete && im.naturalWidth) { setLogoSize(im, tier); }
+            else { im.addEventListener("load", function () { setLogoSize(im, tier); }); }
           })(all[i]);
         }
       }
