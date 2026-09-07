@@ -533,7 +533,7 @@ h1 em {
     .hero-sub.hero-sub--band {
       font-size: clamp(.8rem, 1.8vw, 1rem);
       padding: .7em 1.4em;
-      margin-bottom: .45rem; /* schmalere Spalt zum zweiten Badge */
+      margin-bottom: .25rem; /* engere Spalt zum zweiten Badge */
     }
     .hero-sub.hero-sub--second {
       margin-bottom: clamp(.45rem, 1vw, .7rem);
