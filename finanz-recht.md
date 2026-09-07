@@ -221,6 +221,18 @@ Direkte Zitate aus den Primärquellen, die die Kernaussagen dieses Dokuments st�
 **B11 — Compliance: „wohltätiger Zweck" & nicht-registrierte Vereine (Stripe Support)** · https://support.stripe.com/questions/requirements-for-accepting-tips-or-donations
 > Eine Donation muss an einen konkreten wohltätigen Zweck gebunden sein. Stripe unterstützt KEINE persönliche/Peer-to-Peer-Geldübermittlung. Spenden an nicht-registrierte Entitäten können hinterfragt werden. → Zahlung als „Unterstützung der Event-Organisation SunDowner" formulieren, nicht als abstrakte „Spende". (Details siehe `spenden-recherche.md`)
 
+<a name="beleg-b12"></a>
+**B12 — Spendenbegünstigung (BMF)** · https://www.bmf.gv.at/themen/steuern/spenden-gemeinnuetzigkeit/spendenbeguenstigung-neu.html
+> „Absetzbar sind nur Spenden an bestimmte Einrichtungen, die … auf der Webseite des BMF in der ‚Liste begünstigter Einrichtungen‘ ausgewiesen sind."
+> „Die Körperschaft … muss seit mindestens einem zwölf Monate umfassenden Wirtschaftsjahr ununterbrochen ausschließlich und unmittelbar den … begünstigten Zwecken dienen."
+> „Spendenbegünstigt können nur Körperschaften … sein, nicht jedoch Privatpersonen."
+> BMF-Beispiel: „Gründung und Tätigkeitsbeginn 01.02.2023 … → antragslegitimiert ab 01.01.2025."
+
+<a name="beleg-b13"></a>
+**B13 — Spendenabsetzbarkeit (Fundraising Verband Austria)** · https://www.fundraising.at/know-how/spendenabsetzbarkeit/
+> „Nur spendenbegünstigte Organisationen dürfen Spendenbestätigungen ausstellen … Die Eintragung auf der BMF-Liste ist für Spender:innen das zentrale Kriterium, um Spenden steuerlich geltend zu machen."
+> „Begrenzte wirtschaftliche Tätigkeit (nur entbehrliche und unentbehrliche Hilfsbetriebe oder max. TEUR 100 Jahresumsatz aus ‚schädlichen Betrieben‘)."
+
 ---
 
 ## Quellen (Übersicht)
@@ -234,3 +246,5 @@ Direkte Zitate aus den Primärquellen, die die Kernaussagen dieses Dokuments st�
 - **B9** Stripe Docs — Payouts: https://docs.stripe.com/payouts
 - **B10** Stripe Support — Altersanforderung: https://support.stripe.com/questions/age-requirement-to-create-a-stripe-account
 - **B11** Stripe Support — Compliance Spenden: https://support.stripe.com/questions/requirements-for-accepting-tips-or-donations
+- **B12** BMF — Spendenbegünstigung neu: https://www.bmf.gv.at/themen/steuern/spenden-gemeinnuetzigkeit/spendenbeguenstigung-neu.html
+- **B13** Fundraising Verband Austria — Spendenabsetzbarkeit: https://www.fundraising.at/know-how/spendenabsetzbarkeit/

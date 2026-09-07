@@ -76,7 +76,57 @@ Stripe verlangt (Beleg B11):
 
 ---
 
-## 3. Empfehlung — die klare Linie
+## 3. Spendenabsetzbarkeit — der entscheidende Punkt für Sponsoren
+
+**Kernaussage: Eine Spende ist in Österreich NUR dann steuerlich absetzbar, wenn der Empfänger auf der Liste spendenbegünstigter Einrichtungen (BMF) steht. Das seid ihr nicht — und könnt ihr auch nicht schnell werden.**
+
+### a) Spende absetzen → nur an spendenbegünstigte Einrichtungen
+
+In Österreich kann man Spenden nur dann steuerlich geltend machen, wenn der Empfänger auf der **Liste spendenbegünstigter Einrichtungen** des Finanzministeriums (BMF) steht (§ 4a EStG). Es reicht **nicht**, gemeinnützig zu sein — die **Spendenbegünstigung** ist ein eigener, per Bescheid verliehener Status.
+
+> **Fundraising Verband Austria:** „Nur spendenbegünstigte Organisationen dürfen Spendenbestätigungen ausstellen … Die Eintragung auf der BMF-Liste ist für Spender:innen das zentrale Kriterium, um Spenden steuerlich geltend zu machen."
+
+> **BMF:** „Absetzbar sind nur Spenden an bestimmte Einrichtungen, die … auf der Webseite des BMF in der ‚Liste begünstigter Einrichtungen‘ ausgewiesen sind."
+
+**Weder Laurens‘ Gewerbe noch ein frisch gegründeter Verein sind spendenbegünstigt.** Deshalb:
+
+| Empfänger | Können Spender absetzen? |
+|-----------|--------------------------|
+| Laurens‘ Gewerbe | ❌ nein |
+| Euer neuer Verein | ❌ nein (nicht auf BMF-Liste) |
+| Ein spendenbegünstigter Verein/Organisation | ✅ ja |
+
+### b) Spendenbegünstigt werden → dauert ~13–15 Monate
+
+Die Spendenbegünstigung kann man **nicht sofort** nach Gründung beantragen. Voraussetzung (§ 4a EStG):
+
+> **BMF:** „Die Körperschaft … muss seit mindestens einem **zwölf Monate umfassenden Wirtschaftsjahr** ununterbrochen ausschließlich und unmittelbar den … begünstigten Zwecken dienen."
+
+**BMF-Beispiel:** „Gründung und Tätigkeitsbeginn 01.02.2023, Rumpfwirtschaftsjahr 01.02.–31.12.2023 → **antragslegitimiert ab 01.01.2025**."
+
+| Schritt | Dauer |
+|---------|-------|
+| 1. Verein gründen (ZVR) | 4–6 Wochen |
+| 2. **1 Jahr ununterbrochen tätig** für begünstigten Zweck | ~12 Monate |
+| 3. Antrag + Bescheid beim Finanzamt (Gemeinnützigkeit + Spendenbegünstigung) | Wochen–Monate |
+| **Gesamt** | **~13–15 Monate** (realistisch 1,5+ Jahre) |
+
+**Weitere Hürden:**
+- Nur **Körperschaften** (Verein, GmbH, Stiftung) können spendenbegünstigt sein — **keine Privatpersonen**. [BMF]
+- **Gemeinnützigkeit** (KSt-Befreiung) und **Spendenbegünstigung** sind zwei getrennte Anerkennungen, beide prüft das Finanzamt.
+- **Begrenzte wirtschaftliche Aktivität** (nur Hilfsbetriebe oder < 100.000 € „schädliche Betriebe") — ein kommerzielles Event-Sponsoring könnte hier problematisch sein. [Fundraising Verband Austria]
+- **Jährliche Verlängerung** ab 2025 (Wirtschaftsprüfer-Bestätigung). [BMF]
+- Der **Zweck** muss ein begünstigter sein (Kunst, Kultur, Wissenschaft, Jugendfürsorge etc.).
+
+### c) Konsequenz für euch — die Leitregel ist damit final untermauert
+
+- Spendenabsetzbarkeit ist für euch **kein Thema** (nicht spendenbegünstigt, und ~1,5 Jahre zu langsam).
+- Eure Sponsoren können ihr Geld **NUR über die Rechnung** (echtes Sponsoring = Betriebsausgabe) steuerlich geltend machen.
+- → **Sponsoren wollen eine Rechnung — immer.** Der Rechnungs-Sponsoring-Weg (Laurens‘ Gewerbe) ist nicht nur der schnellste, sondern auch der **einzige**, über den Firmen ihr Geld absetzen können.
+
+---
+
+## 4. Empfehlung — die klare Linie
 
 1. **Fürs Sponsoring (Band zahlen, Rechnungen):** → **Laurens' Gewerbe**. Sofort, 0 €, keine „wohltätigen"-Komplikationen. Das ist euer Hauptweg. **Sponsoren bekommen ihre Rechnung — immer.**
 2. **Für freiwillige Besucher-Spenden:** Optional. Wenn ihr sie annehmt, als **„Unterstützung der Event-Organisation SunDowner"** über Laurens' Stripe-Konto (Payment Link) — Zweck klar beschreiben. Ohne Verein machbar, mit Verein glaubwürdiger.
@@ -91,3 +141,5 @@ Stripe verlangt (Beleg B11):
 - **[B6]** AMS — Gewerbeanmeldung kostenlos, SVS, Einkommensteuer
 - **[B7]** WKO — Kammerumlagen
 - **[B11]** Stripe Support — Requirements for accepting tips or donations
+- **[B12]** BMF — Spendenbegünstigung neu (Liste, § 4a EStG, 12-Monats-Frist): https://www.bmf.gv.at/themen/steuern/spenden-gemeinnuetzigkeit/spendenbeguenstigung-neu.html
+- **[B13]** Fundraising Verband Austria — Spendenabsetzbarkeit (nur spendenbegünstigte Org., BMF-Liste): https://www.fundraising.at/know-how/spendenabsetzbarkeit/
