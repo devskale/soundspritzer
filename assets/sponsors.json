@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T15:08:02.490Z",
+  "updated": "2026-09-07T15:10:42.093Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -24,8 +24,8 @@
     {
       "name": "skale.dev",
       "role": "Software Engineering",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "small",
+      "eur": null,
       "url": "https://skale.dev",
       "logo": "assets/skale_logo.png",
       "bg": null,
@@ -34,8 +34,8 @@
     {
       "name": "Neusiedl am See",
       "role": "Stadtgemeinde",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "small",
+      "eur": null,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
       "bg": null,
@@ -44,8 +44,8 @@
     {
       "name": "Joes Pub",
       "role": "Bier & Pizza in Neusiedl am See",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "small",
+      "eur": null,
       "url": "https://www.joespubneusiedl.at/",
       "logo": "assets/sponsor-logos/joes-pub.png",
       "bg": null,
@@ -54,8 +54,8 @@
     {
       "name": "Akademie der Wirtschaft",
       "role": "Neusiedl am See",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "small",
+      "eur": null,
       "url": "https://www.akademie-der-wirtschaft.at/",
       "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg",
       "bg": null,
