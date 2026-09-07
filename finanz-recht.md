@@ -1,9 +1,9 @@
 # SunDowner — Finanz & Recht: Rechnungsstellung & Band-Zahlung
 
-**Stand:** Recherche aus Primärquellen (oesterreich.gv.at, WKO, USP).
+**Stand:** Recherche aus Primärquellen (oesterreich.gv.at, WKO, USP, AMS).
 **Ziel:** Wie die Schülergruppe Sponsoring-Geld einnimmt, eine Rechnung stellt und damit die Band (yourynot) bezahlt — aus finanzrechtlicher Sicht (Österreich).
 
-**Entscheidung (Frage an die Gruppe):** Weg über **Laurens Kirschner (19) als Einzelunternehmer** (Kleinunternehmerregelung). Joe's Pub ist als Rechnungssteller ausgeschlossen, HAK nur falls die Schule mitspielt, Verein zu langsam für das Event am 25.09.
+**Kernfrage:** Wer kann Rechnungen stellen? → **Zwei realistische Optionen: Laurens als Einzelunternehmer (sofort) oder ein Verein (erst nach ~5–8 Wochen).**
 
 ---
 
@@ -11,7 +11,16 @@
 
 Eine Rechnung mit Umsatzsteuer darf nur ein **Unternehmer** i.S.d. UStG stellen. Eine Diplomarbeits-/Schülergruppe ist das **nicht** — sie hat keine Rechtsfähigkeit, kann kein Konto eröffnen, keine Verträge schließen und keine Rechnungen im eigenen Namen ausstellen. Alle drei Schüler würden dann privat haften, und die Rechnung wäre formal ungültig (kein USt-Ausweis möglich).
 
-→ Es braucht eine **natürliche oder juristische Person** als Träger. Gewählt: **Laurens Kirschner** als Einzelunternehmer.
+→ Es braucht eine **natürliche oder juristische Person** als Träger. Zwei realistische Wege:
+
+| | **Option A: Laurens als Einzelunternehmer** | **Option B: Verein gründen** |
+|---|---|---|
+| **Rechnung stellen können** | ✅ **sofort** (nach Gewerbeanmeldung) | ⏱️ erst **nach ~5–8 Wochen** (nach 4-Wochen-Frist) |
+| **Für Event 25.09.?** | ✅ ja | ❌ zu spät (erst ~Mitte Oktober) |
+| **Kosten** | ~0 € sofort (+ ~70 € Grundumlage im Gründungsjahr) | ~27–57 € |
+| **Aufwand** | ~1 Tag + Gewerbeanmeldung | Statuten + Gründungsversammlung + Anzeige + 4-Wochen-Frist |
+| **Haftung** | Laurens' Privatvermögen | Verein (jur. Person) — aber Gründer haften vor Entstehung |
+| **Sinnvoll für** | einmaliges Event 2026 | wiederkehrende Events (2027+) |
 
 ---
 
@@ -27,36 +36,49 @@ Da ihr Sponsoren **Werbung als Gegenleistung** gebt (Banner, Logo auf Website/So
 
 ---
 
-## 2. Der gewählte Weg: Laurens Kirschner als Einzelunternehmer
+# Option A: Laurens Kirschner als Einzelunternehmer
 
-Laurens (19, volljährig) kann als **Einzelunternehmer** die Rechnungsstellung und Zahlstelle übernehmen. Erforderlich:
+Laurens (19, volljährig) meldet ein **freies Gewerbe** an und wird Kleinunternehmer. Damit kann er **sofort** Rechnungen stellen und die Band zahlen.
+
+## Gewerbe (offizieller Wortlaut, WKO)
+> **„Organisation von Veranstaltungen, Märkten und Messen (Eventmanagement), Sponsoring-Agentur"**
+
+- **Freies Gewerbe** → **keine Befähigung/Prüfung nötig**, nur Anmeldung.
+- Deckt exakt euren Fall ab: Künstler-Engagement (Band), Sponsoring, Event-Abwicklung.
+
+## Schritte & Kosten
 
 | Schritt | Was | Kosten |
 |--------|-----|--------|
-| 1 | **Gewerbeanmeldung** — freies Gewerbe „Organisation von Veranstaltungen (Eventmanagement)" gem. GewO (freies Gewerbe, keine Befähigung nötig) | ~40–50 € (Gewerbebehörde + Kammerumlage) |
-| 2 | **Finanzamt** wird automatisch über die Gewerbeanmeldung informiert | 0 € |
-| 3 | **Kleinunternehmerregelung** beantragen (Umsatz < 55.000 € → keine USt, keine USt-Voranmeldung) | 0 € |
-| 4 | **Rechnungen** ohne USt mit Hinweis „Umsatzsteuerbefreit – Kleinunternehmer gem. § 6 Abs 1 Z 27 UStG" | 0 € |
-| 5 | **Bankkonto** (Laurens' Revolut, EUR/SEPA) für Ein- und Auszahlungen | 0 € |
+| 1 | **Gewerbeanmeldung** (freies Gewerbe, s. o.) | **0 €** (kostenlos, keine Stempel-/Verwaltungsgebühr) |
+| 2 | **Finanzamt** wird automatisch informiert | 0 € |
+| 3 | **Kleinunternehmerregelung** (Umsatz < 55.000 € → keine USt) | 0 € |
+| 4 | **Rechnungen** ohne USt, Hinweis „§ 6 Abs 1 Z 27 UStG" | 0 € |
+| 5 | **Bankkonto** (Laurens' Revolut, EUR/SEPA) | 0 € |
 
-→ **Summe: ~50 € und ein paar Tage** für die Gewerbeanmeldung. Deutlich günstiger und schneller als ein Verein.
+> **⚠️ Kleinunternehmergrenze (korrigiert):** Seit **1.1.2025** gilt **55.000 € netto Jahresumsatz** (WKO/USP) — nicht mehr 35.000 €. Für ein einmaliges Event völlig unkritisch.
 
-> **⚠️ Kleinunternehmergrenze (korrigiert):** Seit **1.1.2025** gilt in Österreich eine Grenze von **55.000 € netto Jahresumsatz** (WKO, USP) — nicht mehr 35.000 €. Für ein einmaliges Event völlig unkritisch.
+## WKO-Umlagen (korrigiert)
 
----
+| Umlage | Betrag | Relevant? |
+|--------|--------|-----------|
+| **Gewerbeanmeldung** | **0 €** | ✅ einmalig |
+| **KU1** (Kammerumlage 1, 0,28 %) | **0 €** — Freigrenze: erst ab **150.000 €** Netto-Umsatz/Jahr | ❌ nie erreicht |
+| **KU2** (Dienstgeberzuschlag) | 0 € — nur bei **Dienstnehmern** | ❌ keine |
+| **Grundumlage** (Fachgruppe) | **~145 €/Jahr** (Richtwert) | ✅ einzige laufende Kosten |
 
-## 3. Ablauf fürs Event
+**Für Laurens konkret:** Anmeldung 0 € + KU1 0 € + KU2 0 €. **Grundumlage** im Gründungsjahr nur **anteilig (~70 €)**, und dank **Neugründerprivileg** (seit 1.1.2019) im **Folgejahr 0 €**. → **Realistisch ~0 € sofort, evtl. ~70 € Grundumlage für das Gründungsjahr.**
 
-1. **Sponsoren zahlen auf Laurens' Konto** (Revolut/IBAN) — er stellt ihnen eine Kleinunternehmer-Rechnung ohne USt.
-2. **Die Band (yourynot) stellt Laurens eine Rechnung** für ihren Auftritt.
-3. **Laurens zahlt die Band** von demselben Konto.
+## Ablauf fürs Event
+
+1. Sponsoren zahlen auf Laurens' Konto (Revolut/IBAN) → er stellt Kleinunternehmer-Rechnung ohne USt.
+2. Die Band (yourynot) stellt Laurens eine Rechnung.
+3. Laurens zahlt die Band vom selben Konto.
 4. Belege/Rechnungen aufbewahren (gut fürs Diplomarbeit-Dokument).
 
-> **Wichtig:** Das Geld muss **zuerst auf das Konto der Einheit** (Laurens) gehen und von dort an die Band — nicht direkt vom Sponsor an die Band, sonst ist die Sponsoring-Rechnung nicht mehr eindeutig.
+> **Wichtig:** Geld muss **zuerst auf Laurens' Konto** gehen und von dort an die Band — nicht direkt vom Sponsor an die Band, sonst ist die Sponsoring-Rechnung nicht mehr eindeutig.
 
----
-
-## 4. Rechnungs-Muster (Kleinunternehmer, ohne USt)
+## Rechnungs-Muster (Kleinunternehmer, ohne USt)
 
 ```
 [Laurens Kirschner]
@@ -81,21 +103,35 @@ Umsatzsteuerbefreit — Kleinunternehmer gem. § 6 Abs 1 Z 27 UStG.
 Zahlbar innerhalb von 14 Tagen auf IBAN [Laurens' IBAN].
 ```
 
----
-
-## 5. Ehrliche Hinweise / Risiken
-
-- **Es haftet Laurens' Privatvermögen** — er trägt das unternehmerische Risiko. Die beiden anderen Schüler sind nicht automatisch mit in der Haftung. **Intern klar absprechen.**
-- **Einkommensteuer**: Bleibt am Ende Gewinn übrig (Sponsoring minus Band/Food-Kosten), ist das Laurens' Einkommen und ggf. einkommensteuerpflichtig. Bei einem einmaligen Event, wo das Geld fast komplett an die Band geht, meist unkritisch — aber sauber dokumentieren.
+## Risiken (Option A)
+- **Es haftet Laurens' Privatvermögen** — er trägt das unternehmerische Risiko. Die anderen Schüler haften nicht automatisch mit. **Intern klar absprechen.**
+- **Einkommensteuer**: Bleibt Gewinn übrig (Sponsoring minus Band/Food), ist das Laurens' Einkommen und ggf. einkommensteuerpflichtig. Bei einem einmaligen Event, wo das Geld fast komplett an die Band geht, meist unkritisch — aber dokumentieren.
 - **„Spende" vs. „Sponsoring"**: Da Laurens Werbung als Gegenleistung gibt, ist es **echtes Sponsoring** = Umsatz, keine Spende. Passt zur Kleinunternehmer-Rechnung.
-- **Kein Verein nötig** für ein einmaliges Event (Vereinsgründung dauert 4–6 Wochen).
 
 ---
 
-## 6. Alternative Wege (verworfen / Optionen)
+# Option B: Verein gründen
 
-### Verein gründen — Kosten
-Quelle: oesterreich.gv.at (Vereinsgründung). **Kostenangabe korrigiert** gegenüber früherer „0 €"-Aussage:
+Ein Verein ist eine **juristische Person** und kann Rechnungen stellen + die Band zahlen. **Aber: erst NACH der Entstehung.**
+
+## Die entscheidende Zeitlinie: Rechnung erst nach der Frist
+
+| Phase | Dauer | Rechnung möglich? |
+|-------|-------|-------------------|
+| 1. **Vorbereitung** (Statuten, Gründungsversammlung, Protokoll, Name) | ~1–2 Wochen | ❌ |
+| 2. **Errichtungsanzeige** einreichen (bei der Behörde) | 1 Tag | ❌ |
+| 3. **Behördliche Prüffrist** — Verein entsteht automatisch mit Fristablauf | **4 Wochen** (max. 6) | ❌ bis Fristablauf |
+| 4. **Entstehung als Rechtsperson** | ab Fristablauf | ✅ **jetzt erst** |
+
+→ **Gesamt: realistisch ~5–8 Wochen**, bis ihr Rechnungen stellen könnt.
+
+**Kernregel (oesterreich.gv.at):** Mit Einlangen der Errichtungsanzeige läuft eine Frist von **4 Wochen** (bei Anhaltspunkten für Gesetzwidrigkeit per Bescheid verlängerbar auf **max. 6 Wochen**). Wenn die Behörde nichts erklärt, entsteht der Verein **mit Ablauf der Frist automatisch als Rechtsperson**. Entsteht **früher**, wenn die Behörde per Bescheid ausdrücklich zur Aufnahme der Tätigkeit einlädt (kein garantierter Schnellweg).
+
+**⚠️ Kein „Verein in Gründung"-Status** (anders als GmbH i.G.): Es gibt nur Errichtung/Entstehung. Vor der Entstehung **keine gültige Rechnung** im eigenen Namen möglich.
+
+**⚠️ Haftung vor Entstehung:** „Für Handlungen im Namen des Vereins vor seiner Entstehung haften die Handelnden persönlich zur ungeteilten Hand (Gesamtschuldner)." Rechte/Pflichten werden erst mit Entstehung für den Verein wirksam.
+
+## Kosten (oesterreich.gv.at — korrigiert gegenüber früherer „0 €"-Aussage)
 
 | Posten | Kosten |
 |--------|--------|
@@ -106,38 +142,27 @@ Quelle: oesterreich.gv.at (Vereinsgründung). **Kostenangabe korrigiert** gegen�
 
 → **Realistisch ~27–57 €.** Gebühren nach Abschluss per Zahlschein.
 
-### Verein gründen — Zeitrahmen
-- **Errichtung**: Statuten von **mind. 2 Personen** vereinbaren + Errichtungsanzeige an die Behörde.
-- **Entstehung**: Frist von **4 Wochen** ab Einlangen der Anzeige (bei Anhaltspunkten für Gesetzwidrigkeit per Bescheid verlängerbar auf **max. 6 Wochen**). Wenn die Behörde nichts erklärt, entsteht der Verein **mit Ablauf der Frist automatisch als Rechtsperson** (juristische Person). Entsteht früher, wenn die Behörde per Bescheid ausdrücklich zur Aufnahme der Tätigkeit einlädt.
-- **Kein „Verein in Gründung"-Status** (anders als GmbH i.G.): Es gibt nur Errichtung/Entstehung.
-- **⚠️ Haftung vor Entstehung**: „Für Handlungen im Namen des Vereins vor seiner Entstehung haften die Handelnden persönlich zur ungeteilten Hand (Gesamtschuldner)." Rechte/Pflichten werden erst mit Entstehung für den Verein wirksam.
-
-→ Für das Event am 25.09. wird der Verein **nicht rechtzeitig** rechtsfähig (Frist 4 Wochen). Sinnvoll **nach** dem Event, falls daraus eine wiederkehrende Veranstaltung wird.
-
-### HAK als Rechtsträger
-Möglich, wenn die Schule mitspielt (HAK als juristische Person könnte Rechnungen stellen und die Band zahlen). In der Praxis oft zurückhaltend — einen Versuch wert, wenn ein Lehrer das mitträgt.
-
-### Joe's Pub
-Ausgeschlossen (Entscheidung der Gruppe) — aber funktional wäre es sofort verfügbar, da bereits Partner.
+## Für euer Event (25.09.) konkret
+Wenn ihr **jetzt** (Anfang September) startet: Anmeldung ~Mitte September → Fristablauf **Mitte Oktober**. Der Verein wäre erst **nach dem Event** rechtsfähig und rechnungsfähig → **kann das Sponsoring für den 25.09. nicht abwickeln.** Sinnvoll **nach** dem Event, falls daraus eine wiederkehrende Veranstaltung wird (2027+).
 
 ---
 
-## 7. Empfehlung (Finale)
+# Vergleich & Empfehlung
 
-| Weg | Für 25.09.? | Aufwand | Kosten |
-|-----|-------------|---------|--------|
-| **Laurens als Einzelunternehmer** | ✅ sofort | ~1 Tag + Gewerbeanmeldung | ~50 € |
-| Joe's Pub | ❌ (ausgeschlossen) | – | – |
-| HAK | ⚠️ nur wenn Schule mitspielt | unklar | 0 € |
-| Verein | ⏱️ erst nach Event | 4–6 Wochen | ~27–57 € |
+| Weg | Rechnung für 25.09.? | Aufwand | Kosten |
+|-----|----------------------|---------|--------|
+| **A: Laurens als Einzelunternehmer** | ✅ sofort | ~1 Tag + Gewerbeanmeldung (0 €) | ~0 € sofort, ~70 € Grundumlage/Jahr |
+| **B: Verein** | ❌ erst ~Mitte Oktober | Statuten + Versammlung + 4-Wochen-Frist | ~27–57 € |
 
-→ **Empfehlung: Laurens Kirschner als Einzelunternehmer (Kleinunternehmerregelung).** Schnell, günstig, sofort Rechnungen stellen und Band zahlen.
+→ **Für das Event am 25.09.: Option A (Laurens).** Sofort rechnungsfähig, praktisch kostenlos.
+→ **Für die Zukunft (2027+): Option B (Verein).** Eigene Rechtspersönlichkeit, keine Privathaftung, gut für eine wiederkehrende Veranstaltungsreihe.
 
 ---
 
 ## Quellen
 - https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/vereine/Seite.220300 (Vereinsgründung: Kosten, Fristen, Haftung)
+- https://www.wko.at/steuern/kammerumlagen-faq (KU1-Freigrenze 150k, Grundumlage, Neugründerprivileg)
 - https://www.wko.at/steuern/kleinunternehmerregelung-oesterreich-faq (Kleinunternehmergrenze 55.000 €)
 - https://www.usp.gv.at/themen/steuern-finanzen/umsatzsteuer-ueberblick/.../kleinunternehmen.html (Kleinunternehmerregelung seit 1.1.2025)
 - https://www.wko.at/information-consulting/werbung-marktkommunikation/eventagentur (freies Gewerbe Eventmanagement)
-- https://www.ams.at/arbeitsuchende/topicliste/gewerbeberechtigung (Gewerbeberechtigung)
+- https://www.ams.at/arbeitsuchende/topicliste/gewerbeberechtigung (Gewerbeanmeldung kostenlos)
