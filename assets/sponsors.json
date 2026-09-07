@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T14:32:59.930Z",
+  "updated": "2026-09-07T15:01:35.983Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -7,23 +7,26 @@
       "tier": "large",
       "eur": 250,
       "url": "https://www.gwp.co.at/",
-      "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png"
+      "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png",
+      "bg": null
     },
     {
       "name": "Raiffeisen",
       "role": "Landesbank Burgenland",
       "tier": "large",
       "eur": 200,
-      "url": null,
-      "logo": "assets/sponsor-logos/raiffeisen.svg"
+      "url": "https://www.raiffeisen.at/bgld/rlb-bgld/de/meine-bank/bankstellen/neusiedl-am-see.html",
+      "logo": "assets/sponsor-logos/raiffeisen.svg",
+      "bg": null
     },
     {
       "name": "skale.dev",
       "role": "Software Engineering",
       "tier": "medium",
       "eur": 100,
-      "url": "https://skale.dev/",
-      "logo": "assets/skale_logo.png"
+      "url": "https://skale.dev",
+      "logo": "assets/skale_logo.png",
+      "bg": null
     },
     {
       "name": "Neusiedl am See",
@@ -31,7 +34,8 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.neusiedlamsee.at/",
-      "logo": "assets/sponsor-logos/neusiedl-am-see.svg"
+      "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
+      "bg": null
     },
     {
       "name": "Joes Pub",
@@ -39,7 +43,8 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.joespubneusiedl.at/",
-      "logo": "assets/sponsor-logos/joes-pub.png"
+      "logo": "assets/sponsor-logos/joes-pub.png",
+      "bg": null
     },
     {
       "name": "Akademie der Wirtschaft",
@@ -47,7 +52,8 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.akademie-der-wirtschaft.at/",
-      "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg"
+      "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg",
+      "bg": null
     }
   ]
 }

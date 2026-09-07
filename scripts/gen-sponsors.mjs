@@ -180,6 +180,8 @@ async function main() {
   const iRole = header.indexOf("name2");
   const iLogo = header.indexOf("logo");
   const iEur = header.indexOf("eur");
+  // „URL“-Spalte: Sponsor-Weblink kommt direkt aus dem Sheet.
+  const iUrl = header.indexOf("url");
   // „Hintergrund“-Spalte: Optionale Hintergrundfarbe je Logo (z. B. #fff für
   // dunkle Logos auf hellem Grund). Jede Spalte, die hinter-/background/bg heißt.
   const iBg = header.findIndex((h) => /hintergrund|background|^bg$/.test(h));
@@ -206,6 +208,10 @@ async function main() {
     const logoCellUrl = extractUrl(logoRaw);
     const override = LOGO_OVERRIDES[name];
     const slug = slugify(name);
+    // URL bevorzugt aus der „URL“-Spalte, sonst Override, sonst URL in Logo-Spalte
+    const url = (iUrl >= 0 ? extractUrl(r[iUrl] ?? "") : null)
+      ?? override?.url
+      ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null);
 
     // Logo-Spalte IST die Bildquelle (Dateiname ohne Endung → bildmat/assets).
     // LOGO_OVERRIDES liefert nur noch die URL (Weblink), nicht das Bild.
@@ -220,7 +226,7 @@ async function main() {
       role,
       tier: tier(eur),
       eur: eur ?? null,
-      url: override?.url ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null),
+      url,
       logo,
       bg: bg || null,
     });
