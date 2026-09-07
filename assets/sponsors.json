@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T15:15:59.793Z",
+  "updated": "2026-09-07T14:32:59.930Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -7,7 +7,15 @@
       "tier": "large",
       "eur": 250,
       "url": "https://www.gwp.co.at/",
-      "logo": "assets/gwp_logo.png"
+      "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png"
+    },
+    {
+      "name": "Raiffeisen",
+      "role": "Landesbank Burgenland",
+      "tier": "large",
+      "eur": 200,
+      "url": null,
+      "logo": "assets/sponsor-logos/raiffeisen.svg"
     },
     {
       "name": "skale.dev",
@@ -23,7 +31,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.neusiedlamsee.at/",
-      "logo": "assets/neusiedl_logo.png"
+      "logo": "assets/sponsor-logos/neusiedl-am-see.svg"
     },
     {
       "name": "Joes Pub",
@@ -31,7 +39,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.joespubneusiedl.at/",
-      "logo": "assets/joes-pub.png"
+      "logo": "assets/sponsor-logos/joes-pub.png"
     },
     {
       "name": "Akademie der Wirtschaft",
@@ -39,7 +47,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.akademie-der-wirtschaft.at/",
-      "logo": "assets/akwi.jpg"
+      "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg"
     }
   ]
 }

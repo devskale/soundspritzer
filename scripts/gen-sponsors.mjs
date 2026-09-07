@@ -75,6 +75,46 @@ function extractUrl(s) {
   return m ? m[0] : null;
 }
 
+/** Akzeptierte Logodatei-Endungen (ohne Punkt). */
+const LOGO_EXTS = ["png", "jpg", "jpeg", "webp", "svg", "gif"];
+
+/**
+ * Sucht eine lokale Logodatei anhand des Werts aus der Logo-Spalte
+ * (Dateiname OHNE Endung) in der Reihenfolge bildmat/ → assets/.
+ * Beim Fund wird nach assets/sponsor-logos/<slug>.png kopiert (öffentlich + committbar).
+ * Rückgabe: öffentlicher Pfad unter assets/ oder null.
+ */
+function resolveLocalLogo(value, sponsorSlug) {
+  if (!value) return null;
+  const base = value.replace(/\.(png|jpe?g|webp|svg|gif)$/i, "").trim();
+  if (!base) return null;
+
+  const dirs = [join(root, "bildmat"), join(root, "assets")];
+  const names = new Set([base, slugify(base)]);
+  if (sponsorSlug) names.add(sponsorSlug);
+
+  for (const dir of dirs) {
+    for (const nm of names) {
+      for (const ext of LOGO_EXTS) {
+        const f = join(dir, `${nm}.${ext}`);
+        if (existsSync(f)) {
+          // Original-Endung beibehalten (z. B. svg bleibt svg)
+          const out = join(LOGO_DIR, `${sponsorSlug}.${ext}`);
+          try {
+            mkdirSync(LOGO_DIR, { recursive: true });
+            writeFileSync(out, readFileSync(f));
+          } catch (err) {
+            console.error(`[sponsors] Kopieren fehlgeschlagen für \u201E${nm}\u201C: ${err.message}`);
+            return null;
+          }
+          return `assets/sponsor-logos/${sponsorSlug}.${ext}`;
+        }
+      }
+    }
+  }
+  return null;
+}
+
 /** Wirkt die URL wie ein BILD-Link (Dateiendung oder Google-Drive)? */
 function isImageUrl(url) {
   if (!url) return false;
@@ -141,10 +181,10 @@ async function main() {
   const iLogo = header.indexOf("logo");
   const iEur = header.indexOf("eur");
 
-  /** Tier nach Betrag: 250+ = groß, 100+ = mittel, sonst klein. */
+  /** Tier nach Betrag: 200+ = Gold/groß, 100+ = mitel, sonst klein. */
   function tier(eur) {
     if (eur == null) return "small"; // ohne Betrag (z.B. Sachpartner): klein
-    if (eur >= 250) return "large";
+    if (eur >= 200) return "large";  // ab 200 EUR: Gold-Sponsor
     if (eur >= 100) return "medium";
     return "small";
   }
@@ -160,9 +200,12 @@ async function main() {
 
     const logoCellUrl = extractUrl(logoRaw);
     const override = LOGO_OVERRIDES[name];
+    const slug = slugify(name);
 
-    // Logo: Override gewinnt, sonst automatischer Download aus dem Sheet
-    let logo = override?.logo ?? null;
+    // Logo-Spalte IST die Bildquelle (Dateiname ohne Endung → bildmat/assets).
+    // LOGO_OVERRIDES liefert nur noch die URL (Weblink), nicht das Bild.
+    let logo = resolveLocalLogo(logoRaw, slug);
+    if (!logo && override?.logo) logo = override.logo; // Fallback auf gepflegtes Asset
     if (!logo && logoCellUrl && isImageUrl(logoCellUrl)) {
       logo = await fetchLogo(logoCellUrl, name);
     }

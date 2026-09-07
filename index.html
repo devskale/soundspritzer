@@ -136,7 +136,8 @@
     </div>
     <div class="sponsor-track">
       <div class="sponsor-run" id="sponsor-run" role="region" aria-label="Unsere Sponsoren">
-        <!-- Wird aus assets/sponsors.json befüllt (Build-Skript / GH Action). -->
+        <!-- Gold / Hauptsponsoren (large) und übrige (medium/small) —
+             werden aus assets/sponsors.json befüllt und per Tier getrennt (Build/GH Action). -->
         <noscript>
           <a class="sponsor-card tier-large" href="https://www.gwp.co.at/" target="_blank" rel="noopener">
             <img class="sponsor-logo" src="assets/gwp_logo.png" alt="GWP Grösz Weisz Partner — Steuerberatung OG" loading="lazy">
@@ -232,7 +233,21 @@
         var sponsors = (data && data.sponsors) || [];
         if (!sponsors.length) return;
         run.textContent = "";
-        sponsors.forEach(function (s) { run.appendChild(card(s)); });
+
+        // Gold/Haupt (large) gesondert — von den übrigen (medium/small) getrennt
+        var gold = sponsors.filter(function (s) { return (s.tier || "small") === "large"; });
+        var rest = sponsors.filter(function (s) { return (s.tier || "small") !== "large"; });
+
+        if (gold.length) {
+          var g = el("div", "sponsor-group sponsor-group--gold");
+          gold.forEach(function (s) { g.appendChild(card(s)); });
+          run.appendChild(g);
+        }
+        if (rest.length) {
+          var r = el("div", "sponsor-group");
+          rest.forEach(function (s) { r.appendChild(card(s)); });
+          run.appendChild(r);
+        }
       }
 
       function load() {
