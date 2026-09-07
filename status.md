@@ -42,6 +42,15 @@ tabor.png (gemini_tabor, zugeschnitten), schueler.png (Trio-Sticker), pizza.png 
 
 ## Spenden / Bezahlmöglichkeit (Plan — offen)
 
+**ENTSCHEIDUNG (Veranstalter):** **Laurens Kirschner ist der Veranstalter / Leistungserbringer.** → Alles (Gewerbe, Rechnungen, Stripe, Konto) läuft über Laurens' eigenen Namen. Kein Konto-Leihen, kein „Durchreicher", keine Strohmann-Konstrukte (wären Scheinrechnung/Abgabenhinterziehung). Details: `sponsoring-rechnung.md` + `finanz-recht.md`.
+
+**Kontostruktur (Laurens' eigene Konten):**
+- **BKS** (Bank Burgenland) → Hauptkonto fürs **Sponsoring-Geld** + Band-Zahlung (Rechnungssteller = Laurens = Konto-Inhaber ✅)
+- **Revolut** (EUR/SEPA) → Payout-Ziel für **Stripe-Spenden** (optional)
+
+**Stripe-Konto:** erstellt **Laurens** (18+, kein Vormund nötig) → Payout auf sein Revolut. Nicht auf Johanns Namen (wäre Strohmann-Problem, es sei denn Johann ist selbst der Veranstalter — ist er nicht).
+
+
 **Ziel:** Eine Bezahlmöglichkeit für Spenden auf der Website, ohne eigenen Backend-Server (reine GitHub-Pages-Statik).
 
 **Gewählte Lösung (Vorschlag):** Stripe **Payment Link** (variable Spendenbeträge) → Payout auf **Revolut-IBAN** (SEPA, EUR). Kein Code auf der Seite nötig, nur ein Button/Link.

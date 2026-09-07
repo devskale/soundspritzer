@@ -1,7 +1,17 @@
 # SunDowner — Sponsoring & Rechnung: die klare Linie
 
-**Stand:** Ausarbeitung auf Basis von `finanz-recht.md` (Belege B1–B11).
+**Stand:** Ausarbeitung auf Basis von `finanz-recht.md` (Belege B1–B13).
 **Kernprinzip (Entscheidung):** **Sponsoren wollen eine Rechnung — immer.** Das bestimmt alles Weitere.
+**Veranstalter (ENTSCHEIDUNG):** **Laurens Kirschner** ist der Veranstalter / Leistungserbringer. Alles läuft über seinen eigenen Namen (Gewerbe, Rechnungen, Stripe, Konten). Kein Konto-Leihen, kein „Durchreicher", kein Strohmann.
+
+---
+
+## 0a. Wer ist der Veranstalter? → Laurens (entschieden)
+
+- **Laurens** ist der Veranstalter und Leistungserbringer → er stellt die Rechnungen, führt die Gewerbe-Anmeldung, erstellt das Stripe-Konto, nutzt **seine eigenen Konten**.
+- **Kontostruktur:** **BKS** (Sponsoring-Geld + Band-Zahlung) · **Revolut** (Stripe-Payout, EUR/SEPA).
+- **Kein Strohmann:** Weder ein Konto „leihen" noch Rechnungen auf fremden Namen (Johann) stellen — das wäre eine **Scheinrechnung** (Leistungserbringer ≠ Rechnungssteller) und kann als **Abgabenhinterziehung** (§ 33 FinStrG) gewertet werden. Der Rechnungssteller muss immer der tatsächliche Leistungserbringer sein.
+- **Geldbedarf von Johann (Vater) legal lösen:** z. B. als **Darlehen** an Laurens/den Verein (zurückzuzahlen), nicht als „Konto leihen" oder „Durchreicher".
 
 ---
 
