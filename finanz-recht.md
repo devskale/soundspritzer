@@ -205,6 +205,22 @@ Direkte Zitate aus den Primärquellen, die die Kernaussagen dieses Dokuments st�
 > „Wer erstmalig … eine Berechtigung im Sinne des § 2 Abs. 1 WKG erwirbt … ist in dem auf das Jahr des Erwerbs der Berechtigung … folgenden Kalenderjahr von der Pflicht zur Entrichtung der Grundumlage befreit. Dieses ‚Neugründerprivileg' gilt seit 1.1.2019."
 > „Die Grundumlage ist bei jeder Fachorganisation unterschiedlich hoch … (Richtwert ~145 €/Jahr, je nach Fachgruppe)."
 
+<a name="beleg-b8"></a>
+**B8 — Spenden über Stripe annehmen (Stripe Support)** · https://support.stripe.com/questions/how-to-accept-donations-through-stripe
+> Stripe erlaubt einmalige oder wiederkehrende Online-Spenden über eine Stripe-gehostete Bezahlseite („Payment Links"). Einrichtung direkt im Dashboard, kein Code nötig; „Kunden wählen Betrag" (custom amount) möglich. (Details siehe `spenden-recherche.md`)
+
+<a name="beleg-b9"></a>
+**B9 — Auszahlung auf Bankkonto / Payouts (Stripe Docs)** · https://docs.stripe.com/payouts
+> Bankkonto wird unter Dashboard → Settings → Payout settings hinterlegt. Österreich: nur IBAN nötig. Revolut-EUR-IBAN (SEPA) passt als Payout-Ziel; Bankland korrekt angeben (Revolut Bank UAB = Litauen, IBAN beginnt mit LT…). (Details siehe `spenden-recherche.md`)
+
+<a name="beleg-b10"></a>
+**B10 — Altersanforderung Stripe-Konto (Stripe Support)** · https://support.stripe.com/questions/age-requirement-to-create-a-stripe-account
+> Man muss mindestens 13 Jahre alt sein, um ein Stripe-Konto zu erstellen. Unter 18: ein gesetzlicher Vormund muss als Konto-Inhaber hinzugefügt werden, bevor das Konto Zahlungen annehmen / Geld aufs Bankkonto überweisen kann. (Details siehe `spenden-recherche.md`) → Laurens (19) erfüllt 18+, kein Vormund nötig.
+
+<a name="beleg-b11"></a>
+**B11 — Compliance: „wohltätiger Zweck" & nicht-registrierte Vereine (Stripe Support)** · https://support.stripe.com/questions/requirements-for-accepting-tips-or-donations
+> Eine Donation muss an einen konkreten wohltätigen Zweck gebunden sein. Stripe unterstützt KEINE persönliche/Peer-to-Peer-Geldübermittlung. Spenden an nicht-registrierte Entitäten können hinterfragt werden. → Zahlung als „Unterstützung der Event-Organisation SunDowner" formulieren, nicht als abstrakte „Spende". (Details siehe `spenden-recherche.md`)
+
 ---
 
 ## Quellen (Übersicht)
@@ -214,3 +230,7 @@ Direkte Zitate aus den Primärquellen, die die Kernaussagen dieses Dokuments st�
 - **B4** WKO — Eventagentur (freies Gewerbe): https://www.wko.at/information-consulting/werbung-marktkommunikation/eventagentur
 - **B5** WKO — Kammerumlagen FAQ: https://www.wko.at/steuern/kammerumlagen-faq
 - **B6** AMS — Freie Gewerbe: https://www.ams.at/arbeitsuchende/topicliste/freie-gewerbe
+- **B8** Stripe Support — Spenden annehmen: https://support.stripe.com/questions/how-to-accept-donations-through-stripe
+- **B9** Stripe Docs — Payouts: https://docs.stripe.com/payouts
+- **B10** Stripe Support — Altersanforderung: https://support.stripe.com/questions/age-requirement-to-create-a-stripe-account
+- **B11** Stripe Support — Compliance Spenden: https://support.stripe.com/questions/requirements-for-accepting-tips-or-donations
