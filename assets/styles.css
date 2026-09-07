@@ -1048,6 +1048,12 @@ h1 em {
       width: auto;
       height: auto;
     }
+    /* Optionale Kachel je Logo (Sheet-Spalte „Hintergrund“, z. B. #fff für
+       dunkle Logos) — dezentes Polster, damit das Logo nicht randlos aufliegt */
+    .sponsor-card--tile {
+      border-radius: clamp(.35rem, .8vw, .6rem);
+      padding: clamp(.5rem, .9vw, .9rem);
+    }
 
         /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */
     .support-cta {

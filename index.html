@@ -215,6 +215,8 @@
 
       function card(s) {
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
+        // Optionale Hintergrundfarbe je Logo (aus der Sheet-Spalte „Hintergrund“)
+        if (s.bg) { a.style.backgroundColor = s.bg; a.classList.add("sponsor-card--tile"); }
         var slug = s.slug || String(s.name || "")
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")

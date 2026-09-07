@@ -180,6 +180,9 @@ async function main() {
   const iRole = header.indexOf("name2");
   const iLogo = header.indexOf("logo");
   const iEur = header.indexOf("eur");
+  // „Hintergrund“-Spalte: Optionale Hintergrundfarbe je Logo (z. B. #fff für
+  // dunkle Logos auf hellem Grund). Jede Spalte, die hinter-/background/bg heißt.
+  const iBg = header.findIndex((h) => /hintergrund|background|^bg$/.test(h));
 
   /** Tier nach Betrag: 200+ = Gold/groß, 100+ = mitel, sonst klein. */
   function tier(eur) {
@@ -197,6 +200,8 @@ async function main() {
     const logoRaw = (r[iLogo] ?? "").trim();
     const eurRaw = (r[iEur] ?? "").trim();
     const eur = eurRaw ? parseInt(eurRaw.replace(/[^\d]/g, ""), 10) : null;
+    // Hintergrundfarbe je Logo (optional, aus der „Hintergrund“-Spalte)
+    const bg = iBg >= 0 ? (r[iBg] ?? "").trim() : "";
 
     const logoCellUrl = extractUrl(logoRaw);
     const override = LOGO_OVERRIDES[name];
@@ -217,6 +222,7 @@ async function main() {
       eur: eur ?? null,
       url: override?.url ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null),
       logo,
+      bg: bg || null,
     });
   }
 
