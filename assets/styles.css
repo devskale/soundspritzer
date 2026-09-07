@@ -1054,6 +1054,21 @@ h1 em {
       border-radius: clamp(.35rem, .8vw, .6rem);
       padding: clamp(.5rem, .9vw, .9rem);
     }
+    /* Optionale Kategorie (Sheet-Spalte „Typ“): Logo oben, Etikett darunter */
+    .sponsor-card--typed {
+      flex-direction: column;
+      gap: clamp(.3rem, .6vw, .5rem);
+    }
+    .sponsor-type {
+      font-size: clamp(.5rem, .85vw, .62rem);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      white-space: nowrap;
+    }
+    .sponsor-card--tile.sponsor-card--typed .sponsor-type {
+      color: var(--ink);
+    }
 
         /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */
     .support-cta {

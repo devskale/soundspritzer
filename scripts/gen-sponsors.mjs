@@ -156,6 +156,14 @@ async function fetchLogo(url, name) {
   }
 }
 
+/** Boolean-artige Typ-Werte (x, ja, wahr, 1) → Label „Partner“, sonst Text. */
+function normalizePartner(v) {
+  const low = v.trim().toLowerCase();
+  if (!low) return null;
+  if (/^(x|ja|j|wahr|yes|y|1|true|partner)$/.test(low)) return "Partner";
+  return v.trim();
+}
+
 async function main() {
   mkdirSync(LOGO_DIR, { recursive: true });
 
@@ -182,6 +190,9 @@ async function main() {
   const iEur = header.indexOf("eur");
   // „URL“-Spalte: Sponsor-Weblink kommt direkt aus dem Sheet.
   const iUrl = header.indexOf("url");
+  // „Typ“-Spalte: Kategorie/Label je Logo (z. B. „Technologiepartner“, sonst
+  // „Partner“/„Sponsor“). Beliebig benennbar: typ/type/kategorie/art/partner.
+  const iType = header.findIndex((h) => /^(typ|type|kategorie|art|partner)$/.test(h));
   // „Hintergrund“-Spalte: Optionale Hintergrundfarbe je Logo (z. B. #fff für
   // dunkle Logos auf hellem Grund). Jede Spalte, die hinter-/background/bg heißt.
   const iBg = header.findIndex((h) => /hintergrund|background|^bg$/.test(h));
@@ -204,6 +215,9 @@ async function main() {
     const eur = eurRaw ? parseInt(eurRaw.replace(/[^\d]/g, ""), 10) : null;
     // Hintergrundfarbe je Logo (optional, aus der „Hintergrund“-Spalte)
     const bg = iBg >= 0 ? (r[iBg] ?? "").trim() : "";
+    // Kategorie/Label je Logo (optional, aus der „Typ“/„Partner“-Spalte).
+    // Leere/Boolean-artige Werte (x, ja, wahr, 1) → Label „Partner“.
+    const type = iType >= 0 ? (r[iType] ?? "").trim() : "";
 
     const logoCellUrl = extractUrl(logoRaw);
     const override = LOGO_OVERRIDES[name];
@@ -229,6 +243,7 @@ async function main() {
       url,
       logo,
       bg: bg || null,
+      type: type ? normalizePartner(type) : null,
     });
   }
 

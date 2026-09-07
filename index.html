@@ -233,6 +233,11 @@
         } else {
           a.appendChild(el("span", "sponsor-name", s.name));
         }
+        // Optionales Kategorie-Etikett (Sheet-Spalte „Typ“, z. B. Technologiepartner)
+        if (s.type) {
+          a.classList.add("sponsor-card--typed");
+          a.appendChild(el("span", "sponsor-type", s.type));
+        }
         return a;
       }
 
