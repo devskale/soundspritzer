@@ -22,8 +22,21 @@ Ein Diplomarbeitsprojekt von drei Schülern der Akademie der Wirtschaft Neusiedl
 | `scripts/serve.mjs` | Lokaler Dev-Server mit Live-Reload |
 | `bildmat/` | Bildmaterial-Exploration (ArchiVMaterial) |
 | `_drafts/` | Archiv — nicht deployed |
+| `finanz-recht.md` | Finanzrechtliche Recherche + Belegsammlung B1–B13 (Rechnungsstellung, Gewerbe, Verein, Spendenabsetzbarkeit) |
+| `sponsoring-rechnung.md` | Die klare Linie: Sponsoren wollen immer eine Rechnung (= echtes Sponsoring = Umsatz); Entscheidung „Laurens als Veranstalter"; Gewerbe vs. Verein |
 | `spenden-recherche.md` | Recherche Stripe → Revolut |
 | `status.md` | Projekt-Status, Entscheidungen, TODOs |
+
+## Finanz & Recht — Dokumente (Index)
+
+Vollständige, belegte finanzrechtliche Grundlage fürs Event. Zusammenspiel:
+
+1. **`finanz-recht.md`** — die Recherche-Basis mit Belegen **B1–B13** (oesterreich.gv.at, WKO, AMS, USP, Stripe, BMF, Fundraising Verband Austria).
+2. **`sponsoring-rechnung.md`** — die anwendbare Linie: **Sponsoren wollen eine Rechnung — immer** → echtes Sponsoring = Umsatz; **Laurens ist der Veranstalter**; Gewerbe (sofort) vs. Verein (2027+).
+3. **`spenden-recherche.md`** — Stripe Payment Link → Revolut (nur für optionale Besucher-Spenden, nicht fürs Sponsoring).
+4. **`status.md`** — Entscheidungen (Veranstalter = Laurens, Kontostruktur BKS/Revolut) + offene TODOs.
+
+**Kernaussage in einem Satz:** Sponsoren wollen eine Rechnung — immer → Laurens' Gewerbe (sofort) stellt die Rechnungen auf seinen eigenen Namen/Konten; ein Verein lohnt erst für wiederkehrende Events (2027+).
 
 ## Lokal entwickeln
 
