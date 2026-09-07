@@ -1023,7 +1023,9 @@ h1 em {
       /* Gold ggf. mit dezenter Abtrennung */
       padding-bottom: clamp(.2rem, .6vw, .6rem);
     }
-    /* Logo-Wand: nur Logos — Größe = Sponsor-Klasse (EUR-Tier), kein Kasten */
+    /* Logo-Wand: nur Logos — Größe wird FAIR je Logo in JS berechnet
+       (Flächen-Konstanz: jedes Logo belegt in seinem Tier dieselbe Pixel-Fläche,
+       egal ob rund, quadratisch oder breit). Kein Kasten, keine Objekt-Box. */
     .sponsor-card {
       display: flex;
       align-items: center;
@@ -1041,32 +1043,10 @@ h1 em {
       outline-offset: 4px;
       border-radius: 2px;
     }
+    /* Freie Größe; JS setzt width/height inline für Flächen-Konstanz */
     .sponsor-logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    /* Faires Logo-Format: jede Karte gibt jedem Logo eine FESTE Box (W×H).
-       object-fit: contain skaliert das Logo ins Seitenverhältnis,
-       OHNE es zu verzerren. So belegt jedes Logo — egal ob breit (Raiffeisen)
-       oder quadratisch (GWP) — dieselbe Fläche je Tier. */
-    .sponsor-card.tier-large {
-      width: clamp(260px, 34vw, 340px); /* größere Gold-Box */
-      height: clamp(130px, 16vw, 170px);
-    }
-    .sponsor-card.tier-medium {
-      width: clamp(190px, 26vw, 250px);
-      height: clamp(95px, 12vw, 128px);
-    }
-    /* Einzelnes Logo: skale ist breit & satt → braucht weniger real estate */
-    .sponsor-card[data-slug="skale-dev"],
-    .sponsor-card[data-slug="skale"] {
-      width: clamp(150px, 19vw, 180px);
-      height: clamp(64px, 7vw, 76px);
-    }
-    .sponsor-card.tier-small {
-      width: clamp(140px, 18vw, 180px);
-      height: clamp(72px, 9vw, 92px);
+      width: auto;
+      height: auto;
     }
 
         /* CTA unter der Reihe — Funnel zur Unterstützen-Seite */

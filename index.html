@@ -253,6 +253,36 @@
           rest.forEach(function (s) { r.appendChild(card(s)); });
           run.appendChild(r);
         }
+
+        // FAIRES LOGO-FORMAT (Flächen-Konstanz): belege je Logo & Tier dieselbe
+        // Pixel-Fläche, unabhängig vom Seitenverhältnis. Formel: für Ziel-Fläche A
+        // und Seitenverhältnis r = w/h → h = sqrt(A/r), w = sqrt(A*r)
+        // (Produkt w*h = A). Gold > Medium > Small über die Ziel-Fläche.
+        var AREA = { large: 22000, medium: 10000, small: 5600 };
+        function setFairSize(img, tier) {
+          var A = AREA[tier] || AREA.small;
+          var w = img.naturalWidth, h = img.naturalHeight;
+          function apply(r) {
+            if (!r || r <= 0 || !isFinite(r)) r = 1;
+            // Begrenzung: nicht breiter als der verfügbare Raum
+            img.style.width = Math.round(Math.sqrt(A * r)) + "px";
+            img.style.height = Math.round(Math.sqrt(A / r)) + "px";
+          }
+          if (w > 0 && h > 0) { apply(w / h); return; }
+          // SVG ohne angegebene Pixelmaße → viewBox auslesen
+          fetch(img.src).then(function (res) { return res.text(); }).then(function (txt) {
+            var m = txt.match(/viewBox="([-0-9.]+)\s+([-0-9.]+)\s+([-0-9.]+)\s+([-0-9.]+)"/);
+            apply(m ? (parseFloat(m[3]) / parseFloat(m[4])) : 1);
+          }).catch(function () { apply(1); });
+        }
+        var all = run.querySelectorAll("img.sponsor-logo");
+        for (var i = 0; i < all.length; i++) {
+          (function (im) {
+            var tier = (im.closest(".sponsor-card").className.match(/tier-(\w+)/) || [])[1] || "small";
+            if (im.complete && im.naturalWidth) { setFairSize(im, tier); }
+            else { im.addEventListener("load", function () { setFairSize(im, tier); }); }
+          })(all[i]);
+        }
       }
 
       function load() {
