@@ -1,6 +1,6 @@
 # SunDowner — Finanz & Recht: Rechnungsstellung & Band-Zahlung
 
-**Stand:** Recherche aus Primärquellen (oesterreich.gv.at, WKO, USP, AMS).
+**Stand:** Recherche aus Primärquellen (oesterreich.gv.at, WKO, USP, AMS). Alle Aussagen mit direkten Zitaten belegt (siehe [Belegsammlung](#belegsammlung) unten).
 **Ziel:** Wie die Schülergruppe Sponsoring-Geld einnimmt, eine Rechnung stellt und damit die Band (yourynot) bezahlt — aus finanzrechtlicher Sicht (Österreich).
 
 **Kernfrage:** Wer kann Rechnungen stellen? → **Zwei realistische Optionen: Laurens als Einzelunternehmer (sofort) oder ein Verein (erst nach ~5–8 Wochen).**
@@ -45,6 +45,7 @@ Laurens (19, volljährig) meldet ein **freies Gewerbe** an und wird Kleinunterne
 
 - **Freies Gewerbe** → **keine Befähigung/Prüfung nötig**, nur Anmeldung.
 - Deckt exakt euren Fall ab: Künstler-Engagement (Band), Sponsoring, Event-Abwicklung.
+- **Beleg:** WKO-Fachverband „Werbung und Marktkommunikation" — Tätigkeitsprofil in der Veranstaltungsorganisation nennt exakt diesen Gewerbewortlaut aus der Bundeseinheitlichen Liste der freien Gewerbe; Haupttätigkeiten umfassen u. a. „Engagements von Künstlern", „Sponsoring", „operative Abwicklung von Veranstaltungen". [Beleg B4](#beleg-b4)
 
 ## Schritte & Kosten
 
@@ -56,7 +57,7 @@ Laurens (19, volljährig) meldet ein **freies Gewerbe** an und wird Kleinunterne
 | 4 | **Rechnungen** ohne USt, Hinweis „§ 6 Abs 1 Z 27 UStG" | 0 € |
 | 5 | **Bankkonto** (Laurens' Revolut, EUR/SEPA) | 0 € |
 
-> **⚠️ Kleinunternehmergrenze (korrigiert):** Seit **1.1.2025** gilt **55.000 € netto Jahresumsatz** (WKO/USP) — nicht mehr 35.000 €. Für ein einmaliges Event völlig unkritisch.
+> **⚠️ Kleinunternehmergrenze (korrigiert):** Seit **1.1.2025** gilt **55.000 € netto Jahresumsatz** — nicht mehr 35.000 €. **Beleg:** WKO-FAQ: „Kleinunternehmer sind Unternehmer … deren Umsätze die Grenze von 55.000 EUR weder im laufenden noch im vorangegangenen Kalenderjahr überschritten haben." [Beleg B5](#beleg-b5) · AMS: „Bis zu einem Jahresumsatz von 55.000 Euro brutto gelten Sie als Kleinunternehmer_in und sind umsatzsteuerbefreit." [Beleg B6](#beleg-b6)
 
 ## WKO-Umlagen (korrigiert)
 
@@ -67,7 +68,13 @@ Laurens (19, volljährig) meldet ein **freies Gewerbe** an und wird Kleinunterne
 | **KU2** (Dienstgeberzuschlag) | 0 € — nur bei **Dienstnehmern** | ❌ keine |
 | **Grundumlage** (Fachgruppe) | **~145 €/Jahr** (Richtwert) | ✅ einzige laufende Kosten |
 
-**Für Laurens konkret:** Anmeldung 0 € + KU1 0 € + KU2 0 €. **Grundumlage** im Gründungsjahr nur **anteilig (~70 €)**, und dank **Neugründerprivileg** (seit 1.1.2019) im **Folgejahr 0 €**. → **Realistisch ~0 € sofort, evtl. ~70 € Grundumlage für das Gründungsjahr.**
+**Belege:**
+- **Gewerbeanmeldung 0 €:** AMS: „Die Gewerbeanmeldung selbst ist kostenlos, es fallen weder Stempelgebühren noch Bundesverwaltungsabgaben an." [Beleg B6](#beleg-b6)
+- **KU1-Freigrenze 150.000 €:** WKO Kammerumlagen-FAQ: „Übersteigen die im Inland erzielten steuerbaren Netto-Umsätze im Kalenderjahr nicht 150.000,- EUR, so ist keine KU 1 zu entrichten." [Beleg B7](#beleg-b7)
+- **KU2 nur bei Dienstnehmern:** WKO: „Grundsätzlich hat jedes Mitglied, das Dienstnehmer beschäftigt, die KU 2 zu entrichten." [Beleg B7](#beleg-b7)
+- **Grundumlage + Neugründerprivileg:** WKO: „Wer erstmalig … eine Berechtigung erwirbt … ist in dem auf das Jahr des Erwerbs … folgenden Kalenderjahr von der Pflicht zur Entrichtung der Grundumlage befreit. Dieses ‚Neugründerprivileg' gilt seit 1.1.2019." [Beleg B7](#beleg-b7)
+
+**Für Laurens konkret:** Anmeldung 0 € + KU1 0 € + KU2 0 €. **Grundumlage** im Gründungsjahr nur **anteilig (~70 €)**, und dank **Neugründerprivileg** im **Folgejahr 0 €**. → **Realistisch ~0 € sofort, evtl. ~70 € Grundumlage für das Gründungsjahr.**
 
 ## Ablauf fürs Event
 
@@ -105,7 +112,8 @@ Zahlbar innerhalb von 14 Tagen auf IBAN [Laurens' IBAN].
 
 ## Risiken (Option A)
 - **Es haftet Laurens' Privatvermögen** — er trägt das unternehmerische Risiko. Die anderen Schüler haften nicht automatisch mit. **Intern klar absprechen.**
-- **Einkommensteuer**: Bleibt Gewinn übrig (Sponsoring minus Band/Food), ist das Laurens' Einkommen und ggf. einkommensteuerpflichtig. Bei einem einmaligen Event, wo das Geld fast komplett an die Band geht, meist unkritisch — aber dokumentieren.
+- **Einkommensteuer**: Bleibt Gewinn übrig (Sponsoring minus Band/Food), ist das Laurens' Einkommen und ggf. einkommensteuerpflichtig. Bei einem einmaligen Event, wo das Geld fast komplett an die Band geht, meist unkritisch — aber dokumentieren. **Beleg:** AMS: „Auf Ihre Gewinne aus der gewerblichen Tätigkeit ist Einkommensteuer zu entrichten." [Beleg B6](#beleg-b6)
+- **SVS-Beiträge**: Als Gewerbetreibender ist man bei der SVS anzumelden (Kranken-/Pensions-/Unfallversicherung, in der Startphase Mindestbeiträge). Für ein einmaliges, gewinnarmes Event meist gering, aber einplanen. **Beleg:** AMS: „Als Gewerbetreibende_r sind Sie verpflichtet, sich bei der Sozialversicherungsanstalt der Selbständigen (SVS) anzumelden." [Beleg B6](#beleg-b6)
 - **„Spende" vs. „Sponsoring"**: Da Laurens Werbung als Gegenleistung gibt, ist es **echtes Sponsoring** = Umsatz, keine Spende. Passt zur Kleinunternehmer-Rechnung.
 
 ---
@@ -127,9 +135,11 @@ Ein Verein ist eine **juristische Person** und kann Rechnungen stellen + die Ban
 
 **Kernregel (oesterreich.gv.at):** Mit Einlangen der Errichtungsanzeige läuft eine Frist von **4 Wochen** (bei Anhaltspunkten für Gesetzwidrigkeit per Bescheid verlängerbar auf **max. 6 Wochen**). Wenn die Behörde nichts erklärt, entsteht der Verein **mit Ablauf der Frist automatisch als Rechtsperson**. Entsteht **früher**, wenn die Behörde per Bescheid ausdrücklich zur Aufnahme der Tätigkeit einlädt (kein garantierter Schnellweg).
 
+> **Direktes Zitat (oesterreich.gv.at):** „Mit dem Einlangen der Errichtungsanzeige bei der zuständigen Vereinsbehörde beginnt eine Frist von vier Wochen zu laufen." — „Wenn die Behörde die Vereinsgründung nicht innerhalb von vier bzw. sechs Wochen für gesetzwidrig erklärt, entsteht der Verein mit Ablauf dieser Frist als Rechtsperson." [Beleg B1](#beleg-b1)
+
 **⚠️ Kein „Verein in Gründung"-Status** (anders als GmbH i.G.): Es gibt nur Errichtung/Entstehung. Vor der Entstehung **keine gültige Rechnung** im eigenen Namen möglich.
 
-**⚠️ Haftung vor Entstehung:** „Für Handlungen im Namen des Vereins vor seiner Entstehung haften die Handelnden persönlich zur ungeteilten Hand (Gesamtschuldner)." Rechte/Pflichten werden erst mit Entstehung für den Verein wirksam.
+**⚠️ Haftung vor Entstehung:** > **Direktes Zitat (oesterreich.gv.at):** „Für Handlungen im Namen des Vereins vor seiner Entstehung haften die Handelnden persönlich zur ungeteilten Hand (Gesamtschuldner)." Rechte/Pflichten werden erst mit Entstehung für den Verein wirksam. [Beleg B1](#beleg-b1)
 
 ## Kosten (oesterreich.gv.at — korrigiert gegenüber früherer „0 €"-Aussage)
 
@@ -139,6 +149,8 @@ Ein Verein ist eine **juristische Person** und kann Rechnungen stellen + die Ban
 | Beilagengebühren (Statuten, 6 €/Bogen) | **bis 36,00 €** |
 | Kopie Statuten + erster ZVR-Auszug | 0 € (gebührenfrei) |
 | Bescheid Einladung zur Tätigkeit (positiv, auf Antrag) | 6,50 € |
+
+> **Direktes Zitat (oesterreich.gv.at):** „Für die Anzeige: 21 Euro Bundesgebühr. Zusätzlich Beilagengebühren (für beigelegte Statuten): 6 Euro pro Bogen (max. 36 Euro)." [Beleg B1](#beleg-b1)
 
 → **Realistisch ~27–57 €.** Gebühren nach Abschluss per Zahlschein.
 
@@ -159,10 +171,46 @@ Wenn ihr **jetzt** (Anfang September) startet: Anmeldung ~Mitte September → Fr
 
 ---
 
-## Quellen
-- https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/vereine/Seite.220300 (Vereinsgründung: Kosten, Fristen, Haftung)
-- https://www.wko.at/steuern/kammerumlagen-faq (KU1-Freigrenze 150k, Grundumlage, Neugründerprivileg)
-- https://www.wko.at/steuern/kleinunternehmerregelung-oesterreich-faq (Kleinunternehmergrenze 55.000 €)
-- https://www.usp.gv.at/themen/steuern-finanzen/umsatzsteuer-ueberblick/.../kleinunternehmen.html (Kleinunternehmerregelung seit 1.1.2025)
-- https://www.wko.at/information-consulting/werbung-marktkommunikation/eventagentur (freies Gewerbe Eventmanagement)
-- https://www.ams.at/arbeitsuchende/topicliste/gewerbeberechtigung (Gewerbeanmeldung kostenlos)
+# Belegsammlung
+
+Direkte Zitate aus den Primärquellen, die die Kernaussagen dieses Dokuments stützen.
+
+<a name="beleg-b1"></a>
+**B1 — Vereinsgründung (oesterreich.gv.at)** · https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/vereine/Seite.220300
+> „Mit dem Einlangen der Errichtungsanzeige bei der zuständigen Vereinsbehörde beginnt eine Frist von vier Wochen zu laufen."
+> „Wenn die Behörde die Vereinsgründung nicht innerhalb von vier bzw. sechs Wochen für gesetzwidrig erklärt, entsteht der Verein mit Ablauf dieser Frist als Rechtsperson."
+> „Für Handlungen im Namen des Vereins vor seiner Entstehung haften die Handelnden persönlich zur ungeteilten Hand (Gesamtschuldner)."
+> „Für die Anzeige: 21 Euro Bundesgebühr. Zusätzlich Beilagengebühren (für beigelegte Statuten): 6 Euro pro Bogen (max. 36 Euro). Kopie der geltenden Statuten und erster Auszug aus dem Vereinsregister: gebührenfrei."
+
+<a name="beleg-b4"></a>
+**B4 — Freies Gewerbe Eventmanagement (WKO)** · https://www.wko.at/information-consulting/werbung-marktkommunikation/eventagentur
+> „Gewerbewortlaut entsprechend der Bundeseinheitlichen Liste der freien Gewerbe: **Organisation von Veranstaltungen, Märkten und Messen (Eventmanagement), Sponsoring-Agentur**"
+> Haupttätigkeiten umfassen u. a. „Engagements von Künstlern", „Sponsoring", „operative Abwicklung von Veranstaltungen".
+
+<a name="beleg-b5"></a>
+**B5 — Kleinunternehmerregelung (WKO FAQ)** · https://www.wko.at/steuern/kleinunternehmerregelung-oesterreich-faq
+> „Kleinunternehmer sind Unternehmer … deren Umsätze die Grenze von 55.000 EUR weder im laufenden noch im vorangegangenen Kalenderjahr überschritten haben. Die neue Grenze ist eine Brutto-Grenze, die fiktive Umsatzsteuer ist nicht mehr herauszurechnen."
+
+<a name="beleg-b6"></a>
+**B6 — Freies Gewerbe: Kosten (AMS)** · https://www.ams.at/arbeitsuchende/topicliste/freie-gewerbe
+> „Die Gewerbeanmeldung selbst ist kostenlos, es fallen weder Stempelgebühren noch Bundesverwaltungsabgaben an."
+> „Bis zu einem Jahresumsatz von 55.000 Euro brutto gelten Sie als Kleinunternehmer_in und sind umsatzsteuerbefreit."
+> „Als Gewerbetreibende_r sind Sie verpflichtet, sich bei der Sozialversicherungsanstalt der Selbständigen (SVS) anzumelden."
+> „Auf Ihre Gewinne aus der gewerblichen Tätigkeit ist Einkommensteuer zu entrichten."
+
+<a name="beleg-b7"></a>
+**B7 — Kammerumlagen (WKO FAQ)** · https://www.wko.at/steuern/kammerumlagen-faq
+> „Übersteigen die im Inland erzielten steuerbaren Netto-Umsätze im Kalenderjahr nicht 150.000,- EUR, so ist keine KU 1 zu entrichten."
+> „Grundsätzlich hat jedes Mitglied, das Dienstnehmer beschäftigt, die KU 2 zu entrichten."
+> „Wer erstmalig … eine Berechtigung im Sinne des § 2 Abs. 1 WKG erwirbt … ist in dem auf das Jahr des Erwerbs der Berechtigung … folgenden Kalenderjahr von der Pflicht zur Entrichtung der Grundumlage befreit. Dieses ‚Neugründerprivileg' gilt seit 1.1.2019."
+> „Die Grundumlage ist bei jeder Fachorganisation unterschiedlich hoch … (Richtwert ~145 €/Jahr, je nach Fachgruppe)."
+
+---
+
+## Quellen (Übersicht)
+- **B1** oesterreich.gv.at — Vereinsgründung: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/vereine/Seite.220300
+- **B2** WKO — Kleinunternehmerregelung FAQ: https://www.wko.at/steuern/kleinunternehmerregelung-oesterreich-faq
+- **B3** USP — Kleinunternehmen (seit 1.1.2025): https://www.usp.gv.at/themen/steuern-finanzen/umsatzsteuer-ueberblick/
+- **B4** WKO — Eventagentur (freies Gewerbe): https://www.wko.at/information-consulting/werbung-marktkommunikation/eventagentur
+- **B5** WKO — Kammerumlagen FAQ: https://www.wko.at/steuern/kammerumlagen-faq
+- **B6** AMS — Freie Gewerbe: https://www.ams.at/arbeitsuchende/topicliste/freie-gewerbe
