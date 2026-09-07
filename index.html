@@ -266,15 +266,22 @@
         // FAIRES LOGO-FORMAT (Flächen-Konstanz): jedes Logo belegt in seinem Tier
         // dieselbe Pixel-Fläche, unabhängig vom Seitenverhältnis (rund/quadratisch/
         // breit). Formel: Ziel-Fläche A, r = w/h → h = sqrt(A/r), w = sqrt(A*r)
-        // (Produkt w*h = A). Gold > Medium > Small über die Ziel-Fläche.
+        // (Produkt w*h = A). Zusätzlich eine max-width-Kappe je Tier: wird ein
+        // Logo breiter als das Maximum, kappen wir die Breite und passen die Höhe
+        // so an, dass die Fläche (A) trotzdem konstant bleibt → real-estate fair.
         var AREA = { large: 24000, medium: 12000, small: 8000 };
+        var MAXW = { large: 320, medium: 230, small: 200 };
         function setLogoSize(img, tier) {
           var A = AREA[tier] || AREA.small;
+          var maxw = MAXW[tier] || MAXW.small;
           var w = img.naturalWidth, h = img.naturalHeight;
           function apply(r) {
             if (!r || r <= 0 || !isFinite(r)) r = 1;
-            img.style.width = Math.round(Math.sqrt(A * r)) + "px";
-            img.style.height = Math.round(Math.sqrt(A / r)) + "px";
+            var W = Math.round(Math.sqrt(A * r));
+            var H = Math.round(Math.sqrt(A / r));
+            if (W > maxw) { W = maxw; H = Math.round(A / maxw); } // Fläche bleibt A
+            img.style.width = W + "px";
+            img.style.height = H + "px";
           }
           if (w > 0 && h > 0) { apply(w / h); return; }
           // SVG ohne angegebene Pixelmaße → viewBox auslesen
