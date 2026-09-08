@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-08T10:12:33.894Z",
+  "updated": "2026-09-08T10:37:53.853Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
-      "role": "Steuerberatung OG",
+      "role": "",
       "tier": "large",
       "eur": 250,
       "url": "https://www.gwp.co.at/",
@@ -13,7 +13,7 @@
     },
     {
       "name": "Raiffeisen",
-      "role": "Landesbank Burgenland",
+      "role": "",
       "tier": "large",
       "eur": 200,
       "url": "https://www.raiffeisen.at/bgld/rlb-bgld/de/meine-bank/bankstellen/neusiedl-am-see.html",
@@ -23,41 +23,21 @@
     },
     {
       "name": "skale.dev",
-      "role": "Software Engineering",
+      "role": "SW Engineering",
       "tier": "small",
       "eur": null,
       "url": "https://skale.dev",
       "logo": "assets/skale_logo.png",
       "bg": null,
-      "type": "Technologiepartner"
+      "type": null
     },
     {
       "name": "Neusiedl am See",
-      "role": "Stadtgemeinde",
+      "role": "Tabor",
       "tier": "small",
       "eur": null,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
-      "bg": null,
-      "type": null
-    },
-    {
-      "name": "Joes Pub",
-      "role": "Bier & Pizza in Neusiedl am See",
-      "tier": "small",
-      "eur": null,
-      "url": "https://www.joespubneusiedl.at/",
-      "logo": "assets/sponsor-logos/joes-pub.png",
-      "bg": null,
-      "type": null
-    },
-    {
-      "name": "Akademie der Wirtschaft",
-      "role": "Neusiedl am See",
-      "tier": "small",
-      "eur": null,
-      "url": "https://www.akademie-der-wirtschaft.at/",
-      "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg",
       "bg": null,
       "type": null
     },
@@ -78,7 +58,7 @@
       "eur": null,
       "url": "https://glas-hautzinger.at/",
       "logo": "assets/sponsor-logos/hautzinger-glas.svg",
-      "bg": null,
+      "bg": "white",
       "type": null
     },
     {
@@ -103,37 +83,37 @@
     },
     {
       "name": "Malerei-HR",
-      "role": "",
+      "role": "Malermeisterbetrieb",
       "tier": "small",
       "eur": null,
       "url": "https://www.malerei-hr.at/",
       "logo": "assets/sponsor-logos/malerei-hr.png",
-      "bg": null,
+      "bg": "white",
       "type": null
     },
     {
       "name": "Sentinel-Group",
-      "role": "",
+      "role": "Sicherheit",
       "tier": "small",
       "eur": null,
       "url": "https://sentinel-group.com/",
       "logo": "assets/sponsor-logos/sentinel-group.png",
-      "bg": null,
+      "bg": "#000000",
       "type": null
     },
     {
       "name": "Finaplus",
-      "role": "",
+      "role": "Finanzdienstleistungen",
       "tier": "small",
       "eur": null,
       "url": "https://finaplus.at",
       "logo": "assets/sponsor-logos/finaplus.png",
-      "bg": null,
+      "bg": "white",
       "type": null
     },
     {
       "name": "Alexgartenhelp",
-      "role": "",
+      "role": "Gartenpflege",
       "tier": "small",
       "eur": null,
       "url": "https://www.alexgartenhelp.at/",
@@ -148,7 +128,7 @@
       "eur": null,
       "url": "https://zinniel.at/",
       "logo": "assets/sponsor-logos/zinniel-versicherung.png",
-      "bg": null,
+      "bg": "white",
       "type": null
     },
     {
@@ -158,7 +138,7 @@
       "eur": null,
       "url": "https://www.elra.at/",
       "logo": "assets/sponsor-logos/elra.svg",
-      "bg": null,
+      "bg": "#1a1a1a",
       "type": null
     },
     {
@@ -168,7 +148,7 @@
       "eur": null,
       "url": "https://www.dominik-weber.at/",
       "logo": "assets/sponsor-logos/dominik-weber.webp",
-      "bg": null,
+      "bg": "white",
       "type": null
     }
   ]

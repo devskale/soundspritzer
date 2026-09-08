@@ -213,10 +213,22 @@
         return n;
       }
 
+      // Helligkeit einer Hex-Farbe → dunkle Kacheln bekommen helle Etiketten
+      function bgIsDark(c) {
+        var m = /^#([0-9a-f]{6})$/i.exec(String(c || ""));
+        if (!m) return false;
+        var n = parseInt(m[1], 16);
+        return (0.299 * (n >> 16 & 255) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) < 140;
+      }
+
       function card(s) {
         var a = el("a", "sponsor-card tier-" + (s.tier || "small"));
-        // Optionale Hintergrundfarbe je Logo (aus der Sheet-Spalte „Hintergrund“)
-        if (s.bg) { a.style.backgroundColor = s.bg; a.classList.add("sponsor-card--tile"); }
+        // Hintergrund je Logo: Sheet-Spalte „Hintergrund“ (z. B. white für
+        // dunkle Logos), sonst Default hellgrau
+        var bg = s.bg || "#eaeaea";
+        a.style.backgroundColor = bg;
+        a.classList.add("sponsor-card--tile");
+        if (bgIsDark(bg)) a.classList.add("sponsor-card--dark");
         var slug = s.slug || String(s.name || "")
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
@@ -233,7 +245,11 @@
         } else {
           a.appendChild(el("span", "sponsor-name", s.name));
         }
-        // Optionales Kategorie-Etikett (Sheet-Spalte „Typ“, z. B. Technologiepartner)
+        // Name2 (Rolle/Branche) unter dem Logo, optional zusätzlich Typ-Etikett
+        if (s.role) {
+          a.classList.add("sponsor-card--typed");
+          a.appendChild(el("span", "sponsor-role", s.role));
+        }
         if (s.type) {
           a.classList.add("sponsor-card--typed");
           a.appendChild(el("span", "sponsor-type", s.type));

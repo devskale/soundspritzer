@@ -1049,23 +1049,37 @@ h1 em {
       width: auto;
       height: auto;
     }
-    /* Optionale Kachel je Logo (Sheet-Spalte „Hintergrund“, z. B. #fff für
-       dunkle Logos) — dezentes Polster, damit das Logo nicht randlos aufliegt */
+    /* Kachel je Logo (Sheet-Spalte „Hintergrund“, Default hellgrau) — dezentes
+       Polster, damit das Logo nicht randlos aufliegt */
     .sponsor-card--tile {
       border-radius: clamp(.35rem, .8vw, .6rem);
       padding: clamp(.5rem, .9vw, .9rem);
     }
-    /* Optionale Kategorie (Sheet-Spalte „Typ“): Logo oben, Etikett darunter */
+    /* Logo oben, Etikett(en) darunter (Name2 = Rolle, optional Typ) */
     .sponsor-card--typed {
       flex-direction: column;
       gap: clamp(.3rem, .6vw, .5rem);
     }
+    .sponsor-role,
     .sponsor-type {
       font-size: clamp(.5rem, .85vw, .62rem);
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--cream-soft);
+      color: rgba(43, 26, 32, .72); /* dunkle Tinte auf hellen Kacheln */
+      text-align: center;
+    }
+    .sponsor-role {
+      line-height: 1.5;
+      max-width: 12em;
+      overflow-wrap: anywhere; /* lange Einzelwörter (z. B. Malermeisterbetrieb) umbrechen */
+    }
+    .sponsor-type {
       white-space: nowrap;
+    }
+    /* Dunkle Kacheln (z. B. ELRA/Sentinel): Etiketten hell */
+    .sponsor-card--dark .sponsor-role,
+    .sponsor-card--dark .sponsor-type {
+      color: var(--cream-soft);
     }
     .sponsor-card--tile.sponsor-card--typed .sponsor-type {
       color: var(--ink);

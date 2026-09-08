@@ -46,6 +46,9 @@ const LOGO_OVERRIDES = {
   "Finaplus": { url: "https://www.finaplus.at/" },
   "Zinniel Versicherung": { url: "https://zinniel.at/" },
   "Dominik-Weber": { url: "https://www.dominik-weber.at/" },
+  // Dunkle Kacheln: gelbe Logos mit schwarzen/weißen Anteilen brauchen dunklen Grund
+  "Sentinel-Group": { bg: "#000000" },
+  "ELRA": { bg: "#1a1a1a" },
 };
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
@@ -253,7 +256,8 @@ async function main() {
       eur: eur ?? null,
       url,
       logo,
-      bg: bg || null,
+      // Sheet-Spalte „Hintergrund“ gewinnt, sonst bg aus LOGO_OVERRIDES
+      bg: bg || override?.bg || null,
       type: type ? normalizePartner(type) : null,
     });
   }
