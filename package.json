@@ -1,0 +1,12 @@
+{
+  "name": "soundspritzer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SunDowner — soundspritzer.at (statische Website, zero-dependency)",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "gen:sponsors": "node scripts/gen-sponsors.mjs"
+  }
+}
