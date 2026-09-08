@@ -13,6 +13,29 @@
   els.forEach(function (el) { el.textContent = "Stand: " + text; });
 })();
 
+/* ── Kopier-Helfer: Clipboard API, execCommand als Fallback ── */
+function copyToClipboard(text, done) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, legacy);
+  } else { legacy(); }
+  function legacy() {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+}
+function flashButton(btn, original) {
+  btn.textContent = "Kopiert ✓";
+  setTimeout(function () { btn.textContent = original; }, 2000);
+}
+function canonicalUrl() {
+  var el = document.querySelector("link[rel=canonical]");
+  return el ? el.href : "https://soundspritzer.at/";
+}
+
 /* ── Teilen: ein Button für alles ──
    Best Practices laut web.dev/articles/web-share + MDN:
    – Feature-Detect statt Browser-Sniffing
@@ -25,27 +48,9 @@
 (function () {
   var native = document.querySelector("[data-share-native]");
   if (!native) return;
-
-  /* Canonical zuerst, Hardcode als Fallback (web.dev: „share the page's
-     canonical URL instead of the current URL") */
-  var canonical = document.querySelector("link[rel=canonical]");
-  var URL = canonical ? canonical.href : "https://soundspritzer.at/";
+  var URL = canonicalUrl();
   var TEXT = "SunDowner — Seeblick, Sounds & Spritzer · 25.09.2026, 17–22 Uhr · Am Tabor, Neusiedl am See";
   var canNative = typeof navigator.share === "function";
-
-  function copyToClipboard(text, done) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, legacy);
-    } else { legacy(); }
-    function legacy() { /* Fallback für ältere/non-secure Kontexte */
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); done(); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-  }
 
   native.addEventListener("click", function () {
     if (canNative) {
@@ -54,30 +59,36 @@
           if (err && err.name !== "AbortError") throw err;
         });
     } else {
-      copyToClipboard(TEXT + " " + URL, function () {
-        native.textContent = "Kopiert ✓";
-        setTimeout(function () { native.textContent = "Teilen …"; }, 2000);
-      });
+      copyToClipboard(TEXT + " " + URL, function () { flashButton(native, "Teilen …"); });
     }
   });
 })();
 
-/* ── Embed-Code für Partner (partner.html): Codebox kopieren ── */
+/* ── Share-Kit: nackten Link kopieren ── */
+(function () {
+  var btn = document.querySelector("[data-copy-link]");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    copyToClipboard(canonicalUrl(), function () { flashButton(btn, "Link kopieren"); });
+  });
+})();
+
+/* ── Share-Kit: Caption/Text aus beliebigem Quell-Element kopieren ── */
+document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
+  var src = document.querySelector(btn.getAttribute("data-copy-source"));
+  if (!src) return;
+  btn.addEventListener("click", function () {
+    copyToClipboard(src.value.trim(), function () { flashButton(btn, btn.textContent); });
+  });
+});
+
+/* ── Embed-Code für Partner (partner.html, share.html): Codebox kopieren ── */
 (function () {
   var btn = document.querySelector("[data-embed-copy]");
   var code = document.querySelector("[data-embed-code]");
   if (!btn || !code) return;
   btn.addEventListener("click", function () {
     code.select(); code.setSelectionRange(0, code.value.length);
-    var done = function () {
-      btn.textContent = "Kopiert ✓";
-      setTimeout(function () { btn.textContent = "Code kopieren"; }, 2000);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(code.value).then(done, legacy);
-    } else { legacy(); }
-    function legacy() {
-      try { document.execCommand("copy"); done(); } catch (e) {}
-    }
+    copyToClipboard(code.value, function () { flashButton(btn, "Code kopieren"); });
   });
 })();

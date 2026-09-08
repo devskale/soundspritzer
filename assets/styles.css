@@ -1211,6 +1211,71 @@ h1 em {
     }
     .embed-code:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
+    /* ── Share-Kit (/share): Assets zum Mitnehmen ── */
+    .kit-intro {
+      max-width: 52ch; margin: .4rem auto 0; text-align: center;
+      color: var(--cream-soft); line-height: 1.7;
+    }
+    .kit-block {
+      margin: clamp(2.4rem, 6vw, 4rem) auto 0;
+      padding-top: clamp(1.6rem, 4vw, 2.6rem);
+      border-top: 1px solid var(--hairline);
+      max-width: 860px;
+      display: flex; flex-direction: column; align-items: center; gap: .9rem;
+    }
+    .kit-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic; font-weight: 500;
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      color: var(--cream);
+    }
+    .kit-hint { max-width: 56ch; text-align: center; font-size: .85rem; line-height: 1.7; color: var(--cream-soft); }
+    .kit-hint a { color: var(--gold); text-decoration: none; }
+    .kit-hint a:hover { text-decoration: underline; }
+    .kit-thumb-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+      margin-top: .4rem;
+    }
+    .kit-thumb {
+      display: flex; flex-direction: column; gap: .5rem;
+      width: 220px;
+      text-decoration: none;
+    }
+    .kit-thumb--sm { width: 150px; }
+    .kit-thumb img {
+      width: 100%; height: auto; display: block;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(34, 21, 40, .5);
+      transition: transform .25s ease; /* 200–300ms ease-out */
+    }
+    .kit-thumb:hover img, .kit-thumb:focus-visible img { transform: translateY(-4px) rotate(-.5deg); }
+    .kit-thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
+    .kit-thumb span {
+      font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-indent: .22em;
+      text-transform: uppercase; color: var(--cream-soft); text-align: center;
+      transition: color .25s ease;
+    }
+    .kit-thumb:hover span { color: var(--gold); }
+    .kit-caption {
+      width: 100%; max-width: 560px; text-align: left;
+      border: 1px solid var(--hairline); border-radius: 8px;
+      padding: .8rem 1rem;
+    }
+    .kit-caption summary {
+      cursor: pointer; font-size: .66rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--cream-soft);
+    }
+    .kit-caption summary:hover { color: var(--gold); }
+    .kit-caption[open] summary { margin-bottom: .7rem; }
+    .kit-caption textarea {
+      width: 100%; margin-bottom: .6rem;
+      padding: .7rem .9rem; border-radius: 6px;
+      background: rgba(34, 21, 40, .65); color: var(--cream);
+      border: 1px solid var(--hairline);
+      font-family: inherit; font-size: .78rem; line-height: 1.65;
+      resize: vertical;
+    }
+
     
     /* Mobile: Hero stapeln, Tabor kleiner, Offerings untereinander */
     @media (max-width: 640px) {
