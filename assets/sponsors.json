@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T10:37:53.853Z",
+  "updated": "2026-09-08T10:39:19.970Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -68,7 +68,7 @@
       "eur": null,
       "url": "https://www.roland-hamm.com/",
       "logo": "assets/sponsor-logos/roland-hamm.jpg",
-      "bg": null,
+      "bg": "black",
       "type": null
     },
     {
@@ -98,7 +98,7 @@
       "eur": null,
       "url": "https://sentinel-group.com/",
       "logo": "assets/sponsor-logos/sentinel-group.png",
-      "bg": "#000000",
+      "bg": "black",
       "type": null
     },
     {
@@ -138,7 +138,7 @@
       "eur": null,
       "url": "https://www.elra.at/",
       "logo": "assets/sponsor-logos/elra.svg",
-      "bg": "#1a1a1a",
+      "bg": "black",
       "type": null
     },
     {

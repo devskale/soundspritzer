@@ -1076,10 +1076,10 @@ h1 em {
     .sponsor-type {
       white-space: nowrap;
     }
-    /* Dunkle Kacheln (z. B. ELRA/Sentinel): Etiketten hell */
+    /* Dunkle Kacheln (z. B. bg=black): Etiketten in heller Komplementärfarbe */
     .sponsor-card--dark .sponsor-role,
     .sponsor-card--dark .sponsor-type {
-      color: var(--cream-soft);
+      color: var(--cream);
     }
     .sponsor-card--tile.sponsor-card--typed .sponsor-type {
       color: var(--ink);

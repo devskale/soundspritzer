@@ -213,12 +213,25 @@
         return n;
       }
 
-      // Helligkeit einer Hex-Farbe → dunkle Kacheln bekommen helle Etiketten
+      // Helligkeit der Kachel-Farbe (Hex, Farbname, rgb() …): dunkle Kacheln
+      // bekommen helle, komplementäre Etiketten
+      var lumCache = {};
       function bgIsDark(c) {
-        var m = /^#([0-9a-f]{6})$/i.exec(String(c || ""));
-        if (!m) return false;
-        var n = parseInt(m[1], 16);
-        return (0.299 * (n >> 16 & 255) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) < 140;
+        if (!c) return false;
+        c = String(c).trim().toLowerCase();
+        if (!(c in lumCache)) {
+          var probe = document.createElement("span");
+          probe.style.color = c;
+          probe.style.display = "none";
+          document.body.appendChild(probe);
+          var rgb = getComputedStyle(probe).color; // normalisiert zu rgb(a)
+          document.body.removeChild(probe);
+          var m = /(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/.exec(rgb);
+          lumCache[c] = m
+            ? (0.299 * m[1] + 0.587 * m[2] + 0.114 * m[3]) < 140
+            : false;
+        }
+        return lumCache[c];
       }
 
       function card(s) {
