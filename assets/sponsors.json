@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T10:39:19.970Z",
+  "updated": "2026-09-08T10:45:36.296Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -33,7 +33,7 @@
     },
     {
       "name": "Neusiedl am See",
-      "role": "Tabor",
+      "role": "",
       "tier": "small",
       "eur": null,
       "url": "https://www.neusiedlamsee.at/",
@@ -103,7 +103,7 @@
     },
     {
       "name": "Finaplus",
-      "role": "Finanzdienstleistungen",
+      "role": "Finanzierungen",
       "tier": "small",
       "eur": null,
       "url": "https://finaplus.at",
@@ -113,7 +113,7 @@
     },
     {
       "name": "Alexgartenhelp",
-      "role": "Gartenpflege",
+      "role": "Gartenbau",
       "tier": "small",
       "eur": null,
       "url": "https://www.alexgartenhelp.at/",
@@ -133,7 +133,7 @@
     },
     {
       "name": "ELRA",
-      "role": "",
+      "role": "Antriebstechnik",
       "tier": "small",
       "eur": null,
       "url": "https://www.elra.at/",
