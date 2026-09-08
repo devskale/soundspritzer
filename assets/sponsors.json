@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T11:22:27.518Z",
+  "updated": "2026-09-08T13:03:23.820Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -25,7 +25,7 @@
       "name": "Neusiedl am See",
       "role": "",
       "tier": "small",
-      "eur": null,
+      "eur": 0,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
       "bg": null,
@@ -34,8 +34,8 @@
     {
       "name": "Reisinger Energietechnik",
       "role": "",
-      "tier": "small",
-      "eur": null,
+      "tier": "large",
+      "eur": 800,
       "url": "https://www.reisinger-energietechnik.at/",
       "logo": "assets/sponsor-logos/reisinger-energietechnik.jpg",
       "bg": null,
@@ -44,8 +44,8 @@
     {
       "name": "Hautzinger Glas",
       "role": "",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": "assets/sponsor-logos/hautzinger-glas.svg",
       "bg": "white",
@@ -54,8 +54,8 @@
     {
       "name": "Roland Hamm",
       "role": "SEO Agentur",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": "https://www.roland-hamm.com/",
       "logo": "assets/sponsor-logos/roland-hamm.jpg",
       "bg": "black",
@@ -64,8 +64,8 @@
     {
       "name": "Lautner Heizung",
       "role": "",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": "assets/sponsor-logos/lautner-heizung.svg",
       "bg": null,
@@ -74,8 +74,8 @@
     {
       "name": "Malerei-HR",
       "role": "Malermeisterbetrieb",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": "assets/sponsor-logos/malerei-hr.png",
       "bg": "white",
@@ -84,8 +84,8 @@
     {
       "name": "Sentinel-Group",
       "role": "Sicherheit",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": "https://sentinel-group.com/",
       "logo": "assets/sponsor-logos/sentinel-group.png",
       "bg": "black",
@@ -94,8 +94,8 @@
     {
       "name": "Finaplus",
       "role": "Finanzierungen",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": "https://finaplus.at",
       "logo": "assets/sponsor-logos/finaplus.png",
       "bg": "white",
@@ -104,8 +104,8 @@
     {
       "name": "Alexgartenhelp",
       "role": "Gartenbau",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": "https://www.alexgartenhelp.at/",
       "logo": "assets/sponsor-logos/alexgartenhelp.jpg",
       "bg": null,
@@ -114,8 +114,8 @@
     {
       "name": "Zinniel Versicherung",
       "role": "",
-      "tier": "small",
-      "eur": null,
+      "tier": "large",
+      "eur": 200,
       "url": null,
       "logo": "assets/sponsor-logos/zinniel-versicherung.png",
       "bg": "white",
@@ -124,8 +124,8 @@
     {
       "name": "ELRA",
       "role": "Antriebstechnik",
-      "tier": "small",
-      "eur": null,
+      "tier": "large",
+      "eur": 200,
       "url": "https://www.elra.at/",
       "logo": "assets/sponsor-logos/elra.svg",
       "bg": "black",
@@ -134,8 +134,8 @@
     {
       "name": "Dominik-Weber",
       "role": "",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": null,
       "logo": "assets/sponsor-logos/dominik-weber.webp",
       "bg": "white",
@@ -144,8 +144,8 @@
     {
       "name": "skale.dev",
       "role": "SW Engineering",
-      "tier": "small",
-      "eur": null,
+      "tier": "medium",
+      "eur": 100,
       "url": "https://skale.dev",
       "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": "white",

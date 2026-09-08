@@ -12,15 +12,15 @@
   <meta property="og:url" content="https://soundspritzer.at/">
   <meta property="og:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
   <meta property="og:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt. 25.09.2026, 17–22 Uhr am Tabor.">
-  <meta property="og:image" content="https://soundspritzer.at/assets/og-image.jpg?v=2">
+  <meta property="og:image" content="https://soundspritzer.at/assets/og-image.jpg?v=3">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="1240">
+  <meta property="og:image:height" content="1330">
   <meta property="og:image:alt" content="SunDowner am Tabor — Seeblick, Sounds & Spritzer. 25.09.2026, 17–22 Uhr, Neusiedl am See. Musik, Foodtruck & Spritzerbar.">
   <meta property="og:locale" content="de_AT">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
   <meta name="twitter:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt.">
-  <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.jpg?v=2">
+  <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.jpg?v=3">
 
   <!-- oEmbed-Discovery: CMS (z.B. WordPress) können die nackte URL automatisch
        zur Event-Karte umwandeln. Statisches JSON — Query-Params werden ignoriert,
@@ -48,13 +48,20 @@
         "addressCountry": "AT"
       }
     },
-    "image": ["https://soundspritzer.at/assets/og-image.jpg?v=2"],
+    "image": ["https://soundspritzer.at/assets/og-image.jpg?v=3"],
     "description": "Open-Air-Event mit Livemusik & DJ, Foodtruck von Joe's Pub und Spritzerbar. Freier Eintritt über Neusiedl am See.",
-    "organizer": {
-      "@type": "Organization",
-      "name": "SunDowner — Schülerprojekt der Akademie der Wirtschaft Neusiedl am See",
-      "url": "https://soundspritzer.at/"
-    },
+    "organizer": [
+      {
+        "@type": "Organization",
+        "name": "Akademie der Wirtschaft Neusiedl am See",
+        "url": "https://www.akademie-der-wirtschaft.at/"
+      },
+      {
+        "@type": "Organization",
+        "name": "Joe's Pub Neusiedl am See",
+        "url": "https://www.joespubneusiedl.at/"
+      }
+    ],
     "isAccessibleForFree": true
   }
   </script>
@@ -275,6 +282,7 @@
           .replace(/[^a-z0-9]+/g, "-")
           .replace(/^-+|-+$/g, "");
         if (slug) a.setAttribute("data-slug", slug);
+        a.setAttribute("data-eur", s.eur == null ? "" : s.eur); // Realestate ∝ Sponsorgeld
         if (s.url) { a.href = s.url; a.target = "_blank"; a.rel = "noopener"; }
         if (s.logo) {
           var img = document.createElement("img");
@@ -316,20 +324,23 @@
           run.appendChild(grp);
         });
 
-        // FAIRES LOGO-FORMAT (Logo-Wall): jedes Logo wächst proportional zu
-        // seinem Seitenverhältnis r (flex-grow = r), sodass die Segment-Reihe
-        // die volle Seitenbreite füllt; gleiche Höhe je Tier. Bei zu vielen
-        // Logos für eine Zeile wird automatisch umgebrochen (flex-wrap).
-        // FAIRES LOGO-FORMAT (Flächen-Konstanz): jedes Logo belegt in seinem Tier
-        // dieselbe Pixel-Fläche, unabhängig vom Seitenverhältnis (rund/quadratisch/
-        // breit). Formel: Ziel-Fläche A, r = w/h → h = sqrt(A/r), w = sqrt(A*r)
-        // (Produkt w*h = A). Zusätzlich eine max-width-Kappe je Tier: wird ein
-        // Logo breiter als das Maximum, kappen wir die Breite und passen die Höhe
-        // so an, dass die Fläche (A) trotzdem konstant bleibt → real-estate fair.
-        var AREA = { large: 24000, medium: 12000, small: 8000 };
-        var MAXW = { large: 320, medium: 230, small: 200 };
-        function setLogoSize(img, tier) {
-          var A = AREA[tier] || AREA.small;
+        // FAIRES LOGO-FORMAT (Realestate ∝ Sponsorgeld): jedes Logo belegt eine
+        // Fläche proportional zu seinem EUR-Betrag (80 px²/EUR, gekappt bei
+        // 64000; EUR 0/leer = Sachpartner mit Basis-Fläche). Formel: Ziel-Fläche
+        // A, r = w/h → w = sqrt(A*r), h = sqrt(A/r) (Produkt w*h = A). Eine
+        // max-width-Kappe je Tier verhindert ausufernde Breiten — die Höhe wird
+        // so angepasst, dass die Fläche (A) trotzdem konstant bleibt.
+        var K_EUR = 80;                 // Fläche je EUR
+        var A_FREE = 6000;              // Sachpartner (EUR 0/leer)
+        var AREA_MIN = 6000, AREA_MAX = 64000;
+        var MAXW = { large: 400, medium: 240, small: 200 };
+        function areaFor(eur) {
+          var v = parseInt(eur, 10);
+          if (!v || v <= 0) return A_FREE;
+          return Math.max(AREA_MIN, Math.min(AREA_MAX, v * K_EUR));
+        }
+        function setLogoSize(img, tier, eur) {
+          var A = areaFor(eur);
           var maxw = MAXW[tier] || MAXW.small;
           var w = img.naturalWidth, h = img.naturalHeight;
           function apply(r) {
@@ -351,9 +362,11 @@
         var all = run.querySelectorAll("img.sponsor-logo");
         for (var i = 0; i < all.length; i++) {
           (function (im) {
-            var tier = (im.closest(".sponsor-card").className.match(/tier-(\w+)/) || [])[1] || "small";
-            if (im.complete && im.naturalWidth) { setLogoSize(im, tier); }
-            else { im.addEventListener("load", function () { setLogoSize(im, tier); }); }
+            var c = im.closest(".sponsor-card");
+            var tier = (c.className.match(/tier-(\w+)/) || [])[1] || "small";
+            var eur = c.getAttribute("data-eur");
+            if (im.complete && im.naturalWidth) { setLogoSize(im, tier, eur); }
+            else { im.addEventListener("load", function () { setLogoSize(im, tier, eur); }); }
           })(all[i]);
         }
       }
