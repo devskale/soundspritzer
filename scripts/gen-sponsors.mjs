@@ -8,10 +8,10 @@
  * Spalten: Name, Name2 (Rolle/Branche), Logo, EUR, Kommentar
  *
  * Logo-Auflösung (in dieser Reihenfolge):
- *   1. LOGO_OVERRIDES  — lokal gepflegte Assets (überlebt jeden Rebuild)
- *   2. Sheet-Spalte „Logo" mit BILD-URL (…png/jpg/webp/…) oder Google-Drive-Link
- *      → wird automatisch nach assets/sponsor-logos/<slug>.png geladen
- *   3. sonst null → Renderer zeigt den Namen als Text
+ *   1. Sheet-Spalte „Logo": Kurzname → Datei in bildmat/ oder assets/ gesucht;
+ *      oder BILD-URL (…png/jpg/webp/…) bzw. Google-Drive-Link
+ *      → wird automatisch nach assets/sponsor-logos/<slug>.<ext> geladen
+ *   2. sonst null → Renderer zeigt den Namen als Text
  * Reine Website-URLs in der Logo-Spalte gelten als Sponsor-Link (kein Download).
  *
  * Robustheit: Schlägt der Fetch fehl oder liefert leer, bleibt die
@@ -25,31 +25,6 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(root, "assets", "sponsors.json");
 const LOGO_DIR = join(root, "assets", "sponsor-logos");
 
-/**
- * Lokale Logo-Overrides: Name (exakt wie im Sheet) → lokales Asset.
- * Für Logos, die nur als Datei im Repo vorliegen (z.B. vom Sponsor
- * zugeliefert). Das Sheet gewinnt sonst automatisch.
- */
-const LOGO_OVERRIDES = {
-  "GWP GRÖSZ WEISZ PARTNER": { logo: "assets/gwp_logo.png", url: "https://www.gwp.co.at/" },
-  "skale.dev": { logo: "assets/skale_logo.png", url: "https://skale.dev/" },
-  "Neusiedl am See": { logo: "assets/neusiedl_logo.png", url: "https://www.neusiedlamsee.at/" },
-  "Joes Pub": { logo: "assets/joes-pub.png", url: "https://www.joespubneusiedl.at/" },
-  "Akademie der Wirtschaft": { logo: "assets/akwi.jpg", url: "https://www.akademie-der-wirtschaft.at/" },
-  // URLs für Sponsoren, deren Sheet-URL-Spalte keinen gültigen Link enthält
-  // (dort steht teils nur der Seitentitel). Steht später eine echte URL im
-  // Sheet, gewinnt diese automatisch (Sheet vor Override).
-  "Hautzinger Glas": { url: "https://glas-hautzinger.at/" },
-  // lautner-heizung.at ist ein Hosting-Platzhalter — aktuelles Profil im HSH-Portal
-  "Lautner Heizung": { url: "https://www.holzdiesonne.net/burgenland/lautner-heizung-gmbh/" },
-  "Malerei-HR": { url: "https://www.malerei-hr.at/" },
-  "Finaplus": { url: "https://www.finaplus.at/" },
-  "Zinniel Versicherung": { url: "https://zinniel.at/" },
-  "Dominik-Weber": { url: "https://www.dominik-weber.at/" },
-  // Dunkle Kacheln: gelbe Logos mit schwarzen/weißen Anteilen brauchen dunklen Grund
-  "Sentinel-Group": { bg: "#000000" },
-  "ELRA": { bg: "#1a1a1a" },
-};
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 
@@ -234,17 +209,13 @@ async function main() {
     const type = iType >= 0 ? (r[iType] ?? "").trim() : "";
 
     const logoCellUrl = extractUrl(logoRaw);
-    const override = LOGO_OVERRIDES[name];
     const slug = slugify(name);
-    // URL bevorzugt aus der „URL“-Spalte, sonst Override, sonst URL in Logo-Spalte
+    // URL bevorzugt aus der „URL“-Spalte, sonst URL in Logo-Spalte
     const url = (iUrl >= 0 ? extractUrl(r[iUrl] ?? "") : null)
-      ?? override?.url
       ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null);
 
     // Logo-Spalte IST die Bildquelle (Dateiname ohne Endung → bildmat/assets).
-    // LOGO_OVERRIDES liefert nur noch die URL (Weblink), nicht das Bild.
     let logo = resolveLocalLogo(logoRaw, slug);
-    if (!logo && override?.logo) logo = override.logo; // Fallback auf gepflegtes Asset
     if (!logo && logoCellUrl && isImageUrl(logoCellUrl)) {
       logo = await fetchLogo(logoCellUrl, name);
     }
@@ -256,8 +227,8 @@ async function main() {
       eur: eur ?? null,
       url,
       logo,
-      // Sheet-Spalte „Hintergrund“ gewinnt, sonst bg aus LOGO_OVERRIDES
-      bg: bg || override?.bg || null,
+      // Hintergrundfarbe je Logo (aus der „Hintergrund“-Spalte)
+      bg: bg || null,
       type: type ? normalizePartner(type) : null,
     });
   }

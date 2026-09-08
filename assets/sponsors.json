@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T10:45:36.296Z",
+  "updated": "2026-09-08T10:53:01.048Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -27,7 +27,7 @@
       "tier": "small",
       "eur": null,
       "url": "https://skale.dev",
-      "logo": "assets/skale_logo.png",
+      "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": null,
       "type": null
     },
@@ -56,7 +56,7 @@
       "role": "",
       "tier": "small",
       "eur": null,
-      "url": "https://glas-hautzinger.at/",
+      "url": null,
       "logo": "assets/sponsor-logos/hautzinger-glas.svg",
       "bg": "white",
       "type": null
@@ -76,7 +76,7 @@
       "role": "",
       "tier": "small",
       "eur": null,
-      "url": "https://www.holzdiesonne.net/burgenland/lautner-heizung-gmbh/",
+      "url": null,
       "logo": "assets/sponsor-logos/lautner-heizung.svg",
       "bg": null,
       "type": null
@@ -86,7 +86,7 @@
       "role": "Malermeisterbetrieb",
       "tier": "small",
       "eur": null,
-      "url": "https://www.malerei-hr.at/",
+      "url": null,
       "logo": "assets/sponsor-logos/malerei-hr.png",
       "bg": "white",
       "type": null
@@ -126,7 +126,7 @@
       "role": "",
       "tier": "small",
       "eur": null,
-      "url": "https://zinniel.at/",
+      "url": null,
       "logo": "assets/sponsor-logos/zinniel-versicherung.png",
       "bg": "white",
       "type": null
@@ -146,7 +146,7 @@
       "role": "",
       "tier": "small",
       "eur": null,
-      "url": "https://www.dominik-weber.at/",
+      "url": null,
       "logo": "assets/sponsor-logos/dominik-weber.webp",
       "bg": "white",
       "type": null
