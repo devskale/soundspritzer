@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T15:10:42.093Z",
+  "updated": "2026-09-08T09:43:48.787Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -58,6 +58,116 @@
       "eur": null,
       "url": "https://www.akademie-der-wirtschaft.at/",
       "logo": "assets/sponsor-logos/akademie-der-wirtschaft.jpg",
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Reisinger Energietechnik",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": "https://www.reisinger-energietechnik.at/",
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Hautzinger Glas",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Roland Hamm",
+      "role": "SEO Agentur",
+      "tier": "small",
+      "eur": null,
+      "url": "https://www.roland-hamm.com/",
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Lautner Heizung",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Malerei-HR",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Sentinel-Group",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": "https://sentinel-group.com/",
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Finaplus",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Alexgartenhelp",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": "https://www.alexgartenhelp.at/",
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Zinniel Versicherung",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "ELRA",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": "https://www.elra.at/",
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "Dominik-Weber",
+      "role": "",
+      "tier": "small",
+      "eur": null,
+      "url": null,
+      "logo": null,
       "bg": null,
       "type": null
     }
