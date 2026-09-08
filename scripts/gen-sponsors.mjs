@@ -11,7 +11,9 @@
  *   1. Sheet-Spalte „Logo": Kurzname → Datei in bildmat/ oder assets/ gesucht;
  *      oder BILD-URL (…png/jpg/webp/…) bzw. Google-Drive-Link
  *      → wird automatisch nach assets/sponsor-logos/<slug>.<ext> geladen
- *   2. sonst null → Renderer zeigt den Namen als Text
+ *   2. sonst: Logo automatisch von der Sponsor-Website (URL-Spalte) auflösen —
+ *      og:image, <img> mit Logo-Hinweis oder Favicon
+ *   3. sonst null → Renderer zeigt den Namen als Text
  * Reine Website-URLs in der Logo-Spalte gelten als Sponsor-Link (kein Download).
  *
  * Robustheit: Schlägt der Fetch fehl oder liefert leer, bleibt die
@@ -24,6 +26,10 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(root, "assets", "sponsors.json");
 const LOGO_DIR = join(root, "assets", "sponsor-logos");
+
+// Debug: SPONSORS_SKIP_LOCAL=1 ignoriert lokale Logodateien — so lässt sich
+// prüfen, was die Web-Auflösung (Scrape der Sponsor-Website) hergibt.
+const SKIP_LOCAL = process.env.SPONSORS_SKIP_LOCAL === "1";
 
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
@@ -108,7 +114,7 @@ function resolveLocalLogo(value, sponsorSlug) {
 function isImageUrl(url) {
   if (!url) return false;
   if (/drive\.google\.com|docs\.google\.com|googleusercontent\.com/i.test(url)) return true;
-  return /\.(png|jpe?g|webp|gif|svg)(\?\S*)?$/i.test(url);
+  return /\.(png|jpe?g|webp|gif|svg|avif)(\?\S*)?$/i.test(url);
 }
 
 /** Google-Drive-Share-Link → direkter Download-Link (sonst unverändert). */
@@ -126,21 +132,103 @@ function slugify(name) {
     .replace(/^-+|-+$/g, "");
 }
 
+/** URL-Spalte: echten Link normalisieren („finaplus.at“ → https://…). */
+function normalizeUrlCell(s) {
+  const u = extractUrl(s);
+  if (u) return u;
+  const t = String(s ?? "").trim();
+  // Nackte Domain (mit Punkt, ohne Leerzeichen) → https:// ergänzen.
+  // Seitentitel wie „H&R Malermeisterbetrieb: Home“ matchen bewusst nicht.
+  return /^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(t) ? "https://" + t : null;
+}
+
+const UA = {
+  "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+};
+
+/** Dateiendung aus URL-Path oder Content-Type (Default png). */
+function extOf(url, type) {
+  let m = null;
+  try { m = /\.(png|jpe?g|webp|svg|gif|avif)$/i.exec(new URL(url).pathname); } catch { /* egal */ }
+  if (m) return m[1].toLowerCase().replace("jpeg", "jpg");
+  if (/svg/i.test(type)) return "svg";
+  if (/webp/i.test(type)) return "webp";
+  if (/gif/i.test(type)) return "gif";
+  if (/jpe?g/i.test(type)) return "jpg";
+  return "png";
+}
+
+/** Lädt ein Bild → assets/sponsor-logos/<slug>.<ext>. Rückgabe: Pfad | null */
+async function downloadImage(url, slug) {
+  const res = await fetch(driveDirect(url), { redirect: "follow", headers: UA });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const type = res.headers.get("content-type") || "";
+  if (!type.startsWith("image/")) throw new Error(`kein Bild (${type})`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 100) throw new Error("Datei verdächtig klein");
+  const ext = extOf(driveDirect(url), type);
+  writeFileSync(join(LOGO_DIR, `${slug}.${ext}`), buf);
+  return `assets/sponsor-logos/${slug}.${ext}`;
+}
+
+/** Vorhandenes geladenes Logo wiederverwenden (kein Re-Scrape nötig). */
+function existingLogo(slug) {
+  for (const ext of LOGO_EXTS) {
+    const f = join(LOGO_DIR, `${slug}.${ext}`);
+    if (existsSync(f)) return `assets/sponsor-logos/${slug}.${ext}`;
+  }
+  return null;
+}
+
 /** Lädt ein Logo und legt es lokal ab. Rückgabe: öffentlicher Pfad | null. */
 async function fetchLogo(url, name) {
   const slug = slugify(name);
-  const file = join(LOGO_DIR, `${slug}.png`);
   try {
-    const res = await fetch(driveDirect(url), { redirect: "follow" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const type = res.headers.get("content-type") || "";
-    if (!type.startsWith("image/")) throw new Error(`kein Bild (${type})`);
-    const buf = Buffer.from(await res.arrayBuffer());
-    if (buf.length < 100) throw new Error("Datei verdächtig klein");
-    writeFileSync(file, buf);
-    return `assets/sponsor-logos/${slug}.png`;
+    return await downloadImage(url, slug);
   } catch (err) {
     console.error(`[sponsors] Logo-Download fehlgeschlagen für "${name}" (${url}): ${err.message}`);
+    return null;
+  }
+}
+
+/**
+ * Alles dynamisch: findet das Logo automatisch auf der Sponsor-Website —
+ * og:image → <img> mit Logo-Hinweis → Apple-Touch-/Favicon — und lädt es.
+ * Liegt für den Slug schon ein Logo unter assets/sponsor-logos/, wird das
+ * wiederverwendet (kein erneuter Scrape).
+ */
+async function scrapeLogo(pageUrl, slug) {
+  if (!pageUrl) return null;
+  const reuse = SKIP_LOCAL ? null : existingLogo(slug);
+  if (reuse) return reuse;
+  try {
+    const res = await fetch(pageUrl, { redirect: "follow", headers: UA });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+    const base = new URL(pageUrl);
+    const cands = [];
+    const push = (u) => { if (u) cands.push(String(u).trim()); };
+    let m;
+    const meta = /<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]*>/gi;
+    while ((m = meta.exec(html))) push(/content=["']([^"']+)["']/i.exec(m[0])?.[1]);
+    const img = /<img\b[^>]*>/gi;
+    while ((m = img.exec(html))) {
+      const tag = m[0];
+      if (!/logo|brand|mark/i.test(tag)) continue;
+      push(/(?:data-)?src=["']([^"']+)["']/i.exec(tag)?.[1]);
+    }
+    const link = /<link[^>]+rel=["'][^"']*(?:apple-touch|icon)[^"']*["'][^>]*>/gi;
+    while ((m = link.exec(html))) push(/href=["']([^"']+)["']/i.exec(m[0])?.[1]);
+    for (const c of cands) {
+      let u = null;
+      try { u = new URL(c, base).href; } catch { continue; }
+      if (!isImageUrl(u)) continue;
+      try { return await downloadImage(u, slug); } catch { /* nächster Kandidat */ }
+    }
+    console.error(`[sponsors] Kein Logo auf ${pageUrl} gefunden`);
+    return null;
+  } catch (err) {
+    console.error(`[sponsors] Logo-Scrape fehlgeschlagen für ${pageUrl}: ${err.message}`);
     return null;
   }
 }
@@ -210,15 +298,19 @@ async function main() {
 
     const logoCellUrl = extractUrl(logoRaw);
     const slug = slugify(name);
-    // URL bevorzugt aus der „URL“-Spalte, sonst URL in Logo-Spalte
-    const url = (iUrl >= 0 ? extractUrl(r[iUrl] ?? "") : null)
+    // URL bevorzugt aus der „URL“-Spalte (nackte Domains bekommen https://),
+    // sonst URL in Logo-Spalte
+    const url = (iUrl >= 0 ? normalizeUrlCell(r[iUrl] ?? "") : null)
       ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null);
 
     // Logo-Spalte IST die Bildquelle (Dateiname ohne Endung → bildmat/assets).
-    let logo = resolveLocalLogo(logoRaw, slug);
+    let logo = SKIP_LOCAL ? null : resolveLocalLogo(logoRaw, slug);
     if (!logo && logoCellUrl && isImageUrl(logoCellUrl)) {
       logo = await fetchLogo(logoCellUrl, name);
     }
+    // Alles dynamisch: ohne lokale Datei/Bild-URL das Logo automatisch von
+    // der Sponsor-Website auflösen (og:image / Logo-<img> / Favicon)
+    if (!logo && url) logo = await scrapeLogo(url, slug);
 
     sponsors.push({
       name,
