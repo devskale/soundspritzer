@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────────
    <crew-stamp> — der LAJ-Stempel als eigenes, wiederverwendbares Modul
-   Quellform: L A + gespiegeltes L (letzter Buchstabe) = „J“.
+   Quellform: L A + L mit gebogener Ecke (letzter Buchstabe als SVG) = „J“.
    Verwendung:
      <crew-stamp></crew-stamp>                  → nur der LAJ-Sticker (Stempel)
      <crew-stamp names></crew-stamp>            → Sticker + volle Namen schwächer
@@ -32,7 +32,7 @@ class CrewStamp extends HTMLElement {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: .1em;
+          gap: .03em;
           padding: 0 .4em;
           width: clamp(64px, 8vw, 88px);
           height: clamp(64px, 8vw, 88px);
@@ -47,8 +47,19 @@ class CrewStamp extends HTMLElement {
           white-space: nowrap;
         }
         .letter { line-height: 1; }
-        /* J = gespiegeltes L */
-        .letter.mirror { display: inline-block; transform: scaleX(-1); }
+        /* J = L-Form, nur mit gerundeter Ecke unten (in J-Richtung gedreht, Haken nach links).
+           Strichstärke/Proportionen wie Jost 700: Versalhöhe .70em, Strich .143em,
+           L-Breite .42em. viewBox-Einheit = .01em. Läuft in einem .letter-Span mit,
+           dadurch liegt die Unterkante exakt auf der Text-Grundlinie wie L und A. */
+        .letter-j {
+          width: .42em;
+          height: .7em;
+          /* optischer Ausgleich: oben nur schmaler Schaft -> wirkt sonst eine
+             Spur niedriger als L/A (gleiche Logik wie der Overshoot des spitzen A).
+             Unten verankert, die Unterkante bleibt exakt auf der Grundlinie. */
+          transform: scaleY(1.04);
+          transform-origin: 50% 100%;
+        }
         /* volle Namen — deutlich schwächer, zusammen wie eine Signatur */
         .names {
           margin-top: ${row ? '0' : '.55em'};
@@ -66,7 +77,7 @@ class CrewStamp extends HTMLElement {
         <div class="stamp" role="img" aria-label="LAJ — Laurens, Alex und Janik">
           <span class="letter">L</span>
           <span class="letter">A</span>
-          <span class="letter mirror">L</span>
+          <span class="letter"><svg class="letter-j" viewBox="0 0 42 70" aria-hidden="true"><path d="M 34.8 0 V 50.9 Q 34.8 62.9 22.8 62.9 H 0" fill="none" stroke="currentColor" stroke-width="14.3"/></svg></span>
         </div>
         ${showNames ? '<div class="names">Laurens · Alex &amp; Janik</div>' : ''}
       </div>
