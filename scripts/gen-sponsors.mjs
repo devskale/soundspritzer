@@ -36,6 +36,16 @@ const LOGO_OVERRIDES = {
   "Neusiedl am See": { logo: "assets/neusiedl_logo.png", url: "https://www.neusiedlamsee.at/" },
   "Joes Pub": { logo: "assets/joes-pub.png", url: "https://www.joespubneusiedl.at/" },
   "Akademie der Wirtschaft": { logo: "assets/akwi.jpg", url: "https://www.akademie-der-wirtschaft.at/" },
+  // URLs für Sponsoren, deren Sheet-URL-Spalte keinen gültigen Link enthält
+  // (dort steht teils nur der Seitentitel). Steht später eine echte URL im
+  // Sheet, gewinnt diese automatisch (Sheet vor Override).
+  "Hautzinger Glas": { url: "https://glas-hautzinger.at/" },
+  // lautner-heizung.at ist ein Hosting-Platzhalter — aktuelles Profil im HSH-Portal
+  "Lautner Heizung": { url: "https://www.holzdiesonne.net/burgenland/lautner-heizung-gmbh/" },
+  "Malerei-HR": { url: "https://www.malerei-hr.at/" },
+  "Finaplus": { url: "https://www.finaplus.at/" },
+  "Zinniel Versicherung": { url: "https://zinniel.at/" },
+  "Dominik-Weber": { url: "https://www.dominik-weber.at/" },
 };
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
