@@ -328,14 +328,15 @@
           run.appendChild(grp);
         });
 
-        // FAIRES LOGO-FORMAT (Realestate ∝ Sponsorgeld): jedes Logo belegt eine
-        // Fläche proportional zu seinem EUR-Betrag (80 px²/EUR, gekappt bei
-        // 64000; EUR 0/leer = Sachpartner mit Basis-Fläche). Formel: Ziel-Fläche
-        // A, r = w/h → w = sqrt(A*r), h = sqrt(A/r) (Produkt w*h = A). Eine
-        // max-width-Kappe je Tier verhindert ausufernde Breiten — die Höhe wird
-        // so angepasst, dass die Fläche (A) trotzdem konstant bleibt.
+        // FAIRES LOGO-FORMAT (Realestate ∝ Sponsorgeld, keine Streckung):
+        // jedes Logo belegt eine Fläche proportional zum EUR-Betrag (80 px²/EUR,
+        // gekappt bei 64000; EUR 0/leer = Sachpartner mit kleiner Basis-Fläche).
+        // Formel: Ziel-Fläche A, r = w/h → w = sqrt(A*r), h = sqrt(A/r)
+        // (Produkt w*h = A). Eine max-width-Kappe je Tier bremst extrem breite
+        // Logos aus. Reihen werden bewusst NICHT auf Seitenbreite gestreckt —
+        // das würde Einzelligen/Restreihen unfaire Übergrößen geben.
         var K_EUR = 80;                 // Fläche je EUR
-        var A_FREE = 6000;              // Sachpartner (EUR 0/leer)
+        var A_FREE = 6000;              // Sachpartner (EUR 0/leer) — kleiner als Zahlende
         var AREA_MIN = 6000, AREA_MAX = 64000;
         var MAXW = { large: 400, medium: 240, small: 200 };
         function areaFor(eur) {

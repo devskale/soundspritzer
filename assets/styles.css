@@ -1025,8 +1025,9 @@ h1 em {
       /* Gold ggf. mit dezenter Abtrennung */
       padding-bottom: clamp(.2rem, .6vw, .6rem);
     }
-    /* Logo-Wand: Segmente nach Tier (Gold/Medium/Small). Jedes Logo bekommt
-       seine faire Fläche von JS; Gruppen zentriert, wrap erst bei Bedarf. */
+    /* Logo-Wand: Segmente nach Tier (Gold/Medium/Small). JS setzt je Logo
+       Breite/Höhe inline für Realestate ∝ Sponsorbetrag — bewusst ohne
+       Reihen-Streckung, damit Größen fair bleiben. */
     .sponsor-card {
       display: flex;
       align-items: center;
