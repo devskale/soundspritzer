@@ -760,7 +760,7 @@ h1 em {
       margin-left: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-right: calc(clamp(2rem, 6vw, 5rem) * -1);
       margin-top: clamp(4.5rem, 9vw, 6.5rem); /* XXL 1: Hero→Facts — mehr Luft */
-      padding: clamp(1rem, 2.2vw, 1.5rem) clamp(3rem, 8vw, 7rem) clamp(1rem, 2.2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
+      padding: clamp(1.4rem, 2.8vw, 2rem) clamp(3rem, 8vw, 7rem) clamp(1.4rem, 2.8vw, 2rem) clamp(1.5rem, 5vw, 4rem);
       background: var(--cream);
       color: var(--ink);
       box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
@@ -810,14 +810,14 @@ h1 em {
       text-align: left;
     }
     .fact-main {
-      font-weight: 500;
-      font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+      font-weight: 600;
+      font-size: clamp(1.3rem, 3.1vw, 2rem); /* Plakat-Rang: Wann/Wo ist die Kerninfo */
       letter-spacing: .14em;
       text-transform: uppercase;
       white-space: nowrap;
     }
     .fact-sub {
-      font-size: clamp(.75rem, 1.6vw, .9rem);
+      font-size: clamp(.85rem, 1.8vw, 1.05rem);
       font-weight: 500;
       letter-spacing: .24em;
       text-transform: uppercase;
@@ -1102,6 +1102,114 @@ h1 em {
     .support-cta:hover { color: var(--gold); border-color: var(--gold); }
     .support-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
 
+    /* ── Share: native sheet first (mobil), Links/Copy als Fallback (desktop) ──
+       Keine SDK-Buttons: reine Links = kein Tracking, keine Consent-Pflicht.
+       Touch-Targets ≥ 44px (WCAG 2.5.5), sichtbarer Fokus (2.4.13). */
+    .share {
+      margin: clamp(2.2rem, 5vw, 3.2rem) auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .9rem;
+    }
+    .share-label {
+      font-size: clamp(.6rem, 1.4vw, .68rem);
+      letter-spacing: .3em;
+      text-indent: .3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .6rem;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px; /* WCAG 2.5.5 */
+      padding: 0 1.3em;
+      font-size: clamp(.62rem, 1.2vw, .72rem);
+      letter-spacing: .28em;
+      text-indent: .28em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--cream-soft);
+      background: transparent;
+      border: 1px solid var(--hairline);
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color .25s ease, border-color .25s ease; /* 200–300ms ease-out */
+    }
+    .share-btn:hover { color: var(--gold); border-color: var(--gold); }
+    .share-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .share-btn[hidden] { display: none !important; } /* display:inline-flex würde [hidden] sonst übersteuern */
+    /* Primär: Gold-Sticker wie die Hero-Bars — der eine hervorgehobene Weg */
+    .share-btn--primary {
+      color: var(--dusk-top);
+      background: var(--gold);
+      border-color: var(--dusk-top);
+      font-weight: 600;
+      box-shadow: 3px 3px 0 rgba(34, 21, 40, .85);
+      transform: rotate(-1.2deg);
+    }
+    .share-btn--primary:hover { color: var(--dusk-top); background: var(--cream); border-color: var(--dusk-top); }
+    /* Sekundäre Ziele als Text-Micro-Links — schmal statt Icon-Wand */
+    .share-via {
+      font-size: clamp(.6rem, 1.2vw, .68rem);
+      letter-spacing: .18em;
+      color: var(--cream-soft);
+    }
+    .share-via a {
+      color: var(--cream);
+      text-decoration: none;
+      padding: .7em .35em; /* Hit-Area hoch, WCAG 2.5.8 */
+      transition: color .25s ease;
+    }
+    .share-via a:hover { color: var(--gold); }
+    .share-via a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+    .share-via a + a::before { content: "·"; margin-right: .7em; color: var(--cream-soft); }
+
+    /* ── Embed-Box (partner.html): Vorschau + Codebox + Copy ── */
+    .embed-box {
+      margin: clamp(3rem, 7vw, 5rem) auto 0;
+      padding: clamp(1.4rem, 4vw, 2.4rem);
+      max-width: 720px;
+      display: flex; flex-direction: column; align-items: center; gap: .9rem;
+      text-align: center;
+      border: 1px solid var(--hairline); border-radius: 10px;
+      background: rgba(34, 21, 40, .35);
+    }
+    .embed-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic; font-weight: 500;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--cream);
+    }
+    .embed-hint { font-size: .82rem; line-height: 1.65; color: var(--cream-soft); max-width: 46ch; }
+    .embed-preview {
+      border: 0; border-radius: 10px;
+      box-shadow: 0 14px 44px rgba(34, 21, 40, .55);
+      max-width: 100%;
+    }
+    .embed-codelabel {
+      font-size: .6rem; font-weight: 600; letter-spacing: .28em; text-indent: .28em;
+      text-transform: uppercase; color: var(--cream-soft); margin-top: .4rem;
+    }
+    .embed-code {
+      width: 100%; max-width: 560px;
+      padding: .8rem 1rem; border-radius: 6px;
+      background: rgba(34, 21, 40, .65);
+      color: var(--cream); border: 1px solid var(--hairline);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .72rem; line-height: 1.6; word-break: break-all;
+      resize: none;
+    }
+    .embed-code:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
     
     /* Mobile: Hero stapeln, Tabor kleiner, Offerings untereinander */
     @media (max-width: 640px) {
@@ -1111,6 +1219,14 @@ h1 em {
         gap: 1.2rem;
       }
       .hero-left { text-align: center; }
+      /* Gelbe Bars immer untereinander — inline-block könnte auf breiten
+         Phones nebeneinander rutschen, das Plakat will sie gestapelt */
+      .hero-sub {
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .tabor {
         width: clamp(240px, 80vw, 380px);
       }
@@ -1123,7 +1239,10 @@ h1 em {
         padding-right: clamp(1rem, 5vw, 2rem);
       }
       .facts-logos {
-        margin-top: clamp(-2.6rem, -7vw, -1.8rem); /* Überstand kleiner halten */
+        /* kein Überstand im Stapel-Layout: negatives Margin würde in den
+           Fact-Text darüber ziehen (Desktop: Logos ragen seitlich über die
+           Oberkante — im Mobile-Stapel stehen sie UNTER den Fakten) */
+        margin-top: 0;
         align-items: center;
       }
       .facts-logos-label { text-align: center; }

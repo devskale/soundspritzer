@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "type": "rich",
+  "width": 380,
+  "height": 560,
+  "title": "SunDowner — Seeblick, Sounds & Spritzer · 25.09.2026 · Am Tabor, Neusiedl am See",
+  "provider_name": "SunDowner",
+  "provider_url": "https://soundspritzer.at/",
+  "author_name": "SunDowner",
+  "html": "<iframe src=\"https://soundspritzer.at/embed\" width=\"380\" height=\"560\" style=\"border:0;border-radius:10px\" loading=\"lazy\" title=\"SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See\"></iframe>"
+}

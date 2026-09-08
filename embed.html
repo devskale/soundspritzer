@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SunDowner — Event-Karte</title>
+  <meta name="robots" content="noindex"> <!-- embed-only, nicht selbst indizieren -->
+  <style>
+    /* Selbst-genug Einbettungs-Karte: KEINE externen Requests (keine Fonts,
+       keine Bilder, kein Tracking) → DSGVO-unkritisch auf Partner-Seiten.
+       Entworfen für 380×560 (iframe), skaliert aber mit. */
+    :root {
+      --dusk: #221528; --dusk-mid: #4d2334; --dusk-low: #8f3d28;
+      --gold: #e8b04b; --cream: #f7ead8; --cream-soft: rgba(247,234,216,.72);
+      --hairline: rgba(247,234,216,.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 1.4rem 1.2rem;
+      font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--cream);
+      background: linear-gradient(178deg, var(--dusk) 8%, var(--dusk-mid) 46%, var(--dusk-low) 82%, #b0512a 100%);
+    }
+    .sun {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: radial-gradient(circle, var(--gold) 58%, #d9973c 100%);
+      box-shadow: 0 0 26px 8px rgba(232,176,75,.45);
+    }
+    .date {
+      font-size: .68rem; font-weight: 600; letter-spacing: .3em; text-indent: .3em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .date span { display: block; margin-top: .45em; color: var(--cream); }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700; font-size: 1.9rem; line-height: 1.05;
+      margin: .55rem 0 .2rem; letter-spacing: .01em;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .tag {
+      font-family: Georgia, serif; font-style: italic; font-size: .95rem;
+      color: var(--cream-soft); margin-bottom: .55rem;
+    }
+    .tabor {
+      display: block; width: min(100%, 285px); height: auto;
+      margin: 0 auto .5rem;
+      filter: drop-shadow(0 6px 18px rgba(34, 21, 40, .5));
+    }
+    .rule { width: 46px; height: 1px; background: var(--hairline); margin: 0 auto .9rem; }
+    .offerings { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.1rem; }
+    .off {
+      display: flex; flex-direction: column; gap: .1rem;
+    }
+    .what {
+      font-family: Georgia, serif; font-style: italic; font-size: 1.12rem; color: var(--gold);
+    }
+    .who {
+      font-size: .58rem; font-weight: 500; letter-spacing: .26em; text-indent: .26em;
+      text-transform: uppercase; color: var(--cream-soft);
+    }
+    .cta {
+      display: inline-block; padding: .8em 1.6em;
+      font-size: .66rem; font-weight: 600; letter-spacing: .28em; text-indent: .28em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--dusk); background: var(--gold);
+      border: 2px solid var(--dusk); border-radius: 2px;
+      box-shadow: 3px 3px 0 rgba(34,21,40,.85); transform: rotate(-1.2deg);
+      transition: transform .2s ease-out;
+    }
+    .cta:hover, .cta:focus-visible { transform: rotate(0deg) translateY(-2px); }
+    .cta:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+    .place {
+      margin-top: 1.2rem; font-size: .6rem; font-weight: 500;
+      letter-spacing: .24em; text-indent: .24em; text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .place strong { color: var(--cream); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <span class="sun" aria-hidden="true"></span>
+  <p class="date">25.09.2026 · 17–22 Uhr <span>Freier Eintritt</span></p>
+  <h1>Seeblick<br>Sounds &amp; <em>Spritzer</em></h1>
+  <p class="tag">der Sundowner am Tabor</p>
+  <img class="tabor" src="assets/tabor.png" alt="" aria-hidden="true" width="877" height="416">
+  <div class="rule" aria-hidden="true"></div>
+  <div class="offerings">
+    <span class="off"><span class="what">Musik</span><span class="who">YnoT · DJ Flux</span></span>
+    <span class="off"><span class="what">Foodtruck</span><span class="who">Joe's Pub</span></span>
+    <span class="off"><span class="what">Spritzerbar</span><span class="who">Gutes von der Schülercrew</span></span>
+  </div>
+  <a class="cta" href="https://soundspritzer.at/" target="_blank" rel="noopener">Mehr erfahren</a>
+  <p class="place"><strong>Am Tabor</strong> · Neusiedl am See · soundspritzer.at</p>
+</body>
+</html>

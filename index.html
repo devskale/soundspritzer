@@ -12,14 +12,20 @@
   <meta property="og:url" content="https://soundspritzer.at/">
   <meta property="og:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
   <meta property="og:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt. 25.09.2026, 17–22 Uhr am Tabor.">
-  <meta property="og:image" content="https://soundspritzer.at/assets/og-image.png">
+  <meta property="og:image" content="https://soundspritzer.at/assets/og-image.jpg?v=2">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:height" content="1240">
+  <meta property="og:image:alt" content="SunDowner am Tabor — Seeblick, Sounds & Spritzer. 25.09.2026, 17–22 Uhr, Neusiedl am See. Musik, Foodtruck & Spritzerbar.">
   <meta property="og:locale" content="de_AT">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SunDowner — 25.09.2026 · Am Tabor, Neusiedl am See">
   <meta name="twitter:description" content="Seeblick · Sounds & Spritzer — Open-Air-Event mit Livemusik, Foodtruck & Freiem Eintritt.">
-  <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.png">
+  <meta name="twitter:image" content="https://soundspritzer.at/assets/og-image.jpg?v=2">
+
+  <!-- oEmbed-Discovery: CMS (z.B. WordPress) können die nackte URL automatisch
+       zur Event-Karte umwandeln. Statisches JSON — Query-Params werden ignoriert,
+       die Karte ist fix (Spec: oembed.com, Abschnitt Discovery). -->
+  <link rel="alternate" type="application/json+oembed" href="https://soundspritzer.at/oembed.json?url=https%3A%2F%2Fsoundspritzer.at%2F&format=json">
 
   <link rel="canonical" href="https://soundspritzer.at/">
   <script type="application/ld+json">
@@ -42,7 +48,7 @@
         "addressCountry": "AT"
       }
     },
-    "image": ["https://soundspritzer.at/assets/og-image.png"],
+    "image": ["https://soundspritzer.at/assets/og-image.jpg?v=2"],
     "description": "Open-Air-Event mit Livemusik & DJ, Foodtruck von Joe's Pub und Spritzerbar. Freier Eintritt über Neusiedl am See.",
     "organizer": {
       "@type": "Organization",
@@ -168,6 +174,28 @@
       </p>
       <p class="about-crew"><crew-stamp names row></crew-stamp></p>
       <a class="btn" href="/partner">Unterstütze das Event</a>
+    </div>
+
+    <div class="share" role="group" aria-label="SunDowner teilen">
+      <p class="share-label">Erzähl es deinen Freunden</p>
+      <div class="share-row">
+        <!-- Ein Button für alles: Mit Web Share API → nativer System-Dialog
+             (enthält WhatsApp, Instagram, iMessage, …); ohne API (z.B.
+             Firefox-Desktop) kopiert er den Link mit Feedback — Kopieren ist
+             die universelle Teilen-Primitive. Kein SDK, keine Tracker. -->
+        <button type="button" class="share-btn share-btn--primary" data-share-native aria-live="polite">Teilen …</button>
+      </div>
+      <!-- Sekundär: direkte Ziele als Text-Micro-Links (YouTube-Pattern:
+           Teilen-Dialog mit Zielleiste — aber schmal, keine Icon-Wand).
+           Instagram hat kein Web-Share-Intent → Bild-Download + selbst posten. -->
+      <p class="share-via">
+        oder via
+        <a href="https://wa.me/?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See%20https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/intent/tweet?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See&url=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">X</a>
+        <a href="mailto:?subject=SunDowner%20am%20Tabor%20%E2%80%94%2025.09.2026&body=Seeblick%2C%20Sounds%20%26%20Spritzer%20%E2%80%94%2025.09.2026%2C%2017%E2%80%9322%20Uhr%2C%20Am%20Tabor%2C%20Neusiedl%20am%20See.%20https%3A%2F%2Fsoundspritzer.at%2F">E-Mail</a>
+        <a href="assets/og-image.jpg" download="sundowner-instagram.jpg" data-share-insta>Bild für Instagram</a>
+      </p>
     </div>
 
     </main>
