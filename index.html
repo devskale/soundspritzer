@@ -317,6 +317,10 @@
           var t = (s.tier || "small");
           (byTier[t] || byTier.small).push(s);
         });
+        // Innerhalb jedes Segments nach Sponsorbetrag sortieren (höchster zuerst)
+        Object.keys(byTier).forEach(function (t) {
+          byTier[t].sort(function (a, b) { return (b.eur || 0) - (a.eur || 0); });
+        });
         ["large", "medium", "small"].forEach(function (tier) {
           if (!byTier[tier].length) return;
           var grp = el("div", "sponsor-group" + (tier === "large" ? " sponsor-group--gold" : ""));
