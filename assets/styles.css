@@ -1,3 +1,61 @@
+/* ── Fonts: self-hosted (DSGVO: keine Google-Requests) ── */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/cormorant-garamond-italic-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/cormorant-garamond-normal-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/cormorant-garamond-normal-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/cormorant-garamond-normal-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/jost-normal-300.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/jost-normal-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/jost-normal-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap; /* sichtbarer Text zuerst — kein FOIT (Best Practice web.dev) */
+  src: url("fonts/jost-normal-600.woff2") format("woff2");
+}
+
 /* ─────────────────────────────────────────────────────────────
    SunDowner / Soundspritzer — gemeinsame Site-Styles
    Geteilt zwischen index.html und partner.html.
