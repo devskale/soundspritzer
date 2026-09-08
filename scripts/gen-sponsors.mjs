@@ -81,16 +81,17 @@ const LOGO_EXTS = ["png", "jpg", "jpeg", "webp", "svg", "gif"];
 /**
  * Sucht eine lokale Logodatei anhand des Werts aus der Logo-Spalte
  * (Dateiname OHNE Endung) in der Reihenfolge bildmat/ → assets/.
- * Beim Fund wird nach assets/sponsor-logos/<slug>.png kopiert (öffentlich + committbar).
+ * Ohne Eintrag in der Logo-Spalte fällt die Suche auf den Slug des
+ * Sponsor-Namens zurück (bildmat/<slug>.<ext>) — Datei ablegen, fertig.
+ * Beim Fund wird nach assets/sponsor-logos/<slug>.<ext> kopiert (öffentlich + committbar).
  * Rückgabe: öffentlicher Pfad unter assets/ oder null.
  */
 function resolveLocalLogo(value, sponsorSlug) {
-  if (!value) return null;
-  const base = value.replace(/\.(png|jpe?g|webp|svg|gif)$/i, "").trim();
-  if (!base) return null;
+  const base = value ? value.replace(/\.(png|jpe?g|webp|svg|gif)$/i, "").trim() : "";
+  if (!base && !sponsorSlug) return null;
 
   const dirs = [join(root, "bildmat"), join(root, "assets")];
-  const names = new Set([base, slugify(base)]);
+  const names = new Set(base ? [base, slugify(base)] : []);
   if (sponsorSlug) names.add(sponsorSlug);
 
   for (const dir of dirs) {
