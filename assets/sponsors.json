@@ -1,6 +1,16 @@
 {
-  "updated": "2026-09-08T13:26:03.038Z",
+  "updated": "2026-09-08T13:35:46.272Z",
   "sponsors": [
+    {
+      "name": "Reisinger Energietechnik",
+      "role": "",
+      "tier": "large",
+      "eur": 800,
+      "url": "https://www.reisinger-energietechnik.at/",
+      "logo": "assets/sponsor-logos/reisinger-energietechnik.jpg",
+      "bg": null,
+      "type": null
+    },
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
       "role": "",
@@ -22,23 +32,23 @@
       "type": null
     },
     {
-      "name": "Neusiedl am See",
+      "name": "Zinniel Versicherung",
       "role": "",
-      "tier": "small",
-      "eur": 0,
-      "url": "https://www.neusiedlamsee.at/",
-      "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
-      "bg": null,
+      "tier": "large",
+      "eur": 200,
+      "url": "https://zinniel.at/",
+      "logo": "assets/sponsor-logos/zinniel-versicherung.png",
+      "bg": "white",
       "type": null
     },
     {
-      "name": "Reisinger Energietechnik",
-      "role": "",
+      "name": "ELRA",
+      "role": "Antriebstechnik",
       "tier": "large",
-      "eur": 800,
-      "url": "https://www.reisinger-energietechnik.at/",
-      "logo": "assets/sponsor-logos/reisinger-energietechnik.jpg",
-      "bg": null,
+      "eur": 200,
+      "url": "https://www.elra.at/",
+      "logo": "assets/sponsor-logos/elra.svg",
+      "bg": "black",
       "type": null
     },
     {
@@ -46,7 +56,7 @@
       "role": "",
       "tier": "medium",
       "eur": 100,
-      "url": null,
+      "url": "https://glas-hautzinger.at/",
       "logo": "assets/sponsor-logos/hautzinger-glas.svg",
       "bg": "white",
       "type": null
@@ -66,7 +76,7 @@
       "role": "",
       "tier": "medium",
       "eur": 100,
-      "url": null,
+      "url": "https://www.hsh-installateur.com/burgenland/lautner-heizung-gmbh/",
       "logo": "assets/sponsor-logos/lautner-heizung.svg",
       "bg": null,
       "type": null
@@ -76,7 +86,7 @@
       "role": "Malermeisterbetrieb",
       "tier": "medium",
       "eur": 100,
-      "url": null,
+      "url": "https://www.malerei-hr.at/",
       "logo": "assets/sponsor-logos/malerei-hr.png",
       "bg": "white",
       "type": null
@@ -112,26 +122,6 @@
       "type": null
     },
     {
-      "name": "Zinniel Versicherung",
-      "role": "",
-      "tier": "large",
-      "eur": 200,
-      "url": null,
-      "logo": "assets/sponsor-logos/zinniel-versicherung.png",
-      "bg": "white",
-      "type": null
-    },
-    {
-      "name": "ELRA",
-      "role": "Antriebstechnik",
-      "tier": "large",
-      "eur": 200,
-      "url": "https://www.elra.at/",
-      "logo": "assets/sponsor-logos/elra.svg",
-      "bg": "black",
-      "type": null
-    },
-    {
       "name": "Dominik-Weber",
       "role": "",
       "tier": "medium",
@@ -149,6 +139,16 @@
       "url": "https://skale.dev",
       "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": "white",
+      "type": null
+    },
+    {
+      "name": "Neusiedl am See",
+      "role": "",
+      "tier": "small",
+      "eur": 0,
+      "url": "https://www.neusiedlamsee.at/",
+      "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
+      "bg": null,
       "type": null
     }
   ]

@@ -18,8 +18,13 @@
  *
  * Robustheit: Schlägt der Fetch fehl oder liefert leer, bleibt die
  * bestehende sponsors.json unverändert (Fallback).
+ *
+ * Hyperlinks: Steht in der URL-Spalte ein echter Link mit Anzeigetext
+ * (z. B. Firmenname), liefert der CSV-Export nur den Text — das Linkziel
+ * wird zusätzlich aus dem XLSX-Export gelesen (zero-dep ZIP-Reader).
  */
 import { writeFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
+import { inflateRawSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -33,6 +38,69 @@ const SKIP_LOCAL = process.env.SPONSORS_SKIP_LOCAL === "1";
 
 const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+const XLSX_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=xlsx`;
+
+/**
+ * XLSX-Export (zero-dep ZIP-Reader) → { Sheet-Zeile: Hyperlink-Ziel }.
+ * Genutzt wird nur sheet1 + dessen rels; Fehler sind unkritisch (CSV reicht).
+ */
+async function fetchSheetHyperlinks() {
+  try {
+    const res = await fetchRetry(XLSX_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const files = unzip(Buffer.from(await res.arrayBuffer()));
+    const sheet = files["xl/worksheets/sheet1.xml"] || "";
+    const relsXml = files["xl/worksheets/_rels/sheet1.xml.rels"] || "";
+    const relMap = {};
+    relsXml.replace(/<Relationship\b[^>]*>/gi, (tag) => {
+      const id = /Id=["']([^"']+)["']/i.exec(tag)?.[1];
+      const target = /Target=["']([^"']+)["']/i.exec(tag)?.[1];
+      if (id && target && /hyperlink/i.test(tag)) relMap[id] = target;
+      return "";
+    });
+    const out = {};
+    sheet.replace(/<hyperlink\b[^>]*>/gi, (tag) => {
+      const rid = /r:id=["']([^"']+)["']/i.exec(tag)?.[1];
+      const row = parseInt(/ref=["'][A-Z]+(\d+)["']/i.exec(tag)?.[1], 10);
+      const url = rid ? relMap[rid] : null;
+      if (row && url && /^https?:\/\//i.test(url)) out[row] = url;
+      return "";
+    });
+    return out;
+  } catch (err) {
+    console.error(`[sponsors] XLSX-Hyperlinks nicht lesbar (${err.message}) — fahre mit CSV fort.`);
+    return {};
+  }
+}
+
+/** Minimaler ZIP-Reader (store + deflate reicht für XLSX). */
+function unzip(buf) {
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= 0; i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  }
+  if (eocd < 0) throw new Error("kein ZIP (EOCD fehlt)");
+  const count = buf.readUInt16LE(eocd + 10);
+  let off = buf.readUInt32LE(eocd + 16);
+  const files = {};
+  for (let i = 0; i < count; i++) {
+    if (buf.readUInt32LE(off) !== 0x02014b50) break;
+    const method = buf.readUInt16LE(off + 10);
+    const csize = buf.readUInt32LE(off + 20);
+    const nameLen = buf.readUInt16LE(off + 28);
+    const extraLen = buf.readUInt16LE(off + 30);
+    const commLen = buf.readUInt16LE(off + 32);
+    const lho = buf.readUInt32LE(off + 42);
+    const name = buf.slice(off + 46, off + 46 + nameLen).toString();
+    off += 46 + nameLen + extraLen + commLen;
+    const lNameLen = buf.readUInt16LE(lho + 26);
+    const lExtraLen = buf.readUInt16LE(lho + 28);
+    const start = lho + 30 + lNameLen + lExtraLen;
+    const data = buf.slice(start, start + csize);
+    files[name] = method === 8 ? inflateRawSync(data).toString("utf8") : data.toString("utf8");
+  }
+  return files;
+}
 
 /** Minimaler CSV-Parser (kennt Anführungszeichen). */
 function parseCsv(text) {
@@ -241,13 +309,28 @@ function normalizePartner(v) {
   return v.trim();
 }
 
+/** Fetch mit Retry — Google-Export antwortet gelegentlich mit transienten Fehlern. */
+async function fetchRetry(url, attempts = 3) {
+  let lastErr;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const res = await fetch(url, { redirect: "follow" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res;
+    } catch (err) {
+      lastErr = err;
+      if (i < attempts - 1) await new Promise((r) => setTimeout(r, 1500 * (i + 1)));
+    }
+  }
+  throw lastErr;
+}
+
 async function main() {
   mkdirSync(LOGO_DIR, { recursive: true });
 
   let csv;
   try {
-    const res = await fetch(CSV_URL, { redirect: "follow" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const res = await fetchRetry(CSV_URL);
     csv = await res.text();
   } catch (err) {
     console.error(`[sponsors] Fetch fehlgeschlagen (${err.message}) — behalte bestehende Datei.`);
@@ -283,7 +366,10 @@ async function main() {
   }
 
   const sponsors = [];
-  for (const r of rows.slice(1)) {
+  // Hyperlink-Ziele aus dem XLSX-Export: Zellen mit Link + Anzeigetext liefern
+  // im CSV nur den Text (z. B. Firmenname statt URL). Schlüssel = Sheet-Zeile.
+  const hyperlinks = await fetchSheetHyperlinks();
+  for (const [dataIdx, r] of rows.slice(1).entries()) {
     const name = (r[iName] ?? "").trim();
     if (!name) continue;
     const role = (r[iRole] ?? "").trim();
@@ -299,8 +385,11 @@ async function main() {
     const logoCellUrl = extractUrl(logoRaw);
     const slug = slugify(name);
     // URL bevorzugt aus der „URL“-Spalte (nackte Domains bekommen https://),
+    // dann Hyperlink-Ziel aus dem XLSX (Zelle zeigt nur Anzeigetext),
     // sonst URL in Logo-Spalte
-    const url = (iUrl >= 0 ? normalizeUrlCell(r[iUrl] ?? "") : null)
+    let cellUrl = iUrl >= 0 ? normalizeUrlCell(r[iUrl] ?? "") : null;
+    if (!cellUrl) cellUrl = hyperlinks[dataIdx + 2] || null; // Kopfzeile → ab Zeile 2
+    const url = cellUrl
       ?? (logoCellUrl && !isImageUrl(logoCellUrl) ? logoCellUrl : null);
 
     // Logo-Spalte IST die Bildquelle (Dateiname ohne Endung → bildmat/assets).
