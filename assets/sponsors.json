@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T10:04:49.536Z",
+  "updated": "2026-09-08T10:11:23.554Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -97,7 +97,7 @@
       "tier": "small",
       "eur": null,
       "url": null,
-      "logo": null,
+      "logo": "assets/sponsor-logos/lautner-heizung.svg",
       "bg": null,
       "type": null
     },
@@ -126,7 +126,7 @@
       "role": "",
       "tier": "small",
       "eur": null,
-      "url": null,
+      "url": "https://finaplus.at",
       "logo": "assets/sponsor-logos/finaplus.png",
       "bg": null,
       "type": null
