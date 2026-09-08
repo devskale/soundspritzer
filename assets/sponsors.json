@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T10:53:01.048Z",
+  "updated": "2026-09-08T11:22:27.518Z",
   "sponsors": [
     {
       "name": "GWP GRÖSZ WEISZ PARTNER",
@@ -19,16 +19,6 @@
       "url": "https://www.raiffeisen.at/bgld/rlb-bgld/de/meine-bank/bankstellen/neusiedl-am-see.html",
       "logo": "assets/sponsor-logos/raiffeisen.svg",
       "bg": "white",
-      "type": null
-    },
-    {
-      "name": "skale.dev",
-      "role": "SW Engineering",
-      "tier": "small",
-      "eur": null,
-      "url": "https://skale.dev",
-      "logo": "assets/sponsor-logos/skale-dev.png",
-      "bg": null,
       "type": null
     },
     {
@@ -148,6 +138,16 @@
       "eur": null,
       "url": null,
       "logo": "assets/sponsor-logos/dominik-weber.webp",
+      "bg": "white",
+      "type": null
+    },
+    {
+      "name": "skale.dev",
+      "role": "SW Engineering",
+      "tier": "small",
+      "eur": null,
+      "url": "https://skale.dev",
+      "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": "white",
       "type": null
     }
