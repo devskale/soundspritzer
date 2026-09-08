@@ -50,16 +50,27 @@
       filter: drop-shadow(0 6px 18px rgba(34, 21, 40, .5));
     }
     .rule { width: 46px; height: 1px; background: var(--hairline); margin: 0 auto .9rem; }
-    .offerings { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.1rem; }
-    .off {
-      display: flex; flex-direction: column; gap: .1rem;
+    .offerings {
+      display: flex; justify-content: center; gap: clamp(.6rem, 4vw, 1.3rem);
+      margin-bottom: 1.1rem; width: 100%;
     }
+    .off {
+      flex: 1; max-width: 118px;
+      display: flex; flex-direction: column; align-items: center; gap: .12rem;
+    }
+    .icon-slot {
+      height: 52px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: .2rem;
+    }
+    .off img { height: 40px; width: auto; }
+    .off img.icon--xl { height: 52px; } /* Gitarre = Mega-Feature wie auf der HP */
+    .off img.icon--sm { height: 34px; }
     .what {
-      font-family: Georgia, serif; font-style: italic; font-size: 1.12rem; color: var(--gold);
+      font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: var(--gold);
     }
     .who {
-      font-size: .58rem; font-weight: 500; letter-spacing: .26em; text-indent: .26em;
-      text-transform: uppercase; color: var(--cream-soft);
+      font-size: .5rem; font-weight: 500; letter-spacing: .18em; text-indent: .18em;
+      text-transform: uppercase; color: var(--cream-soft); line-height: 1.5;
     }
     .cta {
       display: inline-block; padding: .8em 1.6em;
@@ -88,9 +99,18 @@
   <img class="tabor" src="assets/tabor.png" alt="" aria-hidden="true" width="877" height="416">
   <div class="rule" aria-hidden="true"></div>
   <div class="offerings">
-    <span class="off"><span class="what">Musik</span><span class="who">YnoT · DJ Flux</span></span>
-    <span class="off"><span class="what">Foodtruck</span><span class="who">Joe's Pub</span></span>
-    <span class="off"><span class="what">Spritzerbar</span><span class="who">Gutes von der Schülercrew</span></span>
+    <span class="off">
+      <span class="icon-slot"><img src="assets/vinyl.png" alt="" aria-hidden="true" width="500" height="500" class="icon--xl"></span>
+      <span class="what">Musik</span><span class="who">YnoT · DJ Flux</span>
+    </span>
+    <span class="off">
+      <span class="icon-slot"><img src="assets/pizza.png" alt="" aria-hidden="true" width="500" height="500"></span>
+      <span class="what">Foodtruck</span><span class="who">Joe's Pub</span>
+    </span>
+    <span class="off">
+      <span class="icon-slot"><img src="assets/glass.png" alt="" aria-hidden="true" width="500" height="500" class="icon--sm"></span>
+      <span class="what">Spritzerbar</span><span class="who">Schülercrew</span>
+    </span>
   </div>
   <a class="cta" href="https://soundspritzer.at/" target="_blank" rel="noopener">Mehr erfahren</a>
   <p class="place"><strong>Am Tabor</strong> · Neusiedl am See · soundspritzer.at</p>
