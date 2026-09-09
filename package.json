@@ -8,6 +8,7 @@
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "gen:sponsors": "node scripts/gen-sponsors.mjs",
-    "gen:carousel": "node scripts/gen-carousel.mjs"
+    "gen:carousel": "node scripts/gen-carousel.mjs",
+    "gen:og": "node scripts/gen-og.mjs"
   }
 }
