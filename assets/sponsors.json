@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T13:35:46.272Z",
+  "updated": "2026-09-13T22:25:45.298Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -104,8 +104,8 @@
     {
       "name": "Finaplus",
       "role": "Finanzierungen",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "large",
+      "eur": 200,
       "url": "https://finaplus.at",
       "logo": "assets/sponsor-logos/finaplus.png",
       "bg": "white",
@@ -114,8 +114,8 @@
     {
       "name": "Alexgartenhelp",
       "role": "Gartenbau",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "large",
+      "eur": 200,
       "url": "https://www.alexgartenhelp.at/",
       "logo": "assets/sponsor-logos/alexgartenhelp.jpg",
       "bg": null,
@@ -125,7 +125,7 @@
       "name": "Dominik-Weber",
       "role": "",
       "tier": "medium",
-      "eur": 100,
+      "eur": 150,
       "url": "https://www.dominik-weber.at/",
       "logo": "assets/sponsor-logos/dominik-weber.webp",
       "bg": "white",
@@ -134,8 +134,8 @@
     {
       "name": "skale.dev",
       "role": "SW Engineering",
-      "tier": "medium",
-      "eur": 100,
+      "tier": "small",
+      "eur": 0,
       "url": "https://skale.dev",
       "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": "white",
@@ -148,6 +148,26 @@
       "eur": 0,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "sharp",
+      "role": "",
+      "tier": "large",
+      "eur": 300,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "summe",
+      "role": "",
+      "tier": "large",
+      "eur": 3000,
+      "url": null,
+      "logo": null,
       "bg": null,
       "type": null
     }
