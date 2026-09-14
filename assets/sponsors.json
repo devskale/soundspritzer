@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T15:46:01.311Z",
+  "updated": "2026-09-14T21:22:48.161Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -97,7 +97,7 @@
       "tier": "medium",
       "eur": 150,
       "url": "https://www.dominik-weber.at/",
-      "logo": "assets/sponsor-logos/dominik-weber.webp",
+      "logo": "assets/sponsor-logos/dominik-weber.png",
       "bg": "white",
       "type": null
     },
@@ -127,7 +127,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.hsh-installateur.com/burgenland/lautner-heizung-gmbh/",
-      "logo": "assets/sponsor-logos/lautner-heizung.svg",
+      "logo": "assets/sponsor-logos/lautner-heizung.png",
       "bg": null,
       "type": null
     },
