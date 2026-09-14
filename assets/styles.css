@@ -1317,6 +1317,7 @@ h1 em {
       text-decoration: none;
     }
     .kit-thumb--sm { width: 150px; }
+    .kit-thumb--poster { width: 200px; } /* einzelne A2-Vorschau — Hochformat */
     .kit-thumb img {
       width: 100%; height: auto; display: block;
       border-radius: 8px;
