@@ -117,9 +117,11 @@ body {
   background:
     linear-gradient(to bottom,
       #f99b1f 0%,        /* Poster: sattes Orange oben */
-      var(--dusk-mid) 30%,
-      var(--dusk-low) 58%,
-      var(--horizon) 100%); /* Lachs unten wie das Poster */
+      #f39b37 16%,
+      #ec9e52 32%,
+      #e6a06d 50%,
+      var(--horizon) 70%,  /* Lachs erreicht — Poster-Fußzone */
+      var(--horizon) 100%); /* und gehalten, kein Zurückfallen */
   color: var(--cream);
   min-height: 100svh;
   display: flex;
