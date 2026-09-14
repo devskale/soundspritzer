@@ -99,7 +99,7 @@ html, body {
   --cream: #2b1a20;        /* FLIP: jetzt Tinte — Text auf der hellen Poster-Fläche */
   --cream-soft: rgba(43, 26, 32, .72); /* weiche Tinte auf Poster-Orange */
   --gold: #e8b04b;
-  --accent: #8a3d0c;       /* tiefes Brandorange — ersetzt Gold als TEXTFarbe auf Orange */
+  --accent: #5f2a0a;       /* tiefes Brandorange — 5.3:1 auf allen Orange-Zonen (AA) */
   --coral: #f2795c;
   --rose: #e05c74;
   /* Poster-Sonnen-Palette: Gelb → Orange → Lachs (Claim + Marke) */
@@ -1017,15 +1017,15 @@ h1 em {
       font-family: "Jost", sans-serif;
       font-weight: 600;
       font-size: clamp(1.5rem, 4vw, 2.3rem); /* prägnanter: größere Offerings-Headings */
-      color: var(--accent);
+      color: var(--dusk-top); /* Poster-Schwarz — maximale Lesbarkeit auf Orange (8:1) */
     }
     .offering .what a {
-      color: var(--accent);
+      color: var(--dusk-top);
       text-decoration: none;
       transition: color .25s ease;
       padding: .7em 0; /* Inline-Link: Hit-Area ≥ 24px ohne Layout-Shift (WCAG 2.5.8) */
     }
-    .offering .what a:hover { color: var(--cream); }
+    .offering .what a:hover { color: var(--accent); }
     .offering .what a:focus-visible {
       outline: 2px solid var(--dusk-top);
       outline-offset: 3px;
@@ -1042,14 +1042,14 @@ h1 em {
       font-family: "Cormorant Garamond", serif;
       font-style: italic;
       font-size: clamp(.85rem, 2vw, 1.05rem);
-      color: var(--accent); /* coral lag auf dusk-low unter 3:1 (WCAG) */
+      color: var(--accent); /* 5.3:1 auf allen Orange-Zonen (AA) */
       text-decoration: none;
       transition: color .25s ease;
       /* Touch-Target ≥ 44px ohne Layout-Shift (A11y hit targets) */
       padding: .45em .8em;
       margin: -.35em -.8em 0;
     }
-    .award:hover { color: var(--cream); }
+    .award:hover { color: var(--dusk-top); }
 
     .partners {
       margin-top: clamp(6.5rem, 12.5vw, 10rem); /* XXL 4: Offerings→Logo-Wand — mehr Luft */
