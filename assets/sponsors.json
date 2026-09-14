@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13T22:25:45.298Z",
+  "updated": "2026-09-14T14:06:20.512Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -18,6 +18,26 @@
       "eur": 250,
       "url": "https://www.gwp.co.at/",
       "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png",
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "werk und jumpworld",
+      "role": "",
+      "tier": "large",
+      "eur": 300,
+      "url": null,
+      "logo": null,
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "sharp",
+      "role": "",
+      "tier": "large",
+      "eur": 300,
+      "url": null,
+      "logo": null,
       "bg": null,
       "type": null
     },
@@ -42,13 +62,43 @@
       "type": null
     },
     {
-      "name": "ELRA",
-      "role": "Antriebstechnik",
+      "name": "Finaplus",
+      "role": "Finanzierungen",
       "tier": "large",
       "eur": 200,
+      "url": "https://finaplus.at",
+      "logo": "assets/sponsor-logos/finaplus.png",
+      "bg": "white",
+      "type": null
+    },
+    {
+      "name": "Alexgartenhelp",
+      "role": "Gartenbau",
+      "tier": "large",
+      "eur": 200,
+      "url": "https://www.alexgartenhelp.at/",
+      "logo": "assets/sponsor-logos/alexgartenhelp.jpg",
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "ELRA",
+      "role": "Antriebstechnik",
+      "tier": "medium",
+      "eur": 150,
       "url": "https://www.elra.at/",
       "logo": "assets/sponsor-logos/elra.svg",
       "bg": "black",
+      "type": null
+    },
+    {
+      "name": "Dominik-Weber",
+      "role": "",
+      "tier": "medium",
+      "eur": 150,
+      "url": "https://www.dominik-weber.at/",
+      "logo": "assets/sponsor-logos/dominik-weber.webp",
+      "bg": "white",
       "type": null
     },
     {
@@ -102,40 +152,10 @@
       "type": null
     },
     {
-      "name": "Finaplus",
-      "role": "Finanzierungen",
-      "tier": "large",
-      "eur": 200,
-      "url": "https://finaplus.at",
-      "logo": "assets/sponsor-logos/finaplus.png",
-      "bg": "white",
-      "type": null
-    },
-    {
-      "name": "Alexgartenhelp",
-      "role": "Gartenbau",
-      "tier": "large",
-      "eur": 200,
-      "url": "https://www.alexgartenhelp.at/",
-      "logo": "assets/sponsor-logos/alexgartenhelp.jpg",
-      "bg": null,
-      "type": null
-    },
-    {
-      "name": "Dominik-Weber",
-      "role": "",
-      "tier": "medium",
-      "eur": 150,
-      "url": "https://www.dominik-weber.at/",
-      "logo": "assets/sponsor-logos/dominik-weber.webp",
-      "bg": "white",
-      "type": null
-    },
-    {
       "name": "skale.dev",
       "role": "SW Engineering",
       "tier": "small",
-      "eur": 0,
+      "eur": 1,
       "url": "https://skale.dev",
       "logo": "assets/sponsor-logos/skale-dev.png",
       "bg": "white",
@@ -145,19 +165,9 @@
       "name": "Neusiedl am See",
       "role": "",
       "tier": "small",
-      "eur": 0,
+      "eur": 1,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
-      "bg": null,
-      "type": null
-    },
-    {
-      "name": "sharp",
-      "role": "",
-      "tier": "large",
-      "eur": 300,
-      "url": null,
-      "logo": null,
       "bg": null,
       "type": null
     },
@@ -165,7 +175,7 @@
       "name": "summe",
       "role": "",
       "tier": "large",
-      "eur": 3000,
+      "eur": 3252,
       "url": null,
       "logo": null,
       "bg": null,
