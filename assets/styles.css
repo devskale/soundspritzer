@@ -93,14 +93,17 @@ html, body {
 
 :root {
   --dusk-top: #221528;
-  --dusk-mid: #4d2334;
-  --dusk-low: #8f3d28;
-  --horizon: #e08a3c;
+  --dusk-mid: #6b2830;  /* wärmer Richtung Poster-Orange (war #4d2334) */
+  --dusk-low: #b0511f;  /* sattes Sonnenuntergangs-Orange (war #8f3d28) */
+  --horizon: #f08a2a;   /* Poster-Orange am Horizont (war #e08a3c) */
   --cream: #f7ead8;
+  --poster-band: #f8f4ee; /* helles Band wie die weißen Kopf-/Fußleisten des Posters */
   --cream-soft: rgba(247, 234, 216, .7); /* .7 statt .6: Support-CTA 3.9→4.7:1, Dusk-Low 3.3→3.9:1 (WCAG 1.4.3) */
   --gold: #e8b04b;
   --coral: #f2795c;
   --rose: #e05c74;
+  /* Poster-Sonnen-Palette: Gelb → Orange → Lachs (Claim + Marke) */
+  --sun-grad: linear-gradient(100deg, #ffd24a 5%, #f89a1c 50%, #e8906a 95%);
   --terracotta: #dd7a4a; /* Datumstrenner */
   --ink: #2b1a20;        /* dunkle Tinte für Text auf heller Horizontzone (Footer) */
   --hairline: rgba(247, 234, 216, .28);
@@ -129,7 +132,7 @@ body {
   width: 130vw; height: 60vh;
   transform: translateX(-50%);
   background: radial-gradient(ellipse at center,
-    rgba(240, 158, 66, .5), rgba(226, 112, 60, .22) 45%, transparent 70%);
+    rgba(248, 154, 28, .6), rgba(240, 138, 42, .3) 45%, transparent 70%);
   filter: blur(30px);
   animation: breathe 11s ease-in-out infinite;
 }
@@ -142,7 +145,7 @@ body {
 .sky .cloud.c1 {
   width: 55vw; height: 22vh;
   top: 26%; left: -12%;
-  background: radial-gradient(ellipse, rgba(240, 170, 90, .5), transparent 70%);
+  background: radial-gradient(ellipse, rgba(248, 154, 28, .55), transparent 70%);
   animation: drift1 46s ease-in-out infinite alternate;
 }
 .sky .cloud.c2 {
@@ -196,7 +199,7 @@ h1 {
 h1 em {
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+  background: var(--sun-grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -565,7 +568,7 @@ h1 em {
       font-size: clamp(1.35rem, 3vw, 1.9rem);
       letter-spacing: .04em;
       /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
-      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+      background: var(--sun-grad);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -730,13 +733,16 @@ h1 em {
     /* Sonne steht sichtbar im offenen Himmel rechts über der Ruine — nur die
        Strahlen animieren weiter (Drehung, Puls, Morph — siehe ::after unten). */
     .sun {
+      /* FINAL HIT: die Sonne sitzt exakt auf dem Oktopus-Auge (310/45 von 877×416)
+         — der Sun-Downer geht im Auge des Tabor-Oktopus unter */
       position: absolute;
-      left: 70%;
-      top: -18%;
-      width: clamp(40px, 7.5vw, 74px);
-      height: clamp(40px, 7.5vw, 74px);
+      left: 35.35%;
+      top: 10.82%;
+      transform: translate(-50%, -50%);
+      width: clamp(34px, 6vw, 58px);
+      height: clamp(34px, 6vw, 58px);
       pointer-events: none;
-      z-index: -1; /* hinter dem Tabor-Bild — die Sonne bleibt hinter der Ruine */
+      z-index: 2; /* ÜBER dem Tabor — die Sonne liegt sichtbar auf dem Auge */
     }
 
     /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
@@ -751,14 +757,14 @@ h1 em {
       inherits: false;
     }
     .sun::before {
-      /* Kern: satt und stabil — kein Faden der Farben mehr, nur dezenter Glow */
+      /* Kern: Poster-Sonne #f89b22 — sattes Gelb-Orange wie auf dem Plakat */
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
       background: radial-gradient(circle at 50% 45%,
-        #ffe9a8 0%, var(--gold) 52%, #d99b35 78%, rgba(217, 155, 53, .85) 100%);
-      box-shadow: 0 0 26px rgba(232, 176, 75, .55), 0 0 58px rgba(232, 176, 75, .3);
+        #ffd95e 0%, #fbc23c 40%, #f89b22 68%, #e8830f 100%);
+      box-shadow: 0 0 26px rgba(248, 155, 34, .6), 0 0 58px rgba(248, 155, 34, .32);
       animation: sun-glow 7s ease-in-out infinite;
     }
     .sun::after {
@@ -767,7 +773,7 @@ h1 em {
       inset: -60%;
       background: repeating-conic-gradient(
         from var(--rays-from, 0deg),
-        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
+        rgba(248, 155, 34, .42) 0deg var(--ray-w, 4deg),
         transparent var(--ray-w, 4deg) 15deg
       );
       -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
@@ -824,7 +830,7 @@ h1 em {
       /* links: Padding = negatives Margin (clamp(2rem,6vw,5rem)) → Facts-Text
          startet bündig mit der Hero-Headline (main-Padding clamp(1.25rem,3vw,3rem)) */
       padding: clamp(1.4rem, 2.8vw, 2rem) clamp(3rem, 8vw, 7rem) clamp(1.4rem, 2.8vw, 2rem) clamp(2rem, 6vw, 5rem);
-      background: var(--cream);
+      background: var(--poster-band);
       color: var(--ink);
       box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
       display: flex;
