@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T14:22:47.610Z",
+  "updated": "2026-09-14T15:46:01.311Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -7,7 +7,7 @@
       "tier": "large",
       "eur": 800,
       "url": "https://www.reisinger-energietechnik.at/",
-      "logo": "assets/sponsor-logos/reisinger-energietechnik.jpg",
+      "logo": "assets/sponsor-logos/reisinger-energietechnik.png",
       "bg": null,
       "type": null
     },
@@ -18,7 +18,7 @@
       "eur": 300,
       "url": "https://jumpworld.one/",
       "logo": "assets/sponsor-logos/werk-und-jumpworld.svg",
-      "bg": null,
+      "bg": "black",
       "type": null
     },
     {
@@ -143,7 +143,7 @@
     },
     {
       "name": "Sentinel-Group",
-      "role": "Sicherheit",
+      "role": "Privatdetektiv",
       "tier": "medium",
       "eur": 100,
       "url": "https://sentinel-group.com/",
