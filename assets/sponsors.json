@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T14:06:20.512Z",
+  "updated": "2026-09-14T14:22:47.610Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -12,22 +12,12 @@
       "type": null
     },
     {
-      "name": "GWP GRÖSZ WEISZ PARTNER",
-      "role": "",
-      "tier": "large",
-      "eur": 250,
-      "url": "https://www.gwp.co.at/",
-      "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png",
-      "bg": null,
-      "type": null
-    },
-    {
       "name": "werk und jumpworld",
       "role": "",
       "tier": "large",
       "eur": 300,
-      "url": null,
-      "logo": null,
+      "url": "https://jumpworld.one/",
+      "logo": "assets/sponsor-logos/werk-und-jumpworld.svg",
       "bg": null,
       "type": null
     },
@@ -36,8 +26,18 @@
       "role": "",
       "tier": "large",
       "eur": 300,
-      "url": null,
-      "logo": null,
+      "url": "https://www.sharp.at/",
+      "logo": "assets/sponsor-logos/sharp.png",
+      "bg": null,
+      "type": null
+    },
+    {
+      "name": "GWP GRÖSZ WEISZ PARTNER",
+      "role": "",
+      "tier": "large",
+      "eur": 250,
+      "url": "https://www.gwp.co.at/",
+      "logo": "assets/sponsor-logos/gwp-groesz-weisz-partner.png",
       "bg": null,
       "type": null
     },
@@ -168,16 +168,6 @@
       "eur": 1,
       "url": "https://www.neusiedlamsee.at/",
       "logo": "assets/sponsor-logos/neusiedl-am-see.svg",
-      "bg": null,
-      "type": null
-    },
-    {
-      "name": "summe",
-      "role": "",
-      "tier": "large",
-      "eur": 3252,
-      "url": null,
-      "logo": null,
       "bg": null,
       "type": null
     }

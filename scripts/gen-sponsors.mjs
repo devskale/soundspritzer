@@ -371,7 +371,11 @@ async function main() {
   const hyperlinks = await fetchSheetHyperlinks();
   for (const [dataIdx, r] of rows.slice(1).entries()) {
     const name = (r[iName] ?? "").trim();
-    if (!name) continue;
+    if (!name) continue; // leere Zeilen
+    // Summen-/Gesamtzeilen (z. B. „Summe“, „Total“, „Gesamt“) überspringen —
+    // sie haben keinen Namen/Logo/URL, nur einen Betrag, und gehören nicht
+    // in die Logo-Wand. (Header-Zeile wird durch rows.slice(1) ausgelassen.)
+    if (/^(summe|sum|total|gesamt|zwischensumme)$/i.test(name)) continue;
     const role = (r[iRole] ?? "").trim();
     const logoRaw = (r[iLogo] ?? "").trim();
     const eurRaw = (r[iEur] ?? "").trim();

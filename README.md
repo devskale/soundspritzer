@@ -53,8 +53,14 @@ Der Footer zeigt automatisch das Deploy-Datum als „Stand" (aus HTTP Last-Modif
 
 Google Sheet (Name, Rolle, Logo, EUR) → stündliche GH-Action → `sponsors.json`
 + Logo-Download nach `assets/sponsor-logos/`. Neue Zeile im Sheet = neuer Sponsor
-auf der Startseite. Tiers steuern die Logo-Größe: ≥250 € large · ≥100 € medium · sonst small.
+auf der Startseite. Tiers steuern die Logo-Größe: ≥200 € large · ≥100 € medium · sonst small.
 
 ## Offen
 
-- [ ] Stripe-Payment-Links (Platzhalter `PAYMENT_LINK_*` in `partner.html` ersetzen)
+- [ ] Stripe-Payment-Links: echte URLs in `PAYMENT_LINKS` in `partner.html` eintragen (eine Stelle)
+- [ ] DNS: 3 weitere A-Records (185.199.109–111.153) als Redundanz ergänzen (`NOTIZEN.md`)
+- [ ] Exakten Veranstaltungsort / Uhrzeit final fixieren (`NOTIZEN.md`)
+- [ ] Eintritt / Tickets entscheiden (`NOTIZEN.md`)
+- [ ] Plakat: Design, Formate, Textinhalte (`NOTIZEN.md`)
+
+> Detaillierter Stand, Entscheidungen & TODOs: [`status.md`](status.md).

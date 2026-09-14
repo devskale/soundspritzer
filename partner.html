@@ -56,7 +56,7 @@
           <li><span><b>Nennung am Beamer</b> auf der Ruine Tabor</span></li>
           <li><span><b>Ohne Bedingungen</b> — einfach danke sagen</span></li>
         </ul>
-        <a class="btn" href="PAYMENT_LINK_SPENDE" target="_blank" rel="noopener">Einfach spenden</a>
+        <a class="btn" href="PAYMENT_LINK_SPENDE" data-payment-link="SPENDE" target="_blank" rel="noopener">Einfach spenden</a>
       </div>
 
       <!-- Freund des SunDowners -->
@@ -68,7 +68,7 @@
           <li><span><b>Name als Unterstützer</b> auf der Website (auf Wunsch anonym)</span></li>
           <li><span><b>Nennung am Beamer</b> auf der Ruine Tabor</span></li>
         </ul>
-        <a class="btn" href="PAYMENT_LINK_FREUND" target="_blank" rel="noopener">Freund werden</a>
+        <a class="btn" href="PAYMENT_LINK_FREUND" data-payment-link="FREUND" target="_blank" rel="noopener">Freund werden</a>
       </div>
 
       <!-- Unterstützer -->
@@ -81,7 +81,7 @@
           <li><span><b>Name als Unterstützer</b> auf der Website</span></li>
           <li><span><b>Nennung am Beamer</b> auf der Ruine Tabor</span></li>
         </ul>
-        <a class="btn" href="PAYMENT_LINK_UNTERSTUETZER" target="_blank" rel="noopener">Unterstützen</a>
+        <a class="btn" href="PAYMENT_LINK_UNTERSTUETZER" data-payment-link="UNTERSTUETZER" target="_blank" rel="noopener">Unterstützen</a>
       </div>
 
       <!-- Sponsor -->
@@ -163,10 +163,24 @@
   <script src="assets/site.js"></script>
 
   <script>
-    // Platzhalter-Wächter: Solange die hrefs noch mit PAYMENT_LINK_ beginnen,
-    // bleiben die Buttons deaktiviert („Bald verfügbar"). Sobald echte
-    // Stripe-Payment-Link-URLs eingetragen sind, sind sie automatisch aktiv.
-    document.querySelectorAll('a.btn[href^="PAYMENT_LINK_"]').forEach(function (a) {
+    // Stripe-Payment-Links — EINE Stelle zum Ersetzen.
+    // Sobald echte Stripe-Payment-Link-URLs hier eingetragen sind, werden die
+    // Buttons automatisch aktiv. Solange der Wert null ist, bleiben sie
+    // deaktiviert („Bald verfügbar").
+    var PAYMENT_LINKS = {
+      SPENDE: null,          // → https://buy.stripe.com/…
+      FREUND: null,          // → https://buy.stripe.com/…
+      UNTERSTUETZER: null    // → https://buy.stripe.com/…
+    };
+
+    document.querySelectorAll('a.btn[data-payment-link]').forEach(function (a) {
+      var key = a.getAttribute('data-payment-link');
+      var url = PAYMENT_LINKS[key];
+      if (url) {
+        a.href = url;
+        return;
+      }
+      a.removeAttribute('href');
       a.classList.add('btn--disabled');
       a.setAttribute('aria-disabled', 'true');
       a.textContent = 'Bald verfügbar';
