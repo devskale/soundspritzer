@@ -597,7 +597,10 @@ h1 em {
       margin-bottom: clamp(.45rem, 1vw, .7rem);
     }
     .hero-sub {
-      display: inline-block;
+      display: block;
+      width: fit-content; /* Badges immer untereinander — nie nebeneinander */
+      margin-left: auto;
+      margin-right: auto;
       white-space: nowrap; /* eine Zeile — darf nach rechts ausstreuen */
       margin-bottom: clamp(.45rem, 1vw, .7rem); /* Rhythmus S: Bar→Marke, eng als Einheit */
       padding: .6em 1.2em;
@@ -981,14 +984,14 @@ h1 em {
     /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons mittig zentriert → alle drei
        sitzen auf einer optischen Linie; Headings starten dennoch exakt gleich */
     .icon-slot {
-      height: clamp(90px, 15.5vw, 134px);
+      height: clamp(110px, 19vw, 165px);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: .4rem;
     }
     .offering .icon {
-      height: clamp(74px, 12.5vw, 112px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
+      height: clamp(92px, 15.5vw, 138px); /* einheitliche Icon-Höhe, Breite folgt dem Motiv */
       width: auto;
       filter: drop-shadow(0 0 14px rgba(232, 176, 75, .18));
     }
@@ -996,7 +999,7 @@ h1 em {
       height: 100%; /* füllt den Slot — Musik ist das Mega-Feature (LIVE-Stempel) */
     }
     .offering .icon--sm {
-      height: clamp(64px, 10.5vw, 96px); /* Glas dezenter — weniger Real Estate als Pizza */
+      height: clamp(80px, 13vw, 120px); /* Glas dezenter — weniger Real Estate als Pizza */
     }
     .offering .what {
       font-family: "Jost", sans-serif;
