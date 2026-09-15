@@ -1249,6 +1249,57 @@ h1 em {
     .share-via a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
     .share-via a + a::before { content: "·"; margin-right: .7em; color: var(--cream-soft); }
 
+    /* Aufklapp-Menü hinter dem Teilen-Button (Disclosure-Pattern, site.js):
+       alle Ziele an einem Ort statt Link-Zeilen — schließt bei Klick
+       außerhalb / Escape / Menü-Link. */
+    .share-wrap { position: relative; display: inline-block; }
+    .share-menu {
+      position: absolute;
+      top: calc(100% + .55rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      display: grid;
+      min-width: 16rem;
+      max-width: min(20rem, 84vw);
+      padding: .4rem;
+      background: var(--dusk-mid);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      box-shadow: 0 18px 44px rgba(34, 21, 40, .6);
+      animation: share-menu-in .18s ease-out;
+    }
+    @keyframes share-menu-in {
+      from { opacity: 0; transform: translate(-50%, -6px); }
+    }
+    .share-menu[hidden] { display: none; } /* display:grid würde [hidden] sonst übersteuern */
+    .share-menu__item {
+      display: flex;
+      align-items: center;
+      min-height: 44px; /* Touch-Targets wie .share-btn (WCAG 2.5.5) */
+      padding: 0 .85rem;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      color: var(--cream);
+      text-align: left;
+      text-decoration: none;
+      background: none;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    .share-menu__item:hover { background: rgba(247, 234, 216, .08); color: var(--gold); }
+    .share-menu__item:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+    .share-menu__item--gold { color: var(--gold); font-weight: 600; } /* Web Share, nativer Dialog */
+    .share-menu__item--more { color: var(--cream-soft); }
+    .share-menu__sep {
+      height: 1px;
+      margin: .3rem .5rem;
+      background: var(--hairline);
+    }
+
     /* ── Embed-Box (partner.html): Vorschau + Codebox + Copy ── */
     .embed-box {
       margin: clamp(3rem, 7vw, 5rem) auto 0;

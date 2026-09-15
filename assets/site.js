@@ -42,9 +42,10 @@ function canonicalUrl() {
    – nur aus User-Geste (transient activation), HTTPS-only
    – Canonical URL teilen, nicht location.href (keine Redirects/Parameter)
    – AbortError = Nutzerabbruch → still schlucken
-   Mit navigator.share → nativer System-Sheet (WhatsApp, Instagram, …);
-   ohne API (z.B. Firefox-Desktop) → Link kopieren mit Feedback.
-   Ein Button statt Icon-Wand: +20% Shares lt. Santa-Tracker-Case Study. */
+   Der Button [data-share-native] steckt im Teilen-Menü (index.html) bzw.
+   sitzt direkt auf share.html — mit Web Share API → nativer System-Sheet
+   (WhatsApp, Instagram, …); ohne API (z.B. Firefox-Desktop) → Link kopieren
+   mit Feedback. Kopieren ist die universelle Teilen-Primitive. */
 (function () {
   var native = document.querySelector("[data-share-native]");
   if (!native) return;
@@ -61,6 +62,47 @@ function canonicalUrl() {
     } else {
       copyToClipboard(TEXT + " " + URL, function () { flashButton(native, "Teilen …"); });
     }
+  });
+})();
+
+/* ── Teilen-Menü: ein Button, alle Ziele (Disclosure-Pattern) ──
+   Klick auf den Teilen-Button klappt das Menü auf; es schließt bei Klick
+   außerhalb, Escape oder Klick auf einen Menü-Link (Copy/Teilen bleiben
+   offen, damit das „Kopiert ✓"-Feedback sichtbar bleibt). */
+(function () {
+  var btn = document.querySelector("[data-share-menu]");
+  var menu = btn && document.getElementById(btn.getAttribute("aria-controls") || "");
+  if (!btn || !menu) return;
+
+  // „Direkt teilen" (nativer System-Dialog) nur anbieten, wenn die API da ist
+  var native = menu.querySelector("[data-share-native]");
+  if (native && typeof navigator.share === "function") native.hidden = false;
+
+  function onOutside(e) {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) close();
+  }
+  function onKey(e) {
+    if (e.key === "Escape") { close(); btn.focus(); }
+  }
+  function open() {
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+    // erst im nächsten Tick: der öffnende Klick darf nicht selbst schon schließen
+    setTimeout(function () {
+      document.addEventListener("click", onOutside);
+      document.addEventListener("keydown", onKey);
+    }, 0);
+  }
+  function close() {
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+    document.removeEventListener("click", onOutside);
+    document.removeEventListener("keydown", onKey);
+  }
+
+  btn.addEventListener("click", function () { menu.hidden ? open() : close(); });
+  menu.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest("a")) close();
   });
 })();
 

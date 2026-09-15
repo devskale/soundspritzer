@@ -187,32 +187,37 @@
 
     <div class="share" role="group" aria-label="SunDowner teilen">
       <p class="share-label">Erzähl es deinen Freunden</p>
-      <div class="share-row">
-        <!-- Ein Button für alles: Mit Web Share API → nativer System-Dialog
-             (enthält WhatsApp, Instagram, iMessage, …); ohne API (z.B.
-             Firefox-Desktop) kopiert er den Link mit Feedback — Kopieren ist
-             die universelle Teilen-Primitive. Kein SDK, keine Tracker. -->
-        <button type="button" class="share-btn share-btn--primary" data-share-native aria-live="polite">Teilen …</button>
+      <div class="share-wrap">
+        <!-- Ein Button für alles: Klick klappt das Teilen-Menü auf — alle Ziele
+             an einem Ort statt Link-Zeilen. „Direkt teilen" (oben, nur mit Web
+             Share API) öffnet den nativen System-Dialog (WhatsApp, Instagram,
+             iMessage, …). Ohne JS greift der noscript-Fallback darunter.
+             Kein SDK, keine Tracker. -->
+        <button type="button" class="share-btn share-btn--primary" data-share-menu aria-expanded="false" aria-haspopup="true" aria-controls="share-menu">Teilen …</button>
+        <div class="share-menu" id="share-menu" hidden>
+          <button type="button" class="share-menu__item share-menu__item--gold" data-share-native hidden>Direkt teilen …</button>
+          <a class="share-menu__item" href="https://wa.me/?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See%20https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="share-menu__item" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="share-menu__item" href="https://twitter.com/intent/tweet?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See&url=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">X</a>
+          <a class="share-menu__item" href="mailto:?subject=SunDowner%20am%20Tabor%20%E2%80%94%2025.09.2026&body=Seeblick%2C%20Sounds%20%26%20Spritzer%20%E2%80%94%2025.09.2026%2C%2017%E2%80%9322%20Uhr%2C%20Am%20Tabor%2C%20Neusiedl%20am%20See.%20https%3A%2F%2Fsoundspritzer.at%2F">E-Mail</a>
+          <a class="share-menu__item" href="assets/og-image.jpg" download="sundowner-instagram.jpg">Bild für Instagram</a>
+          <span class="share-menu__sep" role="presentation"></span>
+          <a class="share-menu__item" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer&amp;dates=20260925T150000Z%2F20260925T200000Z&amp;details=Open-Air%20am%20Tabor%3A%20YnoT%20live%2C%20DJ%20Flux%2C%20Foodtruck%20von%20Joe%27s%20Pub%2C%20Spritzerbar.%20Freier%20Eintritt.%20https%3A%2F%2Fsoundspritzer.at%2F&amp;location=Ruine%20Tabor%2C%20Am%20Tabor%2C%207100%20Neusiedl%20am%20See" target="_blank" rel="noopener">Termin: Google Kalender</a>
+          <a class="share-menu__item" href="/assets/sundowner.ics" download="sundowner.ics">Termin: iPhone / Outlook (.ics)</a>
+          <button type="button" class="share-menu__item" data-copy-link>Link kopieren</button>
+          <span class="share-menu__sep" role="presentation"></span>
+          <a class="share-menu__item share-menu__item--more" href="/share">Alle Bilder &amp; Codes →</a>
+        </div>
+        <noscript>
+          <p class="share-via">
+            oder via
+            <a href="https://wa.me/?text=SunDowner%20%E2%80%94%20https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
+            <a href="mailto:?subject=SunDowner%20am%20Tabor%20%E2%80%94%2025.09.2026&body=https%3A%2F%2Fsoundspritzer.at%2F">E-Mail</a>
+            <a href="/assets/sundowner.ics" download="sundowner.ics">Termin (.ics)</a>
+          </p>
+        </noscript>
       </div>
-      <!-- Sekundär: direkte Ziele als Text-Micro-Links (YouTube-Pattern:
-           Teilen-Dialog mit Zielleiste — aber schmal, keine Icon-Wand).
-           Instagram hat kein Web-Share-Intent → Bild-Download + selbst posten. -->
-      <p class="share-via">
-        oder via
-        <a href="https://wa.me/?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See%20https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://twitter.com/intent/tweet?text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer%20%C2%B7%2025.09.2026%2C%2017%E2%80%9322%20Uhr%20%C2%B7%20Am%20Tabor%2C%20Neusiedl%20am%20See&url=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">X</a>
-        <a href="mailto:?subject=SunDowner%20am%20Tabor%20%E2%80%94%2025.09.2026&body=Seeblick%2C%20Sounds%20%26%20Spritzer%20%E2%80%94%2025.09.2026%2C%2017%E2%80%9322%20Uhr%2C%20Am%20Tabor%2C%20Neusiedl%20am%20See.%20https%3A%2F%2Fsoundspritzer.at%2F">E-Mail</a>
-        <a href="assets/og-image.jpg" download="sundowner-instagram.jpg">Bild für Instagram</a>
-        <a href="/share">Alle Bilder &amp; Codes ↓</a>
-      </p>
-      <!-- Termin-Save: der Event sitzt im Kalender und erinnert selbst —
-           Google via TEMPLATE-Intent, Apple/Outlook via statische ICS (UTC). -->
-      <p class="share-via">
-        Termin merken:
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=SunDowner%20%E2%80%94%20Seeblick%2C%20Sounds%20%26%20Spritzer&amp;dates=20260925T150000Z%2F20260925T200000Z&amp;details=Open-Air%20am%20Tabor%3A%20YnoT%20live%2C%20DJ%20Flux%2C%20Foodtruck%20von%20Joe%27s%20Pub%2C%20Spritzerbar.%20Freier%20Eintritt.%20https%3A%2F%2Fsoundspritzer.at%2F&amp;location=Ruine%20Tabor%2C%20Am%20Tabor%2C%207100%20Neusiedl%20am%20See" target="_blank" rel="noopener">Google Kalender</a>
-        <a href="/assets/sundowner.ics" download="sundowner.ics">iPhone / Outlook (.ics)</a>
-      </p>
     </div>
 
     </main>
