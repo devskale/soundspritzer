@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15T10:48:32.958Z",
+  "updated": "2026-09-15T11:43:18.523Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -98,6 +98,16 @@
       "eur": 150,
       "url": "https://www.dominik-weber.at/",
       "logo": "assets/sponsor-logos/dominik-weber.png",
+      "bg": "white",
+      "type": null
+    },
+    {
+      "name": "Katzianschütz",
+      "role": "",
+      "tier": "medium",
+      "eur": 150,
+      "url": "https://kazianschuetz.at/",
+      "logo": "assets/sponsor-logos/katzianschuetz.png",
       "bg": "white",
       "type": null
     },
