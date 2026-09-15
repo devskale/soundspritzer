@@ -15,11 +15,10 @@ export const FACTS = {
   dj: "Flux DJ",
   food: "Joe's Pizza",
   entry: "Freier Eintritt",
-  /* Nutzungszweck (Plakat: „50 % der Einnahmen gehen an Elternverein der
-     HAK/Neusiedl“) — Website bewusst OHNE Prozentangabe, kurze Form fürs
-     Facts-Banner (Hauptzeile: charityHead). */
+  /* Nutzungszweck (Plakat: „50% der Einnahmen gehen an Elternverein der
+     HAK/Neusiedl“) — Zeile unterm Facts-Banner (charityNote-Text). */
   charityHead: "der Sundowner für den guten Zweck",
-  charity: "Einnahmen gehen an den Elternverein HAK",
+  charity: "50% der Einnahmen gehen an den Elternverein HAK",
   claim: "Seeblick Sounds & Spritzer",
   sub: "der Sundowner für den guten Zweck",
   url: "https://soundspritzer.at/",
