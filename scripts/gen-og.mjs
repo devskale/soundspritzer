@@ -9,7 +9,7 @@
 
      node scripts/gen-og.mjs        # → assets/og-image-landscape.jpg
 */
-import { writeFileSync, mkdtempSync, statSync, rmSync } from "node:fs";
+import { writeFileSync, mkdtempSync, statSync, rmSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -21,6 +21,9 @@ const url = (p) => "file://" + encodeURI(p);
 const out = asset("og-image-landscape.jpg");
 
 const chrome = [
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Chromium.app/Contents/MacOS/chromium",
   "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
@@ -48,7 +51,7 @@ const html = `<!DOCTYPE html>
     background:radial-gradient(circle, #e8b04b 58%, #d9973c 100%);
     box-shadow:0 0 42px 14px rgba(232, 176, 75, .45);
   }
-  .left { position:absolute; left:70px; top:66px; width:520px; }
+  .left { position:absolute; left:70px; top:60px; width:640px; }
   .badge {
     display:inline-block; margin-bottom:11px; padding:7px 15px;
     font-size:15px; font-weight:600; letter-spacing:.28em; text-indent:.28em;
@@ -56,13 +59,13 @@ const html = `<!DOCTYPE html>
     box-shadow:3px 3px 0 rgba(34, 21, 40, .85);
   }
   .badge--gold { background:#e8b04b; transform:rotate(-1.2deg); }
-  .badge--cream { background:#f7ead8; transform:rotate(.8deg); }
+  .badge--cream { background:#e8b04b; transform:rotate(.8deg); } /* zweite Bar auch Gold — einheitlich */
   h1 {
-    font-family:"Cormorant Garamond", Georgia, serif; font-weight:600;
-    font-size:80px; line-height:1.0; letter-spacing:.01em;
-    color:#f7ead8; margin-top:14px;
+    font-family:Jost, system-ui, sans-serif; font-weight:600;
+    font-size:86px; line-height:1.02; letter-spacing:.01em;
+    color:#f7ead8; margin-top:16px;
   }
-  h1 em { font-style:italic; font-weight:400; color:#e8b04b; }
+  h1 em { font-family:"Cormorant Garamond", Georgia, serif; font-style:italic; font-weight:600; font-size:1.12em; color:#e8b04b; }
   h1 .grad {
     font-style:italic;
     background:linear-gradient(90deg, #e8b04b 10%, #e2694a 90%);
@@ -73,7 +76,7 @@ const html = `<!DOCTYPE html>
     font-size:26px; color:#e8b04b; margin-top:10px;
   }
   .tabor {
-    position:absolute; right:46px; bottom:130px; width:540px; height:auto;
+    position:absolute; right:36px; bottom:120px; width:620px; height:auto;
     filter:drop-shadow(0 10px 24px rgba(34, 21, 40, .55));
   }
   .band {
@@ -96,18 +99,17 @@ const html = `<!DOCTYPE html>
   <span class="sun" aria-hidden="true"></span>
   <div class="left">
     <div><span class="badge badge--gold">YnoT Live · Flux DJ</span></div>
-    <div><span class="badge badge--cream">Foodtruck · Freier Eintritt</span></div>
+    <div><span class="badge badge--cream">Joe's Pizza · Freier Eintritt</span></div>
     <h1>Seeblick<br>Sounds <em>&amp;</em><br><span class="grad">Spritzer</span></h1>
     <p class="tag">der Sundowner am Tabor</p>
   </div>
-  <img class="tabor" src="${url(asset("tabor.png"))}" alt="">
+  <img class="tabor" src="${url(asset("octotabor.png?v=1"))}" alt="">
   <div class="band">
     <div class="col"><b>25.09.2026</b><span>ab 17 Uhr</span></div>
     <div class="col"><b>Am Tabor</b><span>Neusiedl am See</span></div>
     <div class="ver">
       <img src="${url(asset("akwi.jpg"))}" alt="Akademie der Wirtschaft Neusiedl am See">
       <img src="${url(asset("joes-pub.png"))}" alt="Joe's Pub Neusiedl am See">
-      <span>Veranstalter</span>
     </div>
   </div>
 </body></html>
@@ -123,9 +125,16 @@ execFileSync(chrome, [
   "--force-device-scale-factor=1", "--window-size=1200,628",
   "--virtual-time-budget=5000", `--screenshot=${pngPath}`, url(htmlPath),
 ], { stdio: "ignore" });
-execFileSync("/usr/bin/sips", [
-  "-s", "format", "jpeg", "-s", "formatOptions", "82", pngPath, "--out", out,
-], { stdio: "ignore" });
+/* PNG → JPEG: macOS sips, sonst PIL (Linux) */
+if (existsSync("/usr/bin/sips")) {
+  execFileSync("/usr/bin/sips", ["-s", "format", "jpeg", "-s", "formatOptions", "82", pngPath, "--out", out], { stdio: "ignore" });
+} else {
+  execFileSync("python3", ["-c", `
+from PIL import Image
+im = Image.open(${JSON.stringify(pngPath)}).convert("RGB")
+im.save(${JSON.stringify(out)}, "JPEG", quality=84, optimize=True)
+`], { stdio: "ignore" });
+}
 rmSync(dir, { recursive: true, force: true });
 
 const kb = Math.round(statSync(out).size / 1024);
