@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T23:09:14.080Z",
+  "updated": "2026-09-15T10:48:32.958Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -97,7 +97,7 @@
       "tier": "medium",
       "eur": 150,
       "url": "https://www.dominik-weber.at/",
-      "logo": "assets/sponsor-logos/dominik-weber.webp",
+      "logo": "assets/sponsor-logos/dominik-weber.png",
       "bg": "white",
       "type": null
     },
@@ -127,7 +127,7 @@
       "tier": "medium",
       "eur": 100,
       "url": "https://www.hsh-installateur.com/burgenland/lautner-heizung-gmbh/",
-      "logo": "assets/sponsor-logos/lautner-heizung.svg",
+      "logo": "assets/sponsor-logos/lautner-heizung.png",
       "bg": null,
       "type": null
     },
@@ -149,6 +149,16 @@
       "url": "https://sentinel-group.com/",
       "logo": "assets/sponsor-logos/sentinel-group.png",
       "bg": "black",
+      "type": null
+    },
+    {
+      "name": "eloe",
+      "role": "",
+      "tier": "medium",
+      "eur": 100,
+      "url": "https://eloe.at",
+      "logo": "assets/sponsor-logos/eloe.png",
+      "bg": "white",
       "type": null
     },
     {
