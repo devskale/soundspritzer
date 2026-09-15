@@ -13,7 +13,7 @@
   <link rel="canonical" href="https://soundspritzer.at/share">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b04b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v6'/%3E%3Cpath d='m9 6 3 3 3-3'/%3E%3Cpath d='M5.6 8.6 7 10'/%3E%3Cpath d='M18.4 8.6 17 10'/%3E%3Cpath d='M3 15h2'/%3E%3Cpath d='M19 15h2'/%3E%3Cpath d='M8 15a4 4 0 0 1 8 0'/%3E%3Cpath d='M2 19h20'/%3E%3C/svg%3E">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=16">
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
 <body id="top">
@@ -45,7 +45,7 @@
           <img src="assets/og-image.jpg" alt="Event-Karte: SunDowner mit Tabor-Oktopus, Datum und Offerings" loading="lazy" width="1200" height="1330">
           <span>Event-Karte · JPG ↓</span>
         </a>
-        <a class="kit-thumb" href="assets/sundowner-hero.png" download="sundowner-hero.png">
+        <a class="kit-thumb" href="assets/sundowner-hero.png?v=2" download="sundowner-hero.png">
           <img src="assets/tabor.png" alt="Hero-Illustration: Tabor-Ruine mit Oktopus" loading="lazy" width="877" height="416">
           <span>Hero-Illustration · PNG ↓</span>
         </a>
@@ -94,14 +94,18 @@ Und so wird das möglich: DANKE an unsere Unterstützer! 🙏
       PDF zum Drucken, weiße Variante für helle Hintergründe.</p>
       <div class="kit-poster-row">
         <div class="kit-poster">
-          <a class="kit-thumb" href="assets/poster/sundowner-poster.jpg" download="sundowner-poster.jpg">
-            <img src="assets/poster/sundowner-poster.jpg" alt="A2-Poster SunDowner — Seeblick Sounds & Spritzer" loading="lazy" width="1587" height="2244">
+          <!-- Klick: Download startet + große Vorschau im Modal (data-lightbox).
+               data-formats: "Label:url:dateiname|…" — weitere Poster einfach ergänzen. -->
+          <a class="kit-thumb" href="assets/poster/sundowner-poster.jpg?v=2" download="sundowner-poster.jpg"
+             data-lightbox data-title="SunDowner · A2-Poster"
+             data-formats='JPG:assets/poster/sundowner-poster.jpg?v=2:sundowner-poster.jpg|PDF:assets/poster/sundowner-poster.pdf?v=2:sundowner-poster.pdf|JPG weiß:assets/poster/sundowner-poster-weiss.jpg?v=2:sundowner-poster-weiss.jpg'>
+            <img src="assets/poster/sundowner-poster.jpg?v=2" alt="A2-Poster SunDowner — Seeblick Sounds & Spritzer" loading="lazy" width="1587" height="2244">
             <span>SunDowner · A2 ↓</span>
           </a>
           <p class="kit-formats">
-            <a href="assets/poster/sundowner-poster.jpg" download="sundowner-poster.jpg">JPG</a>
-            <a href="assets/poster/sundowner-poster.pdf" download="sundowner-poster.pdf">PDF</a>
-            <a href="assets/poster/sundowner-poster-weiss.jpg" download="sundowner-poster-weiss.jpg">JPG weiß</a>
+            <a href="assets/poster/sundowner-poster.jpg?v=2" download="sundowner-poster.jpg">JPG</a>
+            <a href="assets/poster/sundowner-poster.pdf?v=2" download="sundowner-poster.pdf">PDF</a>
+            <a href="assets/poster/sundowner-poster-weiss.jpg?v=2" download="sundowner-poster-weiss.jpg">JPG weiß</a>
           </p>
         </div>
       </div>
@@ -143,6 +147,16 @@ Und so wird das möglich: DANKE an unsere Unterstützer! 🙏
       <span>Techsupport <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></span>
     </div>
   </footer>
-  <script src="assets/site.js"></script>
+
+  <!-- Große Vorschau für [data-lightbox]-Klicks (site.js füllt Bild/Titel/Formate) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Vorschau">
+    <img class="lightbox-img" src="" alt="">
+    <div class="lightbox-bar">
+      <span class="lightbox-title"></span>
+      <span class="lightbox-formats kit-formats"></span>
+      <button type="button" class="share-btn" data-lightbox-close>Schließen</button>
+    </div>
+  </dialog>
+  <script src="assets/site.js?v=15"></script>
 </body>
 </html>
