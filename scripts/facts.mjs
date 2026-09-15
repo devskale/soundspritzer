@@ -21,7 +21,7 @@ export const FACTS = {
   charityHead: "der Sundowner für den guten Zweck",
   charity: "Einnahmen gehen an den Elternverein HAK",
   claim: "Seeblick Sounds & Spritzer",
-  sub: "der Sundowner am Tabor",
+  sub: "der Sundowner für den guten Zweck",
   url: "https://soundspritzer.at/",
 };
 

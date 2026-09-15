@@ -100,7 +100,7 @@ for (const g of expectedImports) {
   if (!existsSync(p)) continue;
   const txt = readFileSync(p, "utf8");
   const usesFacts = /facts\.mjs/.test(txt);
-  const hardcodes = [FACTS.time, FACTS.food].filter((x) => txt.includes(x));
+  const hardcodes = [FACTS.time, FACTS.food, FACTS.sub].filter((x) => txt.includes(x));
   if (!usesFacts) { fail(`${g} importiert facts.mjs nicht`); unbound++; }
   else if (hardcodes.length) { fail(`${g} hardcodiert statt FACTS: ${hardcodes.join(", ")}`); unbound++; }
 }

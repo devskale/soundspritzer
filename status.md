@@ -123,7 +123,7 @@ og:image + Twitter-Cards gesetzt (Plakat 1200×630), Title/Description auf DE, l
 
 ## Offen / TODO
 
-- [ ] **OG-Bilder vs. Hero-Claim:** Website-Hero sagt jetzt „der Sundowner für den guten Zweck“, og-image.jpg/-landscape (aus `FACTS.sub` = „der Sundowner am Tabor“) noch Ort-Claim. Beides wahr, aber entscheiden: og regenerieren oder bewusst so lassen. Bei Änderung: `FACTS.sub` anpassen → `gen-og*` laufen lassen → `?v=` hochzählen.
+- [x] ~~OG-Bilder vs. Hero-Claim~~ erledigt 15.09.: `FACTS.sub` = „der Sundowner für den guten Zweck“, beide og-Karten regeneriert (v5/v3), Generatoren hängen jetzt an `FACTS.sub` (Hardcode wäre künftig Checker-Fail)
 
 - [ ] Spenden via Stripe Payment Link → Revolut einrichten (siehe Plan oben)
 - [ ] GH-Action `sponsors.yml` verifizieren (erster Lauf nach Push)

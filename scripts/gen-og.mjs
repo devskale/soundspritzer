@@ -102,7 +102,7 @@ const html = `<!DOCTYPE html>
     <div><span class="badge badge--gold">YnoT Live · Flux DJ</span></div>
     <div><span class="badge badge--cream">${FACTS.food} · ${FACTS.entry}</span></div>
     <h1>Seeblick<br>Sounds <em>&amp;</em><br><span class="grad">Spritzer</span></h1>
-    <p class="tag">der Sundowner am Tabor</p>
+    <p class="tag">${FACTS.sub}</p>
   </div>
   <img class="tabor" src="${url(asset("octotabor.png"))}" alt="">
   <div class="band">

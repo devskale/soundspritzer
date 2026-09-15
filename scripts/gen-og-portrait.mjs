@@ -92,7 +92,7 @@ const html = `<!DOCTYPE html>
       <span class="pill">${FACTS.food} · ${FACTS.entry}</span>
     </div>
     <h1>Seeblick<br>Sounds &amp; <span class="serif">Spritzer</span></h1>
-    <p class="tag">der Sundowner am Tabor</p>
+    <p class="tag">${FACTS.sub}</p>
   </div>
   <div class="hero"><img src="${url(asset("octotabor.png"))}" alt="Ruine Tabor mit Oktopus"></div>
   <div class="band">
