@@ -503,6 +503,13 @@ h1 em {
       transition: color .3s ease, border-color .3s ease;
     }
     .back:hover { color: var(--gold); border-color: var(--gold); }
+    /* Back-Link oben auf allen Unterseiten — immer derselbe erste Ausstieg */
+    .back--top {
+      display: block;
+      width: fit-content;
+      margin: 0 0 2.2rem;
+      padding: .5em 0;
+    }
 
     .subpage footer {
       color: rgba(247, 234, 216, .88); /* vorher cream-soft × opacity .75 = 3.5:1 (WCAG 1.4.3) — jetzt ≥ 5:1 */
