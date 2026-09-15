@@ -1,76 +1,65 @@
-# AGENTS.md — Arbeitsregeln für Agents in diesem Repo
+# AGENTS.md — Konventionen für Agents in diesem Repo
 
-Kurzfassung der Disziplinen, die hier Fehler verhindert haben (oder fehlten, als
-welche passierten). Gilt für jeden Agenten, der an soundspritzer.at arbeitet.
+Regeln, die hier Fehler verhindert haben (oder fehlten, als welche passierten).
+Gilt für jeden Agenten, der an soundspritzer.at arbeitet.
 
-## 1 · Medien-Aktualität: total genau sein
+## 0 · Meta-Konvention: Struktur statt Disziplin
 
-**Trigger:** jede Änderung an Inhalten (Uhrzeit, Offerings, Sponsoren, Labels,
-Typo, Design-Flip) ODER an Medienkit/`share.html`/OG-Bildern/Poster/Slides.
-Dann gilt: **jede im Medienkit referenzierte Bilddatei** auf Stand prüfen —
-nicht nur die, die man gerade ändern wollte.
+Tritt dieselbe Fehlerklasse zweimal auf, wird sie **strukturell unmöglich**
+gemacht — nicht mit noch mehr Sorgfalt bekämpft. Beispiele hier:
+Medien-Drift (3× „Bild ist noch alt") → `facts.mjs` + Generatoren + CI-Checker;
+CSS-Totstilllegung durch verwaiste `}` → Balance-Check als Pflichtschritt.
+Eine Regel, die man sich nur merken muss, ist eine Regel, die wieder bricht.
 
-**Passierte Fehler (nicht wiederholen):**
-- `og-image.jpg` war 7 Tage alt („17–22 Uhr", „Foodtruck", „Veranstalter"),
-  während die Website längst „ab 17 Uhr"/„Joe's Pizza" sagte → jede
-  WhatsApp-Vorschau zeigte den alten Stand.
-- Share-Seite: Thumbnail zeigte `tabor.png` (alter Motiv ohne Oktopus), der
-  Download daneben lieferte aber `sundowner-hero.png` — Thumbnail ≠ Download.
-- OG-Portrait-Karte: Offerings-Zeile durch Höhenbudget gekippt (abgeschnitten)
-  → nach jedem Rendern Inhalt komplett prüfen (auch unterste Zeile!).
+## 1 · Fakten & Medien: eine Quelle, ein Fluss
 
-**Aktueller Stand (was „aktuell" bedeutet — mitpführen bei Änderungen):**
-- Uhrzeit: „ab 17 Uhr" (nicht „17–22 Uhr")
-- Offerings: „Joe's Pizza" (nicht „Foodtruck"), YnoT Live · Flux DJ, Spritzerbar & Drinks
-- Keine Labels „Veranstalter"/„Hauptsponsor" mehr auf Karte/Leiste
-- Headline: Jost serifenlos, „Spritzer" (und „&") in Cormorant-Kursiv
-- Hero: Oktopus-Tabor (`octotabor.png`) mit „(c) laurens"-Wasserzeichen im Kopf
-- Sponsoren: Stand `assets/sponsors.json` (Google Sheet, siehe gen-sponsors)
-
-**Checkliste Medien-Update:**
-1. Fakten NUR in `scripts/facts.mjs` ändern (Uhrzeit, Offerings, Band, …) — die Generatoren und der Checker hängen daran
-2. Generierte Bilder **nur über die Generatoren** neu bauen (nie Handarbeit am Output):
+**Fakten ändern — immer derselbe Ablauf:**
+1. Fakt **nur** in `scripts/facts.mjs` ändern (Uhrzeit, Offerings, Band, Ort) — nie in HTML/Templates direkt
+2. Generatoren laufen lassen:
    - `node scripts/gen-og-portrait.mjs` → `assets/og-image.jpg` (1200×1330, WhatsApp/IG/og:image)
    - `node scripts/gen-og.mjs` → `assets/og-image-landscape.jpg` (1200×628, twitter:image)
    - `node scripts/gen-carousel.mjs --shoot` → Slides (braucht rodney + Chrome)
-   - Poster: Google-Slides-Export (`/export/pdf` an die Doc-ID), Rendering siehe Git-Historie „Bildmaterial"-Commit
-3. `node scripts/check-media.mjs` muss grün sein — er prüft automatisch:
-   - Stale-Zeichenfolgen („17–22 Uhr", „Foodtruck", …) in HTML + Templates
-   - jede referenzierte assets/…-Datei existiert (auch Meta-Tags, data-formats)
-   - Alias-Kopien byte-identisch zur Quelle (`sundowner-hero.png ≡ octotabor.png`; `--fix` synchronisiert)
-   - jedes Asset überall mit demselben `?v=` referenziert
-   - Generatoren tatsächlich an facts.mjs angebunden (keine Hardcodes)
-4. **Cache-Busts**: bei Asset-Änderung `?v=` hochzählen — der Checker failt auf Inkonsistenz, CI (`.github/workflows/media-check.yml`) bei jedem Push
+   - Poster: Google-Slides-Export (`/export/pdf` an die Doc-ID), Derivate via pdftoppm/gs (siehe „Bildmaterial"-Commits)
+3. Bei Asset-Änderung: `?v=` überall hochzählen, wo die Datei referenziert ist
+4. `node scripts/check-media.mjs` muss grün sein (CI macht das bei jedem Push via `media-check.yml`)
 
-**Nie-wieder-Prinzip:** Medien-Drift ist hier kein Disziplin-, sondern ein
-Strukturproblem: eine Quelle (`facts.mjs` + kanonische Assets), Generatoren
-statt Kopien, CI-Wächter statt Gedächtnis. Wer eine Fakten-Änderung macht,
-ändere sie an EINER Stelle und lasse Generatoren + Checker laufen.
+**Der Checker wacht über** (alles automatisch, kein Gedächtnis nötig):
+- Stale-Zeichenfolgen („17–22 Uhr", „Foodtruck") in HTML + Templates
+- Existenz jeder referenzierten Asset-Datei (inkl. Meta-Tags, `data-formats`)
+- **Alias-Identität**: `sundowner-hero.png ≡ octotabor.png` (`--fix` synchronisiert)
+- **Versions-Konsistenz**: dieselbe Datei überall mit demselben `?v=`
+- Generator-Anbindung an `facts.mjs` (keine Hardcodes)
+
+**Hand-Regeln (nicht automatisierbar):**
+- **Keine binären Handkopien.** Braucht eine Datei einen zweiten Namen → als Alias in `facts.mjs` eintragen (checker-überwacht). Downloads/Thumbnails zeigen auf die **kanonische** Datei — Thumbnail darf nie etwas anderes zeigen als der Download liefert.
+- **Nach jedem Rendern Komposition prüfen** (VLM oder PDF-Textlayer): alle Texte da, unterste Zeile nicht beschnitten (Passiert: Offerings-Zeile der OG-Karte kippte aus dem 1330px-Budget), keine Umbruch-Leichen.
+- Fakten-Definitionen (was „aktuell" heißt) leben in `facts.mjs` — die Liste unten nur als Orientierung:
+  „ab 17 Uhr" · „Joe's Pizza" · YnoT Live · Flux DJ · keine „Veranstalter"/„Hauptsponsor"-Labels · Sans-Headline mit Cormorant-Kursiv-„Spritzer" · Oktopus-Hero mit „(c) laurens"-Wasserzeichen
+
+**Passierte Fehler (Warum das alles):**
+- `og-image.jpg` 7 Tage alt („17–22 Uhr", „Foodtruck", „Veranstalter") → jede WhatsApp-Vorschau log
+- Thumbnail `tabor.png` (kein Oktopus) neben Download `sundowner-hero.png` (anderes Motiv)
+- Hero-Download-Bild = alte Colorierung, Embed-Karte = alte Illustration
+- `site.js` in 3 Versionen referenziert (v15/ohne/v16), `octotabor.png` v1/v2, `og-image.jpg` v4/v2
+- Danke-Slide textete „Foodtruck" an Sponsoren weiter
 
 ## 2 · Verifikation: messen statt glauben
 
-- Layout-Aussagen über **DOM-Messungen** (getBoundingClientRect via rodney/CDP),
-  nicht über Screenshots allein.
-- **Screenshots sind nur so gut wie der Renderer:** meldet die Bild-Analyse
-  flächendeckend „Text fehlt", zuerst den Renderer prüfen. Passiert hier: rod's
-  Bundled-Chromium renderte nach einem Fontconfig-Cache-Rebuild keine Glyphen
-  mehr (`canvas.measureText() === 0`) — Fix: `fc-cache -f`, notfalls
-  `ROD_CHROME_BIN=/opt/google/chrome/chrome rodney start`. Das ist eine
-  **Systemdiagnose**, kein Website-Bug.
-- Schnelltest Renderer-Gesundheit vor Bild-Verifikation:
-  `rodney js "(()=>{const c=document.createElement('canvas').getContext('2d');c.font='16px sans-serif';return c.measureText('TEST').width})()"`
-  → muss > 0 sein (≈ 30–80), sonst erst Renderer heilen.
+- Layout-Aussagen über **DOM-Messungen** (`getBoundingClientRect` via rodney/CDP), nicht über Screenshots allein.
+- **Screenshots sind nur so gut wie der Renderer:** meldet die Bild-Analyse flächendeckend „Text fehlt", zuerst den Renderer prüfen — rod's Bundled-Chromium renderte nach einem Fontconfig-Cache-Rebuild keine Glyphen mehr (`canvas.measureText() === 0`). Fix: `fc-cache -f`, notfalls `ROD_CHROME_BIN=/opt/google/chrome/chrome rodney start`. Systemdiagnose, kein Website-Bug.
+- Gesundheitstest vor Bild-Verifikation:
+  `rodney js "(()=>{const c=document.createElement('canvas').getContext('2d');c.font='16px sans-serif';return c.measureText('TEST').width})()"` → muss > 0 sein, sonst erst Renderer heilen.
 
-## 3 · CSS-Sicherheit (Known Issue)
+## 3 · CSS-Sicherheit
 
-Beim CSS-Arrangieren: verwaiste/doppelte `}` werfen die **FOLGENDE** Regel
-still weg (passiert 2×). Nach jedem Edit Klammern balancen:
-`python3 -c "…{ +1 / } -1 zählen… End-Tiefe muss 0 sein, nie negativ"`
-— und bei Selektor-Edits (margin/…-Zeilen einfügen) die umgebende Regel im
-Ganzen lesen, nicht Zeilen match-and-patchen.
+Verwaiste/doppelte `}` legen die **FOLGENDE** Regel still weg (2× passiert).
+Nach jedem CSS-Edit: Klammer-Balance prüfen (End-Tiefe 0, nie negativ).
+Bei Selektor-Edits die umgebende Regel im Ganzen lesen — nicht Einzelzeilen
+match-and-patchen (1× zu einer verschachtelten Selector-Leiche geführt).
 
 ## 4 · Repo-Konventionen
 
-- Commits thematisch, deutsch, erste Zeile Präfix (Bereich), Body mit Punkten
-- `exports/` und `_drafts/` sind unversioniert (lokal nur Referenz)
-- Status der Seite/Org dokumentiert in `status.md` — bei Struktur-Änderungen mitpflegen
+- Commits thematisch, deutsch, erste Zeile Bereichs-Präfix, Body mit Punkten
+- `exports/` und `_drafts/` unversioniert (lokale Referenz)
+- Struktur-Änderungen in `status.md` mitpflegen; Medien-/Fakten-Regeln hier
+- Pages cached `max-age=600`; og:image zusätzlich bei WhatsApp/FB → Version-Parameter erzwingen Neuabruf
