@@ -18,6 +18,7 @@
    ───────────────────────────────────────────────────────────── */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { FACTS } from "./facts.mjs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -142,10 +143,10 @@ const slide = (title, body) => {
 
 /* 1 — Cover */
 slide("Cover — Danke", `
-  <p class="eyebrow">SunDowner · 25.09.2026</p>
+  <p class="eyebrow">SunDowner · ${FACTS.date}</p>
   <h1>Danke an<br>unsere <em>Unterstützer</em></h1>
   <div class="rule"></div>
-  <p class="sub">ohne euch gibt es keinen Sonnenuntergang<br>mit Musik, Foodtruck &amp; Spritzerbar</p>
+  <p class="sub">ohne euch gibt es keinen Sonnenuntergang<br>mit Musik, ${FACTS.food} &amp; Spritzerbar</p>
   <p class="foot"><b>soundspritzer.at</b> · Am Tabor, Neusiedl am See</p>`);
 
 /* 2 — Hauptsponsoren (large = Gold-Reihe der Startseite) */
@@ -170,7 +171,7 @@ partnerChunks.forEach((part, i) => {
 
 /* Letzter — CTA */
 slide("CTA", `
-  <p class="eyebrow">SunDowner · 25.09.2026 · ab 17 Uhr</p>
+  <p class="eyebrow">SunDowner · ${FACTS.date} · ${FACTS.time}</p>
   <h2>Sei <em>dabei</em>!</h2>
   <div class="rule"></div>
   <p class="sub">Seeblick, Sounds &amp; Spritzer<br>Am Tabor · Neusiedl am See · Freier Eintritt</p>

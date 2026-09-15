@@ -1,0 +1,22 @@
+name: Medien-Drift-Check
+
+on:
+  push:
+    paths: ["**.html", "assets/**", "scripts/**"]
+  pull_request:
+    paths: ["**.html", "assets/**", "scripts/**"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Medien-Stand prüfen (Stale-Strings, Assets, Aliase, ?v=-Konsistenz)
+        run: node scripts/check-media.mjs

@@ -35,11 +35,14 @@
     }
     .date span { display: block; margin-top: .45em; color: var(--cream); }
     h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 700; font-size: 1.9rem; line-height: 1.05;
+      font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif; /* wie Website: serifenlos */
+      font-weight: 600; font-size: 1.85rem; line-height: 1.04;
       margin: .55rem 0 .2rem; letter-spacing: .01em;
     }
-    h1 em { font-style: italic; color: var(--gold); }
+    h1 em {
+      font-family: Georgia, "Times New Roman", serif; /* „Spritzer“ bleibt Serifen-Kursiv */
+      font-style: italic; color: var(--gold); font-size: 1.1em;
+    }
     .tag {
       font-family: Georgia, serif; font-style: italic; font-size: .95rem;
       color: var(--cream-soft); margin-bottom: .55rem;
@@ -96,7 +99,7 @@
   <p class="date">25.09.2026 · ab 17 Uhr <span>Freier Eintritt</span></p>
   <h1>Seeblick<br>Sounds &amp; <em>Spritzer</em></h1>
   <p class="tag">der Sundowner am Tabor</p>
-  <img class="tabor" src="assets/tabor.png" alt="" aria-hidden="true" width="877" height="416">
+  <img class="tabor" src="assets/octotabor.png?v=2" alt="" aria-hidden="true" width="877" height="416">
   <div class="rule" aria-hidden="true"></div>
   <div class="offerings">
     <span class="off">

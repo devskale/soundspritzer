@@ -14,6 +14,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
+import { FACTS } from "./facts.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const asset = (f) => join(root, "assets", f);
@@ -99,13 +100,13 @@ const html = `<!DOCTYPE html>
   <span class="sun" aria-hidden="true"></span>
   <div class="left">
     <div><span class="badge badge--gold">YnoT Live · Flux DJ</span></div>
-    <div><span class="badge badge--cream">Joe's Pizza · Freier Eintritt</span></div>
+    <div><span class="badge badge--cream">${FACTS.food} · ${FACTS.entry}</span></div>
     <h1>Seeblick<br>Sounds <em>&amp;</em><br><span class="grad">Spritzer</span></h1>
     <p class="tag">der Sundowner am Tabor</p>
   </div>
-  <img class="tabor" src="${url(asset("octotabor.png?v=1"))}" alt="">
+  <img class="tabor" src="${url(asset("octotabor.png"))}" alt="">
   <div class="band">
-    <div class="col"><b>25.09.2026</b><span>ab 17 Uhr</span></div>
+    <div class="col"><b>${FACTS.date}</b><span>${FACTS.time}</span></div>
     <div class="col"><b>Am Tabor</b><span>Neusiedl am See</span></div>
     <div class="ver">
       <img src="${url(asset("akwi.jpg"))}" alt="Akademie der Wirtschaft Neusiedl am See">

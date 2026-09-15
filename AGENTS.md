@@ -28,14 +28,24 @@ nicht nur die, die man gerade ändern wollte.
 - Sponsoren: Stand `assets/sponsors.json` (Google Sheet, siehe gen-sponsors)
 
 **Checkliste Medien-Update:**
-1. Alle Referenzen erheben: `grep -o 'assets/[a-z0-9./_-]*\.\(png\|jpg\|pdf\|svg\)' share.html index.html partner.html | sort -u` + mtime jeder Datei gegen letzten Inhalts-Änderungs-Commit stellen
+1. Fakten NUR in `scripts/facts.mjs` ändern (Uhrzeit, Offerings, Band, …) — die Generatoren und der Checker hängen daran
 2. Generierte Bilder **nur über die Generatoren** neu bauen (nie Handarbeit am Output):
    - `node scripts/gen-og-portrait.mjs` → `assets/og-image.jpg` (1200×1330, WhatsApp/IG/og:image)
    - `node scripts/gen-og.mjs` → `assets/og-image-landscape.jpg` (1200×628, twitter:image)
    - `node scripts/gen-carousel.mjs --shoot` → Slides (braucht rodney + Chrome)
    - Poster: Google-Slides-Export (`/export/pdf` an die Doc-ID), Rendering siehe Git-Historie „Bildmaterial"-Commit
-3. Nach dem Rendern Inhalt verifizieren (VLM-Check oder PDF-Textlayer): alle Texte da, nichts abgeschnitten, keine Umbruch-Leichen
-4. **Cache-Busts**: bei jeder Asset-Änderung `?v=` in ALLEN referenzierenden HTML-Dateien hochzählen — `grep -rn '<datei>' *.html` und Nicht-gebumpte finden (Pages cached `max-age=600`; Meta-og:image wird von WhatsApp/FB separat gecached → Version-Parameter erzwingt Neuabbruf)
+3. `node scripts/check-media.mjs` muss grün sein — er prüft automatisch:
+   - Stale-Zeichenfolgen („17–22 Uhr", „Foodtruck", …) in HTML + Templates
+   - jede referenzierte assets/…-Datei existiert (auch Meta-Tags, data-formats)
+   - Alias-Kopien byte-identisch zur Quelle (`sundowner-hero.png ≡ octotabor.png`; `--fix` synchronisiert)
+   - jedes Asset überall mit demselben `?v=` referenziert
+   - Generatoren tatsächlich an facts.mjs angebunden (keine Hardcodes)
+4. **Cache-Busts**: bei Asset-Änderung `?v=` hochzählen — der Checker failt auf Inkonsistenz, CI (`.github/workflows/media-check.yml`) bei jedem Push
+
+**Nie-wieder-Prinzip:** Medien-Drift ist hier kein Disziplin-, sondern ein
+Strukturproblem: eine Quelle (`facts.mjs` + kanonische Assets), Generatoren
+statt Kopien, CI-Wächter statt Gedächtnis. Wer eine Fakten-Änderung macht,
+ändere sie an EINER Stelle und lasse Generatoren + Checker laufen.
 
 ## 2 · Verifikation: messen statt glauben
 

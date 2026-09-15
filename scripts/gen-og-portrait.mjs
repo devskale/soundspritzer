@@ -1,7 +1,7 @@
 /* OG-Portrait-Karte (1200×1330) für og:image + WhatsApp/IG-Previews + „Bild für Instagram".
    Zwilling von gen-og.mjs (Landscape für twitter:image) — gleiches Design,
-   aktuelle Inhalte: „ab 17 Uhr", „Joe's Pizza", Oktopus-Hero (mit Wasserzeichen),
-   kein Veranstalter-Label.
+   Inhalte aus scripts/facts.mjs (Uhrzeit, Offerings), Oktopus-Hero (mit
+   Wasserzeichen), kein Veranstalter-Label.
 
    Pipeline: selbst-contained HTML → System-Chrome Headless-Screenshot → JPEG.
    Auf Linux via PIL, auf macOS via sips (fallback). Ziel: < 300 KB.
@@ -13,6 +13,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
+import { FACTS } from "./facts.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const asset = (f) => join(root, "assets", f);
@@ -87,16 +88,16 @@ const html = `<!DOCTYPE html>
   <span class="sun" aria-hidden="true"></span>
   <div class="head">
     <div class="pills">
-      <span class="pill">YnoT Live · Flux DJ</span>
-      <span class="pill">Joe's Pizza · Freier Eintritt</span>
+      <span class="pill">${FACTS.band} Live · ${FACTS.dj}</span>
+      <span class="pill">${FACTS.food} · ${FACTS.entry}</span>
     </div>
     <h1>Seeblick<br>Sounds &amp; <span class="serif">Spritzer</span></h1>
     <p class="tag">der Sundowner am Tabor</p>
   </div>
-  <div class="hero"><img src="${url(asset("octotabor.png?v=1"))}" alt="Ruine Tabor mit Oktopus"></div>
+  <div class="hero"><img src="${url(asset("octotabor.png"))}" alt="Ruine Tabor mit Oktopus"></div>
   <div class="band">
-    <div class="col"><b>25.09.2026</b><span>ab 17 Uhr</span></div>
-    <div class="col"><b>Am Tabor</b><span>Neusiedl am See</span></div>
+    <div class="col"><b>${FACTS.date}</b><span>${FACTS.time}</span></div>
+    <div class="col"><b>${FACTS.place}</b><span>${FACTS.city}</span></div>
     <div class="logos">
       <img src="${url(asset("akwi.jpg"))}" alt="Akademie der Wirtschaft Neusiedl am See">
       <img src="${url(asset("joes-pub.png"))}" alt="Joe's Pub Neusiedl am See">
@@ -105,7 +106,7 @@ const html = `<!DOCTYPE html>
   <div class="offer">
     <div class="off"><span class="what">YnoT Live</span><span class="who">Livemusik · Flux DJ</span></div>
     <span class="rule"></span>
-    <div class="off"><span class="what">Joe's Pizza</span><span class="award">★ Burgenlands beliebteste Pizza</span></div>
+    <div class="off"><span class="what">${FACTS.food}</span><span class="award">★ Burgenlands beliebteste Pizza</span></div>
     <span class="rule"></span>
     <div class="off"><span class="what">Spritzerbar</span><span class="who">&amp; Drinks von der Schülercrew</span></div>
   </div>
