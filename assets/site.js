@@ -47,21 +47,30 @@ function canonicalUrl() {
    (WhatsApp, Instagram, …); ohne API (z.B. Firefox-Desktop) → Link kopieren
    mit Feedback. Kopieren ist die universelle Teilen-Primitive. */
 (function () {
-  var native = document.querySelector("[data-share-native]");
-  if (!native) return;
   var URL = canonicalUrl();
-  var TEXT = "SunDowner — Seeblick, Sounds & Spritzer · 25.09.2026, 17–22 Uhr · Am Tabor, Neusiedl am See";
+  var TEXT = "SunDowner — Seeblick, Sounds & Spritzer · 25.09.2026, ab 17 Uhr · Am Tabor, Neusiedl am See";
   var canNative = typeof navigator.share === "function";
 
-  native.addEventListener("click", function () {
-    if (canNative) {
-      navigator.share({ title: "SunDowner", text: TEXT, url: URL })
-        .catch(function (err) {
-          if (err && err.name !== "AbortError") console.error("Web Share fehlgeschlagen:", err);
+  document.querySelectorAll("[data-share-native]").forEach(function (native) {
+    var original = native.textContent; // flashButton stellt genau dieses Label wieder her
+    var hasIcon = !!native.querySelector("svg"); // Icon-Buttons: Farb-Flash statt Texttausch
+    native.addEventListener("click", function () {
+      if (canNative) {
+        navigator.share({ title: "SunDowner", text: TEXT, url: URL })
+          .catch(function (err) {
+            if (err && err.name !== "AbortError") console.error("Web Share fehlgeschlagen:", err);
+          });
+      } else {
+        copyToClipboard(TEXT + " " + URL, function () {
+          if (hasIcon) {
+            native.classList.add("copied");
+            setTimeout(function () { native.classList.remove("copied"); }, 1600);
+          } else {
+            flashButton(native, original);
+          }
         });
-    } else {
-      copyToClipboard(TEXT + " " + URL, function () { flashButton(native, "Teilen …"); });
-    }
+      }
+    });
   });
 })();
 
@@ -132,5 +141,50 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     code.select(); code.setSelectionRange(0, code.value.length);
     copyToClipboard(code.value, function () { flashButton(btn, "Code kopieren"); });
+  });
+})();
+
+/* ── Lightbox: Klick auf ein Asset (Poster …) → Download startet + große Vorschau ──
+   Native <dialog>: ESC und Backdrop-Klick schließen. Ohne JS bleibt der
+   normale <a download>-Link aktiv. */
+(function () {
+  var dlg = document.querySelector("dialog.lightbox");
+  if (!dlg) return;
+  var img = dlg.querySelector(".lightbox-img");
+  var title = dlg.querySelector(".lightbox-title");
+  var formatsBox = dlg.querySelector(".lightbox-formats");
+
+  document.querySelectorAll("[data-lightbox]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      // 1 · Download sofort starten (gleiche Datei wie die Vorschau)
+      var dl = document.createElement("a");
+      dl.href = a.getAttribute("href");
+      dl.download = a.getAttribute("download") || "";
+      document.body.appendChild(dl); dl.click(); dl.remove();
+      // 2 · Dialog füllen: Bild, Titel, Formate (Spec: "Label:url:dateiname|…")
+      var src = a.querySelector("img");
+      img.src = a.getAttribute("href");
+      img.alt = src ? src.alt : "";
+      title.textContent = a.getAttribute("data-title") || "";
+      formatsBox.innerHTML = "";
+      (a.getAttribute("data-formats") || "").split("|").forEach(function (spec) {
+        var p = spec.split(":");
+        if (!p[0] || !p[1]) return;
+        var f = document.createElement("a");
+        f.href = p[1];
+        f.download = p[2] || "";
+        f.textContent = p[0] + " ↓";
+        formatsBox.appendChild(f);
+      });
+      dlg.showModal();
+    });
+  });
+
+  dlg.querySelector("[data-lightbox-close]").addEventListener("click", function () { dlg.close(); });
+  // Backdrop-Klick: Klick trifft das <dialog> selbst, nicht dessen Inhalt
+  dlg.addEventListener("click", function (e) {
+    var r = dlg.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dlg.close();
   });
 })();

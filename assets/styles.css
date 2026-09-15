@@ -169,7 +169,7 @@ body {
 
 /* ── Grundgerüst Main ───────────────────────── */
 main {
-  position: relative; z-index: 1;
+  position: relative; z-index: 2; /* über dem Footer (z-index 1): lässt das Teilen-Popover vor ihm aufklappen */
   flex: 1;
   text-align: center;
   animation: reveal .6s ease-out both;
@@ -549,6 +549,31 @@ h1 em {
        Sektionen folgen einer steigenden Skala: oben kompakt, unten luftig.
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
+    /* ── Medienkit-Tag oben rechts — direkter Einstieg ins Material (Poster/Bilder/Embed) ── */
+    .top-tag {
+      position: absolute;
+      top: clamp(1.25rem, 3vw, 2rem);
+      right: clamp(1.25rem, 3vw, 3rem); /* spiegelbildlich zum linken Main-Padding */
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      padding: .55em 1.1em;
+      font-size: clamp(.62rem, 1.3vw, .72rem);
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-indent: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--dusk-top); /* solide statt transparent — Cream-auf-Dusk ≈ 13:1 */
+      border: 1px solid rgba(247, 234, 216, .45);
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(34, 21, 40, .35);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .top-tag:hover { color: var(--gold); border-color: var(--gold); }
+    .top-tag:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
     /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
     .hero {
       display: grid;
@@ -613,10 +638,10 @@ h1 em {
       padding: .6em 1.2em;
       border: 2px solid var(--dusk-top); /* Tinten-Kontur wie die Sticker + LIVE-Stempel */
       border-radius: 2px; /* eckig, nur Kanten entscharts */
-      font-size: clamp(.6rem, 1.3vw, .7rem);
+      font-size: clamp(.8rem, 1.8vw, .95rem); /* größer — Band-Pill darf auffallen (vorher .6–.7rem) */
       font-weight: 600;
-      letter-spacing: .28em;
-      text-indent: .28em;
+      letter-spacing: .22em;
+      text-indent: .22em;
       text-transform: uppercase;
       color: var(--dusk-top);
       background: var(--gold);
@@ -630,18 +655,24 @@ h1 em {
       min-width: 0;
     }
     .home-main h1 {
-      font-family: "Cormorant Garamond", serif; /* explizit — gleiche Schrift wie alle Hero-Elemente */
-      font-weight: 700;
+      font-family: Jost, system-ui, "Segoe UI", Roboto, Arial, sans-serif; /* SERIFENLOS-TEST — vorher: "Cormorant Garamond", serif */
+      font-weight: 600;
       font-size: clamp(2.8rem, 7.6vw, 5.6rem); /* groß, aber das Motiv gewinnt: Illustration > Headline */
-      line-height: 1.02;
+      line-height: 1.06;
       letter-spacing: .01em;
       text-shadow:
         0 0 30px rgba(232, 148, 58, .5),
         0 0 90px rgba(232, 148, 58, .3);
     }
+    /* Serifenlos: „Spritzer“ (und „&“) bleiben Serifen-Kursiv — das Markwort behält seine Eleganz */
+    .home-main h1 em {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: 1.14em; /* Cormorant-x-Höhe ausgleichen — wirkt sonst kleiner als Jost */
+    }
     .home-main h1 .l1, .home-main h1 .l2, .home-main h1 .l3 {
       display: block;
-      line-height: .96; /* tight gestapelt — Zeile 1/2 ohne Descender, kein Clipping */
+      line-height: .88; /* enger gestapelt (vorher .96) — Zeile 1/2 ohne Descender, „p“ in Spritzer ist letzte Zeile */
     }
     .home-main h1 .l2 { white-space: nowrap; }
     .tabor {
@@ -837,23 +868,25 @@ h1 em {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: clamp(1.5rem, 4vw, 3rem);
+      gap: clamp(1rem, 2.5vw, 1.75rem); /* Facts↔Teilen: enger gruppiert */
     }
-    /* Spalte 1: Veranstalter-Logos (ragen oben über die Balkenkante) */
+    /* Spalte: Logos — Akwi/Joes überstehen die Oberkante, Reisinger darunter
+       ragt passend unten heraus.
+       align-self: flex-start statt Mittig-Zentrierung → die negativen Margins
+       wirken 1:1, die Flex-Zentrierung verteilt den Überstand nicht mehr um
+       (früher: unten nur 6px sichtbar, obwohl −2.4rem gesetzt war). */
     .facts-logos {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: .15rem;
-      margin-top: clamp(-3.2rem, -6vw, -4.6rem); /* Logos ragen über die Oberkante in den Hero */
+      align-self: flex-start;
+      /* Logos ragen 20px über die Oberkante: Banner-Padding + fixer Überstand */
+      margin-top: calc(-1 * (clamp(1.4rem, 2.8vw, 2rem) + 20px));
     }
-    .facts-logos-label {
-      font-size: clamp(.7rem, 1.5vw, .85rem);
-      font-weight: 500;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-top: .35rem;
+    .facts-logo-row--reisinger {
+      margin-top: 2rem; /* treibt den unteren Überstand — wächst mit, seit die Facts größer sind (Banner höher) */
+      margin-bottom: -3.5rem; /* hält die Spalte layoutschmal (unter Fakten-Höhe), damit der Streifen nicht mitwächst — Überschuss wirkt sich nicht aus */
     }
     .facts-logo-row {
       display: flex;
@@ -864,7 +897,30 @@ h1 em {
     .facts-logo-row a:hover { transform: translateY(-2px); }
     .facts-logo-row img[src*="akwi"] { height: clamp(64px, 8vw, 88px); width: auto; border-radius: 6px; }
     .facts-logo-row img[src*="joes"] { height: clamp(64px, 8vw, 88px); width: auto; }
+    .facts-logo-row img[src*="reisinger"] { height: clamp(52px, 6.5vw, 72px); width: auto; border-radius: 6px; } /* gleiche Rundung wie AKWI-Kachel */
     .facts-logo-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    /* Teilen-Icon in der Leiste — erster Teilen-Einstieg im ersten Viewport.
+       margin-right:auto rückt es nahe an die Facts (Gruppe links), Logos rechts */
+    .facts-share {
+      flex: 0 0 auto;
+      margin-right: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; /* Touch-Target (WCAG 2.5.5), wirkt durch Icon klein */
+      height: 44px;
+      padding: 0;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid rgba(34, 21, 40, .35);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+    }
+    .facts-share svg { width: 18px; height: 18px; }
+    .facts-share:hover { color: var(--cream); background: var(--ink); border-color: var(--ink); }
+    .facts-share:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .facts-share.copied { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 
     /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
     /* Datum+Ort gehören als EIN Fakten-Paar zusammen → gruppiert, enger Gap */
@@ -881,8 +937,8 @@ h1 em {
     }
     .fact-main {
       font-weight: 600;
-      font-size: clamp(1.3rem, 3.1vw, 2rem); /* Plakat-Rang: Wann/Wo ist die Kerninfo */
-      letter-spacing: .14em;
+      font-size: clamp(1.55rem, 3.6vw, 2.5rem); /* Plakat-Rang: Wann/Wo ist die Kerninfo — groß, wie ein Plakatstreifen */
+      letter-spacing: .12em;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -1262,7 +1318,7 @@ h1 em {
     .share-wrap { position: relative; display: inline-block; }
     .share-menu {
       position: absolute;
-      top: calc(100% + .55rem);
+      bottom: calc(100% + .55rem); /* klappt ÜBER dem Button auf: der sitzt am Seitenende — nach unten läge das Menü im Footer/hinter dem Seitenende */
       left: 50%;
       transform: translateX(-50%);
       z-index: 40;
@@ -1277,7 +1333,7 @@ h1 em {
       animation: share-menu-in .18s ease-out;
     }
     @keyframes share-menu-in {
-      from { opacity: 0; transform: translate(-50%, -6px); }
+      from { opacity: 0; transform: translate(-50%, 6px); } /* startet 6px tiefer, gleitet nach oben */
     }
     .share-menu[hidden] { display: none; } /* display:grid würde [hidden] sonst übersteuern */
     .share-menu__item {
@@ -1428,6 +1484,39 @@ h1 em {
     }
     .kit-formats a:hover { color: var(--gold); border-color: var(--gold); }
     .kit-formats a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    /* Lightbox: Klick auf ein Poster → Download + große Vorschau (native <dialog>) */
+    dialog.lightbox {
+      padding: .8rem;
+      max-width: min(92vw, 920px);
+      background: var(--dusk-mid);
+      color: var(--cream);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+    }
+    dialog.lightbox::backdrop { background: rgba(34, 21, 40, .82); }
+    .lightbox-img {
+      display: block;
+      max-width: 100%;
+      max-height: 74vh;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 14px 40px rgba(34, 21, 40, .55);
+    }
+    .lightbox-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .9rem;
+      padding: .8rem .2rem 0;
+    }
+    .lightbox-title {
+      margin-right: auto;
+      font-size: .66rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--cream-soft);
+    }
     .kit-caption {
       width: 100%; max-width: 560px; text-align: left;
       border: 1px solid var(--hairline); border-radius: 8px;
@@ -1479,11 +1568,15 @@ h1 em {
       .facts-logos {
         /* kein Überstand im Stapel-Layout: negatives Margin würde in den
            Fact-Text darüber ziehen (Desktop: Logos ragen seitlich über die
-           Oberkante — im Mobile-Stapel stehen sie UNTER den Fakten) */
+           Oberkante — im Mobile-Stapel stehen sie UNTER den Fakten).
+           align-self zurück auf Mitte: im Spalten-Layout steuert es die
+           horizontale Ausrichtung (zentriert). */
         margin-top: 0;
+        align-self: center;
         align-items: center;
       }
-      .facts-logos-label { text-align: center; }
+      .facts-logo-row--reisinger { margin-bottom: 0; } /* kein Überstand unten im Stapel-Layout */
+      .facts-share { margin-right: 0; } /* Stapel: auto-Margin würde den Button links verankern */
       .facts-facts {
         flex-direction: column;
         gap: 1.2rem;
