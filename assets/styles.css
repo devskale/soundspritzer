@@ -1359,21 +1359,21 @@ h1 em {
     .kit-hint a { color: var(--gold); text-decoration: none; }
     .kit-hint a:hover { text-decoration: underline; }
     .kit-thumb-row {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 1.4rem;
       margin-top: .4rem;
     }
     .kit-thumb {
-      display: flex; flex-direction: column; gap: .5rem;
-      width: 220px;
+      display: flex; flex-direction: column; gap: .55rem;
       text-decoration: none;
     }
-    .kit-thumb--sm { width: 150px; }
+    /* Einheitliche Bildhöhe je Reihe — ruhige Linie statt Bildermauer */
     .kit-thumb img {
-      width: 100%; height: auto; display: block;
+      height: 170px; width: auto; max-width: 100%; display: block; margin: 0 auto;
       border-radius: 8px;
       box-shadow: 0 10px 30px rgba(34, 21, 40, .5);
       transition: transform .25s ease; /* 200–300ms ease-out */
     }
+    .kit-thumb--sm img { height: 132px; }
     .kit-thumb:hover img, .kit-thumb:focus-visible img { transform: translateY(-4px) rotate(-.5deg); }
     .kit-thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
     .kit-thumb span {
@@ -1382,6 +1382,45 @@ h1 em {
       transition: color .25s ease;
     }
     .kit-thumb:hover span { color: var(--gold); }
+
+    /* Button-Reihe (Block 1: Teilen / Link kopieren) */
+    .kit-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; }
+
+    /* Einklapper für Sekundäres (Carousel, Caption) — hält die Seite ruhig */
+    .kit-collapse { width: 100%; }
+    .kit-collapse > summary {
+      cursor: pointer; list-style: none;
+      display: inline-flex; align-items: center; gap: .55em;
+      font-size: .66rem; font-weight: 600; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--cream-soft);
+      padding: .6em .4em;
+      transition: color .25s ease;
+    }
+    .kit-collapse > summary::-webkit-details-marker { display: none; }
+    .kit-collapse > summary::before { content: "+"; color: var(--gold); letter-spacing: 0; }
+    .kit-collapse[open] > summary::before { content: "–"; }
+    .kit-collapse > summary:hover { color: var(--gold); }
+    .kit-collapse > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+    .kit-collapse[open] > summary { margin-bottom: .9rem; }
+
+    /* Poster-Karten: ein .kit-poster-Block pro Poster — neue Poster einfach
+       ergänzen, das Grid bricht von selbst um */
+    .kit-poster-row {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+      gap: 1.8rem; margin-top: .4rem;
+    }
+    .kit-poster { display: flex; flex-direction: column; align-items: center; gap: .55rem; }
+    .kit-poster .kit-thumb img { height: 280px; }
+    .kit-formats { display: flex; justify-content: center; gap: .5rem; }
+    .kit-formats a {
+      font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-indent: .18em;
+      text-transform: uppercase; color: var(--cream);
+      text-decoration: none; padding: .6em .9em;
+      border: 1px solid var(--hairline); border-radius: 2px;
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .kit-formats a:hover { color: var(--gold); border-color: var(--gold); }
+    .kit-formats a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     .kit-caption {
       width: 100%; max-width: 560px; text-align: left;
       border: 1px solid var(--hairline); border-radius: 8px;
