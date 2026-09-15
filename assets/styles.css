@@ -596,6 +596,7 @@ h1 em {
       font-weight: 500;
       font-size: clamp(1.35rem, 3vw, 1.9rem);
       letter-spacing: .04em;
+      text-wrap: balance; /* schmale Hero-Spalte: keine Einzelwort-Witwe wie „…/Zweck“ */
       /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
       background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
       -webkit-background-clip: text;
@@ -619,13 +620,16 @@ h1 em {
       outline: 2px solid var(--dusk-top);
       outline-offset: 2px;
     }
-    /* YnoT-Badge: größer — der Act ist die Headline-Zeile über dem Sticker */
+    /* YnoT-Badge: größer & höher — der Act ist die Headline-Zeile über dem Sticker */
     .hero-sub.hero-sub--band {
-      font-size: clamp(.8rem, 1.8vw, 1rem);
-      padding: .7em 1.4em;
+      font-size: clamp(.88rem, 2vw, 1.15rem);
+      padding: .9em 1.5em;
       margin-bottom: .25rem; /* engere Spalt zum zweiten Badge */
     }
     .hero-sub.hero-sub--second {
+      /* flacher & kleiner als das Band-Badge — Rangfolge: Act > Logistik */
+      font-size: clamp(.68rem, 1.35vw, .8rem);
+      padding: .45em 1.05em;
       margin-bottom: clamp(.45rem, 1vw, .7rem);
     }
     .hero-sub {
@@ -948,6 +952,33 @@ h1 em {
       letter-spacing: .24em;
       text-transform: uppercase;
       color: var(--ink);
+    }
+    /* Nutzungs-Hinweis unterm Facts-Banner (facts.mjs → charityHead/charity):
+       „Feiern für den guten Zweck — Einnahmen gehen an den Elternverein HAK“.
+       Linksbündig zu den Facts, max-width skaliert mit: Bei schmalen
+       Viewports bricht die Zeile früh auf zwei Zeilen, BEVOR sie in den
+       Reisinger-Überstand läuft (Logos ragen rechts ~3.5rem unter den
+       Streifen). Cormorant-Kursiv wie brand-sub — leise Stimme, Gold-Vorspann
+       im Sonnen-Gradient des Claims. */
+    /* Charity-Zeile unterm Facts-Banner (facts.mjs → charity):
+       „Einnahmen gehen an den Elternverein HAK“ — links im Korridor zwischen
+       Streifenrand und dem Reisinger-Überstand (Logos ragen rechts ~3.5rem
+       unter den Streifen). align-self:stretch löst das Shrink-to-Fit von
+       home-main (Flex+align-center) auf, negatives Margin hebt das
+       main-Padding auf, kleiner Inset hält ~12px Luft zum Rand.
+       Cormorant-Kursiv wie brand-sub — leise Stimme in Cream. */
+    .charity-note {
+      align-self: stretch;
+      text-align: left;
+      margin: clamp(.35rem, .7vw, .55rem) 0 0;
+      margin-left: calc(-1 * clamp(1.25rem, 3vw, 3rem) + .75rem);
+      max-width: min(70vw, 900px);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(.95rem, 1.8vw, 1.18rem);
+      letter-spacing: .02em;
+      color: var(--cream);
     }
     /* About: Schülertext gerahmt von zwei Hairlines — Rhythmus XXL 2 nach dem Facts-Banner */
     .about {
@@ -1577,6 +1608,12 @@ h1 em {
       }
       .facts-logo-row--reisinger { margin-bottom: 0; } /* kein Überstand unten im Stapel-Layout */
       .facts-share { margin-right: 0; } /* Stapel: auto-Margin würde den Button links verankern */
+      .charity-note {
+        text-align: center;
+        max-width: none; /* Stapel: Logos hängen nicht über → zentriert in voller Breite */
+        margin-left: auto;
+        margin-right: auto;
+      }
       .facts-facts {
         flex-direction: column;
         gap: 1.2rem;

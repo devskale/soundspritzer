@@ -1,6 +1,6 @@
 # SunDowner / Soundspritzer — Status
 
-**Stand:** 27. August 2026
+**Stand:** 15. September 2026
 **Domain:** soundspritzer.at (GitHub Pages, Repo: devskale/soundspritzer)
 **Event:** 25.09.2026 · ab 17 Uhr · Am Tabor, Neusiedl am See · Freier Eintritt
 
@@ -10,9 +10,9 @@
 
 1. **Site-Header**: AKWI- + Joe's-Pub-Logo (80px, verlinkt, oben links)
 2. **Hero** (2-spaltig):
-   - Links: Pill „Livemusik · Foodtruck · Freier Eintritt" → Claim „Seeblick, Sounds & Spritzer" (groß, Glow) → „der Sundowner am Tabor" (kursiv)
+   - Links: Pill „YnoT Live · Flux DJ“ → Pill „Joe's Pizza · Freier Eintritt“ (kleiner) → Claim „Seeblick, Sounds & Spritzer“ (groß, Glow) → „der Sundowner für den guten Zweck“ (kursiv, Sonnen-Gradient, text-wrap:balance)
    - Rechts: Tabor-Ruine mit wandernder Sonne (Bogen-Loop 24s, Strahlen-Morph)
-3. **Facts-Banner**: edge-to-edge hell, 3 Spalten — Veranstalter-Logos (AKWI gelb/JPG + Joe's Pub) mit Label | Datum+Uhrzeit | Ort — zweireihige Facts
+3. **Facts-Banner**: edge-to-edge hell, 3 Spalten — Veranstalter-Logos (AKWI gelb/JPG + Joe's Pub) mit Label | Datum+Uhrzeit | Ort — zweireihige Facts. Darunter linksbündig im Korridor vor dem Reisinger-Überstand: „Einnahmen gehen an den Elternverein HAK“ (charity-note, Cormorant-Kursiv)
 4. **About**: Schüler-Trio-Sticker → Brief (3 Schüler, Diplomarbeit, Wunschveranstaltung, Lieblingsband, Schmankerl, faire Preise, Dank an Stadtgemeinde/Joe's Pub/Unterstützer) → Gruß + Signatur Laurens, Alex & der Dritte
 5. **Offerings**: Musik (YnoT · Flux DJ — YnoT→Instagram verlinkt; **LIVE-Stempel**: Gold-Badge mit Tinten-Kontur, -8° gekippt, statischer Schatten (Puls auf Wunsch entfernt), auf dem Vinyl) | Foodtruck (Joe's Pub, ★ Burgenlands beliebteste Pizza) | **Spritzerbar (Gutes von der Schülercrew)** — Sticker-Icons; Weingut Königshofer 27.08. aus der Seite genommen
 6. **Sponsoren & Partner**: statische Cards aus `assets/sponsors.json` (Google Sheet), Tier-Größen nach Betrag, Jost 500
@@ -122,6 +122,8 @@ UX-Review (27.08.): `role=contentinfo` vom Facts-Banner entfernt (war doppeltes 
 og:image + Twitter-Cards gesetzt (Plakat 1200×630), Title/Description auf DE, lang=de.
 
 ## Offen / TODO
+
+- [ ] **OG-Bilder vs. Hero-Claim:** Website-Hero sagt jetzt „der Sundowner für den guten Zweck“, og-image.jpg/-landscape (aus `FACTS.sub` = „der Sundowner am Tabor“) noch Ort-Claim. Beides wahr, aber entscheiden: og regenerieren oder bewusst so lassen. Bei Änderung: `FACTS.sub` anpassen → `gen-og*` laufen lassen → `?v=` hochzählen.
 
 - [ ] Spenden via Stripe Payment Link → Revolut einrichten (siehe Plan oben)
 - [ ] GH-Action `sponsors.yml` verifizieren (erster Lauf nach Push)
