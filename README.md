@@ -1,7 +1,7 @@
 # SunDowner — soundspritzer.at
 
 Veranstaltungswebsite für den **SunDowner** — Seeblick, Sounds & Spritzer.
-Open-Air am 25.09.2026 (17–22 Uhr) bei der Ruine Tabor, Neusiedl am See.
+Open-Air am 25.09.2026 (ab 17 Uhr) bei der Ruine Tabor, Neusiedl am See.
 Ein Diplomarbeitsprojekt von drei Schülern der Akademie der Wirtschaft Neusiedl am See.
 
 **Live:** [soundspritzer.at](https://soundspritzer.at)
@@ -24,7 +24,7 @@ Ein Diplomarbeitsprojekt von drei Schülern der Akademie der Wirtschaft Neusiedl
 | `assets/sponsor-logos/` | Automatisch heruntergeladene Sponsor-Logos |
 | `assets/fonts/` | Self-hosted Fonts (Cormorant Garamond, Jost — DSGVO) |
 | `scripts/gen-sponsors.mjs` | Google Sheet → JSON + Logo-Download (zero-deps, Node) |
-| `scripts/gen-carousel.mjs` | Instagram-Carousel-Slides generieren |
+| `scripts/gen-carousel.mjs` | Instagram-Carousel-Builder — Slides aus sponsors.json; mit `--shoot` fotografirt rodney die 1080×1350-PNGs |
 | `scripts/gen-og.mjs` | OG-/Share-Bild generieren |
 | `scripts/serve.mjs` | Lokaler Dev-Server mit Live-Reload |
 | `bildmat/` | Bildmaterial-Exploration (ArchiVMaterial) |
@@ -56,6 +56,11 @@ node scripts/serve.mjs        # → http://localhost:8000 (Clean URLs, Live-Relo
 `git push origin main` → GitHub Pages baut automatisch.
 Der Footer zeigt automatisch das Deploy-Datum als „Stand" (aus HTTP Last-Modified).
 
+**Achtung Cache:** Pages cached 10 Minuten (`max-age=600`). Bei Änderungen an
+`styles.css` / `site.js` / `crew-stamp.js` das `?v=` in den HTML-Referenzen
+hochzählen — sonst mischt der Browser neues HTML mit altem Cache-Asset
+(das war der tote Teilen-Button vom 15.09.).
+
 Nicht im Repo (und damit nicht deployed): `_drafts/` (lokales Archiv) und `exports/`
 (lokale Poster-Exporte in voller Auflösung).
 
@@ -64,6 +69,10 @@ Nicht im Repo (und damit nicht deployed): `_drafts/` (lokales Archiv) und `expor
 Google Sheet (Name, Rolle, Logo, EUR) → stündliche GH-Action → `sponsors.json`
 + Logo-Download nach `assets/sponsor-logos/`. Neue Zeile im Sheet = neuer Sponsor
 auf der Startseite. Tiers steuern die Logo-Größe: ≥200 € large · ≥100 € medium · sonst small.
+
+Bei Sponsoren-Änderungen baut die Action auch das **Instagram-Carousel** neu
+(`gen-carousel.mjs --shoot`: Slides aus sponsors.json, rodney fotografiert die PNGs).
+Lokal derselbe Builder: `node scripts/gen-carousel.mjs --shoot`.
 
 ## Offen
 

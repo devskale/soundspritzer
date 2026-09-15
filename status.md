@@ -2,7 +2,7 @@
 
 **Stand:** 27. August 2026
 **Domain:** soundspritzer.at (GitHub Pages, Repo: devskale/soundspritzer)
-**Event:** 25.09.2026 · 17–22 Uhr · Am Tabor, Neusiedl am See · Freier Eintritt
+**Event:** 25.09.2026 · ab 17 Uhr · Am Tabor, Neusiedl am See · Freier Eintritt
 
 ---
 

@@ -102,7 +102,7 @@ const html = `<!DOCTYPE html>
   </div>
   <img class="tabor" src="${url(asset("tabor.png"))}" alt="">
   <div class="band">
-    <div class="col"><b>25.09.2026</b><span>17–22 Uhr</span></div>
+    <div class="col"><b>25.09.2026</b><span>ab 17 Uhr</span></div>
     <div class="col"><b>Am Tabor</b><span>Neusiedl am See</span></div>
     <div class="ver">
       <img src="${url(asset("akwi.jpg"))}" alt="Akademie der Wirtschaft Neusiedl am See">

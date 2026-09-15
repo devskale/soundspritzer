@@ -21,13 +21,53 @@ jobs:
       - name: Sponsors aus Google Sheet ziehen
         run: node scripts/gen-sponsors.mjs
 
-      - name: Commit & push (nur wenn geändert)
+      - name: Haben sich Sponsoren geändert?
         run: |
           if [[ -n $(git status --porcelain assets/sponsors.json assets/sponsor-logos) ]]; then
+            echo "CHANGED=1" >> "$GITHUB_ENV"
+            echo "Sponsoren geändert — Instagram-Carousel wird mitgebaut."
+          else
+            echo "Keine Änderungen — Carousel-Schritte werden übersprungen."
+          fi
+
+      - uses: actions/setup-go@v5
+        if: env.CHANGED == '1'
+        with:
+          go-version: 'stable'
+
+      - uses: actions/cache@v4
+        if: env.CHANGED == '1'
+        with:
+          path: ~/.local/bin/rodney
+          key: rodney-skale-bin-v1
+
+      - name: rodney bauen (Headless-Chrome-CLI fürs Carousel)
+        if: env.CHANGED == '1'
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          if [ ! -x "$HOME/.local/bin/rodney" ]; then
+            git clone --depth 1 -b skale https://github.com/devskale/rodney.git /tmp/rodney
+            cd /tmp/rodney
+            go build -o "$HOME/.local/bin/rodney" .
+          fi
+          rodney --version
+
+      - name: Instagram-Carousel neu bauen (Slides fotografieren)
+        if: env.CHANGED == '1'
+        continue-on-error: true # Carousel darf den Sponsoren-Deploy nie blockieren
+        env:
+          ROD_CHROME_BIN: google-chrome # auf ubuntu-Runner vorinstalliert
+        run: |
+          export PATH="$HOME/.local/bin:$PATH"
+          node scripts/gen-carousel.mjs --shoot
+
+      - name: Commit & push (nur wenn geändert)
+        run: |
+          if [[ -n $(git status --porcelain assets) ]]; then
             git config user.name  "sponsors-bot"
             git config user.email "actions@github.com"
-            git add assets/sponsors.json assets/sponsor-logos
-            git commit -m "sponsors: Sheet-Stand $(date -u +%Y-%m-%dT%H:%MZ)"
+            git add assets
+            git commit -m "sponsors: Sheet-Stand $(date -u +%Y-%m-%dT%H:%MZ)$( [[ -n ${CHANGED:-} ]] && echo ' + Carousel' )"
             git push
           else
             echo "Keine Änderungen — nichts zu committen."
