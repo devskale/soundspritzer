@@ -11,17 +11,24 @@ Ein Diplomarbeitsprojekt von drei Schülern der Akademie der Wirtschaft Neusiedl
 | Datei/Ordner | Zweck |
 |--------------|-------|
 | `index.html` | Startseite (Hero, Facts, Offerings, Logo-Wand, About) |
-| `partner.html` | Unterstützen-Seite — 5er-Paket-Leiter (Stripe + Anfrage) |
-| `impressum.html` | Impressum, Datenschutz & AGB (ECG §5 / MG §25 / DSGVO) |
+| `partner.html` | Unterstützen-Seite — 5er-Paket-Leiter (Stripe + Anfrage, Embed-Box) |
+| `share.html` | Share-Kit — Bilder, Instagram-Carousel, Poster, Embed-Code |
+| `embed.html` | Einbettbare Event-Karte (self-contained, 380×560, noindex) |
+| `impressum.html` | Impressum & AGB (ECG §5 / MG §25) |
+| `datenschutz.html` | Datenschutzerklärung (DSGVO) |
 | `404.html` | Custom 404 (wird von GitHub Pages automatisch genutzt) |
 | `assets/styles.css` | **Ein zentrales, modulares CSS** (Module 01–13, dokumentiert im Dateikopf) |
-| `assets/site.js` | Kleinigkeiten (Footer-„Stand"-Datum aus HTTP Last-Modified) |
+| `assets/site.js` | Kleinigkeiten (Teilen-Button, Clipboard, Footer-„Stand"-Datum) |
+| `assets/crew-stamp.js` | `<crew-stamp>` Custom Element — LAJ-Stempel (Shadow DOM) |
 | `assets/sponsors.json` | Wird aus dem Google Sheet generiert (nicht manuell editieren) |
 | `assets/sponsor-logos/` | Automatisch heruntergeladene Sponsor-Logos |
+| `assets/fonts/` | Self-hosted Fonts (Cormorant Garamond, Jost — DSGVO) |
 | `scripts/gen-sponsors.mjs` | Google Sheet → JSON + Logo-Download (zero-deps, Node) |
+| `scripts/gen-carousel.mjs` | Instagram-Carousel-Slides generieren |
+| `scripts/gen-og.mjs` | OG-/Share-Bild generieren |
 | `scripts/serve.mjs` | Lokaler Dev-Server mit Live-Reload |
 | `bildmat/` | Bildmaterial-Exploration (ArchiVMaterial) |
-| `_drafts/` | Archiv — nicht deployed |
+| `.nojekyll` | GitHub Pages: Roh-Auslieferung ohne Jekyll (Clean URLs bleiben aktiv) |
 | `finanz-recht.md` | Finanzrechtliche Recherche + Belegsammlung B1–B13 (Rechnungsstellung, Gewerbe, Verein, Spendenabsetzbarkeit) |
 | `sponsoring-rechnung.md` | Die klare Linie: Sponsoren wollen immer eine Rechnung (= echtes Sponsoring = Umsatz); Entscheidung „Laurens als Veranstalter"; Gewerbe vs. Verein |
 | `spenden-recherche.md` | Recherche Stripe → Revolut |
@@ -48,6 +55,9 @@ node scripts/serve.mjs        # → http://localhost:8000 (Clean URLs, Live-Relo
 
 `git push origin main` → GitHub Pages baut automatisch.
 Der Footer zeigt automatisch das Deploy-Datum als „Stand" (aus HTTP Last-Modified).
+
+Nicht im Repo (und damit nicht deployed): `_drafts/` (lokales Archiv) und `exports/`
+(lokale Poster-Exporte in voller Auflösung).
 
 ## Sponsoren-Pipeline
 

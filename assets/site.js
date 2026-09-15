@@ -56,7 +56,7 @@ function canonicalUrl() {
     if (canNative) {
       navigator.share({ title: "SunDowner", text: TEXT, url: URL })
         .catch(function (err) {
-          if (err && err.name !== "AbortError") throw err;
+          if (err && err.name !== "AbortError") console.error("Web Share fehlgeschlagen:", err);
         });
     } else {
       copyToClipboard(TEXT + " " + URL, function () { flashButton(native, "Teilen …"); });
