@@ -9,6 +9,7 @@
     "start": "node scripts/serve.mjs",
     "gen:sponsors": "node scripts/gen-sponsors.mjs",
     "gen:carousel": "node scripts/gen-carousel.mjs",
-    "gen:og": "node scripts/gen-og.mjs"
+    "gen:og": "node scripts/gen-og.mjs",
+    "slides": "node scripts/export-slides.mjs \"https://docs.google.com/presentation/d/1PG7tQUrfWx9ADImUUl3C6v0yDZRBqLb5m6KsknBCGrQ/edit\" --out exports --page 1 --dpi 200"
   }
 }
