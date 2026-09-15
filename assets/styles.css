@@ -93,22 +93,17 @@ html, body {
 
 :root {
   --dusk-top: #221528;
-  --dusk-mid: #f39b37;  /* Poster-Rampe: sattes Orange */
-  --dusk-low: #e9a066;  /* Poster-Mitte: weiches Orange */
-  --horizon: #dfa28f;   /* Poster-Fuß: Lachs */
-  --cream: #2b1a20;        /* FLIP: jetzt Tinte — Text auf der hellen Poster-Fläche */
-  --cream-soft: rgba(43, 26, 32, .72); /* weiche Tinte auf Poster-Orange */
+  --dusk-mid: #4d2334;
+  --dusk-low: #8f3d28;
+  --horizon: #e08a3c;
+  --cream: #f7ead8;
+  --cream-soft: rgba(247, 234, 216, .7); /* .7 statt .6: Support-CTA 3.9→4.7:1, Dusk-Low 3.3→3.9:1 (WCAG 1.4.3) */
   --gold: #e8b04b;
-  --accent: #5f2a0a;       /* tiefes Brandorange — 5.3:1 auf allen Orange-Zonen (AA) */
   --coral: #f2795c;
   --rose: #e05c74;
-  /* Poster-Sonnen-Palette: Gelb → Orange → Lachs (Claim + Marke) */
-  --sun-grad: linear-gradient(100deg, #ffd24a 5%, #f89a1c 50%, #e8906a 95%);
   --terracotta: #dd7a4a; /* Datumstrenner */
   --ink: #2b1a20;        /* dunkle Tinte für Text auf heller Horizontzone (Footer) */
-  --poster-band: #f8f4ee; /* weißes Band wie die Kopf-/Fußleisten des Posters */
-  --banner: #edf23e;     /* Zitronengelb wie das Poster-Banner */
-  --hairline: rgba(43, 26, 32, .24);
+  --hairline: rgba(247, 234, 216, .28);
 }
 
 body {
@@ -116,12 +111,10 @@ body {
   font-weight: 300;
   background:
     linear-gradient(to bottom,
-      #f99b1f 0%,        /* Poster: sattes Orange oben */
-      #f39b37 16%,
-      #ec9e52 32%,
-      #e6a06d 50%,
-      var(--horizon) 70%,  /* Lachs erreicht — Poster-Fußzone */
-      var(--horizon) 100%); /* und gehalten, kein Zurückfallen */
+      var(--dusk-top) 0%,
+      var(--dusk-mid) 42%,
+      var(--dusk-low) 74%,
+      var(--horizon) 115%);
   color: var(--cream);
   min-height: 100svh;
   display: flex;
@@ -136,7 +129,7 @@ body {
   width: 130vw; height: 60vh;
   transform: translateX(-50%);
   background: radial-gradient(ellipse at center,
-    rgba(248, 154, 28, .6), rgba(240, 138, 42, .3) 45%, transparent 70%);
+    rgba(240, 158, 66, .5), rgba(226, 112, 60, .22) 45%, transparent 70%);
   filter: blur(30px);
   animation: breathe 11s ease-in-out infinite;
 }
@@ -149,7 +142,7 @@ body {
 .sky .cloud.c1 {
   width: 55vw; height: 22vh;
   top: 26%; left: -12%;
-  background: radial-gradient(ellipse, rgba(248, 154, 28, .55), transparent 70%);
+  background: radial-gradient(ellipse, rgba(240, 170, 90, .5), transparent 70%);
   animation: drift1 46s ease-in-out infinite alternate;
 }
 .sky .cloud.c2 {
@@ -194,7 +187,7 @@ main {
   letter-spacing: .55em;
   text-indent: .55em; /* optically center tracked caps */
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold);
 }
 h1 {
   font-family: "Cormorant Garamond", serif;
@@ -203,11 +196,10 @@ h1 {
 h1 em {
   font-style: italic;
   font-weight: 500;
-  /* Poster: Titel durchgehend schwarz — der Verlauf war nur auf dunklem Grund lesbar */
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  color: var(--dusk-top);
+  background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ── classy button ──────────────────────────── */
@@ -227,14 +219,14 @@ h1 em {
   transition: border-color .3s ease, color .3s ease, background .3s ease, transform .3s ease;
 }
 .btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--gold);
+  color: var(--gold);
   background: rgba(232, 176, 75, .06);
   transform: translateY(-2px);
 }
 .btn:focus-visible,
 .award:focus-visible {
-  outline: 2px solid var(--dusk-top);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -253,7 +245,7 @@ h1 em {
   color: var(--dusk-top);
   background: var(--gold);
   border-radius: 2px;
-  box-shadow: 0 6px 24px rgba(97, 37, 12, .3);
+  box-shadow: 0 6px 24px rgba(34, 21, 40, .4);
   transform: translateY(calc(-100% - 1.6rem));
   transition: transform .2s ease;
 }
@@ -311,7 +303,7 @@ h1 em {
       top: 50%; left: 50%;
       transform: translate(-50%, -52%);
       font-size: .5rem;
-      color: var(--accent);
+      color: var(--gold);
       padding: 0 .9em;
     }
 
@@ -348,7 +340,7 @@ h1 em {
       transition: border-color .3s ease, transform .3s ease, background .3s ease;
     }
     .pack:hover {
-      border-color: var(--accent);
+      border-color: var(--gold);
       background: rgba(232, 176, 75, .05);
       transform: translateY(-2px);
     }
@@ -365,7 +357,7 @@ h1 em {
       text-indent: .3em;
       text-transform: uppercase;
       color: var(--dusk-top);
-      background: var(--banner); /* Zitronengelb wie das Poster-Banner */
+      background: var(--gold);
       padding: .35em 1em;
       border-radius: 2px;
     }
@@ -385,7 +377,7 @@ h1 em {
       margin-top: .2rem;
       font-size: clamp(1.1rem, 2.6vw, 1.3rem);
       letter-spacing: .08em;
-      color: var(--accent);
+      color: var(--gold);
     }
     .pack-desc {
       margin-top: 1rem;
@@ -413,7 +405,7 @@ h1 em {
     .pack li::before {
       content: "◆";
       font-size: .45rem;
-      color: var(--accent);
+      color: var(--gold);
       flex-shrink: 0;
       transform: translateY(-1px);
     }
@@ -442,16 +434,16 @@ h1 em {
       margin: 0 0 1.1rem;
     }
     .legal-text b { font-weight: 400; color: var(--cream); }
-    .legal-text a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(232,176,75,.4); }
+    .legal-text a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(232,176,75,.4); }
     .legal-text a:hover { color: var(--cream); border-color: var(--cream); }
-    .legal-text a:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; }
+    .legal-text a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
     .legal-sub {
       font-family: "Jost", sans-serif;
       font-weight: 500;
       font-size: .78rem;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--gold);
       margin: 1.6rem 0 .6rem;
     }
     .legal-list {
@@ -473,7 +465,7 @@ h1 em {
     .legal-list li::before {
       content: "◆";
       font-size: .45rem;
-      color: var(--accent);
+      color: var(--gold);
       flex-shrink: 0;
     }
     .legal-list li b { font-weight: 400; color: var(--cream); }
@@ -489,13 +481,13 @@ h1 em {
     }
     .fineprint b { font-weight: 400; color: var(--cream); }
     .fineprint a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
       border-bottom: 1px solid rgba(232, 176, 75, .4);
       transition: color .25s ease, border-color .25s ease;
     }
     .fineprint a:hover { color: var(--cream); border-color: var(--cream); }
-    .fineprint a:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; }
+    .fineprint a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
     .back {
       display: inline-block;
@@ -510,7 +502,7 @@ h1 em {
       border-bottom: 1px solid transparent;
       transition: color .3s ease, border-color .3s ease;
     }
-    .back:hover { color: var(--accent); border-color: var(--accent); }
+    .back:hover { color: var(--gold); border-color: var(--gold); }
 
     .subpage footer {
       color: rgba(247, 234, 216, .88); /* vorher cream-soft × opacity .75 = 3.5:1 (WCAG 1.4.3) — jetzt ≥ 5:1 */
@@ -572,11 +564,11 @@ h1 em {
       font-weight: 500;
       font-size: clamp(1.35rem, 3vw, 1.9rem);
       letter-spacing: .04em;
-      /* Poster: Untertitel ebenfalls Tinte */
-      background: none;
-      -webkit-background-clip: initial;
-      background-clip: initial;
-      color: var(--dusk-top);
+      /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
+      background: linear-gradient(100deg, var(--gold) 5%, var(--coral) 45%, var(--rose) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
     /* Sub-Zeile: Pill ÜBER der Marke — Jost-Versalien, gleiche Stimme wie Facts-Banner */
     /* YnoT im Badge: fett + verlinkt, bleibt aber in der Sticker-Optik —
@@ -620,7 +612,7 @@ h1 em {
       text-indent: .28em;
       text-transform: uppercase;
       color: var(--dusk-top);
-      background: var(--banner); /* Zitronengelb wie das Poster-Banner */
+      background: var(--gold);
       box-shadow: 4px 4px 0 rgba(34, 21, 40, .85); /* harter Versatz-Schatten = Stempel-Look */
       transform: rotate(-1.2deg); /* leicht schräg — handgesetzt */
     }
@@ -665,7 +657,7 @@ h1 em {
       border-radius: 3px;
     }
     .tabor-dl:focus-visible {
-      outline: 2px solid var(--dusk-top);
+      outline: 2px solid var(--gold);
       outline-offset: 3px;
     }
     .tabor-dl-hint {
@@ -681,7 +673,7 @@ h1 em {
       padding: 0;
       font-size: clamp(1rem, 2vw, 1.25rem);
       line-height: 1;
-      color: #f7ead8; /* dunkles Glas — Text bleibt hell trotz Ink-Flip */
+      color: var(--gold);
       background: rgba(34, 21, 40, .45);
       border: 1px solid rgba(232, 176, 75, .35);
       border-radius: 50%;
@@ -738,7 +730,6 @@ h1 em {
     /* Sonne steht sichtbar im offenen Himmel rechts über der Ruine — nur die
        Strahlen animieren weiter (Drehung, Puls, Morph — siehe ::after unten). */
     .sun {
-      /* Poster-Position: rechts oben, HINTER der Ruine (bleibt wo sie war) */
       position: absolute;
       left: 70%;
       top: -18%;
@@ -760,26 +751,23 @@ h1 em {
       inherits: false;
     }
     .sun::before {
-      /* Poster-Sonne: Scheibe mit Gelb→Rot-Verlauf + dünnem weißem Rand, KEINE Strahlen */
+      /* Kern: satt und stabil — kein Faden der Farben mehr, nur dezenter Glow */
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: linear-gradient(175deg, #ffd23f 12%, #f8931f 52%, #e05320 92%);
-      border: 2px solid rgba(255, 252, 245, .95);
-      box-shadow: 0 0 24px rgba(248, 147, 31, .45), 0 0 54px rgba(248, 147, 31, .25);
+      background: radial-gradient(circle at 50% 45%,
+        #ffe9a8 0%, var(--gold) 52%, #d99b35 78%, rgba(217, 155, 53, .85) 100%);
+      box-shadow: 0 0 26px rgba(232, 176, 75, .55), 0 0 58px rgba(232, 176, 75, .3);
       animation: sun-glow 7s ease-in-out infinite;
     }
     .sun::after {
-      /* Poster-Fidelity: keine Strahlen — die Scheibe bleibt clean
-         (Regeln + Keyframes bleiben erhalten, falls die Strahlen zurückkommen) */
-      display: none;
-      content: "";
+      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */      content: "";
       position: absolute;
       inset: -60%;
       background: repeating-conic-gradient(
         from var(--rays-from, 0deg),
-        rgba(248, 155, 34, .42) 0deg var(--ray-w, 4deg),
+        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
         transparent var(--ray-w, 4deg) 15deg
       );
       -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
@@ -836,9 +824,9 @@ h1 em {
       /* links: Padding = negatives Margin (clamp(2rem,6vw,5rem)) → Facts-Text
          startet bündig mit der Hero-Headline (main-Padding clamp(1.25rem,3vw,3rem)) */
       padding: clamp(1.4rem, 2.8vw, 2rem) clamp(3rem, 8vw, 7rem) clamp(1.4rem, 2.8vw, 2rem) clamp(2rem, 6vw, 5rem);
-      background: var(--poster-band);
+      background: var(--cream);
       color: var(--ink);
-      box-shadow: 0 10px 50px rgba(97, 37, 12, .3);
+      box-shadow: 0 10px 50px rgba(34, 21, 40, .45);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -869,7 +857,7 @@ h1 em {
     .facts-logo-row a:hover { transform: translateY(-2px); }
     .facts-logo-row img[src*="akwi"] { height: clamp(64px, 8vw, 88px); width: auto; border-radius: 6px; }
     .facts-logo-row img[src*="joes"] { height: clamp(64px, 8vw, 88px); width: auto; }
-    .facts-logo-row a:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; }
+    .facts-logo-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
     /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
     /* Datum+Ort gehören als EIN Fakten-Paar zusammen → gruppiert, enger Gap */
@@ -912,7 +900,7 @@ h1 em {
       width: clamp(110px, 14vw, 189px); /* +50%: 189px auf Desktop */
       height: auto;
       margin: clamp(1.2rem, 2.5vw, 1.8rem) auto clamp(.6rem, 1.5vw, 1rem);
-      filter: drop-shadow(0 4px 14px rgba(97, 37, 12, .22));
+      filter: drop-shadow(0 4px 14px rgba(34, 21, 40, .3));
     }
     .about-title {
       margin: 0 0 clamp(.4rem, 1.5vw, .8rem);
@@ -920,7 +908,7 @@ h1 em {
       font-style: italic;
       font-weight: 600;
       font-size: clamp(1.6rem, 3.6vw, 2.2rem);
-      color: var(--accent); /* gleiche Stimme wie die Offerings-Headings */
+      color: var(--gold); /* gleiche Stimme wie die Offerings-Headings */
     }
     /* Namen vertikal ausgeschrieben — LAJ stark (erster Buchstabe je Name), Rest schwächer */
     /* LAJ-Stempel + Namen nebeneinander: als <crew-stamp names row> gekapselt */
@@ -941,13 +929,13 @@ h1 em {
       color: var(--cream);
     }
     .about-text a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
       border-bottom: 1px solid rgba(232, 176, 75, .4);
       transition: color .25s ease, border-color .25s ease;
     }
     .about-text a:hover { color: var(--cream); border-color: var(--cream); }
-    .about-text a:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; border-radius: 2px; }
+    .about-text a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
     .about-text--sub {
       padding-top: 0;
       font-size: clamp(.95rem, 2vw, 1.15rem);
@@ -956,7 +944,7 @@ h1 em {
     }
     .about-text--sub em {
       font-style: italic;
-      color: var(--accent);
+      color: var(--gold);
     }
 
     .offerings {
@@ -981,7 +969,7 @@ h1 em {
       right: clamp(-1.6rem, -2.5vw, -.9rem);
       z-index: 2;
       padding: .5em 1.1em;
-      background: var(--banner); /* Zitronengelb wie das Poster-Banner */
+      background: var(--gold);
       color: var(--dusk-top);
       font-size: clamp(.6rem, 1.4vw, .74rem);
       font-weight: 500;
@@ -991,7 +979,7 @@ h1 em {
       border: 2px solid var(--dusk-top); /* Tinten-Kontur wie die Sticker */
       border-radius: 3px;
       transform: rotate(-8deg); /* Stempel-Kippe */
-      box-shadow: 0 3px 14px rgba(97, 37, 12, .3); /* statisch — kein Blinken */
+      box-shadow: 0 3px 14px rgba(34, 21, 40, .4); /* statisch — kein Blinken */
     }
     /* Icon-Slot: feste Höhe (= XL-Gitarre), Icons mittig zentriert → alle drei
        sitzen auf einer optischen Linie; Headings starten dennoch exakt gleich */
@@ -1017,17 +1005,17 @@ h1 em {
       font-family: "Jost", sans-serif;
       font-weight: 600;
       font-size: clamp(1.5rem, 4vw, 2.3rem); /* prägnanter: größere Offerings-Headings */
-      color: var(--dusk-top); /* Poster-Schwarz — maximale Lesbarkeit auf Orange (8:1) */
+      color: var(--gold);
     }
     .offering .what a {
-      color: var(--dusk-top);
+      color: var(--gold);
       text-decoration: none;
       transition: color .25s ease;
       padding: .7em 0; /* Inline-Link: Hit-Area ≥ 24px ohne Layout-Shift (WCAG 2.5.8) */
     }
-    .offering .what a:hover { color: var(--accent); }
+    .offering .what a:hover { color: var(--cream); }
     .offering .what a:focus-visible {
-      outline: 2px solid var(--dusk-top);
+      outline: 2px solid var(--gold);
       outline-offset: 3px;
       border-radius: 2px;
     }
@@ -1038,18 +1026,18 @@ h1 em {
       color: var(--cream-soft);
     }
     .award {
-      margin-top: .35rem;
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(.85rem, 2vw, 1.05rem);
-      color: var(--accent); /* 5.3:1 auf allen Orange-Zonen (AA) */
+      /* gleicher Style wie .who (& Drinks) — gesperrte Sans statt Serif-Kursiv */
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
       text-decoration: none;
       transition: color .25s ease;
       /* Touch-Target ≥ 44px ohne Layout-Shift (A11y hit targets) */
       padding: .45em .8em;
       margin: -.35em -.8em 0;
     }
-    .award:hover { color: var(--dusk-top); }
+    .award:hover { color: var(--cream); }
 
     .partners {
       margin-top: clamp(6.5rem, 12.5vw, 10rem); /* XXL 4: Offerings→Logo-Wand — mehr Luft */
@@ -1065,14 +1053,14 @@ h1 em {
       color: var(--cream-soft);
     }
     .offering .who a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
       transition: color .25s ease;
       padding: .7em 0; /* Inline-Link: Hit-Area ≥ 24px ohne Layout-Shift (WCAG 2.5.8) */
     }
     .offering .who a:hover { color: var(--cream); }
     .offering .who a:focus-visible {
-      outline: 2px solid var(--dusk-top);
+      outline: 2px solid var(--gold);
       outline-offset: 3px;
       border-radius: 2px;
     }
@@ -1128,7 +1116,7 @@ h1 em {
       transform: translateY(-2px);
     }
     .sponsor-card:focus-visible {
-      outline: 2px solid var(--dusk-top);
+      outline: 2px solid var(--gold);
       outline-offset: 4px;
       border-radius: 2px;
     }
@@ -1187,8 +1175,8 @@ h1 em {
       border-bottom: 1px solid transparent;
       transition: color .3s ease, border-color .3s ease;
     }
-    .support-cta:hover { color: var(--accent); border-color: var(--accent); }
-    .support-cta:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 4px; border-radius: 2px; }
+    .support-cta:hover { color: var(--gold); border-color: var(--gold); }
+    .support-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
 
     /* ── Share: native sheet first (mobil), Links/Copy als Fallback (desktop) ──
        Keine SDK-Buttons: reine Links = kein Tracking, keine Consent-Pflicht.
@@ -1232,19 +1220,19 @@ h1 em {
       text-decoration: none;
       transition: color .25s ease, border-color .25s ease; /* 200–300ms ease-out */
     }
-    .share-btn:hover { color: var(--accent); border-color: var(--accent); }
-    .share-btn:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; }
+    .share-btn:hover { color: var(--gold); border-color: var(--gold); }
+    .share-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
     .share-btn[hidden] { display: none !important; } /* display:inline-flex würde [hidden] sonst übersteuern */
     /* Primär: Gold-Sticker wie die Hero-Bars — der eine hervorgehobene Weg */
     .share-btn--primary {
       color: var(--dusk-top);
-      background: var(--banner); /* Zitronengelb wie das Poster-Banner */
+      background: var(--gold);
       border-color: var(--dusk-top);
       font-weight: 600;
       box-shadow: 3px 3px 0 rgba(34, 21, 40, .85);
       transform: rotate(-1.2deg);
     }
-    .share-btn--primary:hover { color: var(--poster-band); background: var(--dusk-top); border-color: var(--dusk-top); }
+    .share-btn--primary:hover { color: var(--dusk-top); background: var(--cream); border-color: var(--dusk-top); }
     /* Sekundäre Ziele als Text-Micro-Links — schmal statt Icon-Wand */
     .share-via {
       font-size: clamp(.6rem, 1.2vw, .68rem);
@@ -1257,8 +1245,8 @@ h1 em {
       padding: .7em .35em; /* Hit-Area hoch, WCAG 2.5.8 */
       transition: color .25s ease;
     }
-    .share-via a:hover { color: var(--accent); }
-    .share-via a:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 2px; border-radius: 2px; }
+    .share-via a:hover { color: var(--gold); }
+    .share-via a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
     .share-via a + a::before { content: "·"; margin-right: .7em; color: var(--cream-soft); }
 
     /* ── Embed-Box (partner.html): Vorschau + Codebox + Copy ── */
@@ -1269,7 +1257,7 @@ h1 em {
       display: flex; flex-direction: column; align-items: center; gap: .9rem;
       text-align: center;
       border: 1px solid var(--hairline); border-radius: 10px;
-      background: rgba(255, 252, 245, .55); /* heller Chip wie im Poster */
+      background: rgba(34, 21, 40, .35);
     }
     .embed-title {
       font-family: "Cormorant Garamond", Georgia, serif;
@@ -1280,7 +1268,7 @@ h1 em {
     .embed-hint { font-size: .82rem; line-height: 1.65; color: var(--cream-soft); max-width: 46ch; }
     .embed-preview {
       border: 0; border-radius: 10px;
-      box-shadow: 0 14px 44px rgba(97, 37, 12, .38);
+      box-shadow: 0 14px 44px rgba(34, 21, 40, .55);
       max-width: 100%;
     }
     .embed-codelabel {
@@ -1290,13 +1278,13 @@ h1 em {
     .embed-code {
       width: 100%; max-width: 560px;
       padding: .8rem 1rem; border-radius: 6px;
-      background: rgba(255, 252, 245, .7); /* heller Chip wie im Poster */
+      background: rgba(34, 21, 40, .65);
       color: var(--cream); border: 1px solid var(--hairline);
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: .72rem; line-height: 1.6; word-break: break-all;
       resize: none;
     }
-    .embed-code:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 2px; }
+    .embed-code:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
     /* ── Share-Kit (/share): Assets zum Mitnehmen ── */
     .kit-intro {
@@ -1317,7 +1305,7 @@ h1 em {
       color: var(--cream);
     }
     .kit-hint { max-width: 56ch; text-align: center; font-size: .85rem; line-height: 1.7; color: var(--cream-soft); }
-    .kit-hint a { color: var(--accent); text-decoration: none; }
+    .kit-hint a { color: var(--gold); text-decoration: none; }
     .kit-hint a:hover { text-decoration: underline; }
     .kit-thumb-row {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
@@ -1329,21 +1317,30 @@ h1 em {
       text-decoration: none;
     }
     .kit-thumb--sm { width: 150px; }
-    .kit-thumb--poster { width: 200px; } /* einzelne A2-Vorschau — Hochformat */
+    .kit-slideshow {
+      /* Google-Slides-Embed: Poster als Vorschau — responsiv im Poster-Seitenverhältnis */
+      width: min(460px, 100%);
+      aspect-ratio: 1587 / 2274;
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(34, 21, 40, .35);
+      box-shadow: 0 10px 30px rgba(34, 21, 40, .5);
+    }
+    .kit-slideshow iframe { width: 100%; height: 100%; border: 0; display: block; }
     .kit-thumb img {
       width: 100%; height: auto; display: block;
       border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(97, 37, 12, .35);
+      box-shadow: 0 10px 30px rgba(34, 21, 40, .5);
       transition: transform .25s ease; /* 200–300ms ease-out */
     }
     .kit-thumb:hover img, .kit-thumb:focus-visible img { transform: translateY(-4px) rotate(-.5deg); }
-    .kit-thumb:focus-visible { outline: 2px solid var(--dusk-top); outline-offset: 3px; border-radius: 8px; }
+    .kit-thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
     .kit-thumb span {
       font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-indent: .22em;
       text-transform: uppercase; color: var(--cream-soft); text-align: center;
       transition: color .25s ease;
     }
-    .kit-thumb:hover span { color: var(--accent); }
+    .kit-thumb:hover span { color: var(--gold); }
     .kit-caption {
       width: 100%; max-width: 560px; text-align: left;
       border: 1px solid var(--hairline); border-radius: 8px;
@@ -1353,12 +1350,12 @@ h1 em {
       cursor: pointer; font-size: .66rem; font-weight: 600;
       letter-spacing: .22em; text-transform: uppercase; color: var(--cream-soft);
     }
-    .kit-caption summary:hover { color: var(--accent); }
+    .kit-caption summary:hover { color: var(--gold); }
     .kit-caption[open] summary { margin-bottom: .7rem; }
     .kit-caption textarea {
       width: 100%; margin-bottom: .6rem;
       padding: .7rem .9rem; border-radius: 6px;
-      background: rgba(255, 252, 245, .7); color: var(--cream); /* heller Chip wie im Poster */
+      background: rgba(34, 21, 40, .65); color: var(--cream);
       border: 1px solid var(--hairline);
       font-family: inherit; font-size: .78rem; line-height: 1.65;
       resize: vertical;
@@ -1473,7 +1470,7 @@ h1 em {
   opacity: .82;
 }
 .footer-nav a:focus-visible, .footer-contact a:focus-visible, .footer-base a:focus-visible {
-  outline: 2px solid var(--dusk-top);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
   border-radius: 2px;
 }
