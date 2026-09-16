@@ -833,8 +833,8 @@ h1 em {
     .sun {
       position: absolute;
       left: 84%;
-      top: 9%;
-      width: clamp(110px, 22vw, 230px);
+      top: 10%;
+      width: clamp(100px, 19vw, 200px); /* etwas kleiner (User-Feedback) — Ø ≈ 23% der Illustrationsbreite */
       aspect-ratio: 1;
       transform: translate(-50%, -50%);
       border-radius: 50%;
