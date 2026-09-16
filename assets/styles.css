@@ -550,10 +550,42 @@ h1 em {
        Sektions-Abstände (XXL): Titel→Divider→Datum→Offerings→Partners→Footer */
 
     /* ── Medienkit-Tag oben rechts — direkter Einstieg ins Material (Poster/Bilder/Embed) ── */
-    .top-tag {
+    /* Header-Zeile oben rechts: Medienkit + Teilen als Pill-Paar.
+       Positionierung steuert der Container (früher .top-tag selbst). */
+    .top-actions {
       position: absolute;
       top: clamp(1.25rem, 3vw, 2rem);
       right: clamp(1.25rem, 3vw, 3rem); /* spiegelbildlich zum linken Main-Padding */
+      display: flex;
+      gap: .55rem;
+    }
+    button.top-tag {
+      font-family: inherit; /* Button-Font-Default (system-ui) ausgleichen */
+      cursor: pointer;
+    }
+    /* Teilen-Icon-Knopf in der Topbar — gleiche Share-Grafik wie im Facts-Banner,
+     Topbar-Farbwelt: Cream-Icon auf Dusk, Gold bei Hover/Fokus; nach dem
+     Kopieren (ohne Web-Share-API) kurzer Gold-Flash via .copied (site.js). */
+    .top-share {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(30px, 3.4vw, 36px);
+      height: clamp(30px, 3.4vw, 36px);
+      padding: 0;
+      color: var(--cream);
+      background: var(--dusk-top);
+      border: 1px solid rgba(247, 234, 216, .45);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+    }
+    .top-share svg { width: 15px; height: 15px; }
+    .top-share:hover { color: var(--gold); border-color: var(--gold); }
+    .top-share:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .top-share.copied { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+    .top-tag {
+      display: inline-block;
       z-index: 5;
       display: inline-flex;
       align-items: center;
@@ -632,6 +664,29 @@ h1 em {
       padding: .45em 1.05em;
       margin-bottom: clamp(.45rem, 1vw, .7rem);
     }
+    /* Countdown-Sticker ÜBER dem Datum — absolut über die Streifenkante,
+       Banner-Höhe bleibt unangetastet (Anforderung). Drei Zustände (site.js):
+       „Noch X Tage“ → „Heute!“ → weg (hidden, keine Lücke). Echo der Hero-Pills:
+       Gold mit Tinte, Stempel-Optik. */
+    .facts-facts .fact-col:first-child { position: relative; }
+    .fact-count {
+      position: absolute;
+      bottom: calc(100% + .45rem);
+      left: 0;
+      width: fit-content;
+      padding: .32em .75em;
+      background: var(--gold);
+      color: var(--ink);
+      border-radius: 2px;
+      font-size: clamp(.66rem, 1.3vw, .8rem);
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-indent: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: rotate(-1.2deg);
+      box-shadow: 0 4px 14px rgba(34, 21, 40, .35);
+    }
     .hero-sub {
       display: block;
       width: fit-content; /* Badges immer untereinander — nie nebeneinander */
@@ -686,7 +741,7 @@ h1 em {
       width: 100%; /* füllt die rechte Grid-Spalte — füllt den Hero, ohne Überlauf */
       max-width: none;
       height: auto;
-      opacity: .95;
+      opacity: 1; /* voll deckend — die Poster-Sonne dahinter darf nicht durchscheinen */
       filter: drop-shadow(0 0 18px rgba(232, 176, 75, .25));
       animation: rise .6s ease-out .25s both;
     }
@@ -769,87 +824,28 @@ h1 em {
       pointer-events: none;
       z-index: 2;
     }
-    /* Sonne steht sichtbar im offenen Himmel rechts über der Ruine — nur die
-       Strahlen animieren weiter (Drehung, Puls, Morph — siehe ::after unten). */
+    /* Sonne im Poster-Stil (A2-Vorlage, per VLM vermessen): linearer Gradient
+       Gelb→Orange→Rot-Orange (oben→unten), scharfer weißer Ring (~3% des
+       Durchmessers), KEIN Glow, KEINE Strahlen — harte Kante wie gedruckt.
+       Größer (Ø ≈ 25% der Illustrationsbreite) und als Untergang INS Tabor
+       versetzt: Kreiszentrum bei ~84% Breite knapp über der Mauerkrone,
+       z-index hinter dem Bild → unteres Viertel versinkt hinter dem Stein. */
     .sun {
       position: absolute;
-      left: 70%;
-      top: -18%;
-      width: clamp(40px, 7.5vw, 74px);
-      height: clamp(40px, 7.5vw, 74px);
-      pointer-events: none;
-      z-index: -1; /* hinter dem Tabor-Bild — die Sonne bleibt hinter der Ruine */
-    }
-
-    /* Registrierte Winkel-Properties: machen die Strahlen animierbar (Breite + Lage) */
-    @property --ray-w {
-      syntax: "<angle>";
-      initial-value: 4deg;
-      inherits: false;
-    }
-    @property --rays-from {
-      syntax: "<angle>";
-      initial-value: 0deg;
-      inherits: false;
-    }
-    .sun::before {
-      /* Kern: satt und stabil — kein Faden der Farben mehr, nur dezenter Glow */
-      content: "";
-      position: absolute;
-      inset: 0;
+      left: 84%;
+      top: 9%;
+      width: clamp(110px, 22vw, 230px);
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
       border-radius: 50%;
-      background: radial-gradient(circle at 50% 45%,
-        #ffe9a8 0%, var(--gold) 52%, #d99b35 78%, rgba(217, 155, 53, .85) 100%);
-      box-shadow: 0 0 26px rgba(232, 176, 75, .55), 0 0 58px rgba(232, 176, 75, .3);
-      animation: sun-glow 7s ease-in-out infinite;
-    }
-    .sun::after {
-      /* Strahlen: repeating-conic-gradient, rotierend, nach außen ausmaskiert */      content: "";
-      position: absolute;
-      inset: -60%;
-      background: repeating-conic-gradient(
-        from var(--rays-from, 0deg),
-        rgba(232, 176, 75, .38) 0deg var(--ray-w, 4deg),
-        transparent var(--ray-w, 4deg) 15deg
-      );
-      -webkit-mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
-      mask-image: radial-gradient(circle, transparent 0%, transparent 42%, #000 52%, rgba(0, 0, 0, .45) 62%, transparent 74%);
-      /* drei Ebenen: Drehung + Reichweiten-Atmung · Aufleuchten · Strahlenmorphologie */
-      animation:
-        sun-spin 70s linear infinite,
-        sun-rays-glow 9s ease-in-out infinite,
-        sun-rays-morph 13s ease-in-out infinite;
-    }
-    /* Drehung, während die Strahlen gleichzeitig weiter/reicher werden */
-    @keyframes sun-spin {
-      0%   { transform: rotate(0deg) scale(1); }
-      50%  { transform: rotate(180deg) scale(1.09); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
-    @keyframes sun-rays-glow {
-      0%, 100% { opacity: .7; }
-      50%      { opacity: 1; }
-    }
-    /* Strahlen ändern sich während der Drehung: Breite & Winkellage wandern — fächern asymmetrisch */
-    @keyframes sun-rays-morph {
-      0%   { --ray-w: 3deg;   --rays-from: 0deg; }
-      20%  { --ray-w: 6.5deg; --rays-from: -6deg; }
-      40%  { --ray-w: 1.8deg; --rays-from: 9deg; }
-      60%  { --ray-w: 5.2deg; --rays-from: -11deg; }
-      80%  { --ray-w: 2.2deg; --rays-from: 5deg; }
-      100% { --ray-w: 3deg;   --rays-from: 0deg; }
-    }
-    @keyframes sun-glow {
-      0%, 100% { box-shadow: 0 0 26px rgba(232,176,75,.55), 0 0 58px rgba(232,176,75,.3); }
-      50%      { box-shadow: 0 0 34px rgba(232,176,75,.7),  0 0 76px rgba(232,176,75,.38); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .sun::before, .sun::after { animation: none; }
-      .sun { animation: none; transform: none; /* steht ruhig über dem Tabor */ opacity: 1; }
+      background: linear-gradient(to bottom, #ffd21a 0%, #ff8a00 50%, #e04a0e 100%);
+      border: clamp(3px, .45vw, 7px) solid #fff; /* Poster-Ring, scharf */
+      pointer-events: none;
+      z-index: -1; /* hinter dem Tabor-Bild → Untergang hinter der Ruine */
     }
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: .95; transform: none; }
+      to   { opacity: 1; transform: none; } /* deckend enden — Sonne dahinter ohne Durchscheinen */
     }
     @media (prefers-reduced-motion: reduce) {
       .tabor { animation: none; }
@@ -1452,6 +1448,18 @@ h1 em {
     .kit-hint { max-width: 56ch; text-align: center; font-size: .85rem; line-height: 1.7; color: var(--cream-soft); }
     .kit-hint a { color: var(--gold); text-decoration: none; }
     .kit-hint a:hover { text-decoration: underline; }
+    /* Gruppenlabel in Block 2 — Herkunft der Bilder (Website vs. Poster) */
+    .kit-group {
+      margin: 1.6rem 0 .3rem;
+      text-align: center;
+      font-size: .66rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-indent: .22em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    .kit-block .kit-group:first-of-type { margin-top: .2rem; }
     .kit-thumb-row {
       display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 1.4rem;
       margin-top: .4rem;

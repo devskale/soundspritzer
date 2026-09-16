@@ -1,4 +1,20 @@
 /* SunDowner — Seitenweite Kleinigkeiten */
+
+/* ── Countdown „Noch X Tage“ — Badge über dem Datum im Facts-Banner ──
+   Event-Start = scripts/facts.mjs → date/time (25.09.2026, ab 17 Uhr),
+   hier als ISO mit Zeitzone. Drei Zustände (Anforderung):
+   noch X Tage → „Noch X Tage“ (X=1: „Noch 1 Tag“), Event-Tag → „Heute!",
+   danach → Badge weg (hidden = kein PlatzLeerraum, display:none). */
+(function () {
+  var el = document.querySelector("[data-countdown]");
+  if (!el) return;
+  var target = new Date("2026-09-25T17:00:00+02:00");
+  var days = Math.ceil((target - new Date()) / 86400000);
+  if (days >= 1) el.textContent = days === 1 ? "Noch 1 Tag" : "Noch " + days + " Tage";
+  else if (days === 0) el.textContent = "Heute!";
+  else return; // vorbei → Badge bleibt hidden, hinterlässt keine Lücke
+  el.hidden = false;
+})();
 /* Versions-Stempel: „Stand: TT.MM.JJJJ" im Footer.
    Quelle = HTTP Last-Modified der ausgelieferten Seite →
    auf GitHub Pages automatisch das Deploy-Datum, kein manuelles Pflegen. */

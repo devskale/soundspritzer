@@ -93,7 +93,7 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=21">
+  <link rel="stylesheet" href="assets/styles.css?v=30">
   <!-- Reload startet immer oben — keine Scroll-Restauration vom Browser -->
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
@@ -105,7 +105,15 @@
     <div class="cloud c2"></div>
   </div>
   <main class="home-main" id="main">
-    <a class="top-tag" href="/share">Medienkit</a>
+    <div class="top-actions">
+      <a class="top-tag" href="/share">Medienkit</a>
+      <button type="button" class="top-share" data-share-native aria-label="SunDowner teilen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>
+        </svg>
+      </button>
+    </div>
     <div class="hero">
       <div class="hero-left">
         <p class="hero-sub hero-sub--band"><a class="hero-sub-band" href="https://www.instagram.com/yourynot" target="_blank" rel="noopener">YnoT</a> Live · Flux DJ</p>
@@ -126,6 +134,7 @@
     <div class="facts-banner" aria-label="Veranstaltungsfakten, Teilen und Logos">
       <div class="facts-facts">
         <div class="fact-col">
+          <span class="fact-count" data-countdown hidden>Noch 10 Tage</span>
           <span class="fact-main">25.09.2026</span>
           <span class="fact-sub">ab 17 Uhr</span>
         </div>
@@ -280,7 +289,7 @@
       <span>Techsupport <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></span>
     </div>
   </footer>
-  <script src="assets/site.js?v=16"></script>
+  <script src="assets/site.js?v=19"></script>
   <script src="assets/crew-stamp.js?v=15"></script>
   <script>
     /* Sponsoren: assets/sponsors.json (generiert aus dem Google Sheet).

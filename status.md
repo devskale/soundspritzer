@@ -8,11 +8,11 @@
 
 ## Aktuelle Seitenstruktur (index.html)
 
-1. **Site-Header**: AKWI- + Joe's-Pub-Logo (80px, verlinkt, oben links)
+1. **Site-Header**: AKWI- + Joe's-Pub-Logo (80px, verlinkt, oben links) — oben rechts Topbar: „Medienkit“-Pill + runder Teilen-Icon-Knopf (data-share-native)
 2. **Hero** (2-spaltig):
    - Links: Pill „YnoT Live · Flux DJ“ → Pill „Joe's Pizza · Freier Eintritt“ (kleiner) → Claim „Seeblick, Sounds & Spritzer“ (groß, Glow) → „der Sundowner für den guten Zweck“ (kursiv, Sonnen-Gradient, text-wrap:balance)
-   - Rechts: Tabor-Ruine mit wandernder Sonne (Bogen-Loop 24s, Strahlen-Morph)
-3. **Facts-Banner**: edge-to-edge hell, 3 Spalten — Veranstalter-Logos (AKWI gelb/JPG + Joe's Pub) mit Label | Datum+Uhrzeit | Ort — zweireihige Facts. Darunter linksbündig im Korridor vor dem Reisinger-Überstand: „Einnahmen gehen an den Elternverein HAK“ (charity-note, Cormorant-Kursiv)
+   - Rechts: Tabor-Ruine (voll deckend) mit Oktopus und Poster-Sonne (linearer Gradient Gelb→Orange→Rot, weißer Ring, Ø ~25%, Untergang hinter der Mauerkrone; keine Strahlen/Glow mehr)
+3. **Facts-Banner**: edge-to-edge hell, 2 Fact-Spalten (Datum+Uhrzeit | Ort) + Veranstalter-Logos — darüber am Datum der Countdown-Sticker „Noch X Tage“ → „Heute!“ → weg (site.js, absolute Positionierung hält die Bannerhöhe stabil). Darunter linksbündig im Korridor vor dem Reisinger-Überstand: „50% der Einnahmen gehen an den Elternverein HAK“ (charity-note, Cormorant-Kursiv)
 4. **About**: Schüler-Trio-Sticker → Brief (3 Schüler, Diplomarbeit, Wunschveranstaltung, Lieblingsband, Schmankerl, faire Preise, Dank an Stadtgemeinde/Joe's Pub/Unterstützer) → Gruß + Signatur Laurens, Alex & der Dritte
 5. **Offerings**: Musik (YnoT · Flux DJ — YnoT→Instagram verlinkt; **LIVE-Stempel**: Gold-Badge mit Tinten-Kontur, -8° gekippt, statischer Schatten (Puls auf Wunsch entfernt), auf dem Vinyl) | Foodtruck (Joe's Pub, ★ Burgenlands beliebteste Pizza) | **Spritzerbar (Gutes von der Schülercrew)** — Sticker-Icons; Weingut Königshofer 27.08. aus der Seite genommen
 6. **Sponsoren & Partner**: statische Cards aus `assets/sponsors.json` (Google Sheet), Tier-Größen nach Betrag, Jost 500
