@@ -1,18 +1,35 @@
 /* SunDowner — Seitenweite Kleinigkeiten */
 
 /* ── Countdown „Noch X Tage“ — Badge über dem Datum im Facts-Banner ──
-   Event-Start = scripts/facts.mjs → date/time (25.09.2026, ab 17 Uhr),
-   hier als ISO mit Zeitzone. Drei Zustände (Anforderung):
-   noch X Tage → „Noch X Tage“ (X=1: „Noch 1 Tag“), Event-Tag → „Heute!",
-   danach → Badge weg (hidden = kein PlatzLeerraum, display:none). */
+   Event-Tag = scripts/facts.mjs → date (25.09.2026). Berechnung FIX in der
+   österreichischen Zeitzone (Europe/Vienna) — nicht in der Zeitzone des
+   Besuchers: Intl liefert das Wiener Kalenderdatum, verglichen wird
+   Kalendertag gegen Kalendertag (Mittag-UTC-Anker, DST-sicher). Zustände:
+   „Noch X Tage“ (X=1: „Noch 1 Tag“) → am Event-Tag „Noch N Stunden“ (bis
+   17:00 Wien-Start, Singular korrekt) → weg (hidden, keine Lücke). */
 (function () {
   var el = document.querySelector("[data-countdown]");
   if (!el) return;
-  var target = new Date("2026-09-25T17:00:00+02:00");
-  var days = Math.ceil((target - new Date()) / 86400000);
-  if (days >= 1) el.textContent = days === 1 ? "Noch 1 Tag" : "Noch " + days + " Tage";
-  else if (days === 0) el.textContent = "Heute!";
-  else return; // vorbei → Badge bleibt hidden, hinterlässt keine Lücke
+  function wienerKalendertageBis(iso) {
+    var p = {};
+    new Intl.DateTimeFormat("de-AT", {
+      timeZone: "Europe/Vienna",
+      year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    var heuteWien = new Date(p.year + "-" + p.month + "-" + p.day + "T12:00:00Z");
+    var ziel = new Date(iso + "T12:00:00Z");
+    return Math.round((ziel - heuteWien) / 86400000);
+  }
+  var days = wienerKalendertageBis("2026-09-25");
+  if (days >= 1) {
+    el.textContent = days === 1 ? "Noch 1 Tag" : "Noch " + days + " Tage";
+  } else if (days === 0) {
+    /* Event-Tag: Reststunden bis zum Start (17:00 CEST) — absolute
+       Moment-Differenz, dadurch zonensicher ohne Kalender-Spaltenzahl */
+    var stunden = Math.floor((new Date("2026-09-25T17:00:00+02:00") - new Date()) / 3600000);
+    if (stunden >= 1) el.textContent = "Noch " + stunden + (stunden === 1 ? " Stunde" : " Stunden");
+    else return; // letzte Stunde bzw. gestartet → Badge weg
+  } else return; // vorbei → Badge bleibt hidden, hinterlässt keine Lücke
   el.hidden = false;
 })();
 /* Versions-Stempel: „Stand: TT.MM.JJJJ" im Footer.
@@ -64,7 +81,7 @@ function canonicalUrl() {
    mit Feedback. Kopieren ist die universelle Teilen-Primitive. */
 (function () {
   var URL = canonicalUrl();
-  var TEXT = "SunDowner — Seeblick, Sounds & Spritzer · 25.09.2026, ab 17 Uhr · Am Tabor, Neusiedl am See";
+  var TEXT = "SunDowner · Seeblick, Sounds & Spritzer · 25.09.2026, ab 17 Uhr · Am Tabor, Neusiedl am See";
   var canNative = typeof navigator.share === "function";
 
   document.querySelectorAll("[data-share-native]").forEach(function (native) {

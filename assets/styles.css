@@ -563,6 +563,56 @@ h1 em {
       font-family: inherit; /* Button-Font-Default (system-ui) ausgleichen */
       cursor: pointer;
     }
+    /* Hover/Fokus-Tipp an den Share-Icons (Touch: kein Hover — dort bleibt
+       der Aufruf weg, die native Sheet-Einladung trägt ihn nicht). Text über
+       data-tip, verzögertes Einblenden gegen Flacker-Hostilität beim
+       Drüberfahren. Spezialfall Topbar: Tooltip UNTERHALB des Knopfes, da
+       oben der Viewport endet. */
+    [data-tip] { position: relative; }
+    [data-tip]::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 230px;
+      padding: .5em .8em;
+      background: var(--dusk-top);
+      color: var(--cream);
+      font-size: .72rem;
+      line-height: 1.45;
+      letter-spacing: .02em;
+      text-transform: none;
+      text-indent: 0;
+      white-space: normal;
+      border-radius: 6px;
+      border: 1px solid rgba(247, 234, 216, .25);
+      box-shadow: 0 8px 24px rgba(34, 21, 40, .45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease .35s;
+    }
+    [data-tip]::before {
+      content: "";
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
+      background: var(--dusk-top);
+      border-right: 1px solid rgba(247, 234, 216, .25);
+      border-bottom: 1px solid rgba(247, 234, 216, .25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease .35s;
+    }
+    [data-tip]:hover::after, [data-tip]:focus-visible::after,
+    [data-tip]:hover::before, [data-tip]:focus-visible::before { opacity: 1; }
+    .top-share[data-tip]::after { bottom: auto; top: calc(100% + 10px); }
+    .top-share[data-tip]::before { bottom: auto; top: calc(100% + 6px); transform: translateX(-50%) rotate(225deg); }
+
     /* Teilen-Icon-Knopf in der Topbar — gleiche Share-Grafik wie im Facts-Banner,
      Topbar-Farbwelt: Cream-Icon auf Dusk, Gold bei Hover/Fokus; nach dem
      Kopieren (ohne Web-Share-API) kurzer Gold-Flash via .copied (site.js). */
@@ -627,6 +677,7 @@ h1 em {
       font-style: italic;
       font-weight: 500;
       font-size: clamp(1.35rem, 3vw, 1.9rem);
+      line-height: 1.15; /* zweizeilig (schmale Spalte): enger, als Lockup-Einheit */
       letter-spacing: .04em;
       text-wrap: balance; /* schmale Hero-Spalte: keine Einzelwort-Witwe wie „…/Zweck“ */
       /* gleicher Sonnen-Gradient wie „Spritzer“ im Claim → eine Stimme, klar zugeordnet */
@@ -932,10 +983,11 @@ h1 em {
     .fact-col {
       display: flex;
       flex-direction: column;
-      gap: .25rem;
+      gap: .05rem; /* Zeilenabstand Datum↔Uhr — zweimal entschärft (.25→.12→.05) */
       text-align: left;
     }
     .fact-main {
+      line-height: 1.12; /* enge Zeilen — der Streifen soll plakathaft dicht wirken */
       font-weight: 600;
       font-size: clamp(1.55rem, 3.6vw, 2.5rem); /* Plakat-Rang: Wann/Wo ist die Kerninfo — groß, wie ein Plakatstreifen */
       letter-spacing: .12em;
@@ -943,6 +995,7 @@ h1 em {
       white-space: nowrap;
     }
     .fact-sub {
+      line-height: 1.2;
       font-size: clamp(.85rem, 1.8vw, 1.05rem);
       font-weight: 500;
       letter-spacing: .24em;
