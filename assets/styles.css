@@ -956,14 +956,42 @@ h1 em {
        Reisinger-Überstand läuft (Logos ragen rechts ~3.5rem unter den
        Streifen). Cormorant-Kursiv wie brand-sub — leise Stimme, Gold-Vorspann
        im Sonnen-Gradient des Claims. */
+    /* Hochgestelltes Referenzzeichen (*) an „guten Zweck“ (Hero) und
+       Elternverein-Zeile (unterm Banner) — Fußnoten-Paar: oben * verweist auf
+       die Zeile unten (#zweck-Sprung), unten * zurück nach oben. Gold,
+       Serifen-Kursiv, dezent. */
+    .info-i {
+      display: inline; /* inline-block bricht vertical-align:super des <sup> */
+      margin-left: .18em;
+      text-decoration: none;
+      color: var(--gold);
+      line-height: 1;
+      transition: color .25s ease;
+    }
+    .info-i sup {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: .58em;
+      vertical-align: super;
+      line-height: 0;
+      letter-spacing: 0;
+      text-indent: 0;
+    }
+    .info-i:hover, .info-i:focus-visible { color: var(--coral); }
+    .info-i:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
     /* Charity-Zeile unterm Facts-Banner (facts.mjs → charity):
-       „Einnahmen gehen an den Elternverein HAK“ — links im Korridor zwischen
-       Streifenrand und dem Reisinger-Überstand (Logos ragen rechts ~3.5rem
-       unter den Streifen). align-self:stretch löst das Shrink-to-Fit von
-       home-main (Flex+align-center) auf, negatives Margin hebt das
+       „50% der Einnahmen gehen an den Elternverein HAK“ — links im Korridor
+       zwischen Streifenrand und dem Reisinger-Überstand (Logos ragen rechts
+       ~3.5rem unter den Streifen). align-self:stretch löst das Shrink-to-Fit
+       von home-main (Flex+align-center) auf, negatives Margin hebt das
        main-Padding auf, kleiner Inset hält ~12px Luft zum Rand.
-       Cormorant-Kursiv wie brand-sub — leise Stimme in Cream. */
+       Cormorant-Kursiv wie brand-sub — leise Stimme in Cream.
+       (Achtung Kommentar-Kopplung: Der Opener /* dieser Regel wurde einmal
+       versehentlich überschrieben — der Parser schluckte dann die komplette
+       Regel. Kommentar-Blöcke vor Regeln immer GANZ lesen vor Selector-Edits.) */
     .charity-note {
+      scroll-margin-top: 1.5rem; /* Ankersprung #zweck landet mit Luft */
       align-self: stretch;
       text-align: left;
       margin: clamp(.35rem, .7vw, .55rem) 0 0;
@@ -1596,11 +1624,15 @@ h1 em {
       .tabor {
         width: clamp(240px, 80vw, 380px);
       }
-      /* Facts-Banner stapeln: Logos oben (kleiner Überstand), Fakten-Paar darunter */
+      /* Facts-Banner stapeln: Logos oben (kleiner Überstand), Fakten-Paar darunter.
+         Kompakt (Anforderung „Streifen sehr hoch"): Gap + vertikales Padding
+         gesenkt — die Logos dominieren die Höhe, nicht der Zwischenraum. */
       .facts-banner {
         flex-direction: column;
         align-items: center;
-        gap: 1.6rem;
+        gap: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
         padding-left: clamp(1rem, 5vw, 2rem);
         padding-right: clamp(1rem, 5vw, 2rem);
       }
