@@ -27,6 +27,7 @@
 - JS im Footer: lädt sponsors.json beim Load + Refresh alle 5 Min (textContent = XSS-sicher, noscript-Fallback in Cards)
 - `.github/workflows/sponsors.yml`: stündlicher Refresh-Workflow (eingerichtet, prüfen ob er läuft)
 - `scripts/serve.mjs`: lokaler Dev-Server (zero-deps, plain Node) — `node scripts/serve.mjs [port]` (Default 8000). Verhält sich wie GitHub Pages: Clean URLs (`/shop` → `shop.html`), korrekte MIME-Types, 404-Seite, Path-Traversal-Schutz. Live-Reload per SSE: watcht html/css/js/json/bilder und injiziert Reload-Snippet vor `</body>` (nur lokal, nie in Produktion).
+- **`experiment/tabor_text.py`**: getesteter Workflow, Text perspektivisch korrekt auf die Tabor-Mauerflächen zu warpen (Wand-Quads + Freiflächen-Erkennung + Homographie-Warp; Sample-Output `experiment/tabor-text-v5.png`). Noch nicht live — Doku + Production-Checkliste: `experiment/README.md`
 
 ## Assets (assets/)
 
@@ -121,6 +122,10 @@ UX-Review (27.08.): `role=contentinfo` vom Facts-Banner entfernt (war doppeltes 
 
 og:image + Twitter-Cards gesetzt (Plakat 1200×630), Title/Description auf DE, lang=de.
 
+**Social-Formate-Check (17.09.2026)** → Details + Specs + Quellen: `socialmedia.md`.
+Kurzfazit: Carousel (4:5, 1080×1350) ✅ SOTA; fehlen IG-Story/Reels 9:16 (1080×1920),
+4:5-Feed-Event-Karte, Poster-IG-Variante (4:5-Crop).
+
 ## Offen / TODO
 
 - [x] ~~OG-Bilder vs. Hero-Claim~~ erledigt 15.09.: `FACTS.sub` = „der Sundowner für den guten Zweck“, beide og-Karten regeneriert (v5/v3), Generatoren hängen jetzt an `FACTS.sub` (Hardcode wäre künftig Checker-Fail)
@@ -129,6 +134,7 @@ og:image + Twitter-Cards gesetzt (Plakat 1200×630), Title/Description auf DE, l
 - [ ] GH-Action `sponsors.yml` verifizieren (erster Lauf nach Push)
 - [ ] Musik-Icon (schwarze Platte) evtl. ins weiße Sticker-Set konvertieren
 - [ ] Instagram des Events selbst? (aktuell nur Band verlinkt)
+- [x] ~~IG-Formate ins Medienkit ergänzen~~ erledigt 17.09.: Google-Slides-Exporte des Posters → `assets/poster/sundowner-ig-{feed,feed-sponsoren,story}.jpg` (1080×1350 ×2, 1080×1920), in `share.html` unter „Für Instagram“ (v1), VLM-geprüft, Checker grün
 - [ ] DNS/Domain-Check nach Deployments
 - [ ] Optional: zweite OG-Variante (Facts-betont)
 
