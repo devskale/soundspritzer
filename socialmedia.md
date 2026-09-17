@@ -86,6 +86,19 @@ Safe Zones im Deck: 4:5 → seitlich je ~0,8 cm (Grid-3:4-Crop); 9:16 → oben/u
 je 5,3 cm (250 px UI-Überlagerung). Kein reiner Crop vom A2-Poster — Titelband +
 Sponsorenwand nehmen die volle Höhe ein (geprüft 17.09.2026).
 
+### Share-first-Medienkit (17.09.2026)
+
+Hauptzweck der Kit-Seite ist Social-Sharing — der Flow pro IG-Asset:
+1. **Klick = Download** (Basis, universal, auch ohne JS über `<a download>`)
+2. **Lightbox: „Bild (+ Text) teilen …“** — Web Share Level 2 (`navigator.share({files, text})`),
+   am Handy → System-Share-Sheet → Instagram-Composer. Feature-Detect
+   (`canShare({files})`) statt Browser-Sniffing: ohne Support bleibt der Button hidden.
+   IG übernimmt den Caption-Text nicht zuverlässig → Feed + Danke haben zusätzlich
+   sichtbare Caption-Boxen mit Kopier-Button (`data-copy-source`-Pattern).
+   Wiring: `data-share-file` + optional `data-share-caption="#selector"` an den Thumbs,
+   Logik in `site.js` (Lightbox-IIFE). Captions hardcoden Fakten → STALE-Strings
+   des Checkers wachen darüber.
+
 Neue Social-Formate sind **abgeleitete Assets** → derselbe Fluss wie bei OG-Bildern:
 
 1. Formate/Maße ins Generator-Script (Pipeline existiert: `gen-og-portrait.mjs`

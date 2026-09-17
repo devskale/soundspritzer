@@ -186,6 +186,31 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   var img = dlg.querySelector(".lightbox-img");
   var title = dlg.querySelector(".lightbox-title");
   var formatsBox = dlg.querySelector(".lightbox-formats");
+  var shareBtn = dlg.querySelector("[data-lightbox-share]");
+
+  /* Datei-Share (Web Share Level 2): Bild + Text an den System-Share-Sheet —
+     am Handy landet das Asset direkt im Instagram-Composer. Feature-Detect
+     statt Browser-Sniffing (Probe-File); ohne Support bleibt der Button
+     hidden — der Download beim Öffnen ist ohnehin schon gelaufen. */
+  var canShareFiles = false;
+  try {
+    var probe = new File([""], "probe.jpg", { type: "image/jpeg" });
+    canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [probe] }));
+  } catch (e) { canShareFiles = false; }
+
+  function shareAsset(href, name, caption) {
+    fetch(href)
+      .then(function (r) { return r.blob(); })
+      .then(function (b) {
+        var file = new File([b], name || "sundowner.jpg", { type: b.type || "image/jpeg" });
+        var payload = { files: [file] };
+        if (caption) payload.text = caption + "\n" + canonicalUrl();
+        return navigator.share(payload);
+      })
+      .catch(function (err) {
+        if (err && err.name !== "AbortError") console.error("Datei-Share fehlgeschlagen:", err);
+      });
+  }
 
   document.querySelectorAll("[data-lightbox]").forEach(function (a) {
     a.addEventListener("click", function (e) {
@@ -210,6 +235,18 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
         f.textContent = p[0] + " ↓";
         formatsBox.appendChild(f);
       });
+      // 3 · Datei-Share-Button nur für Assets, die ihn anbieten (IG-Formate)
+      if (shareBtn) {
+        var capSel = a.getAttribute("data-share-caption");
+        var capEl = capSel && document.querySelector(capSel);
+        var caption = capEl && capEl.value ? capEl.value.trim() : "";
+        var usable = canShareFiles && a.hasAttribute("data-share-file");
+        shareBtn.hidden = !usable;
+        if (usable) {
+          shareBtn.textContent = caption ? "Bild + Text teilen …" : "Bild teilen …";
+          shareBtn.onclick = function () { shareAsset(a.getAttribute("href"), a.getAttribute("download"), caption); };
+        }
+      }
       dlg.showModal();
     });
   });

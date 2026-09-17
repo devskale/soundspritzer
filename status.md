@@ -28,6 +28,7 @@
 - `.github/workflows/sponsors.yml`: stündlicher Refresh-Workflow (eingerichtet, prüfen ob er läuft)
 - `scripts/serve.mjs`: lokaler Dev-Server (zero-deps, plain Node) — `node scripts/serve.mjs [port]` (Default 8000). Verhält sich wie GitHub Pages: Clean URLs (`/shop` → `shop.html`), korrekte MIME-Types, 404-Seite, Path-Traversal-Schutz. Live-Reload per SSE: watcht html/css/js/json/bilder und injiziert Reload-Snippet vor `</body>` (nur lokal, nie in Produktion).
 - **`experiment/tabor_text.py`**: getesteter Workflow, Text perspektivisch korrekt auf die Tabor-Mauerflächen zu warpen (Wand-Quads + Freiflächen-Erkennung + Homographie-Warp; Sample-Output `experiment/tabor-text-v5.png`). Noch nicht live — Doku + Production-Checkliste: `experiment/README.md`
+- **Medienkit share-first** (share.html): Sektions-Order IG-primär — 1 Link · 2 Für Instagram (Feed/Danke/Story + Captions + Carousel) · 3 Weitere Bilder · 4 Poster (Print) · 5 Embed. Klick auf IG-Assets = Download + Lightbox; darin „Bild (+ Text) teilen“ via Web Share Level 2 (Feature-Detect, Mobile-Schnellweg); Details: `socialmedia.md` § 3
 
 ## Assets (assets/)
 
