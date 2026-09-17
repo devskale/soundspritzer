@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T20:16:50.955Z",
+  "updated": "2026-09-17T20:26:16.671Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -77,8 +77,8 @@
       "tier": "medium",
       "eur": 150,
       "url": "https://werkbowling.at/",
-      "logo": "assets/sponsor-logos/werk.jpg",
-      "bg": "white",
+      "logo": "assets/sponsor-logos/werk.png",
+      "bg": "black",
       "type": null
     },
     {

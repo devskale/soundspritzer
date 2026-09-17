@@ -40,6 +40,12 @@ const SHEET_ID = "1tXpHCC0bFtaHncOqibpJhNp8bT4OMzOHj7P0m_Xum20";
 const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 const XLSX_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=xlsx`;
 
+/* Hintergrund-Overrides: falls die Sheet-Spalte „Hintergrund“ zum neuen Logo
+   nicht passt (17.09.: werk hat transparentes PNG mit weißen Schriftteilen
+   bekommen, Sheet sagte aber „white“ → weiße Teile auf heller Kachel
+   unsichtbar). Eintrag entfernen, sobald der Sheet es selbst richtig hat. */
+const BG_OVERRIDES = { werk: "black" };
+
 /**
  * XLSX-Export (zero-dep ZIP-Reader) → { Sheet-Zeile: Hyperlink-Ziel }.
  * Genutzt wird nur sheet1 + dessen rels; Fehler sind unkritisch (CSV reicht).
@@ -412,8 +418,8 @@ async function main() {
       eur: eur ?? null,
       url,
       logo,
-      // Hintergrundfarbe je Logo (aus der „Hintergrund“-Spalte)
-      bg: bg || null,
+      // Hintergrundfarbe je Logo („Hintergrund“-Spalte, BG_OVERRIDES greift vorher)
+      bg: BG_OVERRIDES[slug] || bg || null,
       type: type ? normalizePartner(type) : null,
     });
   }
