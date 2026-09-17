@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15T11:43:18.523Z",
+  "updated": "2026-09-17T20:10:33.061Z",
   "sponsors": [
     {
       "name": "Reisinger Energietechnik",
@@ -9,16 +9,6 @@
       "url": "https://www.reisinger-energietechnik.at/",
       "logo": "assets/sponsor-logos/reisinger-energietechnik.png",
       "bg": null,
-      "type": null
-    },
-    {
-      "name": "werk und jumpworld",
-      "role": "",
-      "tier": "large",
-      "eur": 300,
-      "url": "https://jumpworld.one/",
-      "logo": "assets/sponsor-logos/werk-und-jumpworld.svg",
-      "bg": "black",
       "type": null
     },
     {
@@ -79,6 +69,26 @@
       "url": "https://www.alexgartenhelp.at/",
       "logo": "assets/sponsor-logos/alexgartenhelp.jpg",
       "bg": null,
+      "type": null
+    },
+    {
+      "name": "werk",
+      "role": "",
+      "tier": "medium",
+      "eur": 150,
+      "url": "https://werkbowling.at/",
+      "logo": "assets/sponsor-logos/werk.jpg",
+      "bg": "white",
+      "type": null
+    },
+    {
+      "name": "jumpworld",
+      "role": "",
+      "tier": "medium",
+      "eur": 150,
+      "url": "https://jumpworld.one/",
+      "logo": "assets/sponsor-logos/jumpworld.svg",
+      "bg": "black",
       "type": null
     },
     {

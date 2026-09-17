@@ -46,9 +46,12 @@
   .card img { max-width: 100%; height: 170px; width: auto; object-fit: contain; }
   .card .name { color: #2b1a20; font-weight: 600; font-size: 26px; letter-spacing: .08em; text-transform: uppercase; }
   .card .role { color: #8f3d28; font-size: 20px; letter-spacing: .14em; text-transform: uppercase; }
-  /* Dunkle Logos (Sheet-Spalte „Hintergrund“ = black/dunkel) brauchen dunkle Karten */
-  .card--dark, .tile--dark { background: #241820; }
-  .card--dark .name, .tile--dark .name { color: #f7ead8; }
+  /* Dunkle Logos (Sheet-Spalte „Hintergrund“ = black/dunkel) brauchen dunkle Karten.
+     Doppelt-Klasse = Spezifität gegen .card/.tile, die später im Stylesheet
+     ihr helles background setzen (Bug 17.09.: jumpworld/ELRA weiße Logo-Teile
+     auf heller Kachel unsichtbar). */
+  .card--dark, .tile--dark, .card.card--dark, .tile.tile--dark { background: #241820; }
+  .card--dark .name, .tile--dark .name, .tile.tile--dark .name { color: #f7ead8; }
   .card--dark .role { color: #e8b04b; }
   /* Viele Gold-Sponsoren (>3): 3er-Grid statt Reihe — nichts wird abgeschnitten */
   .cards--many { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
@@ -77,6 +80,14 @@
 <body><span class="sun" aria-hidden="true"></span>
   <p class="label">Unterstützer &amp; Partner</p>
   <div class="grid">
+    <div class="tile">
+      <img src="../sponsor-logos/werk.jpg" alt="werk">
+      <div class="name">werk</div>
+    </div>
+    <div class="tile tile--dark">
+      <img src="../sponsor-logos/jumpworld.svg" alt="jumpworld">
+      <div class="name">jumpworld</div>
+    </div>
     <div class="tile tile--dark">
       <img src="../sponsor-logos/elra.svg" alt="ELRA">
       <div class="name">ELRA</div>
@@ -96,14 +107,6 @@
     <div class="tile tile--dark">
       <img src="../sponsor-logos/roland-hamm.jpg" alt="Roland Hamm">
       <div class="name">Roland Hamm</div>
-    </div>
-    <div class="tile">
-      <img src="../sponsor-logos/lautner-heizung.png" alt="Lautner Heizung">
-      <div class="name">Lautner Heizung</div>
-    </div>
-    <div class="tile">
-      <img src="../sponsor-logos/malerei-hr.png" alt="Malerei-HR">
-      <div class="name">Malerei-HR</div>
     </div></div>
   <p class="foot"><b>soundspritzer.at</b> · Seeblick, Sounds &amp; Spritzer</p>
 </body></html>
