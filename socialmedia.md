@@ -89,10 +89,12 @@ Sponsorenwand nehmen die volle Höhe ein (geprüft 17.09.2026).
 ### Share-first-Medienkit (17.09.2026)
 
 Hauptzweck der Kit-Seite ist Social-Sharing — der Flow pro IG-Asset:
-1. **Klick = Download** (Basis, universal, auch ohne JS über `<a download>`)
-2. **Lightbox: „Bild (+ Text) teilen …“** — Web Share Level 2 (`navigator.share({files, text})`),
+1. **Klick = Lightbox** (Vorschau + bewusste Wahl; kein Auto-Download mehr — war zu früh,
+   17.09. gelernt. Ohne JS lädt der normale `<a download>` weiterhin direkt)
+2. **Im Dialog: „Bild (+ Text) teilen …“** — Web Share Level 2 (`navigator.share({files, text})`),
    am Handy → System-Share-Sheet → Instagram-Composer. Feature-Detect
    (`canShare({files})`) statt Browser-Sniffing: ohne Support bleibt der Button hidden.
+   Daneben **„Herunterladen ↓“** als expliziter Download-Button.
    IG übernimmt den Caption-Text nicht zuverlässig → Feed + Danke haben zusätzlich
    sichtbare Caption-Boxen mit Kopier-Button (`data-copy-source`-Pattern).
    Wiring: `data-share-file` + optional `data-share-caption="#selector"` an den Thumbs,

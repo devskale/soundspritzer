@@ -187,6 +187,15 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   var title = dlg.querySelector(".lightbox-title");
   var formatsBox = dlg.querySelector(".lightbox-formats");
   var shareBtn = dlg.querySelector("[data-lightbox-share]");
+  var dlBtn = dlg.querySelector("[data-lightbox-download]");
+  var current = { href: "", name: "" };
+
+  function triggerDownload() {
+    var dl = document.createElement("a");
+    dl.href = current.href;
+    dl.download = current.name;
+    document.body.appendChild(dl); dl.click(); dl.remove();
+  }
 
   /* Datei-Share (Web Share Level 2): Bild + Text an den System-Share-Sheet —
      am Handy landet das Asset direkt im Instagram-Composer. Feature-Detect
@@ -215,12 +224,11 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   document.querySelectorAll("[data-lightbox]").forEach(function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();
-      // 1 · Download sofort starten (gleiche Datei wie die Vorschau)
-      var dl = document.createElement("a");
-      dl.href = a.getAttribute("href");
-      dl.download = a.getAttribute("download") || "";
-      document.body.appendChild(dl); dl.click(); dl.remove();
-      // 2 · Dialog füllen: Bild, Titel, Formate (Spec: "Label:url:dateiname|…")
+      // Kein Auto-Download mehr: Klick = Vorschau + bewusste Wahl
+      // (Teilen / Herunterladen) im Dialog. Ohne JS lädt der normale
+      // <a download>-Link direkt runter.
+      current = { href: a.getAttribute("href"), name: a.getAttribute("download") || "" };
+      // Dialog füllen: Bild, Titel, Formate (Spec: "Label:url:dateiname|…")
       var src = a.querySelector("img");
       img.src = a.getAttribute("href");
       img.alt = src ? src.alt : "";
@@ -252,6 +260,7 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   });
 
   dlg.querySelector("[data-lightbox-close]").addEventListener("click", function () { dlg.close(); });
+  if (dlBtn) dlBtn.addEventListener("click", triggerDownload);
   // Backdrop-Klick: Klick trifft das <dialog> selbst, nicht dessen Inhalt
   dlg.addEventListener("click", function (e) {
     var r = dlg.getBoundingClientRect();
