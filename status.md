@@ -136,6 +136,7 @@ Kurzfazit: Carousel (4:5, 1080×1350) ✅ SOTA; fehlen IG-Story/Reels 9:16 (1080
 - [ ] Musik-Icon (schwarze Platte) evtl. ins weiße Sticker-Set konvertieren
 - [ ] Instagram des Events selbst? (aktuell nur Band verlinkt)
 - [x] ~~IG-Formate ins Medienkit ergänzen~~ erledigt 17.09.: Google-Slides-Exporte des Posters → `assets/poster/sundowner-ig-{feed,feed-sponsoren,story}.jpg` (1080×1350 ×2, 1080×1920), in `share.html` unter „Für Instagram“ (v1), VLM-geprüft, Checker grün
+- [x] ~~Danke-Story (Sponsoren-Logo-Wand) ins Medienkit~~ erledigt 19.09.: Export `Insta 9_16 Story_sponsoren.jpg` → `assets/poster/sundowner-ig-story-sponsoren.jpg` (1080×1920, v1), 4. Thumb unter „Für Instagram“, VLM-geprüft (Logo-Wand auf aktuellem Stand, nichts beschnitten), Checker grün
 - [ ] DNS/Domain-Check nach Deployments
 - [ ] Optional: zweite OG-Variante (Facts-betont)
 
