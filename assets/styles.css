@@ -726,6 +726,18 @@ h1 em {
       text-indent: 0;
       text-transform: none;
     }
+    .hero-sub.hero-sub--danke a {
+      color: var(--dusk-top);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+    .hero-sub.hero-sub--danke a:hover,
+    .hero-sub.hero-sub--danke a:focus-visible {
+      opacity: .65;
+    }
     /* Countdown-Sticker ÜBER dem Datum — absolut über die Streifenkante,
        Banner-Höhe bleibt unangetastet (Anforderung). Drei Zustände (site.js):
        „Noch X Tage“ → „Heute!“ → weg (hidden, keine Lücke). Echo der Hero-Pills:
