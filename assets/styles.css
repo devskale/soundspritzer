@@ -1804,3 +1804,28 @@ h1 em {
 }
 /* Tinten-Farbe durchgängig: alle Footer sitzen im unteren Gradient-Bereich
      (Body-Gradient läuft auf Horizont-Orange) → dunkle Tinte, WCAG-sicher */
+
+/* ── Danke-Banner (nach dem Event) ─────────────────────────────── */
+.danke-banner {
+  text-align: center;
+  padding: clamp(2.2rem, 6vw, 4.2rem) 1rem 1.6rem;
+  margin: 0 auto clamp(1.6rem, 4vw, 3rem);
+  max-width: 46rem;
+}
+.danke-banner .kicker { display: block; margin-bottom: .9rem; }
+.danke-title {
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  line-height: 1.05;
+  margin: 0 0 .8rem;
+}
+.danke-title em { font-style: italic; }
+.danke-sub {
+  color: rgba(255, 255, 255, .82);
+  font-size: clamp(1rem, 2.4vw, 1.15rem);
+  margin: 0 0 1.4rem;
+}
+.danke-banner .btn { font-size: 1.02rem; }
+@media (max-width: 560px) {
+  .danke-banner { padding-top: 1.8rem; }
+  .danke-title { font-size: clamp(2rem, 9vw, 2.6rem); }
+}
