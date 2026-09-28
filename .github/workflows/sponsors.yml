@@ -1,9 +1,7 @@
 name: Refresh sponsors
 
 on:
-  schedule:
-    - cron: "17 * * * *" # stündlich (_minute 17: abseits der GitHub-Spitzenlasten)
-  workflow_dispatch: {}   # manuell per Button
+  workflow_dispatch: {}   # nur manuell per Button
 
 permissions:
   contents: write
