@@ -49,6 +49,7 @@ Eine Regel, die man sich nur merken muss, ist eine Regel, die wieder bricht.
 - **Screenshots sind nur so gut wie der Renderer:** meldet die Bild-Analyse flächendeckend „Text fehlt", zuerst den Renderer prüfen — rod's Bundled-Chromium renderte nach einem Fontconfig-Cache-Rebuild keine Glyphen mehr (`canvas.measureText() === 0`). Fix: `fc-cache -f`, notfalls `ROD_CHROME_BIN=/opt/google/chrome/chrome rodney start`. Systemdiagnose, kein Website-Bug.
 - Gesundheitstest vor Bild-Verifikation:
   `rodney js "(()=>{const c=document.createElement('canvas').getContext('2d');c.font='16px sans-serif';return c.measureText('TEST').width})()"` → muss > 0 sein, sonst erst Renderer heilen.
+- **rod-Launcher-Flags sind hier gepatcht (2026-09-29):** rod hängt headless `--single-process` an — jeder Page-Crash reißt den ganzen Browser mit (SIGSEGV → „panic: EOF“, Coredump belegt) — und `--no-startup-window`: Chrome beendet sich ohne CDP-Client nach ~38s („Browser not responding“ zwischen Tool-Calls). `~/.local/bin/rodney` ist ein Shim, der `ROD_CHROME_BIN` auf `~/.local/bin/chrome-rod-wrapper` setzt; der stript beide Flags und ergänzt die bewährten (`--headless=new --no-sandbox --disable-gpu --remote-allow-origins=*`). Chrome selbst (153/154) war nie das Problem — rohes CDP lief immer. Nach rodney-Updates: Shim + Wrapper erhalten (Build → `rodney.real`).
 
 ## 3 · CSS-Sicherheit
 
