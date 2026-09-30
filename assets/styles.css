@@ -1971,6 +1971,7 @@ h1 em {
 
     /* Galerie-Rahmen: sanfte Bühne fürs Embed */
     .gal-frame {
+      position: relative; /* Anker für das Wasserzeichen (siehe .gal-mark) */
       border: 1px solid rgba(255, 255, 255, .14);
       border-radius: 16px;
       background: rgba(255, 255, 255, .04);
@@ -1982,6 +1983,24 @@ h1 em {
       width: 100%;
       height: 640px;
       border: 0;
+    }
+    /* Tabor-Motiv als gedimmtes Wasserzeichen der Fotogalerie: groß,
+       zentriert, hinter den (opaken) Fotokacheln. Es wirkt dadurch nur in
+       den Zwischenräumen und am Rand — die Fotos bleiben unberührt, das
+       Motiv verhindert aber ein totes, leeres Raster. */
+    .gal-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(72%, 760px);
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      opacity: .3;
+      filter: saturate(.9);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+      pointer-events: none;
+      user-select: none;
     }
 
     @media (max-width: 640px) {
