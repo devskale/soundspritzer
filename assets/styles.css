@@ -540,7 +540,10 @@ h1 em {
       /* KEIN justify-content: center — die Seite ist längler als der Viewport.
          Center würde Überlauf nach OBEN verteilen, der nie scrollbar wäre
          („Seite verschluckt den oberen Rand“). */
-      padding: clamp(2rem, 6vw, 5rem) 0 clamp(2rem, 6vw, 5rem) clamp(1.25rem, 3vw, 3rem); /* rechts ohne Padding — Motiv bis zum Rand */
+      /* Symmetrisch: das alte „rechts ohne Padding" klebte den Foto-Slider an
+         die Kante und ließ die Seite links auseinandergezogen wirken. Beide
+         Seiten gleich — der Inhalt sitzt mittig, wie der Rest der Seite. */
+      padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 3vw, 3rem);
       max-width: 100%;
       overflow-x: hidden; /* Death Defense gegen Mobile-Overflow */
     }
@@ -658,7 +661,7 @@ h1 em {
     /* ── Hero: 2 Spalten — links Marke+Claim, rechts Tabor+Sonne ── */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); /* Danke-Phase: Text und Slider halten sich die Waage */
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr); /* Danke-Phase: der Foto-Slider ist das Bild — er führt, der Text stützt */
       align-items: center;
       gap: clamp(1rem, 2vw, 2rem); /* enger — mehr Breite fürs Motiv */
       width: 100%;
@@ -790,7 +793,7 @@ h1 em {
        einfach untereinander (Progressive Enhancement, keine Bedienung). */
     .hero-slider {
       width: 100%;
-      max-width: 720px;
+      max-width: 820px; /* größer als der Textblock — der Slider ist das Bild der Seite */
       position: relative;
       z-index: 1;
     }
@@ -1995,10 +1998,7 @@ h1 em {
       width: min(72%, 760px);
       transform: translate(-50%, -50%);
       z-index: 0;
-      opacity: .3;
-      filter: saturate(.9);
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
-      mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+      opacity: .22; /* gleichmäßig gedimmt — KEIN Verlaufs-Fade, das Motiv bleibt als Ganzes lesbar */
       pointer-events: none;
       user-select: none;
     }
