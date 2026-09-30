@@ -670,6 +670,16 @@ h1 em {
       position: relative;
       z-index: 2; /* Text VORNE — darf über das Tabor ragen */
     }
+    /* Danke-Abschluss unter dem Claim: leise, sans, auf einem Blick lesbar —
+       der Claim ist die Überschrift, das Danke der Nachsatz. */
+    .hero-danke {
+      margin-top: clamp(.7rem, 1.4vw, 1rem);
+      font-size: clamp(.82rem, 1.7vw, 1rem);
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
     .brand-sub {
       margin-top: clamp(.8rem, 1.6vw, 1.2rem); /* Rhythmus M: Claim→Name, eng als Einheit */
       font-family: "Cormorant Garamond", serif;
