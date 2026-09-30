@@ -761,6 +761,19 @@ h1 em {
     .hero-share:hover { transform: scale(1.08); background: var(--gold); color: var(--dusk-top); }
     .hero-share:active { transform: scale(.96); }
     .hero-share:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+    /* Feedback-Zustände: copied (Erfolg) und failed (blockiert). failed
+       ist rot + wackelt kurz — „nichts passiert" ist die schlechteste
+       Antwort auf einen Klick, den der Nutzer gemacht hat. */
+    .hero-share.copied { background: var(--cream); color: var(--dusk-top); }
+    .hero-share.failed { background: #c1453a; color: var(--cream); animation: share-wobble .5s ease; }
+    @keyframes share-wobble {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-share.failed { animation: none; }
+    }
     .hero-share svg { width: 20px; height: 20px; }
     /* Countdown-Sticker ÜBER dem Datum — absolut über die Streifenkante,
        Banner-Höhe bleibt unangetastet (Anforderung). Drei Zustände (site.js):
@@ -1550,7 +1563,18 @@ h1 em {
     /* Aufklapp-Menü hinter dem Teilen-Button (Disclosure-Pattern, site.js):
        alle Ziele an einem Ort statt Link-Zeilen — schließt bei Klick
        außerhalb / Escape / Menü-Link. */
-    .share-wrap { position: relative; display: inline-block; }
+    /* Zwei Aktionen nebeneinander: „Teilen …" (direkt, wie die Icons oben)
+       und „Mehr Wege …" (öffnet das Menü). Beide gleich gewichtet, das
+       Menü hängt am zweiten — deshalb liegt es im Wrapper, nicht am
+       einzelnen Button. */
+    .share-wrap {
+      position: relative;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+    }
     .share-menu {
       position: absolute;
       bottom: calc(100% + .55rem); /* klappt ÜBER dem Button auf: der sitzt am Seitenende — nach unten läge das Menü im Footer/hinter dem Seitenende */

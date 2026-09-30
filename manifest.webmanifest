@@ -1,13 +1,33 @@
 {
   "name": "SunDowner — Seeblick, Sounds & Spritzer",
   "short_name": "SunDowner",
-  "description": "SunDowner am Tabor — 25.09.2026, ab 17 Uhr, Neusiedl am See. Livemusik, Foodtruck & Spritzerbar, freier Eintritt.",
+  "description": "Der SunDowner 2026 am Tabor in Neusiedl am See: Fotos vom Abend, Galerie und Medienkit.",
   "start_url": "/",
-  "display": "browser",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#221528",
   "theme_color": "#221528",
+  "lang": "de-AT",
+  "dir": "ltr",
+  "categories": ["events", "photo"],
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Fotos & Galerie",
+      "short_name": "Fotos",
+      "url": "/share#galerie",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Medienkit",
+      "short_name": "Medienkit",
+      "url": "/share",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
   ]
 }

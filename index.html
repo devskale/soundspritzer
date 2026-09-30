@@ -41,7 +41,7 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=74">
+  <link rel="stylesheet" href="assets/styles.css?v=76">
   <!-- Reload startet immer oben — keine Scroll-Restauration vom Browser -->
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
@@ -55,7 +55,7 @@
   <main class="home-main" id="main">
     <div class="top-actions">
       <a class="top-tag" href="/share#galerie">Alle Fotos</a>
-      <button type="button" class="top-share" data-share-native data-tip="Teile die Danke-Seite" aria-label="Die Danke-Seite teilen">
+      <button type="button" class="top-share" data-share-native data-tip="Teile die Danke-Seite" aria-label="Teilen">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
           <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>
@@ -70,7 +70,7 @@
         <p class="hero-sub hero-sub--band">Danke
           <button type="button" class="hero-share" data-share-native
                   data-tip="Teile die Danke-Seite"
-                  aria-label="Danke-Seite teilen">
+                  aria-label="Teilen">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
               <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>
@@ -152,7 +152,7 @@
           <span class="fact-thanks">25.09.2026 &middot; Am Tabor, Neusiedl am See</span>
         </div>
       </div>
-      <button type="button" class="facts-share" data-share-native data-tip="Teile die Danke-Seite" aria-label="Die Danke-Seite teilen">
+      <button type="button" class="facts-share" data-share-native data-tip="Teile die Danke-Seite" aria-label="Teilen">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
           <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>
@@ -239,9 +239,9 @@
              Share API) öffnet den nativen System-Dialog (WhatsApp, Instagram,
              iMessage, …). Ohne JS greift der noscript-Fallback darunter.
              Kein SDK, keine Tracker. -->
-        <button type="button" class="share-btn share-btn--primary" data-share-menu aria-expanded="false" aria-haspopup="true" aria-controls="share-menu">Teilen …</button>
+        <button type="button" class="share-btn share-btn--primary" data-share-native>Teilen …</button>
+        <button type="button" class="share-btn" data-share-menu aria-expanded="false" aria-haspopup="true" aria-controls="share-menu">Mehr Wege …</button>
         <div class="share-menu" id="share-menu" hidden>
-          <button type="button" class="share-menu__item share-menu__item--gold" data-share-native hidden>Direkt teilen …</button>
           <a class="share-menu__item" href="https://wa.me/?text=Danke%20f%C3%BCr%20diesen%20Abend!%20Die%20Fotos%20vom%20SunDowner%20am%20Tabor%3A%20https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">WhatsApp</a>
           <a class="share-menu__item" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
           <a class="share-menu__item" href="https://twitter.com/intent/tweet?text=Danke%20f%C3%BCr%20diesen%20Abend!%20Die%20Fotos%20vom%20SunDowner%20am%20Tabor&url=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">X</a>
@@ -312,7 +312,7 @@
       <button type="button" class="share-btn" data-lightbox-close>Schließen</button>
     </div>
   </dialog>
-  <script src="assets/site.js?v=27"></script>
+  <script src="assets/site.js?v=28"></script>
   <script src="assets/crew-stamp.js?v=15"></script>
   <script>
     /* Sponsoren: assets/sponsors.json (generiert aus dem Google Sheet).

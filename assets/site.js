@@ -122,17 +122,31 @@
 })();
 
 /* ── Kopier-Helfer: Clipboard API, execCommand als Fallback ── */
-function copyToClipboard(text, done) {
+function copyToClipboard(text, done, fail) {
+  // Modern: Async Clipboard API (nur secure context — localhost/PWS ok).
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(done, legacy);
-  } else { legacy(); }
+    navigator.clipboard.writeText(text)
+      .then(function () { done(); }, function () { legacy(); });
+    return;
+  }
+  legacy();
   function legacy() {
+    // Fallback für Firefox-Desktop ohne Async Clipboard. readOnly + top
+    // halten den Fokus auf iOS, sonst scrollt die Seite beim Select.
     var ta = document.createElement("textarea");
     ta.value = text;
-    ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); done(); } catch (e) {}
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
     document.body.removeChild(ta);
+    if (ok) done();
+    else if (fail) fail(); // NICHT schlucken: sonst passiert beim Klick nichts
   }
 }
 function flashButton(btn, original) {
@@ -164,12 +178,12 @@ function canonicalUrl() {
   // vorab zuverlässig erkennen, also: Scheitern → automatisch auf Kopieren
   // zurückfallen, statt den Nutzer mit einem toten Klick zu lassen.
   function shareOrCopy(native) {
-    if (!canNative) { copyToClipboard(TEXT + " " + URL, function () { flashNative(native); }); return; }
+    if (!canNative) { copyToClipboard(TEXT + " " + URL, function () { flashNative(native); }, function () { flashFail(native); }); return; }
     navigator.share({ title: "SunDowner", text: TEXT, url: URL })
       .catch(function (err) {
         if (!err || err.name === "AbortError") return; // Nutzer hat abgebrochen
         console.warn("Web Share nicht verfügbar, weiche auf Kopieren aus:", err);
-        copyToClipboard(TEXT + " " + URL, function () { flashNative(native); });
+        copyToClipboard(TEXT + " " + URL, function () { flashNative(native); }, function () { flashFail(native); });
       });
   }
   function flashNative(native) {
@@ -178,6 +192,17 @@ function canonicalUrl() {
       setTimeout(function () { native.classList.remove("copied"); }, 1600);
     } else {
       flashButton(native, originalOf(native));
+    }
+  }
+  /* Kopieren hat nicht geklappt (blockierte Clipboard-Permission, inaktivem
+     Tab). Der Knopf MUSS darauf reagieren — ein toter Klick ist die
+     schlechteste UX, die ein Share-Button haben kann. */
+  function flashFail(native) {
+    if (hasIconOf(native)) {
+      native.classList.add("failed");
+      setTimeout(function () { native.classList.remove("failed"); }, 2200);
+    } else {
+      flashButton(native, "Kopieren blockiert");
     }
   }
   function hasIconOf(el) { return !!el.querySelector("svg"); }
@@ -235,7 +260,7 @@ function canonicalUrl() {
   var btn = document.querySelector("[data-copy-link]");
   if (!btn) return;
   btn.addEventListener("click", function () {
-    copyToClipboard(canonicalUrl(), function () { flashButton(btn, "Link kopieren"); });
+    copyToClipboard(canonicalUrl(), function () { flashButton(btn, "Link kopieren"); }, function () { flashButton(btn, "Kopieren blockiert"); });
   });
 })();
 
@@ -244,7 +269,7 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   var src = document.querySelector(btn.getAttribute("data-copy-source"));
   if (!src) return;
   btn.addEventListener("click", function () {
-    copyToClipboard(src.value.trim(), function () { flashButton(btn, btn.textContent); });
+    copyToClipboard(src.value.trim(), function () { flashButton(btn, btn.textContent); }, function () { flashButton(btn, "Kopieren blockiert"); });
   });
 });
 
@@ -255,7 +280,7 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   if (!btn || !code) return;
   btn.addEventListener("click", function () {
     code.select(); code.setSelectionRange(0, code.value.length);
-    copyToClipboard(code.value, function () { flashButton(btn, "Code kopieren"); });
+    copyToClipboard(code.value, function () { flashButton(btn, "Code kopieren"); }, function () { flashButton(btn, "Kopieren blockiert"); });
   });
 })();
 
