@@ -1955,6 +1955,31 @@ h1 em {
     /* Rhythmus: Lead → Galerie-Head → Intro → Upload-Hero →
        Galerie-Rahmen → Fineprint — je ein klarer Atemzug dazwischen */
     #galerie { margin-top: clamp(3rem, 8vw, 5rem); }
+
+    /* Bilder dürfen breiter als der 880px-Textkorpus sein: `main` ist auf
+       880px gedeckelt (gute Zeilenlänge für Fließtext), eine Fotoreihe
+       darin wirkt wie ein Briefkastenschlitz. Der Block bricht aus der
+       Content-Box aus (negative Margins = dieselbe Technik wie das
+       Facts-Band) und nutzt die volle Viewport-Breite. */
+    /* Achtung, Reihenfolge: diese Regeln MÜSSEN nach .kit-block stehen
+       (gleiche Spezifität, spätere gewinnt) — sonst greifen wieder
+       max-width: 860px und align-items: center. */
+    #galerie, .press-fotos {
+      max-width: min(1500px, calc(100vw - 2 * clamp(1rem, 3vw, 3rem)));
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: stretch; /* Kinder (Rahmen, Upload-Box) füllen die Breite */
+    }
+    #galerie .gal-frame, .press-fotos .kit-thumb-row { width: 100%; }
+    /* Auf der Medien-Seite selbst darf der Rahmen weiter als 880px:
+       `main` ist für Fließtext gedacht, die Galerie braucht Bildbreite. */
+    body:has(#galerie) main { max-width: 1600px; }
+    body:has(#galerie) .kit-block { max-width: min(1200px, 100%); }
+    /* Upload-Hero und Rahmen dürfen ihre volle Breite nutzen, nicht
+       auf Textbreite schrumpfen */
+    #galerie .upload-hero, #galerie .kit-hint, #galerie .fineprint,
+    #galerie .gal-frame, .press-fotos .kit-hint { max-width: none; }
     #galerie h2 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 600;
