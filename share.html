@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#221528">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>Partner-Medien — Teilen &amp; Einbetten · SunDowner · 25.09.2026</title>
+  <title>Medienkit — Fotos, Logos & Texte · SunDowner 2026</title>
   <meta name="description" content="Partner-Medien-Kit: Bilder, Poster, Link und Embed-Code vom SunDowner am Tabor: herunterladen, posten, einbetten.">
   <meta name="robots" content="noindex"> <!-- Werkzeug-Seite, kein Suchinhalt -->
 
@@ -14,24 +14,73 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=64">
+  <link rel="stylesheet" href="assets/styles.css?v=65">
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
 <body id="top">
   <main class="page-main" id="main">
     <a class="back back--top" href="/">← Startseite</a>
-    <p class="kicker">Partner-Medien</p>
-    <h1>Teilen &amp; <em>einbetten</em></h1>
+    <p class="kicker">Medienkit</p>
+    <h1>Fotos, Logos &amp; <em>Texte</em></h1>
     <div class="rule" aria-hidden="true"></div>
     <p class="kit-intro">
-      Alles Fertige zum Weitergeben: teilen, runterladen, posten, einbetten.
+      Für Zeitungen, Schulreport und Berichte: Fotos, Logos, Zitate —
+      zum Download und zur freien Verwendung.
     </p>
+
+    <!-- ── 0 · Für Presse (neu, ganz oben) ── -->
+    <section class="kit-block" aria-labelledby="kit-presse">
+      <h2 class="kit-title" id="kit-presse">Für Presse &amp; Bericht</h2>
+      <p class="kit-hint">Freie Verwendung ohne Nachfrage, Namensnennung und
+      Bildnachweis erbeten. Kontakt für Rückfragen und Originale:
+      <a href="mailto:hallo@soundspritzer.at">hallo@soundspritzer.at</a></p>
+      <div class="kit-thumb-row">
+        <a class="kit-thumb" href="assets/fotos/01-sonnenuntergang.jpg?v=1" download="sundowner-1-sonnenuntergang.jpg"
+           data-lightbox data-title="SunDowner 2026 · Sonnenuntergang am Tabor">
+          <img src="assets/fotos/01-sonnenuntergang.jpg?v=1" alt="Sonnenuntergang über dem Neusiedler See, Gäste als Silhouetten auf der Mauer am Tabor" loading="lazy" width="1600" height="900">
+          <span>Foto 1 ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/02-abendrot-publikum.jpg?v=1" download="sundowner-2-abendrot.jpg"
+           data-lightbox data-title="SunDowner 2026 · Abendrot über dem Tabor">
+          <img src="assets/fotos/02-abendrot-publikum.jpg?v=1" alt="Abendrot über dem Tabor, davor das Publikum" loading="lazy" width="1600" height="900">
+          <span>Foto 2 ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" download="sundowner-3-ruine.jpg"
+           data-lightbox data-title="SunDowner 2026 · Ruine Tabor im letzten Licht">
+          <img src="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" alt="Die Ruine Tabor im letzten Licht, davor die Gäste mit Blick über den See" loading="lazy" width="1600" height="900">
+          <span>Foto 3 ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/05-ruine-lichterkette.jpg?v=1" download="sundowner-4-lichterkette.jpg"
+           data-lightbox data-title="SunDowner 2026 · Lichterkette am Abend">
+          <img src="assets/fotos/05-ruine-lichterkette.jpg?v=1" alt="Die Ruine Tabor am Abend mit Lichterkette über der Menge" loading="lazy" width="1600" height="900">
+          <span>Foto 4 ↓</span>
+        </a>
+      </div>
+      <details class="kit-caption">
+        <summary>Texte, Zitate &amp; Bildnachweise</summary>
+        <label class="embed-codelabel" for="press-toast">Kurztext für Print (ca. 100 Zeichen)</label>
+        <textarea id="press-toast" rows="4" readonly spellcheck="false">Der SunDowner 2026: ein Abend am Tabor in Neusiedl am See mit Live-Musik, Pizza und Spenden für den Elternverein HAK.</textarea>
+        <button type="button" class="share-btn" data-copy-source="#press-toast">Text kopieren</button>
+
+        <label class="embed-codelabel" for="press-zitat">Zitat (Schulreport/Diplomarbeit)</label>
+        <textarea id="press-zitat" rows="4" readonly spellcheck="false">„Unser Wunschtermin hat uns das schönste Panorama Neusiedls gegeben: Danke an alle Gäste, Partner und helfenden Hände für diesen Abend." — das SunDowner-Team, Diplomarbeit der Akademie der Wirtschaft Neusiedl am See</textarea>
+        <button type="button" class="share-btn" data-copy-source="#press-zitat">Zitat kopieren</button>
+
+        <label class="embed-codelabel" for="press-logos">Logos (Download + Benutzung)</label>
+        <p class="kit-hint">Alle Logos liegen als PNG in <code>assets/sponsor-logos/</code> —
+        AKWI, Joe's Pub, Reisinger, GWP, Neusiedl am See, skale.dev und die
+        Partner der Projektmappe. Das Tabor-Motiv: <code>assets/sundowner-hero.png</code>.</p>
+        <button type="button" class="share-btn" data-share-file data-share-caption="#press-logos-note"
+           data-formats='PNG:assets/sundowner-hero.png?v=4:sundowner-hero.png|JPG:assets/fotos/og-danke.jpg:sundowner-og.jpg">Logo &amp; Bildmaterial ↓</button>
+        <p class="kit-hint" id="press-logos-note">Tabor-Motiv: „(c) laurens“ — bitte im Bildnachweis mitgeben.</p>
+      </details>
+    </section>
 
     <!-- ── 1 · Link ── -->
     <section class="kit-block" aria-labelledby="kit-link">
       <h2 class="kit-title" id="kit-link">1 · Der Link</h2>
       <p class="kit-hint">WhatsApp, Facebook &amp; Instagram-DMs bauen aus dem Link automatisch
-      die große Event-Karte mit Tabor-Oktopus, Datum und Offerings.</p>
+      die Danke-Karte mit Sonnenuntergang-Foto. Zum Teilen des Abend-Fotos.</p>
       <div class="kit-actions">
         <button type="button" class="share-btn share-btn--primary" data-share-native aria-live="polite">Teilen …</button>
         <button type="button" class="share-btn" data-copy-link>Link kopieren</button>
@@ -40,7 +89,7 @@
 
     <!-- ── 2 · Für Instagram (primär) ── -->
     <section class="kit-block" aria-labelledby="kit-bilder">
-      <h2 class="kit-title" id="kit-bilder">2 · Für Instagram</h2>
+      <h2 class="kit-title" id="kit-bilder">3 · Für Instagram</h2>
       <div class="kit-thumb-row">
         <a class="kit-thumb" href="assets/poster/sundowner-ig-feed.jpg?v=1" download="sundowner-ig-feed.jpg"
            data-lightbox data-title="SunDowner · Instagram Feed 4:5"
@@ -73,20 +122,20 @@
       </div>
       <details class="kit-caption">
         <summary>Captions kopieren &amp; Teilen-Tipps</summary>
-        <label class="embed-codelabel" for="ig-feed-caption">Caption · IG Feed (Event-Karte)</label>
+        <label class="embed-codelabel" for="ig-feed-caption">Caption · IG Feed (Abend-Foto)</label>
         <textarea id="ig-feed-caption" rows="8" readonly spellcheck="false">Sunset. Sounds. Spritzer. 🌅🍷
-Am 25.09.2026 wird der Tabor in Neusiedl am See zum Open-Air-Wohnzimmer: Livemusik von YnoT, DJ Flux, Pizza vom Joe's Pub und Spritzer von der Schülercrew. Freier Eintritt — 50 % der Einnahmen gehen an den Elternverein HAK.
+Der Tabor in Neusiedl am See war am 25.09.2026 unser Open-Air-Wohnzimmer: Livemusik von YnoT, DJ Flux, Pizza vom Joe's Pub und 50 % der Einnahmen für den Elternverein HAK. Danke für diesen Abend!
 
 @akademiederwirtschaft @joespubneusiedl @yourynot
 
 👉 alles auf soundspritzer.at (Link in Bio)
 
-#sundowner #neusiedlamsee #burgenland #pannonien #sommerimsee #openair #livemusik #spritzer</textarea>
+#sundowner #neusiedlamsee #burgenland #pannonien #openair #livemusik #spritzer #danke</textarea>
         <button type="button" class="share-btn" data-copy-source="#ig-feed-caption">Caption kopieren</button>
 
         <label class="embed-codelabel" for="ig-danke-caption">Caption · IG Danke (Sponsoren-Karte)</label>
         <textarea id="ig-danke-caption" rows="7" readonly spellcheck="false">Ohne euch gibt es keinen Sonnenuntergang! 🙏
-Ein riesiges Dankeschön an alle Sponsoren und Unterstützer, die unseren SunDowner am 25.09.2026 am Tabor möglich machen — 50 % der Einnahmen gehen an den Elternverein HAK.
+Ein riesiges Dankeschön an alle Gäste, Sponsoren und Unterstützer, die unseren SunDowner am 25.09.2026 am Tabor möglich gemacht haben — 50 % der Einnahmen gingen an den Elternverein HAK.
 
 👉 alles auf soundspritzer.at (Link in Bio)
 
@@ -118,31 +167,84 @@ Ein riesiges Dankeschön an alle Sponsoren und Unterstützer, die unseren SunDow
         <details class="kit-caption">
           <summary>Passende Caption kopieren</summary>
           <textarea id="ig-caption" rows="5" readonly spellcheck="false">Sunset. Sounds. Spritzer. 🌅🍷
-Am 25.09.2026 wird der Tabor in Neusiedl am See zum Open-Air-Wohnzimmer: Livemusik von YnoT, DJ Flux, Pizza vom Joe's Pub und Spritzer von der Schülercrew. Freier Eintritt.
+Der Tabor in Neusiedl am See war am 25.09.2026 unser Open-Air-Wohnzimmer: Livemusik von YnoT, DJ Flux, Pizza vom Joe's Pub und 50 % der Einnahmen für den Elternverein HAK.
 
-Und so wird das möglich: DANKE an unsere Unterstützer! 🙏
+DANKE an alle, die diesen Abend möglich gemacht haben! 🙏
 @akademiederwirtschaft @joespubneusiedl @yourynot
 
 👉 alles auf soundspritzer.at (Link in Bio)
 
-#sundowner #neusiedlamsee #burgenland #pannonien #sommerimsee #openair #livemusik #spritzer</textarea>
+#sundowner #neusiedlamsee #burgenland #pannonien #openair #livemusik #spritzer #danke</textarea>
           <button type="button" class="share-btn" data-copy-source="#ig-caption">Caption kopieren</button>
         </details>
       </details>
     </section>
 
+    <!-- ── Foto-Galerie (alle Bilder des Abends) ── -->
+    <section class="kit-block" aria-labelledby="kit-galerie">
+      <h2 class="kit-title" id="kit-galerie">2 · Foto-Galerie (Presse)</h2>
+      <p class="kit-hint">Alle sechs Fotos des Abends in Druckauflösung (1600&#8239;×&#8239;900&#8239;px) —
+      freie Verwendung, Namensnennung und Bildnachweis erbeten. Weitere Bilder
+      (auch von Gästen) gibt es in der <a href="/danke">Galerie</a>.</p>
+      <div class="kit-thumb-row">
+        <a class="kit-thumb" href="assets/fotos/01-sonnenuntergang.jpg?v=1" download="sundowner-01-sonnenuntergang.jpg"
+           data-lightbox data-title="SunDowner 2026 · 01 Sonnenuntergang am Tabor">
+          <img src="assets/fotos/01-sonnenuntergang.jpg?v=1" alt="Sonnenuntergang über dem Neusiedler See, die Gäste als Silhouetten auf der Mauer" loading="lazy" width="1600" height="900">
+          <span>01 · Sonnenuntergang ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/02-abendrot-publikum.jpg?v=1" download="sundowner-02-abendrot.jpg"
+           data-lightbox data-title="SunDowner 2026 · 02 Abendrot über dem Tabor">
+          <img src="assets/fotos/02-abendrot-publikum.jpg?v=1" alt="Der Himmel über dem Tabor glüht im Abendrot, davor das Publikum" loading="lazy" width="1600" height="900">
+          <span>02 · Abendrot ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" download="sundowner-03-ruine.jpg"
+           data-lightbox data-title="SunDowner 2026 · 03 Ruine Tabor im letzten Licht">
+          <img src="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" alt="Die Ruine Tabor im letzten Licht, davor die Gäste mit Blick über den See" loading="lazy" width="1600" height="900">
+          <span>03 · Ruine ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/04-crowd-daemmerung.jpg?v=1" download="sundowner-04-daemmerung.jpg"
+           data-lightbox data-title="SunDowner 2026 · 04 Menschenmenge in der Dämmerung">
+          <img src="assets/fotos/04-crowd-daemmerung.jpg?v=1" alt="Die Menschenmenge am Tabor in der Dämmerung" loading="lazy" width="1600" height="900">
+          <span>04 · Dämmerung ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/05-ruine-lichterkette.jpg?v=1" download="sundowner-05-lichterkette.jpg"
+           data-lightbox data-title="SunDowner 2026 · 05 Lichterkette an der Ruine">
+          <img src="assets/fotos/05-ruine-lichterkette.jpg?v=1" alt="Die Ruine Tabor am Abend, Lichterkette über der Menge" loading="lazy" width="1600" height="900">
+          <span>05 · Lichterkette ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/06-lichtkette.jpg?v=1" download="sundowner-06-nacht.jpg"
+           data-lightbox data-title="SunDowner 2026 · 06 Lichterkette über dem Platz">
+          <img src="assets/fotos/06-lichtkette.jpg?v=1" alt="Lichterkette über dem Platz, davor die Menschen in der Nacht" loading="lazy" width="1600" height="900">
+          <span>06 · Nacht ↓</span>
+        </a>
+      </div>
+      <p class="kit-hint">Alle Bilder auf einen Klick:
+        <a href="assets/fotos/og-danke.jpg" download="sundowner-og.jpg">Share-Karte (1200&#8239;×&#8239;630)</a></p>
+      <details class="kit-caption">
+        <summary>Bildnachweise &amp; Embed-Code</summary>
+        <label class="embed-codelabel" for="gallery-captions">Bildnachweis-Text</label>
+        <textarea id="gallery-captions" rows="4" readonly spellcheck="false">Fotos: SunDowner 2026, Tabor, Neusiedl am See (soundspritzer.at).
+Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.</textarea>
+        <button type="button" class="share-btn" data-copy-source="#gallery-captions">Nachweis kopieren</button>
+
+        <label class="embed-codelabel" for="kit-gallery-embed">Galerie einbetten (live, mit Gastfotos)</label>
+        <textarea class="embed-code" id="kit-gallery-embed" rows="4" readonly spellcheck="false">&lt;iframe src="https://soundspritzer.at/danke" width="100%" height="900" style="border:0" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+        <button type="button" class="share-btn" data-embed-copy aria-live="polite">Code kopieren</button>
+      </details>
+    </section>
+
     <!-- ── 3 · Weitere Bilder (Link-Vorschauen & Illustration) ── -->
     <section class="kit-block" aria-labelledby="kit-mehr-bilder">
-      <h2 class="kit-title" id="kit-mehr-bilder">3 · Weitere Bilder</h2>
+      <h2 class="kit-title" id="kit-mehr-bilder">4 · Weitere Bilder</h2>
       <p class="kit-group">Abgeleitet von der Website</p>
       <div class="kit-thumb-row">
         <a class="kit-thumb" href="assets/og-image.jpg?v=5" download="sundowner-share.jpg">
-          <img src="assets/og-image.jpg?v=5" alt="Event-Karte: SunDowner mit Tabor-Oktopus, Datum und Offerings" loading="lazy" width="1200" height="1330">
-          <span>Event-Karte hoch · JPG ↓</span>
+          <img src="assets/og-image.jpg?v=5" alt="SunDowner-Dankeskarte hoch: Logo, Tabor-Motiv, Dank an Gäste und Unterstützer" loading="lazy" width="1200" height="1330">
+          <span>Dankeskarte hoch · JPG ↓</span>
         </a>
         <a class="kit-thumb" href="assets/og-image-landscape.jpg?v=3" download="sundowner-share-quer.jpg">
-          <img src="assets/og-image-landscape.jpg?v=3" alt="Event-Karte querformat für X, Facebook und LinkedIn" loading="lazy" width="1200" height="628">
-          <span>Event-Karte quer · JPG ↓</span>
+          <img src="assets/og-image-landscape.jpg?v=3" alt="SunDowner-Dankeskarte im Querformat für Presse, X und Facebook" loading="lazy" width="1200" height="628">
+          <span>Dankeskarte quer · JPG ↓</span>
         </a>
         <a class="kit-thumb" href="assets/sundowner-hero.png?v=4" download="sundowner-hero.png">
           <img src="assets/sundowner-hero.png?v=4" alt="Hero-Illustration: Oktopus-Tabor mit (c) laurens" loading="lazy" width="877" height="416">
@@ -156,7 +258,7 @@ Und so wird das möglich: DANKE an unsere Unterstützer! 🙏
          Ein .kit-poster-Block pro Poster — neue Poster einfach ergänzen,
          das Grid bricht von selbst um. -->
     <section class="kit-block" aria-labelledby="kit-poster">
-      <h2 class="kit-title" id="kit-poster">4 · Poster (Print)</h2>
+      <h2 class="kit-title" id="kit-poster">5 · Poster (Print)</h2>
       <p class="kit-hint">Druckfertig zum Aushängen: JPG zum schnellen Teilen,
       PDF zum Drucken, weiße Variante für helle Hintergründe.
       JPG light (&lt; 300 KB) ist die WhatsApp-taugliche Variante —
@@ -184,7 +286,7 @@ Und so wird das möglich: DANKE an unsere Unterstützer! 🙏
 
     <!-- ── 4 · Embed ── -->
     <section class="kit-block" aria-labelledby="kit-embed">
-      <h2 class="kit-title" id="kit-embed">5 · Event-Karte für deine Website</h2>
+      <h2 class="kit-title" id="kit-embed">6 · Event-Karte für deine Website</h2>
       <p class="kit-hint">Ein &lt;iframe&gt;, feste Größe, keine Cookies, kein Tracking.
       Live-Vorschau und Details auf der <a href="/partner#embed-box">Partner-Seite</a>.</p>
       <label class="embed-codelabel" for="kit-embed-code">Einbettungscode</label>
