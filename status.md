@@ -1,8 +1,8 @@
 # SunDowner / Soundspritzer — Status
 
-**Stand:** 15. September 2026
+**Stand:** 30. September 2026 — Danke-Phase (Event vorbei, Frontpage = Rückblick)
 **Domain:** soundspritzer.at (GitHub Pages, Repo: devskale/soundspritzer)
-**Event:** 25.09.2026 · ab 17 Uhr · Am Tabor, Neusiedl am See · Freier Eintritt
+**Event:** 25.09.2026 (vorbei) · Am Tabor, Neusiedl am See — Frontpage jetzt Danke-Modus
 
 ---
 

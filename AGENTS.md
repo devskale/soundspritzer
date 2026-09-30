@@ -19,6 +19,9 @@ Eine Regel, die man sich nur merken muss, ist eine Regel, die wieder bricht.
    - `node scripts/gen-og-portrait.mjs` → `assets/og-image.jpg` (1200×1330, WhatsApp/IG/og:image)
    - `node scripts/gen-og.mjs` → `assets/og-image-landscape.jpg` (1200×628, twitter:image)
    - `node scripts/gen-carousel.mjs --shoot` → Slides (braucht rodney + Chrome)
+   - `node scripts/gen-slider.mjs --src <dir>` → `assets/fotos/` (Slider-Best-of + `og-danke.jpg`).
+     **Fotos liegen im Repo, nicht hot-linked:** die Galerie-Originale (throway) laufen
+     nach ~90 Tagen ab und liefern keine CORS-Header. `--check` prüft nur den Bestand.
    - Poster: Google-Slides-Export (`/export/pdf` an die Doc-ID), Derivate via pdftoppm/gs (siehe „Bildmaterial"-Commits)
 3. Bei Asset-Änderung: `?v=` überall hochzählen, wo die Datei referenziert ist
 4. `node scripts/check-media.mjs` muss grün sein (CI macht das bei jedem Push via `media-check.yml`)
