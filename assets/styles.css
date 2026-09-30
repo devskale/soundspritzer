@@ -232,6 +232,23 @@ h1 em {
 
 /* Skip-Link: erster Tab-Stop, springt zu #main (WCAG 2.4.1 Bypass Blocks).
    Unsichtbar außerhalb des Viewports, bis er Tastatur-Fokus bekommt. */
+/* Nur für Screenreader: Inhalt bleibt für assistive Technik lesbar
+   (die Caption wird beim Teilen ausgelesen), ist aber nicht sichtbar.
+   Wichtig: position:absolute statt display:none — display:none würde den
+   Text auch aus dem A11y-Baum nehmen. clip-path statt overflow:hidden
+   allein, weil „hidden" die height auf 0 kollabiert. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .skip-link {
   position: fixed;
   top: .8rem; left: .8rem;
@@ -1720,6 +1737,16 @@ h1 em {
       letter-spacing: .22em; text-transform: uppercase;
       color: var(--cream-soft);
     }
+    /* Caption-Vorschau im Lightbox: zeigt, was beim Teilen mitgepostet wird */
+    .lightbox-caption {
+      flex-basis: 100%;
+      font-size: .74rem;
+      line-height: 1.45;
+      color: var(--cream-soft);
+      font-style: italic;
+    }
+    .lightbox-caption[hidden] { display: none; }
+
     .kit-caption {
       width: 100%; max-width: 560px; text-align: left;
       border: 1px solid var(--hairline); border-radius: 8px;

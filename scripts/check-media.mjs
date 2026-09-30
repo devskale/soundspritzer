@@ -107,9 +107,10 @@ for (const g of expectedImports) {
 if (!unbound) ok("gen-og, gen-og-portrait, gen-carousel hängen an facts.mjs");
 
 console.log("\n6 · Slider-Fotos (assets/fotos/)");
-const { SLIDER, OG: SLIDER_OG } = await import("./gen-slider.mjs");
+const { SLIDER, OG: SLIDER_OG, wmFile } = await import("./gen-slider.mjs");
 const indexHtml = readFileSync(join(root, "index.html"), "utf8");
 let photoFails = 0;
+// Wasserzeichen-Pendants sind gültige Referenzen, aber kein eigenes Asset-Ziel
 for (const s of [...SLIDER, SLIDER_OG]) {
   if (!existsSync(join(root, "assets", "fotos", s.file))) { fail(`assets/fotos/${s.file} fehlt (Generator: node scripts/gen-slider.mjs --src <dir>)`); photoFails++; }
   // Jedes Foto MUSS in index.html referenziert sein (sonst liegt es nur rum)
@@ -117,7 +118,8 @@ for (const s of [...SLIDER, SLIDER_OG]) {
 }
 // und umgekehrt: keine Foto-Referenz, die der Generator nicht kennt
 for (const m of indexHtml.matchAll(/assets\/fotos\/([\w.-]+)/g)) {
-  if (![...SLIDER, SLIDER_OG].some((s) => s.file === m[1])) { fail(`index.html referenziert unbekanntes Foto ${m[1]} — in gen-slider.mjs SLIDER eintragen`); photoFails++; }
+  const known = [...SLIDER, SLIDER_OG].some((s) => s.file === m[1] || wmFile(s.file) === m[1]);
+  if (!known) { fail(`index.html referenziert unbekanntes Foto ${m[1]} — in gen-slider.mjs SLIDER eintragen`); photoFails++; }
 }
 if (!photoFails) ok(`${SLIDER.length} Slider-Fotos + ${SLIDER_OG.file} konsistent (Generator, Bestand, index.html)`);
 

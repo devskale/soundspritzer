@@ -34,6 +34,14 @@ const OUT = join(root, "assets/fotos");
 const W = 1600;   // 1600px reicht für 2x auf den ~700px-Slot
 const H = 900;    // 16:9
 const QUAL = 3;   // ffmpeg -q:v 3 ≈ JPEG q85 (Foto, ~110-310kb je Bild)
+/* Wasserzeichen-Schrift: bevorzugt eine Repo-Schrift, sonst eine Systemschrift.
+   Bewusst NICHT nachgerüstet, wenn keine da ist — der Generator bricht ab,
+   statt still ein unbeschriftetes Foto zu erzeugen. */
+const FONT_CANDIDATES = [
+  join(root, "assets/fonts", "inter-500.woff2"), // nicht für ffmpeg brauchbar → nur als Platzhalter
+  "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+  "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+];
 
 /* Slider-Reihenfolge. `src` = zweistelliges Präfix der Quelldatei im
    Arbeitsordner, `file` = kanonischer Name im Repo, `alt` = Bild-Text. */
@@ -49,7 +57,42 @@ export const SLIDER = [
 /* Share-Karte für die Danke-Phase (og:image / twitter:image, 1.91:1). */
 export const OG = { src: "00", file: "og-danke.jpg", w: 1200, h: 630 };
 
+/* Wasserzeichen-Varianten: gleiche Fotos, aber mit „soundspritzer.at" unten
+   rechts. Wer ein Foto teilt, gibt die Quelle gleich mit — die geteilten
+   Bilder sind damit nie herrenlos. Bewusst nur EINE Zusatzdatei je Foto und
+   kein Text im Foto-Originaal: die Download-/Slider-Version bleibt sauber,
+   die geteilte ist gebrandet (Rechte-Weitergabe-Konvention wie Fotografen). */
+export const WM_TEXT = "soundspritzer.at";
+
+/* Wasserzeichen-Pendant zu einem Slider-Foto (gleiche Basis, -wm). Vom
+   Checker mitgenutzt: geteilte Fotos dürfen referenziert sein, ohne dass sie
+   als neue SLIDER-Einträge geführt werden müssen. */
+export const wmFile = (file) => file.replace(/\.jpg$/, "-wm.jpg");
+
 function ensureDir() { if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true }); }
+
+/* Wasserzeichen unten rechts einbrennen (ffmpeg drawtext). Bewusst klein und
+   halbtransparent: es soll die Quelle nennen, nicht das Foto verunzieren.
+   Weißer Text mit schwarzem Kontur — auf jedem Bild (Himmel wie Nacht)
+   lesbar, ohne je eine Fläche aufzuhellen. */
+function watermark(srcPath, outPath) {
+  const font = FONT_CANDIDATES.find((f) => f.endsWith(".ttf") && existsSync(f));
+  if (!font) throw new Error("Keine TTF-Schrift für das Wasserzeichen gefunden (siehe FONT_CANDIDATES)");
+  const esc = WM_TEXT.replace(/([:'\\%])/g, "\\$1");
+  // ffmpeg-Filter akzeptieren bei fontsize/borderw KEINE Ausdrücke wie h/34 —
+  // die Werte müssen vorab als Ganzzahl dastehen (Höhe ist 900px, s. H).
+  const fs = Math.round(H / 34);
+  const bw = Math.max(1, Math.round(H / 380));
+  execFileSync("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-i", srcPath,
+    "-vf",
+    `drawtext=fontfile=${font}:text='${esc}':x=w-tw-34:y=h-th-30:fontsize=${fs}:` +
+    `fontcolor=white@0.82:borderw=${bw}:bordercolor=black@0.55`,
+    "-frames:v", "1", "-q:v", String(QUAL),
+    outPath,
+  ], { stdio: ["ignore", "ignore", "pipe"] });
+}
 
 /* Scale auf Zielformat (Seitenverhältnis erhalten → Überhang) + Center-Crop. */
 function render(srcPath, outPath, w, h) {
@@ -110,7 +153,18 @@ if (byPrefix.get(OG.src)) {
 
 /* Alles, was neither SLIDER noch OG ist, fliegt raus — assets/fotos/ ist
    genau der Slider, nichts sonst (keine verwaisten Binärdateien im Repo). */
+/* Wasserzeichen-Pendants erzeugen (Dateinamen: gleiche Basis + -wm) */
+for (const s of SLIDER) {
+  const srcPath = join(OUT, s.file);
+  if (!existsSync(srcPath)) continue;
+  const outPath = join(OUT, s.file.replace(/\.jpg$/, "-wm.jpg"));
+  watermark(srcPath, outPath);
+  console.log(`  ✓ ${outPath.split("/").pop()}  (Wasserzeichen)`);
+}
+
+/* Alles, was weder SLIDER, OG noch WMs ist, fliegt raus */
 const keep = new Set([...SLIDER, OG].map((s) => s.file));
+for (const s of SLIDER) keep.add(wmFile(s.file));
 for (const f of readdirSync(OUT)) {
   if (!keep.has(f)) {
     rmSync(join(OUT, f));

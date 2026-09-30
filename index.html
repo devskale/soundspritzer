@@ -41,7 +41,7 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=65">
+  <link rel="stylesheet" href="assets/styles.css?v=68">
   <!-- Reload startet immer oben — keine Scroll-Restauration vom Browser -->
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
@@ -66,7 +66,12 @@
       <div class="hero-left">
         <p class="hero-sub hero-sub--band">Danke</p>
         <h1><span class="l1">Seeblick,</span><span class="l2">Sounds &amp;</span><span class="l3"><em>Spritzer</em></span></h1>
-        <p class="hero-danke">Es war sehr schön<br>mit <em>EUCH</em></p>
+          <p class="hero-danke">Es war sehr schön<br>mit <em>EUCH</em></p>
+        <!-- Caption fürs Foto-Teilen: wird jedem Slider-Foto über
+             data-share-caption mitgegeben (nur der Text — ohne Emojis,
+             die kopieren unzuverlässig). -->
+        <textarea id="slider-caption" class="visually-hidden" rows="2" readonly aria-hidden="true" tabindex="-1">Schön war's beim Seeblick, Sounds &amp; Spritzer! 🌅
+#sundowner #neusiedlamsee #burgenland #danke</textarea>
         <div class="hero-cta">
           <a class="btn" href="/danke">Zu den Fotos</a>
           <a class="hero-cta-sub" href="https://skale.dev/throway/pics/g/soundspritzer" target="_blank" rel="noopener">Eigene Fotos hochladen →</a>
@@ -79,24 +84,42 @@
              einfach untereinander. Mit JS: Crossfade + Pfeile/Dots/Swipe. -->
         <div class="hero-slider" data-slider role="region" aria-roledescription="Karussell" aria-label="Best of: die schönsten Fotos vom SunDowner 2026">
           <div class="slider-frame">
-            <figure class="slide">
+            <a class="slide slide--share" href="assets/fotos/01-sonnenuntergang-wm.jpg?v=1" download="sundowner-01-01sonnenuntergang.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Sonnenuntergang am Tabor"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/01-sonnenuntergang-wm.jpg?v=1:sundowner-01-01sonnenuntergang.jpg'>
               <img src="assets/fotos/01-sonnenuntergang.jpg?v=1" alt="Sonnenuntergang über dem Neusiedler See, die Gäste als Silhouetten auf der Mauer" width="1600" height="900" fetchpriority="high">
-            </figure>
-            <figure class="slide">
+            </a>
+            <a class="slide slide--share" href="assets/fotos/02-abendrot-publikum-wm.jpg?v=1" download="sundowner-02-02abendrotpublikum.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Abendrot über dem Tabor"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/02-abendrot-publikum-wm.jpg?v=1:sundowner-02-02abendrotpublikum.jpg'>
               <img src="assets/fotos/02-abendrot-publikum.jpg?v=1" alt="Der Himmel über dem Tabor glüht im Abendrot, davor das Publikum" width="1600" height="900" loading="lazy">
-            </figure>
-            <figure class="slide">
+            </a>
+            <a class="slide slide--share" href="assets/fotos/03-ruine-sonnenuntergang-wm.jpg?v=1" download="sundowner-03-03ruinesonnenuntergang.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Ruine Tabor im letzten Licht"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/03-ruine-sonnenuntergang-wm.jpg?v=1:sundowner-03-03ruinesonnenuntergang.jpg'>
               <img src="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" alt="Die Ruine Tabor im letzten Licht, davor die Gäste mit Blick über den See" width="1600" height="900" loading="lazy">
-            </figure>
-            <figure class="slide">
+            </a>
+            <a class="slide slide--share" href="assets/fotos/04-crowd-daemmerung-wm.jpg?v=1" download="sundowner-04-04crowddaemmerung.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Menschenmenge in der Dämmerung"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/04-crowd-daemmerung-wm.jpg?v=1:sundowner-04-04crowddaemmerung.jpg'>
               <img src="assets/fotos/04-crowd-daemmerung.jpg?v=1" alt="Die Menschenmenge am Tabor in der Dämmerung" width="1600" height="900" loading="lazy">
-            </figure>
-            <figure class="slide">
+            </a>
+            <a class="slide slide--share" href="assets/fotos/05-ruine-lichterkette-wm.jpg?v=1" download="sundowner-05-05ruinelichterkette.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Lichterkette an der Ruine"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/05-ruine-lichterkette-wm.jpg?v=1:sundowner-05-05ruinelichterkette.jpg'>
               <img src="assets/fotos/05-ruine-lichterkette.jpg?v=1" alt="Die Ruine Tabor am Abend, Lichterkette über der Menge" width="1600" height="900" loading="lazy">
-            </figure>
-            <figure class="slide">
+            </a>
+            <a class="slide slide--share" href="assets/fotos/06-lichtkette-wm.jpg?v=1" download="sundowner-06-06lichtkette.jpg"
+                 data-lightbox data-title="SunDowner 2026 · Lichterkette über dem Platz"
+                 data-share-file data-share-caption="#slider-caption"
+                 data-formats='JPG:assets/fotos/06-lichtkette-wm.jpg?v=1:sundowner-06-06lichtkette.jpg'>
               <img src="assets/fotos/06-lichtkette.jpg?v=1" alt="Lichterkette über dem Platz, davor die Menschen in der Nacht" width="1600" height="900" loading="lazy">
-            </figure>
+            </a>
             <button type="button" class="slider-arrow slider-arrow--prev" data-prev aria-label="Vorheriges Foto">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
@@ -211,7 +234,18 @@
           <a class="share-menu__item" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">Facebook</a>
           <a class="share-menu__item" href="https://twitter.com/intent/tweet?text=Danke%20f%C3%BCr%20diesen%20Abend!%20Die%20Fotos%20vom%20SunDowner%20am%20Tabor&url=https%3A%2F%2Fsoundspritzer.at%2F" target="_blank" rel="noopener">X</a>
           <a class="share-menu__item" href="mailto:?subject=Danke%20f%C3%BCr%20diesen%20Abend%20%E2%80%94%20SunDowner%202026&body=Die%20sch%C3%B6nsten%20Fotos%20vom%20SunDowner%20am%20Tabor%3A%20https%3A%2F%2Fsoundspritzer.at%2F">E-Mail</a>
-          <a class="share-menu__item" href="assets/fotos/og-danke.jpg" download="sundowner-danke.jpg">Foto für Instagram</a>
+          <span class="share-menu__sep" role="presentation"></span>
+          <!-- Foto-Sharing: alle sechs Fotos als gebrandete Datei (Wasserzeichen
+               soundspritzer.at). Ohne Web-Share-Level-2 bleibt der Download
+               der Weg — der Text steht zum Kopieren bereit. -->
+          <span class="share-menu__label">Foto teilen</span>
+          <button type="button" class="share-menu__item" data-copy-source="#slider-caption">Post-Text kopieren</button>
+          <a class="share-menu__item" href="assets/fotos/01-sonnenuntergang-wm.jpg?v=1" download="sundowner-01.jpg">Foto 1 · Sonnenuntergang ↓</a>
+          <a class="share-menu__item" href="assets/fotos/02-abendrot-publikum-wm.jpg?v=1" download="sundowner-02.jpg">Foto 2 · Abendrot ↓</a>
+          <a class="share-menu__item" href="assets/fotos/03-ruine-sonnenuntergang-wm.jpg?v=1" download="sundowner-03.jpg">Foto 3 · Ruine ↓</a>
+          <a class="share-menu__item" href="assets/fotos/04-crowd-daemmerung-wm.jpg?v=1" download="sundowner-04.jpg">Foto 4 · Dämmerung ↓</a>
+          <a class="share-menu__item" href="assets/fotos/05-ruine-lichterkette-wm.jpg?v=1" download="sundowner-05.jpg">Foto 5 · Lichterkette ↓</a>
+          <a class="share-menu__item" href="assets/fotos/06-lichtkette-wm.jpg?v=1" download="sundowner-06.jpg">Foto 6 · Nacht ↓</a>
           <span class="share-menu__sep" role="presentation"></span>
           <button type="button" class="share-menu__item" data-copy-link>Link kopieren</button>
           <span class="share-menu__sep" role="presentation"></span>
@@ -256,7 +290,18 @@
       <span>Techsupport <a href="https://skale.dev/" target="_blank" rel="noopener">skale.dev</a></span>
     </div>
   </footer>
-  <script src="assets/site.js?v=24"></script>
+  <dialog class="lightbox" id="lightbox" aria-label="Foto teilen">
+    <img class="lightbox-img" src="" alt="">
+    <div class="lightbox-bar">
+      <span class="lightbox-title"></span>
+      <span class="lightbox-caption"></span>
+      <span class="lightbox-formats kit-formats"></span>
+      <button type="button" class="share-btn" data-lightbox-share hidden>Bild + Text teilen …</button>
+      <button type="button" class="share-btn" data-lightbox-download>Herunterladen ↓</button>
+      <button type="button" class="share-btn" data-lightbox-close>Schließen</button>
+    </div>
+  </dialog>
+  <script src="assets/site.js?v=26"></script>
   <script src="assets/crew-stamp.js?v=15"></script>
   <script>
     /* Sponsoren: assets/sponsors.json (generiert aus dem Google Sheet).

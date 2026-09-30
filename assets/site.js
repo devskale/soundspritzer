@@ -263,6 +263,7 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
   var title = dlg.querySelector(".lightbox-title");
   var formatsBox = dlg.querySelector(".lightbox-formats");
   var shareBtn = dlg.querySelector("[data-lightbox-share]");
+  var captionBox = dlg.querySelector(".lightbox-caption");
   var dlBtn = dlg.querySelector("[data-lightbox-download]");
   var current = { href: "", name: "" };
 
@@ -320,10 +321,15 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
         formatsBox.appendChild(f);
       });
       // 3 · Datei-Share-Button nur für Assets, die ihn anbieten (IG-Formate)
+      var capSel = a.getAttribute("data-share-caption");
+      var capEl = capSel && document.querySelector(capSel);
+      var caption = capEl && capEl.value ? capEl.value.trim() : "";
+      // Caption mit anzeigen: der Nutzer soll sehen, was er postet
+      if (captionBox) {
+        captionBox.textContent = caption ? "Post: " + caption.split("\n")[0] : "";
+        captionBox.hidden = !caption;
+      }
       if (shareBtn) {
-        var capSel = a.getAttribute("data-share-caption");
-        var capEl = capSel && document.querySelector(capSel);
-        var caption = capEl && capEl.value ? capEl.value.trim() : "";
         var usable = canShareFiles && a.hasAttribute("data-share-file");
         shareBtn.hidden = !usable;
         if (usable) {
