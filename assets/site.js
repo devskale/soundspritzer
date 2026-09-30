@@ -1,5 +1,80 @@
 /* SunDowner — Seitenweite Kleinigkeiten */
 
+/* ── Best-of-Slider (Frontpage): Crossfade, Autoplay 5s, Pfeile/Dots/Swipe ──
+   Ohne JS bleibt der Slider ein einfacher Foto-Stapel (kein slider--fade).
+   Autoplay pausiert bei Hover/Fokus/Tab-Wechsel und fällt bei
+   prefers-reduced-motion komplett aus — dann nur manuelle Bedienung. */
+(function () {
+  var slider = document.querySelector("[data-slider]");
+  if (!slider) return;
+  var frame = slider.querySelector(".slider-frame");
+  var slides = [].slice.call(slider.querySelectorAll(".slide"));
+  if (!frame || slides.length < 2) return;
+  slider.classList.add("slider--fade");
+
+  var dotsBox = slider.querySelector(".slider-dots");
+  var count = slider.querySelector("[data-slider-count]");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUTO = 5000; // ms pro Bild
+  var i = 0, timer = null;
+
+  function go(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, idx) { s.classList.toggle("is-active", idx === i); });
+    dots.forEach(function (d, idx) {
+      if (idx === i) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    if (count) count.textContent = (i + 1) + " / " + slides.length;
+  }
+  function next() { go(i + 1); }
+  function prev() { go(i - 1); }
+  function play() { if (reduce || timer) return; timer = setInterval(next, AUTO); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  var dots = slides.map(function (_, idx) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "slider-dot";
+    b.setAttribute("aria-label", "Foto " + (idx + 1) + " von " + slides.length);
+    b.addEventListener("click", function () { go(idx); });
+    dotsBox.appendChild(b);
+    return b;
+  });
+
+  slider.querySelector("[data-prev]").addEventListener("click", prev);
+  slider.querySelector("[data-next]").addEventListener("click", next);
+
+  // Pausieren, sobald der Mensch zugreift — kein Kampf um die Steuerung
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", play);
+  slider.addEventListener("focusin", stop);
+  slider.addEventListener("focusout", play);
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) stop(); else play();
+  });
+
+  // Tastatur: Pfeiltasten, wenn der Fokus im Slider ist (Pfeile/Dots)
+  slider.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+    else if (e.key === "ArrowRight") { next(); e.preventDefault(); }
+  });
+
+  // Swipe (passive Listener — kein preventDefault nötig)
+  var x0 = null;
+  slider.addEventListener("touchstart", function (e) {
+    x0 = e.touches[0].clientX; stop();
+  }, { passive: true });
+  slider.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { if (dx < 0) next(); else prev(); }
+    x0 = null; play();
+  }, { passive: true });
+
+  go(0);
+  play();
+})();
 /* ── Countdown „Noch X Tage“ — Badge über dem Datum im Facts-Banner ──
    Event-Tag = scripts/facts.mjs → date (25.09.2026). Berechnung FIX in der
    österreichischen Zeitzone (Europe/Vienna) — nicht in der Zeitzone des
@@ -81,7 +156,8 @@ function canonicalUrl() {
    mit Feedback. Kopieren ist die universelle Teilen-Primitive. */
 (function () {
   var URL = canonicalUrl();
-  var TEXT = "SunDowner · Seeblick, Sounds & Spritzer · 25.09.2026, ab 17 Uhr · Am Tabor, Neusiedl am See";
+  // Danke-Phase: geteilt wird der Dank + die Bilder, nicht mehr die Einladung
+  var TEXT = "Danke für diesen Abend! Die Fotos vom SunDowner 2026 am Tabor:";
   var canNative = typeof navigator.share === "function";
 
   document.querySelectorAll("[data-share-native]").forEach(function (native) {
