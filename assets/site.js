@@ -159,27 +159,33 @@ function canonicalUrl() {
   // Danke-Phase: geteilt wird der Dank + die Bilder, nicht mehr die Einladung
   var TEXT = "Danke für diesen Abend! Die Fotos vom SunDowner 2026 am Tabor:";
   var canNative = typeof navigator.share === "function";
+  // Linux-Desktop (Chrome/Edge) hat navigator.share, aber KEIN OS-Share-Sheet
+  // — share() rejectet dort mit NotAllowedError. Wir können das nicht
+  // vorab zuverlässig erkennen, also: Scheitern → automatisch auf Kopieren
+  // zurückfallen, statt den Nutzer mit einem toten Klick zu lassen.
+  function shareOrCopy(native) {
+    if (!canNative) { copyToClipboard(TEXT + " " + URL, function () { flashNative(native); }); return; }
+    navigator.share({ title: "SunDowner", text: TEXT, url: URL })
+      .catch(function (err) {
+        if (!err || err.name === "AbortError") return; // Nutzer hat abgebrochen
+        console.warn("Web Share nicht verfügbar, weiche auf Kopieren aus:", err);
+        copyToClipboard(TEXT + " " + URL, function () { flashNative(native); });
+      });
+  }
+  function flashNative(native) {
+    if (hasIconOf(native)) {
+      native.classList.add("copied");
+      setTimeout(function () { native.classList.remove("copied"); }, 1600);
+    } else {
+      flashButton(native, originalOf(native));
+    }
+  }
+  function hasIconOf(el) { return !!el.querySelector("svg"); }
+  function originalOf(el) { return el.dataset.origLabel || el.textContent; }
 
   document.querySelectorAll("[data-share-native]").forEach(function (native) {
-    var original = native.textContent; // flashButton stellt genau dieses Label wieder her
-    var hasIcon = !!native.querySelector("svg"); // Icon-Buttons: Farb-Flash statt Texttausch
-    native.addEventListener("click", function () {
-      if (canNative) {
-        navigator.share({ title: "SunDowner", text: TEXT, url: URL })
-          .catch(function (err) {
-            if (err && err.name !== "AbortError") console.error("Web Share fehlgeschlagen:", err);
-          });
-      } else {
-        copyToClipboard(TEXT + " " + URL, function () {
-          if (hasIcon) {
-            native.classList.add("copied");
-            setTimeout(function () { native.classList.remove("copied"); }, 1600);
-          } else {
-            flashButton(native, original);
-          }
-        });
-      }
-    });
+    native.dataset.origLabel = native.textContent; // flashButton stellt dieses Label wieder her
+    native.addEventListener("click", function () { shareOrCopy(native); });
   });
 })();
 
@@ -290,12 +296,28 @@ document.querySelectorAll("[data-copy-source]").forEach(function (btn) {
       .then(function (b) {
         var file = new File([b], name || "sundowner.jpg", { type: b.type || "image/jpeg" });
         var payload = { files: [file] };
-        if (caption) payload.text = caption + "\n" + canonicalUrl();
+        // URL nur in `url`, nie zusätzlich in `text` — sonst posten
+        // WhatsApp/Telegram/X den Link doppelt (Production-Falle #1).
+        if (caption) payload.text = caption;
         return navigator.share(payload);
       })
       .catch(function (err) {
-        if (err && err.name !== "AbortError") console.error("Datei-Share fehlgeschlagen:", err);
+        if (err && err.name === "AbortError") return; // Nutzer hat abgebrochen
+        // Kein File-Share (Linux-Desktop, Firefox) oder share() abgelehnt:
+        // stummes Scheitern ist die schlechteste Variante → auf Download
+        // + kopierbaren Text zurückfallen, damit der Nutzer weiterkommt.
+        fallbackAsset(href, name, caption);
       });
+  }
+
+  /* File-Share nicht verfügbar: Bild herunterladen, Text zum Kopieren
+     bereitstellen. Kein Werfen, kein toter Button. */
+  function fallbackAsset(href, name, caption) {
+    if (dlBtn) { current = { href: href, name: name || "sundowner.jpg" }; triggerDownload(); }
+    if (caption && capBox) {
+      capBox.hidden = false;
+      capBox.textContent = "Gefunden? Teilt gern mit: " + caption.split("\n")[0];
+    }
   }
 
   document.querySelectorAll("[data-lightbox]").forEach(function (a) {
