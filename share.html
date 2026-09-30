@@ -14,14 +14,14 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=68">
+  <link rel="stylesheet" href="assets/styles.css?v=70">
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
 <body id="top">
   <main class="page-main" id="main">
     <a class="back back--top" href="/">← Startseite</a>
-    <p class="kicker">Medienkit</p>
-    <h1>Fotos, Logos &amp; <em>Texte</em></h1>
+    <p class="kicker">Medien &amp; Galerie</p>
+    <h1>Medienkit &amp; <em>Galerie</em></h1>
     <div class="rule" aria-hidden="true"></div>
     <p class="kit-intro">
       Für Zeitungen, Schulreport und Berichte: Fotos, Logos, Zitate —
@@ -85,6 +85,59 @@
         <button type="button" class="share-btn share-btn--primary" data-share-native aria-live="polite">Teilen …</button>
         <button type="button" class="share-btn" data-copy-link>Link kopieren</button>
       </div>
+    </section>
+
+    <!-- ── Foto-Galerie (alle Bilder des Abends) ── -->
+    <section class="kit-block" aria-labelledby="kit-galerie">
+      <h2 class="kit-title" id="kit-pressfotos">2 · Fotos zum Herunterladen</h2>
+      <p class="kit-hint">Alle sechs Fotos des Abends in Druckauflösung (1600&#8239;×&#8239;900&#8239;px) —
+      freie Verwendung, Namensnennung und Bildnachweis erbeten. Weitere Bilder
+      (auch von Gästen) gibt es in der <a href="#galerie">Galerie</a> weiter unten.</p>
+      <div class="kit-thumb-row">
+        <a class="kit-thumb" href="assets/fotos/01-sonnenuntergang.jpg?v=1" download="sundowner-01-sonnenuntergang.jpg"
+           data-lightbox data-title="SunDowner 2026 · 01 Sonnenuntergang am Tabor">
+          <img src="assets/fotos/01-sonnenuntergang.jpg?v=1" alt="Sonnenuntergang über dem Neusiedler See, die Gäste als Silhouetten auf der Mauer" loading="lazy" width="1600" height="900">
+          <span>01 · Sonnenuntergang ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/02-abendrot-publikum.jpg?v=1" download="sundowner-02-abendrot.jpg"
+           data-lightbox data-title="SunDowner 2026 · 02 Abendrot über dem Tabor">
+          <img src="assets/fotos/02-abendrot-publikum.jpg?v=1" alt="Der Himmel über dem Tabor glüht im Abendrot, davor das Publikum" loading="lazy" width="1600" height="900">
+          <span>02 · Abendrot ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" download="sundowner-03-ruine.jpg"
+           data-lightbox data-title="SunDowner 2026 · 03 Ruine Tabor im letzten Licht">
+          <img src="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" alt="Die Ruine Tabor im letzten Licht, davor die Gäste mit Blick über den See" loading="lazy" width="1600" height="900">
+          <span>03 · Ruine ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/04-crowd-daemmerung.jpg?v=1" download="sundowner-04-daemmerung.jpg"
+           data-lightbox data-title="SunDowner 2026 · 04 Menschenmenge in der Dämmerung">
+          <img src="assets/fotos/04-crowd-daemmerung.jpg?v=1" alt="Die Menschenmenge am Tabor in der Dämmerung" loading="lazy" width="1600" height="900">
+          <span>04 · Dämmerung ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/05-ruine-lichterkette.jpg?v=1" download="sundowner-05-lichterkette.jpg"
+           data-lightbox data-title="SunDowner 2026 · 05 Lichterkette an der Ruine">
+          <img src="assets/fotos/05-ruine-lichterkette.jpg?v=1" alt="Die Ruine Tabor am Abend, Lichterkette über der Menge" loading="lazy" width="1600" height="900">
+          <span>05 · Lichterkette ↓</span>
+        </a>
+        <a class="kit-thumb" href="assets/fotos/06-lichtkette.jpg?v=1" download="sundowner-06-nacht.jpg"
+           data-lightbox data-title="SunDowner 2026 · 06 Lichterkette über dem Platz">
+          <img src="assets/fotos/06-lichtkette.jpg?v=1" alt="Lichterkette über dem Platz, davor die Menschen in der Nacht" loading="lazy" width="1600" height="900">
+          <span>06 · Nacht ↓</span>
+        </a>
+      </div>
+      <p class="kit-hint">Alle Bilder auf einen Klick:
+        <a href="assets/fotos/og-danke.jpg" download="sundowner-og.jpg">Share-Karte (1200&#8239;×&#8239;630)</a></p>
+      <details class="kit-caption">
+        <summary>Bildnachweise &amp; Embed-Code</summary>
+        <label class="embed-codelabel" for="gallery-captions">Bildnachweis-Text</label>
+        <textarea id="gallery-captions" rows="4" readonly spellcheck="false">Fotos: SunDowner 2026, Tabor, Neusiedl am See (soundspritzer.at).
+Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.</textarea>
+        <button type="button" class="share-btn" data-copy-source="#gallery-captions">Nachweis kopieren</button>
+
+        <label class="embed-codelabel" for="kit-gallery-embed">Galerie einbetten (live, mit Gastfotos)</label>
+        <textarea class="embed-code" id="kit-gallery-embed" rows="4" readonly spellcheck="false">&lt;iframe src="https://soundspritzer.at/share#galerie" width="100%" height="900" style="border:0" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+        <button type="button" class="share-btn" data-embed-copy aria-live="polite">Code kopieren</button>
+      </details>
     </section>
 
     <!-- ── 2 · Für Instagram (primär) ── -->
@@ -180,62 +233,63 @@ DANKE an alle, die diesen Abend möglich gemacht haben! 🙏
       </details>
     </section>
 
-    <!-- ── Foto-Galerie (alle Bilder des Abends) ── -->
-    <section class="kit-block" aria-labelledby="kit-galerie">
-      <h2 class="kit-title" id="kit-galerie">2 · Foto-Galerie (Presse)</h2>
-      <p class="kit-hint">Alle sechs Fotos des Abends in Druckauflösung (1600&#8239;×&#8239;900&#8239;px) —
-      freie Verwendung, Namensnennung und Bildnachweis erbeten. Weitere Bilder
-      (auch von Gästen) gibt es in der <a href="/danke">Galerie</a>.</p>
-      <div class="kit-thumb-row">
-        <a class="kit-thumb" href="assets/fotos/01-sonnenuntergang.jpg?v=1" download="sundowner-01-sonnenuntergang.jpg"
-           data-lightbox data-title="SunDowner 2026 · 01 Sonnenuntergang am Tabor">
-          <img src="assets/fotos/01-sonnenuntergang.jpg?v=1" alt="Sonnenuntergang über dem Neusiedler See, die Gäste als Silhouetten auf der Mauer" loading="lazy" width="1600" height="900">
-          <span>01 · Sonnenuntergang ↓</span>
-        </a>
-        <a class="kit-thumb" href="assets/fotos/02-abendrot-publikum.jpg?v=1" download="sundowner-02-abendrot.jpg"
-           data-lightbox data-title="SunDowner 2026 · 02 Abendrot über dem Tabor">
-          <img src="assets/fotos/02-abendrot-publikum.jpg?v=1" alt="Der Himmel über dem Tabor glüht im Abendrot, davor das Publikum" loading="lazy" width="1600" height="900">
-          <span>02 · Abendrot ↓</span>
-        </a>
-        <a class="kit-thumb" href="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" download="sundowner-03-ruine.jpg"
-           data-lightbox data-title="SunDowner 2026 · 03 Ruine Tabor im letzten Licht">
-          <img src="assets/fotos/03-ruine-sonnenuntergang.jpg?v=1" alt="Die Ruine Tabor im letzten Licht, davor die Gäste mit Blick über den See" loading="lazy" width="1600" height="900">
-          <span>03 · Ruine ↓</span>
-        </a>
-        <a class="kit-thumb" href="assets/fotos/04-crowd-daemmerung.jpg?v=1" download="sundowner-04-daemmerung.jpg"
-           data-lightbox data-title="SunDowner 2026 · 04 Menschenmenge in der Dämmerung">
-          <img src="assets/fotos/04-crowd-daemmerung.jpg?v=1" alt="Die Menschenmenge am Tabor in der Dämmerung" loading="lazy" width="1600" height="900">
-          <span>04 · Dämmerung ↓</span>
-        </a>
-        <a class="kit-thumb" href="assets/fotos/05-ruine-lichterkette.jpg?v=1" download="sundowner-05-lichterkette.jpg"
-           data-lightbox data-title="SunDowner 2026 · 05 Lichterkette an der Ruine">
-          <img src="assets/fotos/05-ruine-lichterkette.jpg?v=1" alt="Die Ruine Tabor am Abend, Lichterkette über der Menge" loading="lazy" width="1600" height="900">
-          <span>05 · Lichterkette ↓</span>
-        </a>
-        <a class="kit-thumb" href="assets/fotos/06-lichtkette.jpg?v=1" download="sundowner-06-nacht.jpg"
-           data-lightbox data-title="SunDowner 2026 · 06 Lichterkette über dem Platz">
-          <img src="assets/fotos/06-lichtkette.jpg?v=1" alt="Lichterkette über dem Platz, davor die Menschen in der Nacht" loading="lazy" width="1600" height="900">
-          <span>06 · Nacht ↓</span>
-        </a>
-      </div>
-      <p class="kit-hint">Alle Bilder auf einen Klick:
-        <a href="assets/fotos/og-danke.jpg" download="sundowner-og.jpg">Share-Karte (1200&#8239;×&#8239;630)</a></p>
-      <details class="kit-caption">
-        <summary>Bildnachweise &amp; Embed-Code</summary>
-        <label class="embed-codelabel" for="gallery-captions">Bildnachweis-Text</label>
-        <textarea id="gallery-captions" rows="4" readonly spellcheck="false">Fotos: SunDowner 2026, Tabor, Neusiedl am See (soundspritzer.at).
-Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.</textarea>
-        <button type="button" class="share-btn" data-copy-source="#gallery-captions">Nachweis kopieren</button>
+    <!-- Galerie: Gäste-Fotos (throway) + Upload — die „Alle Fotos" der Seite -->
+    <section id="galerie" class="kit-block" aria-label="Fotogalerie vom Abend">
+      <h2 class="kit-title" id="kit-galerie-live">4 · Die Galerie</h2>
 
-        <label class="embed-codelabel" for="kit-gallery-embed">Galerie einbetten (live, mit Gastfotos)</label>
-        <textarea class="embed-code" id="kit-gallery-embed" rows="4" readonly spellcheck="false">&lt;iframe src="https://soundspritzer.at/danke" width="100%" height="900" style="border:0" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
-        <button type="button" class="share-btn" data-embed-copy aria-live="polite">Code kopieren</button>
-      </details>
+      <a class="upload-hero" href="https://skale.dev/throway/pics/g/soundspritzer"
+         target="_blank" rel="noopener">
+        <svg class="upload-hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V4m0 0L8 8m4-4l4 4"/>
+          <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
+        </svg>
+        <span class="upload-hero-title">Eigene Bilder hochladen</span>
+        <span class="upload-hero-sub">Ohne Anmeldung — eure Fotos vom Abend sind
+          in Sekunden in der Galerie.</span>
+        <span class="upload-hero-chips">
+          <span class="u-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3"/></svg>
+            Ziehen
+          </span>
+          <span class="u-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            Strg/Cmd&nbsp;+&nbsp;V
+          </span>
+          <span class="u-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            Google-Photos-Album
+          </span>
+        </span>
+        <span class="upload-hero-cta">Galerie öffnen&nbsp;→</span>
+      </a>
+
+      <div class="gal-frame">
+        <iframe id="ty-soundspritzer"
+                src="https://skale.dev/throway/pics/g/soundspritzer?embed=1&sort=likes"
+                loading="lazy"
+                title="SunDowner — Bildergalerie"></iframe>
+      </div>
+      <script>
+        window.addEventListener("message", function (e) {
+          if (e.data && e.data.type === "throway:pics:height") {
+            var f = document.getElementById("ty-soundspritzer");
+            if (f) f.style.height = e.data.height + "px";
+          }
+        });
+      </script>
+
+      <p class="fineprint">
+        Ohne Anmeldung, für alle offen. Bilder werden automatisch verkleinert
+        und Standort-Daten entfernt. Kommentare speichern nur Name und Text
+        (Name optional) — keine Konten, keine Tracking-Cookies. Noch
+        <b>90&nbsp;Tage</b> online — teilt den Link: <a href="https://skale.dev/throway/pics/g/soundspritzer" target="_blank" rel="noopener">skale.dev/throway/pics/g/soundspritzer</a>
+      </p>
     </section>
 
     <!-- ── 3 · Weitere Bilder (Link-Vorschauen & Illustration) ── -->
     <section class="kit-block" aria-labelledby="kit-mehr-bilder">
-      <h2 class="kit-title" id="kit-mehr-bilder">4 · Weitere Bilder</h2>
+      <h2 class="kit-title" id="kit-mehr-bilder">5 · Weitere Bilder</h2>
       <p class="kit-group">Abgeleitet von der Website</p>
       <div class="kit-thumb-row">
         <a class="kit-thumb" href="assets/og-image.jpg?v=5" download="sundowner-share.jpg">
@@ -258,7 +312,7 @@ Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.<
          Ein .kit-poster-Block pro Poster — neue Poster einfach ergänzen,
          das Grid bricht von selbst um. -->
     <section class="kit-block" aria-labelledby="kit-poster">
-      <h2 class="kit-title" id="kit-poster">5 · Poster (Print)</h2>
+      <h2 class="kit-title" id="kit-poster">6 · Poster (Print)</h2>
       <p class="kit-hint">Druckfertig zum Aushängen: JPG zum schnellen Teilen,
       PDF zum Drucken, weiße Variante für helle Hintergründe.
       JPG light (&lt; 300 KB) ist die WhatsApp-taugliche Variante —
@@ -286,7 +340,7 @@ Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.<
 
     <!-- ── 4 · Embed ── -->
     <section class="kit-block" aria-labelledby="kit-embed">
-      <h2 class="kit-title" id="kit-embed">6 · Event-Karte für deine Website</h2>
+      <h2 class="kit-title" id="kit-embed">7 · Event-Karte für deine Website</h2>
       <p class="kit-hint">Ein &lt;iframe&gt;, feste Größe, keine Cookies, kein Tracking.
       Live-Vorschau und Details auf der <a href="/partner#embed-box">Partner-Seite</a>.</p>
       <label class="embed-codelabel" for="kit-embed-code">Einbettungscode</label>
@@ -306,7 +360,7 @@ Tabor-Motiv: (c) laurens. Private Aufnahme, freie Verwendung mit Namensnennung.<
         <a href="/#programm">Programm</a>
         <a href="/#partner">Unterstützer &amp; Partner</a>
         <a href="/partner">Pakete &amp; Sponsoring</a>
-        <a href="/danke">Danke &amp; Bilder</a>
+        <a href="#galerie">Galerie</a>
         <a href="/#top">Nach oben</a>
       </nav>
       <div class="footer-contact">

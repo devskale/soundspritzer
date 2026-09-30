@@ -732,9 +732,36 @@ h1 em {
        Headline-Zeile über dem Sticker */
     .hero-sub.hero-sub--band {
       font-size: clamp(.88rem, 2vw, 1.15rem);
-      padding: .9em 1.5em;
-      margin-bottom: .25rem; /* engere Spalt zum zweiten Badge */
+      padding: .7em 1.5em;
+      margin-bottom: clamp(.8rem, 1.6vw, 1.2rem);
+      display: inline-flex; /* Badge + Knopf als eine Box */
+      align-items: center;
     }
+    /* Teilen-Knopf IN der gelben DANKE-Box: Knopf als Kind des Badges
+       (inline-flex, vertikal zentriert), 40px Klickfläche — groß genug für
+       Touch, klein genug, dass das Badge als Ganzes liest. Die Box bekommt
+       links ein little Innen-Padding, damit der Knopf nicht am Text klebt. */
+    .hero-share {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-left: .5rem;
+      padding: 0;
+      vertical-align: middle;
+      color: var(--gold);
+      background: var(--dusk-top);
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(34, 21, 40, .4);
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .hero-share:hover { transform: scale(1.08); background: var(--gold); color: var(--dusk-top); }
+    .hero-share:active { transform: scale(.96); }
+    .hero-share:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+    .hero-share svg { width: 20px; height: 20px; }
     /* Countdown-Sticker ÜBER dem Datum — absolut über die Streifenkante,
        Banner-Höhe bleibt unangetastet (Anforderung). Drei Zustände (site.js):
        „Noch X Tage“ → „Heute!“ → weg (hidden, keine Lücke). Echo der Hero-Pills:

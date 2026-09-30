@@ -41,7 +41,7 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="/icon-192.png">
   <!-- Fonts: self-hosted in assets/fonts (DSGVO) → @font-face in styles.css -->
-  <link rel="stylesheet" href="assets/styles.css?v=68">
+  <link rel="stylesheet" href="assets/styles.css?v=70">
   <!-- Reload startet immer oben — keine Scroll-Restauration vom Browser -->
   <script>history.scrollRestoration = "manual"; addEventListener("load", function () { scrollTo(0, 0); });</script>
 </head>
@@ -54,7 +54,7 @@
   </div>
   <main class="home-main" id="main">
     <div class="top-actions">
-      <a class="top-tag" href="/danke">Alle Fotos</a>
+      <a class="top-tag" href="/share#galerie">Alle Fotos</a>
       <button type="button" class="top-share" data-share-native data-tip="Teile die Danke-Seite" aria-label="Die Danke-Seite teilen">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
@@ -64,7 +64,19 @@
     </div>
     <div class="hero">
       <div class="hero-left">
-        <p class="hero-sub hero-sub--band">Danke</p>
+        <!-- Der Teilen-Knopf sitzt IN der gelben DANKE-Box, nicht daneben:
+             Teilen ist in der Danke-Phase die Hauptaufgabe der Seite und
+             soll zusammen mit dem Dank als eine Aktion gelesen werden. -->
+        <p class="hero-sub hero-sub--band">Danke
+          <button type="button" class="hero-share" data-share-native
+                  data-tip="Teile die Danke-Seite"
+                  aria-label="Danke-Seite teilen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>
+            </svg>
+          </button>
+        </p>
         <h1><span class="l1">Seeblick,</span><span class="l2">Sounds &amp;</span><span class="l3"><em>Spritzer</em></span></h1>
           <p class="hero-danke">Es war sehr schön<br>mit <em>EUCH</em></p>
         <!-- Caption fürs Foto-Teilen: wird jedem Slider-Foto über
@@ -73,7 +85,7 @@
         <textarea id="slider-caption" class="visually-hidden" rows="2" readonly aria-hidden="true" tabindex="-1">Schön war's beim Seeblick, Sounds &amp; Spritzer! 🌅
 #sundowner #neusiedlamsee #burgenland #danke</textarea>
         <div class="hero-cta">
-          <a class="btn" href="/danke">Zu den Fotos</a>
+          <a class="btn" href="/share#galerie">Zu den Fotos</a>
           <a class="hero-cta-sub" href="https://skale.dev/throway/pics/g/soundspritzer" target="_blank" rel="noopener">Eigene Fotos hochladen →</a>
         </div>
       </div>
@@ -129,7 +141,7 @@
             <span class="slider-count" data-slider-count aria-hidden="true">1 / 6</span>
           </div>
           <div class="slider-dots"></div>
-          <p class="slider-hint">Best of — <a href="/danke">alle Fotos in der Galerie →</a></p>
+          <p class="slider-hint">Best of — <a href="/share#galerie">alle Fotos in der Galerie →</a></p>
         </div>
       </div>
     </div>
@@ -274,8 +286,7 @@
       <nav class="footer-nav" aria-label="Seiten">
         <a href="/#programm">Der Abend</a>
         <a href="/#partner">Unterstützer &amp; Partner</a>
-        <a href="/danke">Danke &amp; Bilder</a>
-        <a href="/share">Medienkit</a>
+        <a href="/share">Medienkit &amp; Galerie</a>
         <a href="#top">Nach oben</a>
       </nav>
       <div class="footer-contact">
