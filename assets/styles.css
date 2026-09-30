@@ -1009,7 +1009,10 @@ h1 em {
       height: var(--facts-mark-h, 195px);
       object-fit: contain;
       align-self: flex-start;      /* wie .facts-logos — sonst hängt sie zentriert statt an der Logo-Oberkante */
-      margin-top: calc(-1 * (clamp(1.4rem, 2.8vw, 2rem) + 20px)); /* gleicher Überstand wie die Logos */
+      margin-top: calc(-1 * (clamp(1.4rem, 2.8vw, 2rem) + 20px)); /* gleicher Überstand oben wie die Logos */
+      /* Unten gleicher Überstand, damit das Band NICHT um die Krake wächst:
+         ohne das blieben unter ihr ~57px tote Fläche (gemessen). */
+      margin-bottom: calc(-1 * (clamp(1.4rem, 2.8vw, 2rem) + 20px));
       opacity: .9;
       pointer-events: none;
       user-select: none;
@@ -1029,7 +1032,11 @@ h1 em {
       font-weight: 600;
       letter-spacing: .22em;
       text-transform: uppercase;
-      white-space: nowrap;
+      /* Umbruch ist erlaubt (kein nowrap), aber nur wenn die Zeile es
+         wirklich braucht: max-width so hoch, dass der Termin auf Desktop
+         EINE Zeile bleibt und erst schmal umbricht. */
+      max-width: 32ch;
+      text-wrap: pretty;
     }
     .fact-col--thanks { text-align: left; }
     .fact-col--thanks .fact-sub {
