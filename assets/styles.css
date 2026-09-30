@@ -989,22 +989,51 @@ h1 em {
     .facts-share:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     .facts-share.copied { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 
+    /* Tabor-Krake im weißen Band (Danke-Phase): sie füllt die Lücke zwischen
+       Teilen-Knopf und Sponsoren-Logos. `order` schiebt sie in die Mitte,
+       ohne das Markup umzubauen. Bewusst ohne Filter/Glow — auf hellem
+       Grund muss das Motiv nicht erst sichtbar gemacht werden. */
+    .facts-tabor {
+      order: 1; /* zwischen facts-share (order 0 per Markup) und facts-logos (order 2) */
+      flex: none;
+      /* Höhe = die volle Logo-Spalte (zwei Reihen übereinander, von der
+         Band-Innenkante gemessen), damit Krake und Logos dieselbe
+         Ober- und Unterkante haben. align-items: center im Banner
+         zentriert sie; `position: relative` erlaubt die Feinjustierung,
+         falls die Abstände im Banner je nach Logo-Zahl kippen. */
+      width: auto;
+      /* Höhe = die Logo-Spalte (zwei Reihen à 88px + 12px Gap = 195px bei
+         1280er Viewport). Bewusst als eigener Wert: das Band ist eine
+         Flex-Zeile, %-Höhen lösen hier auf die Bildhöhe auf. Skaliert über
+         --facts-mark-h, das die Mobile-Regel unten überschreibt. */
+      height: var(--facts-mark-h, 195px);
+      object-fit: contain;
+      align-self: flex-start;      /* wie .facts-logos — sonst hängt sie zentriert statt an der Logo-Oberkante */
+      margin-top: calc(-1 * (clamp(1.4rem, 2.8vw, 2rem) + 20px)); /* gleicher Überstand wie die Logos */
+      opacity: .9;
+      pointer-events: none;
+      user-select: none;
+    }
+    .facts-share { order: 0; }
+    .facts-logos { order: 2; }
+
     /* Facts-Band (Danke-Phase): der helle Balken trägt jetzt den DANK.
        Termin/Ort bleiben drin — aus Referenzgründen (der Abend ist das
        Ereignis, die Seite ist das Gedächtnis) — aber deutlich kleiner und
        zurückhaltender als der Danke-Satz, der jetzt führt. */
+    /* Termin = reine Referenz, nicht Plakat: eine einzige schmale Zeile,
+       bewusst NICHT die ehemalige zweizeilige Haupt-Information. */
     .fact-thanks {
-      font-size: clamp(1.35rem, 3.1vw, 2.15rem);
-      line-height: 1.1;
+      font-size: clamp(.78rem, 1.4vw, .95rem);
+      line-height: 1.2;
       font-weight: 600;
-      letter-spacing: .1em;
+      letter-spacing: .22em;
       text-transform: uppercase;
       white-space: nowrap;
     }
     .fact-col--thanks { text-align: left; }
     .fact-col--thanks .fact-sub {
-      letter-spacing: .2em;
-      color: var(--ink-soft, rgba(34, 21, 40, .62));
+      display: none; /* einzeilig: Ort steckt bereits in der Zeile darüber */
     }
 
     /* Spalten 2+3: Facts zweireihig — Hauptzeile + Sub-Zeile */
@@ -1730,6 +1759,9 @@ h1 em {
       /* Facts-Banner stapeln: Logos oben (kleiner Überstand), Fakten-Paar darunter.
          Kompakt (Anforderung „Streifen sehr hoch"): Gap + vertikales Padding
          gesenkt — die Logos dominieren die Höhe, nicht der Zwischenraum. */
+      /* Mobil stapelt das Band → die Krake darf nicht die volle Zeilenhöhe
+         fressen, sonst schiebt sie alles nach unten. */
+      .facts-banner { --facts-mark-h: 120px; }
       .facts-banner {
         flex-direction: column;
         align-items: center;
