@@ -285,12 +285,37 @@ DANKE an alle, die diesen Abend möglich gemacht haben! 🙏
                 title="SunDowner — Bildergalerie"></iframe>
       </div>
       <script>
-        window.addEventListener("message", function (e) {
-          if (e.data && e.data.type === "throway:pics:height") {
-            var f = document.getElementById("ty-soundspritzer");
-            if (f) f.style.height = e.data.height + "px";
+        /* throway 1.38.2: Auto-Höhe + Lightbox-Viewport-Handshake — der Host
+           meldet seine sichtbare Höhe (dedupliziert), das iframe ackt mit
+           throway:pics:ready, damit das erste Post beim langsamen Laden
+           nicht verloren geht. Ohne Nachricht kappingt die Lightbox im
+           iframe selbst auf screen.height (Fallback). */
+        (function () {
+          var f = document.getElementById("ty-soundspritzer");
+          var last = 0;
+          function vp() {
+            var h = window.innerHeight;
+            if (h === last) return;
+            last = h;
+            try {
+              f.contentWindow.postMessage(
+                { type: "throway:pics:viewport", height: h }, "*");
+            } catch (e) {}
           }
-        });
+          window.addEventListener("message", function (e) {
+            if (e.data && e.data.type === "throway:pics:height") {
+              f.style.height = e.data.height + "px";
+              vp();
+            }
+            if (e.data && e.data.type === "throway:pics:ready") {
+              last = 0;
+              vp();
+            }
+          });
+          window.addEventListener("resize", vp);
+          window.addEventListener("scroll", vp, true);
+          setTimeout(vp, 250);
+        })();
       </script>
 
       <p class="fineprint">
