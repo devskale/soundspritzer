@@ -285,21 +285,21 @@ DANKE an alle, die diesen Abend möglich gemacht haben! 🙏
                 title="SunDowner — Bildergalerie"></iframe>
       </div>
       <script>
-        /* throway 1.38.2: Auto-Höhe + Lightbox-Viewport-Handshake — der Host
-           meldet seine sichtbare Höhe (dedupliziert), das iframe ackt mit
-           throway:pics:ready, damit das erste Post beim langsamen Laden
-           nicht verloren geht. Ohne Nachricht kappingt die Lightbox im
-           iframe selbst auf screen.height (Fallback). */
+        /* throway 1.38.4: Auto-Höhe + Lightbox-Handshake — der Host meldet
+           sichtbare Höhe UND Scroll-Offset (dedupliziert), das iframe ackt
+           mit throway:pics:ready. Die Lightbox öffnet dann genau im
+           sichtbaren Bereich, egal wie tief man in der Galerie ist. */
         (function () {
           var f = document.getElementById("ty-soundspritzer");
-          var last = 0;
+          var lastH = 0, lastO = -1;
           function vp() {
             var h = window.innerHeight;
-            if (h === last) return;
-            last = h;
+            var o = Math.max(0, Math.round(-f.getBoundingClientRect().top));
+            if (h === lastH && o === lastO) return;
+            lastH = h; lastO = o;
             try {
               f.contentWindow.postMessage(
-                { type: "throway:pics:viewport", height: h }, "*");
+                { type: "throway:pics:viewport", height: h, offset: o }, "*");
             } catch (e) {}
           }
           window.addEventListener("message", function (e) {
@@ -308,7 +308,7 @@ DANKE an alle, die diesen Abend möglich gemacht haben! 🙏
               vp();
             }
             if (e.data && e.data.type === "throway:pics:ready") {
-              last = 0;
+              lastH = 0; lastO = -1;
               vp();
             }
           });
