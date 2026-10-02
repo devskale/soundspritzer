@@ -123,6 +123,39 @@ for (const m of indexHtml.matchAll(/assets\/fotos\/([\w.-]+)/g)) {
 }
 if (!photoFails) ok(`${SLIDER.length} Slider-Fotos + ${SLIDER_OG.file} konsistent (Generator, Bestand, index.html)`);
 
+/* ── 7 · CSS-Klammer-Balance ────────────────────────────────
+   Verwaiste/doppelte } legen die FOLGENDE Regel still weg (2× passiert,
+   AGENTS.md §3). Der Check zählt { vs } pro CSS-Quelle, ignoriert aber
+   Kommentare und Strings — sonst schlagen echte } in content-/url-Werten
+   als Fehler an. Erzwingt die Balance strukturell statt als Erinnerung. */
+console.log("\n7 · CSS-Klammer-Balance ({ vs })");
+const cssSources = [
+  ...htmlFiles.map((h) => [h, readFileSync(join(root, h), "utf8")]),
+  ...readdirSync(join(root, "assets")).filter((f) => f.endsWith(".css"))
+    .map((f) => [f, readFileSync(join(root, "assets", f), "utf8")]),
+];
+let cssFails = 0;
+const balance = (txt) => {
+  // Kommentare und Strings entfernen, dann nur { } zählen
+  let depth = 0, minDepth = 0;
+  let i = 0;
+  while (i < txt.length) {
+    const c = txt[i];
+    if (c === "/" && txt[i + 1] === "*") { i = txt.indexOf("*/", i + 2); if (i < 0) break; i += 2; continue; }
+    if (c === "'" || c === "\"") { const q = c; i++; while (i < txt.length && txt[i] !== q) { if (txt[i] === "\\") i++; i++; } i++; continue; }
+    if (c === "{") depth++;
+    else if (c === "}") { depth--; if (depth < minDepth) minDepth = depth; }
+    i++;
+  }
+  return { depth, minDepth };
+};
+for (const [name, txt] of cssSources) {
+  const { depth, minDepth } = balance(txt);
+  if (depth !== 0) { fail(`${name}: ${depth} unbalancierte Klammer(n) (End-Tiefe ${depth})`); cssFails++; }
+  else if (minDepth < 0) { fail(`${name}: Klammer unter 0 (verwaiste } an Position — lege die FOLGENDE Regel still)`); cssFails++; }
+}
+if (!cssFails) ok(cssSources.length + " CSS-Quellen balanciert");
+
 /* ── Ergebnis ────────────────────────────────────────────── */
 console.log("\n" + (fails === 0 ? "✅ Medien-Stand konsistent" : `❌ ${fails} Befund/Punkte — siehe oben`));
 process.exit(fails === 0 ? 0 : 1);

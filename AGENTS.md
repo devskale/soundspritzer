@@ -57,7 +57,9 @@ Eine Regel, die man sich nur merken muss, ist eine Regel, die wieder bricht.
 ## 3 · CSS-Sicherheit
 
 Verwaiste/doppelte `}` legen die **FOLGENDE** Regel still weg (2× passiert).
-Nach jedem CSS-Edit: Klammer-Balance prüfen (End-Tiefe 0, nie negativ).
+**Automatisch geprüft** — `scripts/check-media.mjs` §7 zählt `{` vs `}` in
+allen CSS-Quellen (Kommentare + Strings ignoriert), läuft in CI
+(`media-check.yml`). Der manuelle Balance-Check ist damit überflüssig.
 Bei Selektor-Edits die umgebende Regel im Ganzen lesen — nicht Einzelzeilen
 match-and-patchen (1× zu einer verschachtelten Selector-Leiche geführt).
 
